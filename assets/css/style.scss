@@ -1,0 +1,19 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.pseudocode {
+  font-family: "Courier New", Courier, monospace;
+  white-space: pre-wrap;
+
+}
+
+.symbol {
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.function {
+  text-transform: uppercase;
+}
