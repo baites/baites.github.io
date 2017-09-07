@@ -4,9 +4,9 @@
 @import "{{ site.theme }}";
 
 .pseudocode {
+  text-indent: 50px;
   font-family: "Courier New", Courier, monospace;
   white-space: pre-wrap;
-
 }
 
 .symbol {
@@ -16,4 +16,8 @@
 
 .function {
   text-transform: uppercase;
+}
+
+.variable {
+  font-style: italic;
 }

@@ -49,6 +49,9 @@ Function swap(old, new)
   If remaining > 1+quorumSize/2
     success <- True
 
+  If r_1 > 1+r_2/2
+      r_1 <- True
+
   For Each result
     If success
       send(host, confirm(old, new))
