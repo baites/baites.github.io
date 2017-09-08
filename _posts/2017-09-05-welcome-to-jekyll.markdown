@@ -4,7 +4,9 @@ title:  "Welcome to Jekyll!"
 date:   2017-09-05 21:56:25 -0400
 categories: jekyll update
 javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  katex: true
+  mathjax: true
+  pseudocode: true
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
@@ -37,27 +39,48 @@ $$\begin{eqnarray*}
     Q(z)F(z) & = & P(z)
 \end{eqnarray*}$$
 
-{% pseudocode %}
-Function swap(old, new)
-  remaining <- quorumSize
-  success <- False
-  For Each host
-    result[host] <- send(host, propose(old, new))
-    If result[host] = "ok"
-      remaining--
+<center><div id="canvas"></div></center>
+<script type="text/javascript">
+  var canvas = document.getElementById('canvas');
+  katex.render("c = \\pm\\sqrt{a^2 + b^2}", canvas);
+</script>
 
-  If remaining > 1+quorumSize/2
-    success <- True
+<pre id="hello-world-code" style="visibility:hidden;">
+\begin{algorithm}
+\caption{Quicksort}
+\begin{algorithmic}
+\PROCEDURE{Quicksort}{$A, p, r$}
+    \IF{$p < r$}
+        \STATE $q = $ \CALL{Partition}{$A, p, r$}
+        \STATE \CALL{Quicksort}{$A, p, q - 1$}
+        \STATE \CALL{Quicksort}{$A, q + 1, r$}
+    \ENDIF
+\ENDPROCEDURE
+\PROCEDURE{Partition}{$A, p, r$}
+    \STATE $x = A[r]$
+    \STATE $i = p - 1$
+    \FOR{$j = p$ \TO $r - 1$}
+        \IF{$A[j] < x$}
+            \STATE $i = i + 1$
+            \STATE exchange
+            $A[i]$ with $A[j]$
+        \ENDIF
+        \STATE exchange $A[i]$ with $A[r]$
+    \ENDFOR
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}
+</pre>
 
-  If r_1 > 1+r_2/2
-      r_1 <- True
+<script type="text/javascript">
+  var code = document.getElementById("hello-world-code").textContent;
+  var parentEl = document.body;
+  var options = {
+      lineNumber: true
+  };
+  pseudocode.render(code, parentEl, options);
+</script>
 
-  For Each result
-    If success
-      send(host, confirm(old, new))
-    Else
-      send(host, cancel(old, new))
-{% endpseudocode %}
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
