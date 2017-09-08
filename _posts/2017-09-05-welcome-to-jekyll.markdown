@@ -39,13 +39,18 @@ $$\begin{eqnarray*}
     Q(z)F(z) & = & P(z)
 \end{eqnarray*}$$
 
-<center><div id="canvas"></div></center>
+<pre id="katex:input" style="display: none;">
+c = \pm\sqrt{a^2 + b^2}
+</pre>
+
+<center><div id="katex:output"></div></center>
 <script type="text/javascript">
-  var canvas = document.getElementById('canvas');
-  katex.render("c = \\pm\\sqrt{a^2 + b^2}", canvas);
+  var input = document.getElementById("katex:input").textContent;
+  var output = document.getElementById("katex:output");
+  katex.render(input, output);
 </script>
 
-<pre id="hello-world-code" style="visibility:hidden;">
+<pre id="pseudo:input" style="display: none;">
 \begin{algorithm}
 \caption{Quicksort}
 \begin{algorithmic}
@@ -72,13 +77,16 @@ $$\begin{eqnarray*}
 \end{algorithm}
 </pre>
 
+<div id="pseudo:output"></div>
 <script type="text/javascript">
-  var code = document.getElementById("hello-world-code").textContent;
-  var parentEl = document.body;
+  var input = document.getElementById("pseudo:input").textContent;
+  var output = document.getElementById("pseudo:output");
   var options = {
       lineNumber: true
   };
-  pseudocode.render(code, parentEl, options);
+  pseudocode.render(input, output, {
+    lineNumber: true
+  });
 </script>
 
 
