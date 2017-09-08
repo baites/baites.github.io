@@ -40,7 +40,7 @@ $$\begin{eqnarray*}
 
 Here is an example Katex:
 
-<pre id="katex:input" style="display: none;">
+{% include katex id="somemath" code="
 \begin{aligned}
     F(z) &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1}\sum_{n\geq M} a_m f_{n-m} z^n\\
     &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1} a_m z^m \sum_{n\geq M-m} f_n z^n \\
@@ -50,18 +50,11 @@ Here is an example Katex:
     Q(z)F(z) &= \sum^{M-1}_{n=0} b_n z^n - \sum^{M-1}_{n=1} \sum^{n}_{m = 1} a_m b_{n-m} z^n \\
     Q(z)F(z) &= P(z)
 \end{aligned}
-</pre>
-
-<center><div id="katex:output"></div></center>
-<script type="text/javascript">
-  var input = document.getElementById("katex:input").textContent;
-  var output = document.getElementById("katex:output");
-  katex.render(input, output);
-</script>
+" %}
 
 Here an example of pseudocode based on katex:
 
-<pre id="pseudo:input" style="display: none;">
+{% include pseudocode id="quicksort" linenumber=true code="
 \begin{algorithm}
 \caption{Quicksort}
 \begin{algorithmic}
@@ -86,20 +79,7 @@ Here an example of pseudocode based on katex:
 \ENDPROCEDURE
 \end{algorithmic}
 \end{algorithm}
-</pre>
-
-<div id="pseudo:output"></div>
-<script type="text/javascript">
-  var input = document.getElementById("pseudo:input").textContent;
-  var output = document.getElementById("pseudo:output");
-  var options = {
-      lineNumber: true
-  };
-  pseudocode.render(input, output, {
-    lineNumber: true
-  });
-</script>
-
+" %}
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
