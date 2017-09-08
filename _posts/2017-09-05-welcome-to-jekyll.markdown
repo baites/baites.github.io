@@ -26,8 +26,7 @@ print_hi('Tom')
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
-Here is an example MathJax inline rendering \\( 1/x^{2} \\), and here is a block rendering:
-\\[ \frac{1}{n^{2}} \\]
+Here is an example MathJax inline rendering \\( 1/x^{2} \\), and here is a block rendering: \\[ \frac{1}{n^{2}} \\]
 
 $$\begin{eqnarray*}
     F(z) & = & \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1}\sum_{n\geq M} a_m f_{n-m} z^n\\
@@ -39,8 +38,18 @@ $$\begin{eqnarray*}
     Q(z)F(z) & = & P(z)
 \end{eqnarray*}$$
 
+Here is an example Katex:
+
 <pre id="katex:input" style="display: none;">
-c = \pm\sqrt{a^2 + b^2}
+\begin{aligned}
+    F(z) &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1}\sum_{n\geq M} a_m f_{n-m} z^n\\
+    &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1} a_m z^m \sum_{n\geq M-m} f_n z^n \\
+    &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M-1}_{m=1} a_m z^m \left(F(z)  - \sum^{M-m-1}_{n = 0} b_n z^n \right) + a_M z^M F(z) \\
+    &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1} a_m z^m F(z) - \sum^{M-1}_{m=1} \sum^{M-m-1}_{n = 0} a_m b_n z^{n+m} \\
+    Q(z)F(z) &= \sum^{M-1}_{n=0} b_n z^n - \sum^{M-1}_{m=1} \sum^{M-1}_{n = m} a_m b_{n-m} z^n \\
+    Q(z)F(z) &= \sum^{M-1}_{n=0} b_n z^n - \sum^{M-1}_{n=1} \sum^{n}_{m = 1} a_m b_{n-m} z^n \\
+    Q(z)F(z) &= P(z)
+\end{aligned}
 </pre>
 
 <center><div id="katex:output"></div></center>
@@ -49,6 +58,8 @@ c = \pm\sqrt{a^2 + b^2}
   var output = document.getElementById("katex:output");
   katex.render(input, output);
 </script>
+
+Here an example of pseudocode based on katex:
 
 <pre id="pseudo:input" style="display: none;">
 \begin{algorithm}
