@@ -4,9 +4,9 @@ title:  "Welcome to Jekyll!"
 date:   2017-09-05 21:56:25 -0400
 categories: jekyll update
 javascript:
-  katex: true
   mathjax: true
-  pseudocode: true
+  katex: true
+  pseudocode: true  
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
@@ -38,9 +38,9 @@ $$\begin{eqnarray*}
     Q(z)F(z) & = & P(z)
 \end{eqnarray*}$$
 
-Here is an example Katex:
+Here is an example inline \\| x^2 \\| Katex:
 
-{% include katex id="somemath" code="
+<p>%%
 \begin{aligned}
     F(z) &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1}\sum_{n\geq M} a_m f_{n-m} z^n\\
     &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1} a_m z^m \sum_{n\geq M-m} f_n z^n \\
@@ -50,7 +50,7 @@ Here is an example Katex:
     Q(z)F(z) &= \sum^{M-1}_{n=0} b_n z^n - \sum^{M-1}_{n=1} \sum^{n}_{m = 1} a_m b_{n-m} z^n \\
     Q(z)F(z) &= P(z)
 \end{aligned}
-" %}
+%%</p>
 
 Here an example of pseudocode based on katex:
 
