@@ -40,7 +40,7 @@ $$\begin{eqnarray*}
 
 Here is an example inline \\| x^2 \\| Katex:
 
-<p>%%
+<p>$$
 \begin{aligned}
     F(z) &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1}\sum_{n\geq M} a_m f_{n-m} z^n\\
     &= \sum^{M-1}_{n=0} b_n z^n + \sum^{M}_{m=1} a_m z^m \sum_{n\geq M-m} f_n z^n \\
@@ -50,7 +50,7 @@ Here is an example inline \\| x^2 \\| Katex:
     Q(z)F(z) &= \sum^{M-1}_{n=0} b_n z^n - \sum^{M-1}_{n=1} \sum^{n}_{m = 1} a_m b_{n-m} z^n \\
     Q(z)F(z) &= P(z)
 \end{aligned}
-%%</p>
+$$</p>
 
 Here an example of pseudocode based on katex:
 
