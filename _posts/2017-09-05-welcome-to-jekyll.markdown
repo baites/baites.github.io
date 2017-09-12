@@ -4,7 +4,7 @@ title:  "Welcome to Jekyll!"
 date:   2017-09-05 21:56:25 -0400
 categories: jekyll update
 javascript:
-  mathjax: true
+  mathjax: "cdnjs"
   katex: true
   pseudocode: true  
 ---
@@ -54,7 +54,7 @@ Here is an example inline \\| x^2 \\| Katex:
 
 Here an example of pseudocode based on katex:
 
-{% include pseudocode id="quicksort" linenumber=true code="
+{% include pseudocode id="quicksort" lineNumber=true code="
 \begin{algorithm}
 \caption{Quicksort}
 \begin{algorithmic}

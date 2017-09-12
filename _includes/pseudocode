@@ -9,6 +9,11 @@
   var input = document.getElementById("{{ include.id }}:input").textContent;
   var output = document.getElementById("{{ include.id }}:output");
   pseudocode.render(input, output, {
-    lineNumber: {{ include.linenumber | default: false }}
+    indentSize: '{{ include.indentSize | default: '1.2em' }}',
+    commentDelimiter: '{{ include.commentDelimiter | default: '//' }}',
+    lineNumber: {{ include.lineNumber | default: false }},
+    lineNumberPunc: '{{ include.lineNumberPunc | default: ':' }}',
+    noEnd: {{ include.noEnd | default: false }},
+    captionCount: {{ include.captionCount | default: 'undefined' }}
   });
 </script>
