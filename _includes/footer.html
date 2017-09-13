@@ -2,20 +2,24 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+    <h2 class="footer-heading">
+      <i class="fa fa-book"></i>&nbsp;{{ site.title | escape }}
+    </h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>
             {% if site.author %}
-              {{ site.author | escape }}
+              <i class="fa fa-user"></i>&nbsp;{{ site.author | escape }}
             {% else %}
-              {{ site.title | escape }}
+              <i class="fa fa-book"></i>&nbsp;{{ site.title | escape }}
             {% endif %}
             </li>
             {% if site.email %}
-            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            <li>
+              <i class="fa fa-envelope"></i>&nbsp;
+              <a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
             {% endif %}
         </ul>
       </div>
