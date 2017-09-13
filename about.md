@@ -4,15 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+## My interdisciplinarian credentials
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+My name is Victor E. Bazterra I am currently a System Engineering at [Mathworks](https://www.mathworks.com/). I was before a scientist working at experimental High Energy Physics for [University of Illinois at Chicago](https://phys.uic.edu/). This was after I got my PhD physics working in
+simulations related to Material Science at [University of Buenos Aires](https://www.df.uba.ar/es/)
+in collaboration of [Center For High Performance Computing](https://www.chpc.utah.edu/) at [University of Utah](https://www.utah.edu/).
