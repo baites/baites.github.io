@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Welcome to Jekyll!"
+title: Wellcome to Jekyll!
 date: 2017-09-05 21:56:25 -0400
-author: Victor E. Bazterra 
+author: Victor E. Bazterra
 categories: jekyll update
 javascript:
   mathjax: "cdnjs"

@@ -57,6 +57,7 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 exclude:
+    - _archive/
     - assests/js/contrib
     - assets/js/extensions
     - assets/js/jax
