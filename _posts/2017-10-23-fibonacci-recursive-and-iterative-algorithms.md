@@ -3,7 +3,7 @@ layout: post
 title: Fibonacci recursive and iterative algorithms
 date: 2017-10-23 08:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science algorithms
+categories: algorithms computer-science
 javascript:
   katex: true
 ---
@@ -24,13 +24,13 @@ f_n = f_{n-1} + f_{n-2} \text{   for any   } n > 1
 
 with initial values \\|f_0 = 0\\| and \\|f_1 = 1\\|.
 
-Eventually, I found out that I was not very original when choosing this series to illustrate this point[^3]. Even more, in the same reference the recursive implementation of the Fibonacci was example of *excessive recursion*. Also, I gather from multiple sources a third way of implementing the series using a [*close form* or *formula* for the Fibonacci series](https://github.com/baites/examples/blob/master/algorithms/javascript/CloseFormFibonacci.js)[^4]. This is basically:
+Eventually, I found out that I was not very original when choosing this series to illustrate this point[^3]. Even more, in the same reference the recursive implementation of the Fibonacci was example of *excessive recursion*. Also, I gather from multiple sources a third way of implementing the series using a [*closed-form* expression or *formula* for the Fibonacci series](https://github.com/baites/examples/blob/master/algorithms/javascript/CloseFormFibonacci.js)[^4]. This is basically:
 
 <p>%%
 f_n = \left[\frac{\varphi^n}{\sqrt{5}}\right]
 %%</p>
 
-where \\|\varphi = \frac{1}{2}\left(1+\sqrt{5}\right)\\|, and \\|[\cdot]\\| detonate rounding to the closes integer.
+where \\|\varphi = \frac{1}{2}\left(1+\sqrt{5}\right)\\|, and \\|[\cdot]\\| denote rounding to the closes integer.
 
 Because I am not formally train in algorithms, I though to myself *how in the world can this be the Fibonacci series?*. Where is the magic that connects Fibonacci recurrence with this formula? Moreover, if you are looking for some more mysticism, the constant \\|\varphi\\| is the famous golden ration[^5].
 
