@@ -3,7 +3,7 @@ layout: post
 title: Fibonacci close form
 date: 2017-10-30 08:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science algorithms math
+categories: computer-science math
 javascript:
   katex: true
 ---
