@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fibonacci closed-form expression without ansatz
-date: 2017-10-30 08:00:00 -0400
+date: 2017-11-06 08:00:00 -0400
 author: Victor E. Bazterra
 categories: computer-science math
 javascript:
