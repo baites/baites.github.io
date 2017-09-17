@@ -66,7 +66,7 @@ where \\|\varphi\\| and \\|\psi\\| are the reciprocal of the roots or
 \varphi^{-1} = \mu = \frac{-1 + \sqrt5}{2} \text{  and  } \psi^{-1} = \nu = \frac{-1 - \sqrt5}{2}
 %%</p>
 
-and therefore \\|\mu \nu = -1\\|. Now, by doing partial fraction decomposition[^3], the latest generating function form we can obtain
+and therefore \\|\mu \nu = -1\\|. Now, by doing partial fraction decomposition[^3] to generating function form we can obtain
 
 <p>%%
 \begin{aligned}
@@ -76,6 +76,21 @@ F(z) &= \frac{z}{(1 - z\varphi)(1 - z\psi)} \\
 \end{aligned}
 %%</p>
 
+in where the last points we use the fact that \\|\varphi - \psi = \sqrt{5}\\| and geometric series result:
+
+<p>%%
+\frac{1}{1-x} = \sum_{n \geq 0} x^n
+%%</p>
+
+in where the series converge absolutely if \\| \vert x \vert < 1 \\|, that in this case implies \\| \vert z \vert < 1/\varphi = -\psi \\| and therefore, the radius of convergence is \\| R = -\psi\\|.
+
+We just show then that each term of the Fibonacci sequence is then
+
+<p>%%
+f_n = \frac{\varphi^n - \psi^n}{\sqrt5}
+%%</p>
+
+without using an ansatz. This was done by analyzing and rewriting the generating function of the sequence. So we use the property of an analytical function to derive a fact about a discrete sequence of integers.
 
 [^1]: [Fibonacci numbers in matrix form](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form).
 
