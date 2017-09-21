@@ -14,7 +14,7 @@ Roughly speaking, I will be calling a *recursive algorithm* to any algorithm tha
 
 Since my teens I had a conjecture, let's call it following an arbitrary order **Bazterra conjecture #1**[^1].
 
-> **Bazterra conjecture #1:** for any recursive(iterative) algorithm there is a iterative(recursive) reciprocal algorithm that can solve the same problem. Even more, both the original and reciprocal algorithms belong to the same complexity class.
+> **Bazterra conjecture #1:** for any recursive(iterative) algorithm there is a iterative(recursive) reciprocal algorithm that can solve the same problem.
 
 This is by no means anything new and it currently a well understood concept. There are moreover heuristics rules of when using a recursive or iterative algorithm based on the problem instance sizes and language characteristics used in the implementation[^2]. As example of this point, you find a simple [recursive](https://github.com/baites/examples/blob/master/algorithms/javascript/RecursiveFibonacci.js) and [iterative](https://github.com/baites/examples/blob/master/algorithms/javascript/IterativeFibonacci.js) versions written in javascript of the *Fibonacci* series in my [example github repo](https://github.com/baites/examples). The Fibonacci series is a sequence of numbers defined by the following linear recurrence relation
 
