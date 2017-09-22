@@ -1,0 +1,4 @@
+
+<p style="text-align:{{ include.align | default: 'center' }}">
+  <img style="width:{{ include.scale | default: 'auto' }}; height: auto;" src="{{ site.url }}/assets/images/{{ include.file }}"/>
+</p>
