@@ -10,7 +10,7 @@ I find the notion of closure fundamental but bit trivial in high level languages
 
 But before getting too much in the discussion, lets define what actually are **closures**. The simplest definition I can think of is something like this:
 
-> A **closure** is the association between a function and some variables present in the scope when this function was defined. Effectively, a closure becomes a combination of a function and an environment made of the this **captured** variables[^1].  
+> A **closure** is the association between a function and some variables present in the scope when this function was defined. Effectively, a closure becomes a combination of a function and an environment made of the these **captured** variables[^1].
 
 Closures are a computer language feature, so I will use C++ and python to present the main concepts in this post. The minimal example of a closure can be found in the following code
 
@@ -28,7 +28,7 @@ print('', closure())
 
 in where the closure is made of a *method* function and the *context* variable. This is because when the function returns *method* function, implicitly python is also returning capture variable *context*.
 
-It is important also to spell out that returning a reference or pointer to a faction does not create a closure. For emphasis, I am writing the following example using C++ that did not support closures before C++11[^2].
+It is important also to spell out that returning a reference or pointer to a faction **does not create a closure**! For emphasis, I am writing the following example using C++ that did not support closures before C++11[^2].
 
 {% highlight C++ %}
 #include <iostream>
