@@ -58,11 +58,11 @@ int main(int argc, const char* argv[])
 //> context when calling method: A
 {% endhighlight %}
 
-In this case there is not need to do any association between *method* and a *capture context* because both exist in the global name space. This means they are trivially accessable throughout the whole program. For this particular case, there is an equivalent version for [C++](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/NoClosure.C), [javascript](https://github.com/baites/examples/blob/master/idioms/javascript/NoClosure.js), and [python](https://github.com/baites/examples/blob/master/idioms/python/NoClosure.py).
+In this case there is not need to do any association between *method* and a *capture context* because both exist in the global name space. This means they are trivially accessible throughout the whole program. For this particular case, there is an equivalent version for [C++](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/NoClosure.C), [javascript](https://github.com/baites/examples/blob/master/idioms/javascript/NoClosure.js), and [python](https://github.com/baites/examples/blob/master/idioms/python/NoClosure.py).
 
 One question that naturally arises is how the variables are captured, by copy/value or by reference[^3]. The answer for both javascript and python depends if the input context is immutable or mutable. If input context is immutable, then the closure tend to behave as a *capture by copy/value*. This is because immutable objects cannot be changed, and therefore it looks like as the closure contains only the value of the input context. By other hand, if input context is mutable, then it is possible change context value using the initial reference pass to the *CreateClosure* function. The following code in [javascript](https://github.com/baites/examples/blob/master/idioms/javascript/SimpleClosure.js), and [python](https://github.com/baites/examples/blob/master/idioms/python/SimpleClosure.py) provide working examples of these two cases.
 
-For next post, I will discuss why the concept of closure seems to be trivially needed for some type languages.
+For next post, I am planning to discuss about object life cycles of those variables capture in closures.
 
 [^1]: [Closure (computer programming).](https://en.wikipedia.org/wiki/Closure_(computer_programming))
 
