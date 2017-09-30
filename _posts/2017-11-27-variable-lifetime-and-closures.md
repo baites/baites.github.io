@@ -41,6 +41,26 @@ def CreateClosure(value):
 
  Working examples of this pattern can be found in the following links for [javascript](https://github.com/baites/examples/blob/master/idioms/javascript/SharedContextClosures.js) and [python](https://github.com/baites/examples/blob/master/idioms/python/SharedContextClosures.py). Please notice the use of the python keyword **nonlocal**, it is fundamental to access *context* within *SetContext()* method, see as example a **broken** version with [nonlocal omitted](https://github.com/baites/examples/blob/master/idioms/python/BrokenSharedContextClosures.py).
 
-From these examples, it seems like we can access *context* value outside of the scope in where it was created, meaning **CreateClosure()** function. Sometimes this is referred as the closure *extended the variable lifetime*. **I speculate** that in this case, that *context* variable within the closure there is a reference to a memory address with its value. Therefore, as long the closure exists, there is a reference to *context* memory address, and it is accessible throughout closure methods as it was demonstrated. Because it still remains accessible, the variable is not garbage collected and its lifetime is extended as long as the closure is not destroyed.
+From these examples, it seems like we can access *context* value outside of the scope in where it was created, meaning **CreateClosure()** function. Sometimes this is referred as the closure *extended the variable lifetime*. For python, the *context* variable within the closure is a reference to a memory address containing its value. Therefore, as long the closure exists, there is a reference to *context* memory address, and it is accessible throughout closure methods as it was demonstrated. Because it still remains accessible, the variable is not garbage collected and its lifetime is extended as long as the closure is not destroyed.
+
+I created a small [python code](https://github.com/baites/examples/blob/master/idioms/python/VariableLifetimeInClosure.py) to prove this point. This example uses what I call a lifetime probe, that is an object capable of tracking its own lifetime. Using this probe, I create a closure withing the scope of a function instead of the global namespace, as schematically is shown below.
+
+{% highlight python %}
+def main():
+    """First scope where closure lives"""
+    def CreateClosure(value):
+        """Create closure forcing capture by copy or value."""
+        context = copy.deepcopy(value)
+        def Method():
+            return copy.deepcopy(context)
+        return Method
+    probe = LifetimeProbe()
+    closure = CreateClosure(probe)
+    return closure
+{% endhighlight %}
+
+Therefore by entering and exiting the function scope the closure is created and destroyed as long there is not outside reference awaiting returned closure. The [example code](https://github.com/baites/examples/blob/master/idioms/python/VariableLifetimeInClosure.py) just verify that *closure* lifetime is the same as its closure lifetime. 
+
+For javascript, I think safe to assume that follows the same logic as python, regarding the lifetime of variable capture in closures.
 
 [^1]: I would like reiterate previous post foot note in here: one that one should be careful of using the notion of **copy/value** and **reference** related closely to C++ but not directly translatable for garbage collected high level languages such python or javascript. This is why I will be using expression such as *behaves like by copy or reference*.
