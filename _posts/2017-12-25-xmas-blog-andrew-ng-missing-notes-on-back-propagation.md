@@ -37,7 +37,7 @@ a^{[l](i)}_j &= g^{[l]}\left(z^{[l](i)}_j\right)
 \end{aligned}
 %%</p>
 
-that can be written in using matrix and vector notation as
+where \\|g^{\[l\]}(\cdot)\\| is the activation function in the *l*-layer. These equations can be written in using matrix and vector notation as
 
 <p>%%
 \begin{aligned}
@@ -46,7 +46,7 @@ A^{[l]} &= g^{[l]}\left(Z^{[l]}\right)
 \end{aligned}
 %%</p>
 
-If there are \\|L\\| layers and in each one there are \\|n^{\[l\]}\\| nodes, moreover your training set contain \\| m \\| examples, then the dimension of the previous matrices and vectors are:
+If there are \\|L\\| layers and in each one there are \\|n^{\[l\]}\\| nodes, and your training set contains \\| m \\| examples, then the dimension of the previous matrices and vectors are:
 
 <p>%%
 \begin{aligned}
@@ -64,7 +64,18 @@ Supervised learning goal is to minimize of the *cost* function \\|\mathcal{C}\\|
 
 in where the loss function introduces the notion of how wrong is the activation value for the last layer relative to the labels of your training set \\|\{Y^{(i)}\}\\|. The detail of the loss function depends on the type of learning being done like logistic regression, softmax regression, or multitasking learning as a few examples. We do not need to assume any particular function form for the loss function to derive back-propagation algorithm.
 
-For \\|f: \mathbb{R}^n \rightarrow \mathbb{R}\\| and \\|G: \mathbb{R}^m \rightarrow \mathbb{R}^n\\|
+The minimization of cost function is done using by updating neural network weights \\|\{W^{\[l\]}\}\\| and bias \\|\{B^{\[l\]}\}\\| using the steepest or gradient descent algorithm as follows
+
+<p>%%
+\begin{aligned}
+W^{[l]} & = W^{[l]} - \alpha dW^{[l]} \\
+B^{[l]} & = B^{[l]} - \alpha dB^{[l]} \\
+\end{aligned}
+%%</p>
+
+in where \\| dW^{[l]} \\| and \\| dB^{[l]} \\| is Andrew's short notation for the gradient of the cost function relatively network weights and biases. More details will be given shortly.
+
+The main tool to derive back-propagation equations is the chain rule in derivatives.  \\|f: \mathbb{R}^n \rightarrow \mathbb{R}\\| and \\|G: \mathbb{R}^m \rightarrow \mathbb{R}^n\\|
 
 <p>%%
 \frac{\partial}{\partial x_i} f(G(X)) = \sum^n_{i=1} \frac{\partial f}{\partial g_j}\Big\vert_{G(X)} \frac{\partial g_j}{\partial x_i}\Big\vert_{X}
