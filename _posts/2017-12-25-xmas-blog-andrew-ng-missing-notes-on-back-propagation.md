@@ -83,7 +83,7 @@ The goal of the back-propagation algorithm is to compute the gradient of the cos
 
 or in words, the derivative of the composition of two function can be written as the sum the derivatives of the individual functions that make the composition.
 
-We now derived the expression for two very important auxiliaries gradients. The first one is the gradient of the loss function as a function of activation node activation:
+We now derived the expression for two very important auxiliaries gradients. The first one is the gradient of the loss function as a function of node activation:
 
 <p>%%
 \begin{aligned}
@@ -103,7 +103,9 @@ in where I used the *blue* color to designate this gradient is of the loss funct
 \end{aligned}
 %%</p>
 
-in where the notation \\|\odot\\| represent the element-wise or Hadamard product[^5].
+in where the notation \\|\odot\\| represent the element-wise or Hadamard product[^5]. It is possible to see that the values of \\|dA^{[l]}\\| and therefore also \\|dZ^{[l]}\\| depend on the values \\|dZ^{[l+1]}\\| of the upper layer.
+
+Using these auxiliaries gradients, it is possible to estimate the gradient of the cost function relative to network weights as
 
 <p>%%
 \begin{aligned}
@@ -113,6 +115,8 @@ in where the notation \\|\odot\\| represent the element-wise or Hadamard product
 \end{aligned}
 %%</p>
 
+and network biases as
+
 <p>%%
 \begin{aligned}
 {\color{red} db^{[l]}_{j}} = \frac{\partial \color{red}\mathcal{C}}{\partial b^{[l]}_{j}} &= \sum^{m}_{i=1}\sum^{n^{[l]}}_{j'=1} \frac{\partial \mathcal{C}}{\partial z^{[l](i)}_{j'}} \frac{\partial z^{[l](i)}_{j'}}{\partial b^{[l]}_{j}} \\  
@@ -120,6 +124,8 @@ in where the notation \\|\odot\\| represent the element-wise or Hadamard product
 {\color{red} dB^{[l]}} &= \frac{1}{m} \sum^{m}_{i=1} \left({\color{blue} dZ^{[l]}}\right)_{ji}
 \end{aligned}
 %%</p>
+
+by simply applying the chain rule. As result, complementary to forward-propagating equations to evaluate networks activation functions, you also have back-propagating equations to evaluate the gradient of the cost function as follow
 
 <p>%%
 \begin{aligned}
@@ -129,6 +135,26 @@ in where the notation \\|\odot\\| represent the element-wise or Hadamard product
 {\color{red} dB^{[l]}} &= \frac{1}{m} \sum^{m}_{i=1} \left({\color{blue} dZ^{[l]}}\right)_{ji}
 \end{aligned}
 %%</p>
+
+in where they are initialized using for value \\|{\color{blue} dZ^{[L]}}\\| of the last layer by the following equation.
+
+<p>%%
+{\color{blue} dZ^{[L]}} = {\color{blue} dA^{[L]}} \odot g^{[L]'}\left(Z^{[L]}\right)
+%%</p>
+
+For example, in the case of logistic regression in there there is one node in the last layer of the network \\|n^{[D]} = 1\\| and the loss function is given by the cross entropy
+
+<p>%%
+\mathcal{L}\left(\hat{y},y\right) =- (1-y)\ln(1-\hat{y})-y\ln(\hat{y})
+%%</p>
+
+between the predicted value \\|\hat{y} = a^{[D]}\\| and actual label in you training set \\|y\\|, and the activation function of the last layer is given by the sigmoid function \\|g^{[D]}(z) = 1/(1+e^{-z})\\| then \\|{\color{blue} dZ^{[L]}}\\| is simply the difference between the predicted value of and label of the training sample:
+
+<p>%%
+{\color{blue} dZ^{[L]}} = \hat{Y} - Y
+%%</p>
+
+So here you have it. One of the main advantage of Andrew's notation is that explicitly show how to vectorize the back-propagation training of a deep neural network. The fact *backprop* can be efficiently implemented using GPU is one of the main reasons the grandpa of supervise algorithms is currently one of the most popular.  
 
 [^1]: [Neural Networks and Deep Learning](https://www.coursera.org/learn/neural-networks-deep-learning).
 
