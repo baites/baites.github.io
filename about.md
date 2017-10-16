@@ -6,9 +6,9 @@ permalink: /about/
 
 ## Goals
 
-These notes contents were produced as part of my different projects, that for any some reason stayed in my archives. Also some of the contents are the result of some exercise that ended providing me with some non-trivial knowledge from at least from my perspective.
+The content of these notes was produced as I research for projects or just for fun. Some of the contents are the result of some exercise that ended providing me with some non-trivial knowledge from at least from my perspective. Due to its informal nature, much of this information stayed in my archives.
 
-My goal is find a place for this knowledge, because a lot of it although simple, they are the foundation of a lot my projects. Another goal is to show of *STEM* skills can be used for specific applications and personal entertainment and enlightenment.
+My goal is find a place for this knowledge in where some were part of the foundation for some of my projects. Another goal is to how *STEM* skills are applied in specific developments, and also as source for personal entertainment and enlightenment.
 
 ## My interdisciplinarian credentials
 
