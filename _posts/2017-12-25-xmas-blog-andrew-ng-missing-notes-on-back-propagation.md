@@ -62,24 +62,28 @@ Supervised learning goal is to minimize of the *cost* function \\|\mathcal{C}\\|
 \mathcal{C} = \frac{1}{m} \sum^m_{i=1} \mathcal{L}\left(A^{[L](i)},Y^{(i)}\right)
 %%</p>
 
-in where the loss function introduces the notion of how wrong is the activation value for the last layer relative to the labels of your training set \\|\{Y^{(i)}\}\\|. The detail of the loss function depends on the type of learning being done like logistic regression, softmax regression, or multitasking learning as a few examples. We do not need to assume any particular function form for the loss function to derive back-propagation algorithm.
+in where the loss function introduces the notion of how wrong is the activation value for the last layer relative to the labels of your training set \\|\{Y^{(i)}\}\\|. The detail of the loss function depends on the type of learning being done like logistic regression, softmax regression, or multitasking learning as a few examples[^3]. We do not need to assume any particular function form for the loss function to derive back-propagation algorithm.
 
 The minimization of cost function is done using by updating neural network weights \\|\{W^{\[l\]}\}\\| and bias \\|\{B^{\[l\]}\}\\| using the steepest or gradient descent algorithm as follows
 
 <p>%%
 \begin{aligned}
 W^{[l]} & = W^{[l]} - \alpha dW^{[l]} \\
-B^{[l]} & = B^{[l]} - \alpha dB^{[l]} \\
+B^{[l]} & = B^{[l]} - \alpha dB^{[l]}
 \end{aligned}
 %%</p>
 
-in where \\| dW^{[l]} \\| and \\| dB^{[l]} \\| is Andrew's short notation for the gradient of the cost function relatively network weights and biases. More details will be given shortly.
+in where \\| dW^{[l]} \\| and \\| dB^{[l]} \\| is Andrew's short notation for the gradient of the cost function relatively network weights and biases, more details of the notation will be given shortly.
 
-The main tool to derive back-propagation equations is the chain rule in derivatives.  \\|f: \mathbb{R}^n \rightarrow \mathbb{R}\\| and \\|G: \mathbb{R}^m \rightarrow \mathbb{R}^n\\|
+The goal of the back-propagation algorithm is to compute the gradient of the cost function for an arbitrary deep neural network efficiently. The main tool to derive back-propagation equations is the chain rule of derivatives[^4]. The rule says that the derivative the composition of two functions \\|f: \mathbb{R}^n \rightarrow \mathbb{R}\\| and \\|G: \mathbb{R}^m \rightarrow \mathbb{R}^n\\| is given by the following expression:
 
 <p>%%
 \frac{\partial}{\partial x_i} f(G(X)) = \sum^n_{i=1} \frac{\partial f}{\partial g_j}\Big\vert_{G(X)} \frac{\partial g_j}{\partial x_i}\Big\vert_{X}
 %%</p>
+
+or in words, the derivative of the composition of two function can be written as the sum the derivatives of the individual functions that make the composition.
+
+We now derived the expression for two very important auxiliaries gradients. The first one is the gradient of the loss function as a function of activation node activation:
 
 <p>%%
 \begin{aligned}
@@ -89,6 +93,8 @@ The main tool to derive back-propagation equations is the chain rule in derivati
 \end{aligned}
 %%</p>
 
+in where I used the *blue* color to designate this gradient is of the loss function instead of the cost function. The second gradient is also of the loss function relative to the value of the nodes before applying the activation function:
+
 <p>%%
 \begin{aligned}
 {\color{blue} dz^{[l](i)}_j} = \frac{\partial \color{blue}\mathcal{L}}{\partial z^{[l](i)}_j} &= \sum^{n^{[l]}}_{j'=1} \frac{\partial \mathcal{L}}{\partial a^{[l](i)}_{j'}} \frac{\partial a^{[l](i)}_{j'}}{\partial z^{[l](i)}_j} \\  
@@ -96,6 +102,8 @@ The main tool to derive back-propagation equations is the chain rule in derivati
 {\color{blue} dZ^{[l]}} &= {\color{blue} dA^{[l]}} \odot g^{[l]'}\left(Z^{[l]}\right)
 \end{aligned}
 %%</p>
+
+in where the notation \\|\odot\\| represent the element-wise or Hadamard product[^5].
 
 <p>%%
 \begin{aligned}
@@ -125,3 +133,9 @@ The main tool to derive back-propagation equations is the chain rule in derivati
 [^1]: [Neural Networks and Deep Learning](https://www.coursera.org/learn/neural-networks-deep-learning).
 
 [^2]: Example are [tensorflow](https://www.tensorflow.org/) or [Matlab](https://www.mathworks.com/help/nnet/deep-learning-basics.html).
+
+[^3]: [Logistic regression](https://en.wikipedia.org/wiki/Logistic_regression), [Softmax regression](https://en.wikipedia.org/wiki/Softmax_function), and [Multi-task learning](https://en.wikipedia.org/wiki/Multi-task_learning).
+
+[^4]: [Chain rule](https://en.wikipedia.org/wiki/Chain_rule)
+
+[^5]: [Hadamard product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices))
