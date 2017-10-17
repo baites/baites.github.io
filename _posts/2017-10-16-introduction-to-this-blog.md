@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Inproduction to this blog
+title: Introduction to this blog
 date: 2017-10-16 11:40:00 -0400
 author: Victor E. Bazterra
 categories: general
