@@ -8,7 +8,7 @@ categories: general
 
 A few years ago I used to introduce myself as a scientist. However, a better term would be that I am an interdisciplinarian, to reflect my current background as engineer. This is following a somewhat arbitrary classification system that put science, technology, engineering, and math in different categories. The arbitrariness of this system is reflected in the recent need for naming them together as *STEM* for educational purposes.
 
-Even as scientist I tended to be full stack researcher (aka jack-of-all-trades without the negative connotation), and as result, a lot of knowledge I created could not be shown directly in the fields I was involved in. I will not preach in this blog the benefits (or lack of) of my interdisciplinary tendencies because their are not entirely of my choice. Instead, I will claim that a lot of knowledge is been created are done contexts cannot be easily shared for whatever reasons.
+Even as scientist I tended to be full stack researcher (aka jack-of-all-trades without the negative connotation), and as result, a lot of knowledge I created could not be shown directly in the fields I was involved in. I will not preach in this blog the benefits (or lack of) of my interdisciplinary tendencies because their are not entirely of my choice. Instead, I will claim that a lot of knowledge is been created are done in contexts in where it cannot be easily shared for whatever reasons.
 
 I am creating these notes/post/blogs as attempt to share some this knowledge that for contextual reasons stayed in my archives.
 
