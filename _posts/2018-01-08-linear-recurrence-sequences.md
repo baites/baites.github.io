@@ -70,7 +70,7 @@ Proving this proposition is not that hard, however it takes some time to find th
 \end{aligned}
 %%</p>
 
-If you are unsure of the previous steps do not worry. In the next post, I will use this proposition to write the first version of the program capable of computing the close form of a large family of linear recurrence sequence. In this way you will be able to check the veracity of proposition by directly looking at the result of the program.
+If you are unsure of the previous steps do not worry. In the next post, I will use this proposition to write the first version of the program capable of computing the close form for a large family of linear recurrence sequence. In this way you will be able to check the veracity of proposition by directly looking at the result of the program.
 
 [^1]: [Concrete Mathematics: A Foundation for Computer Science (2nd Edition)](https://www.amazon.com/Concrete-Mathematics-Foundation-Computer-Science/dp/0201558025).
 
