@@ -6,6 +6,7 @@ author: Victor E. Bazterra
 categories: algorithm-analysis computer-science math
 javascript:
   katex: true
+  pseudocode: true  
 ---
 
 These notes are the result of how I lost my mind when researching Fibonacci sequence. I wrote already four post about it, in particular in how to derive a close form to compute the whole sequence, see below.
@@ -71,6 +72,47 @@ Proving this proposition is not that hard, however it takes some time to find th
 %%</p>
 
 If you are unsure of the previous steps do not worry. In the next post, I will use this proposition to write the first version of the program capable of computing the close form for a large family of linear recurrence sequence. In this way you will be able to check the veracity of proposition by directly looking at the result of the program.
+
+{% include pseudocode id="CloseForm:CreateP" code="
+\begin{algorithm}
+\caption{CloseForm:CreateP}
+\begin{algorithmic}
+\FUNCTION{CreateP}{$a,b$}
+    \STATE Assert len($a$) == len($b$)
+    \STATE \textit{M} = len($b$)
+    \STATE Create array $p$ of dimension M
+    \FOR{$n = 0$ \TO M}
+        \IF{$n == 0$}
+            \STATE $p_n = b_0$
+            \STATE continue
+        \ENDIF
+        \STATE $p_n = b_n$
+        \FOR{$m = 1$ \TO $n+1$}
+            \STATE $p_n = p_n - a_{m-1} b_{n-m}$
+        \ENDFOR
+    \ENDFOR
+    \RETURN reverse of $p$
+\ENDFUNCTION
+\end{algorithmic}
+\end{algorithm}
+" %}
+
+{% include pseudocode id="CloseForm:CreateQ" code="
+\begin{algorithm}
+\caption{CloseForm:CreateQ}
+\begin{algorithmic}
+\FUNCTION{CreateQ}{$a$}
+    \STATE \textit{M} = len($a$)
+    \STATE Create array $q$ of dimension \textit{M+1}
+    \STATE $q_0 = 1$
+    \FOR{$n = 0$ \TO \textit{M}}
+        \STATE $q_{n+1} = -a_n$
+    \ENDFOR
+    \RETURN reverse of $q$
+\ENDFUNCTION
+\end{algorithmic}
+\end{algorithm}
+" %}
 
 [^1]: [Concrete Mathematics: A Foundation for Computer Science (2nd Edition)](https://www.amazon.com/Concrete-Mathematics-Foundation-Computer-Science/dp/0201558025).
 
