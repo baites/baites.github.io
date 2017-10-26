@@ -71,7 +71,7 @@ Proving this proposition is not that hard, however it takes some time to find th
 \end{aligned}
 %%</p>
 
-If you are unsure of the previous steps do not worry. In the next post, I will use this proposition to write the first version of the program capable of computing the close form for a large family of linear recurrence sequence. In this way you will be able to check the veracity of proposition by directly looking at the result of the program.
+If you are unsure of the previous steps do not worry. In the next post, I will use this proposition to write the first version of the program capable of computing the close form for a large family of linear recurrence sequence. In this way you will be able to check the veracity of proposition by directly looking at the result of the program. In the meantime, I will be given some pseudocode to create the polynomial coefficients for \\|P(z)\\| and \\|Q(z)\\|. This code will be assumed as given in the coming posts.
 
 {% include pseudocode id="CloseForm:CreateP" code="
 \begin{algorithm}
@@ -91,7 +91,7 @@ If you are unsure of the previous steps do not worry. In the next post, I will u
             \STATE $p_n = p_n - a_{m-1} b_{n-m}$
         \ENDFOR
     \ENDFOR
-    \RETURN reverse of $p$
+    \RETURN $p$
 \ENDFUNCTION
 \end{algorithmic}
 \end{algorithm}
@@ -108,7 +108,7 @@ If you are unsure of the previous steps do not worry. In the next post, I will u
     \FOR{$n = 0$ \TO \textit{M}}
         \STATE $q_{n+1} = -a_n$
     \ENDFOR
-    \RETURN reverse of $q$
+    \RETURN $q$
 \ENDFUNCTION
 \end{algorithmic}
 \end{algorithm}
