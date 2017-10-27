@@ -9,7 +9,7 @@ javascript:
   pseudocode: true
 ---
 
-This is continuation of a initial post with the end goal of computing a close form for a linear recurrence sequence. Details about what are these sequences and how to compute their generating function are in the first blog:
+This is a continuation of a initial post with the end goal of computing a close form for a linear recurrence sequence. Details about what are these sequences and how to compute their generating function are in the first blog:
 
 * [Linear recurrence sequences]({% post_url 2018-01-08-linear-recurrence-sequences %})
 
@@ -27,7 +27,7 @@ Now let's assume that the poles of \\|F(z)\\| are distinct and it is possible to
 Q(z) = q_M \prod^{M}_{i=1} (z-\eta_i)
 %%</p>
 
-then it is possible to write *partial fraction decomposition or expansion* of sequence generator function \\|F(z)\\| as following:
+then it is possible to write a *partial fraction decomposition or expansion* of sequence generator function \\|F(z)\\| as following[^2]:
 
 <p>%%
 \begin{aligned}
@@ -65,7 +65,7 @@ c_i = \frac{-\rho_i P(\rho_i^{-1})}{Q'(\rho_i^{-1})}
 
 It is important to realize, that the coefficient \\|r_i\\| and reciprocal roots \\|\rho_i\\| are not necessary real numbers. We will see next, that for most of the examples, they are actually complex numbers! This will not be an issue if you write the algorithm in a language that support complex and primitive types.
 
-Now, we have all the necessary ingredients to write the algorithm to compute the close form. The algorithm is rather simple and can be easily express as the following pseudocode[^2].
+Now, we have all the necessary ingredients to write the algorithm to compute the close form. The algorithm is rather simple and can be easily express as the following pseudocode[^3].
 
 {% include pseudocode id="CloseFormV1" code="
 \begin{algorithm}
@@ -88,10 +88,12 @@ Now, we have all the necessary ingredients to write the algorithm to compute the
 
 This code depends of two other function *CreateP* and *CreateQ* defined in the [previous post]({% post_url 2018-01-08-linear-recurrence-sequences %}). Moreover, the code relies of some functions to manipulate polynomials that easy to find in high level languages. For example, find a full working examples in [MATLAB](https://github.com/baites/examples/blob/master/algorithms/matlab/DistinctPolesLinearRecurrenceCloseForm.m) and [python](https://github.com/baites/examples/blob/master/algorithms/python/DistinctPolesLinearRecurrenceCloseForm.py) for this code.
 
-Finally, when I started in working in this project, I dreamed that I could create some kind of generalization to the Fibonacci sequence and put my name on it! I was already naming them *Bazterra's sequences*. **Yes, I am that naive some times.** Anyway, I found that most of the sequence I could think (the trivial ones) can be found in a wonderful resources know as *The On-Line Encyclopedia of Integer Sequences*[^3]. They provide information about the sequence themselves, and also other data as their generating function and more. It is really awesome resource! I used this database to test the code on several sequences. Within the code comment, I provide also their identification code in the database, so you can verify the results.
+Finally, when I started in working in this project, I dreamed that I could create some kind of generalization to the Fibonacci sequence and put my name on it! I was already naming them *Bazterra's sequences*. **Yes, I am that naive some times.** Anyway, I found that most of the sequence I could think of (the trivial ones) can be found in a wonderful resources know as *The On-Line Encyclopedia of Integer Sequences*[^4]. They provide information about the sequence themselves, and also other data as their generating function and more. It is really awesome resource! I used this database to test the code on several sequences. Within the code comment, I provide also their identification code in the database, so you can verify the results.
 
-[^1]: [Concrete Mathematics: A Foundation for Computer Science (2nd Edition)](https://www.amazon.com/Concrete-Mathematics-Foundation-Computer-Science/dp/0201558025) also  [Partial fraction decomposition entry in wikipedia](https://en.wikipedia.org/wiki/Partial_fraction_decomposition).
+[^1]: [Concrete Mathematics: A Foundation for Computer Science (2nd Edition)](https://www.amazon.com/Concrete-Mathematics-Foundation-Computer-Science/dp/0201558025).
 
-[^2]: In this pseudocode I use the convention of expressing polynomial  coefficients as lowercase letters, and with the same letter in uppercase, the actual polynomial.
+[^2]: [Partial fraction decomposition](https://en.wikipedia.org/wiki/Partial_fraction_decomposition)
 
-[^3]: [The On-Line Encyclopedia of Integer Sequences](https://oeis.org/).
+[^3]: In this pseudocode I use the convention of expressing polynomial  coefficients as lowercase letters, and with the same letters in uppercase, the actual polynomial functions.
+
+[^4]: [The On-Line Encyclopedia of Integer Sequences](https://oeis.org/).
