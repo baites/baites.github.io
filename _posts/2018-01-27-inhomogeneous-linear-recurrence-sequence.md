@@ -56,15 +56,43 @@ where \\|\Delta_{\text{deg}} = \text{deg}(P) - \text{deg}(Q)\\| and the expressi
 f_n = \sum^{D}_{i=1} c_i(n) \eta^{-n}_i + \mathbf{1} _{\{\Delta_{\deg} \geq 0\}} \sum^{\Delta_{\deg}}_{i=0} h_i \delta_{in}.
 %%</p>
 
+The pseudocode to compute the close form is shown below. 
+
 {% include pseudocode id="CloseFormV2" code="
 \begin{algorithm}
 \caption{CloseFormV2}
 \begin{algorithmic}
-\FUNCTION{CloseFormV2}{$A,b,p_I,q_I$}
+\FUNCTION{CreateF}{$a,b,p_I,q_I$}
     \STATE $q_O$ = \CALL{CreateQ}{$a$}
     \STATE $p_O$ = \CALL{CreateP}{$a,b$}
-    \STATE compute partial fraction decomposition $(p,q) \rightarrow (r, \rho, h)$
-    \RETURN $c$, $\rho$
+    \STATE $M = \text{len}(a)$
+    \STATE $P = P_O Q_I + z^M P_I$
+    \STATE $Q = Q_O Q_I$    
+    \RETURN $P,Q$
+\ENDFUNCTION
+\FUNCTION{CloseFormV2}{$a,b,p_I,q_I$}
+    \STATE $P,Q$ = \CALL{CreateF}{$a,b,p_I,q_I$}
+    \STATE compute partial fraction decomposition $(P,Q) \rightarrow (r, \eta, h)$
+    \RETURN $r, \eta, h$
+\ENDFUNCTION
+\FUNCTION{EvalCloseFormV2}{$r, \eta, h, n$}
+    \STATE Assert len($r$) == len($\eta$)
+    \STATE f = 0
+    \STATE k = 0
+    \STATE $\eta_{\text{old}} = 0$
+    \FOR{$i = 0$ \TO len($r$)}
+        \IF{$n$ == $0$ and $\eta_i$ != $\eta_{\text{old}}$}
+            \STATE $k = 1$
+        \ELSE
+            \STATE $k = k + 1$
+        \ENDIF
+        \STATE $f = f + (-1)^k \binom{k+n-1}{n} r_i \eta_i^{-(n+k)}$
+        \IF{$i$ == $n$ and $n$ < $\text{len}(h)$}        
+            \STATE $f = f + h_i$
+        \ENDIF
+        \STATE $\eta_{\text{old}} = \eta_i$
+    \ENDFOR
+    \RETURN $f$
 \ENDFUNCTION
 \end{algorithmic}
 \end{algorithm}

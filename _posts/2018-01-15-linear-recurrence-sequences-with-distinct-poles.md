@@ -76,7 +76,7 @@ Now, we have all the necessary ingredients to write the algorithm to compute the
     \STATE $\hat{q}$ = reverse of $q$
     \STATE $\rho$ = roots of the polynomial $\hat{Q}$
     \STATE $p$ = \CALL{CreateP}{$a,b$}
-    \STATE $q'$ = coefficients of the derivative of $Q$
+    \STATE $Q'$ = get the derivative of $Q$
     \FOR{$i = 0$ \TO len($\rho$)}
         \STATE $c_i = -\rho_i P(\rho^{-1}_i)/Q'(\rho^{-1}_i)$
     \ENDFOR
