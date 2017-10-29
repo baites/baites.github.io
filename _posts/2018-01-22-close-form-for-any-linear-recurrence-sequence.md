@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Close-form for any linear recurrence sequences
-date: 2018-01-15 08:00:00 -0400
+title: Close-form for any linear recurrence sequences?
+date: 2018-01-22 08:00:00 -0400
 author: Victor E. Bazterra
 categories: algorithm-analysis computer-science math
 javascript:
@@ -55,7 +55,7 @@ g_{n-1} + 2g_{n-2} + (-1)^n & n > 1
 
 in where this sequence do not follow the definition of linear recurrence sequence given in the initial blog of this series[^5], because of the extra term \\|(-1)^n\\| that make the recurrence inhomogeneous.
 
-In the next post I will be showing how to handle these cases. 
+In the next post I will be showing how to handle these cases.
 
 [^1]: [Partial fraction decomposition](https://en.wikipedia.org/wiki/Partial_fraction_decomposition)
 

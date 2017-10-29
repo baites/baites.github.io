@@ -74,11 +74,11 @@ Now, we have all the necessary ingredients to write the algorithm to compute the
 \FUNCTION{CloseFormV1}{$a,b$}
     \STATE $q$ = \CALL{CreateQ}{$a$}
     \STATE $\hat{q}$ = reverse of $q$
-    \STATE $\rho$ = roots of the polynomial $\hat{q}$
+    \STATE $\rho$ = roots of the polynomial $\hat{Q}$
     \STATE $p$ = \CALL{CreateP}{$a,b$}
-    \STATE $q'$ = coefficients of the derivative of $q$
+    \STATE $q'$ = coefficients of the derivative of $Q$
     \FOR{$i = 0$ \TO len($\rho$)}
-        \STATE $c_i = -\rho_i$\textit{P}$(\rho^{-1}_i)/$\textit{Q}$'(\rho^{-1}_i)$
+        \STATE $c_i = -\rho_i P(\rho^{-1}_i)/Q'(\rho^{-1}_i)$
     \ENDFOR
     \RETURN $c$, $\rho$
 \ENDFUNCTION
