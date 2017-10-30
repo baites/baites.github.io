@@ -40,6 +40,8 @@ Because I am not formally train in algorithms, I though to myself *how in the wo
 
 In my **next post**, I will try to break this mystical spell by showing that indeed this formula can be used to compute Fibonacci series.
 
+#### References
+
 [^1]: This will be one of my recurrent jokes in this blog, inspired by another Argentinian-American physics know to come up with *"simple conjectures"* such as [AdS/CFT correspondence](https://en.wikipedia.org/wiki/AdS/CFT_correspondence) or more recently [ER=EPR](https://en.wikipedia.org/wiki/ER%3DEPR).
 
 [^2]: [Recursion (computer science)](https://en.wikipedia.org/wiki/Recursion_(computer_science)).

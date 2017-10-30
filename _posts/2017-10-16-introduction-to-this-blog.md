@@ -18,4 +18,6 @@ So, I hope you will enjoy these notes. I will try to post once or twice a week b
 
 `Welcome to Notes Of An Interdisciplinarian!`
 
+#### References
+
 [^1]: [Code examples](https://github.com/baites/examples).
