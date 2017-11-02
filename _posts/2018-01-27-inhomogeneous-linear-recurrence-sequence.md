@@ -50,13 +50,13 @@ of the generating function for the whole sequence could contain a residual polyn
 F(z) = \sum^{D}_{i=1} \sum^{m_i}_{k=0} \frac{r_{ik}}{(z-\eta_i)^k} + \mathbf{1} _{\{\Delta_{\deg} \geq 0\}} \sum^{\Delta_{\deg}}_{i=0} h_i z^i
 %%</p>
 
-where \\|\Delta_{\text{deg}} = \text{deg}(P) - \text{deg}(Q)\\| and the expression is the same as the previous post for homogeneous sequences because in that case \\|\text{deg}(P) = M-1\\| and \\|\text{deg}(Q) = M\\|[^2]. Using this updated generating function it is not hard to follow the same steps as previous post resulting in a general close form as
+where \\| \mathbf{1}\\| is the indicator function[^2] and \\|\Delta_{\text{deg}} = \text{deg}(P) - \text{deg}(Q)\\| and the expression is the same as the previous post for homogeneous sequences because in that case \\|\text{deg}(P) = M-1\\| and \\|\text{deg}(Q) = M\\|[^3]. Using this updated generating function it is not hard to follow the same steps as previous post resulting in a general close form as
 
 <p>%%
 f_n = \sum^{D}_{i=1} c_i(n) \eta^{-n}_i + \mathbf{1} _{\{\Delta_{\deg} \geq 0\}} \sum^{\Delta_{\deg}}_{i=0} h_i \delta_{in}.
 %%</p>
 
-The pseudocode to compute the close form is shown below. 
+The pseudocode to compute the close form is shown below.
 
 {% include pseudocode id="CloseFormV2" code="
 \begin{algorithm}
@@ -81,7 +81,7 @@ The pseudocode to compute the close form is shown below.
     \STATE k = 0
     \STATE $\eta_{\text{old}} = 0$
     \FOR{$i = 0$ \TO len($r$)}
-        \IF{$n$ == $0$ and $\eta_i$ != $\eta_{\text{old}}$}
+        \IF{$n$ == $0$ or $\eta_i$ != $\eta_{\text{old}}$}
             \STATE $k = 1$
         \ELSE
             \STATE $k = k + 1$
@@ -98,5 +98,12 @@ The pseudocode to compute the close form is shown below.
 \end{algorithm}
 " %}
 
+This pseudocode can be implemented in any high level language, here are two examples using [matlab](https://github.com/baites/examples/blob/master/algorithms/matlab/GeneralLinearRecurrenceCloseForm.m) and [python](https://github.com/baites/examples/blob/master/algorithms/python/GeneralLinearRecurrenceCloseForm.py).
+
+After researching for sometime the close-form expressions, I found that my initial surprise of their existence was superficial. In many ways, linear recursive expressions looks like as a linear system of ordinary differential equations[^4]. You could even think recursive expression as linear system difference equations[^5]. Therefore the existence of a close form is equivalent of having analytical solution resulting of **integrating** these equations. As someone originally trained in Physics this is not surprising at all. However, because of the emphasis in physics of studying continuum systems, I was not able initially to see the similarities between linear system of **differential** and **difference** equations!
+
 [^1]: [Linear recurrence sequences]({% post_url 2018-01-08-linear-recurrence-sequences %})
-[^2]: [Close-form for any linear recurrence sequences?]({% post_url 2018-01-22-close-form-for-any-linear-recurrence-sequence %})
+[^2]: [Indicator function](https://en.wikipedia.org/wiki/Indicator_function)
+[^3]: [Close-form for any linear recurrence sequences?]({% post_url 2018-01-22-close-form-for-any-linear-recurrence-sequence %})
+[^4]: [Linear differential equations](https://en.wikipedia.org/wiki/Linear_differential_equation), [Ordinary differential equations](https://en.wikipedia.org/wiki/Ordinary_differential_equation)
+[^5]: [Linear difference equation](https://en.wikipedia.org/wiki/Linear_difference_equation)
