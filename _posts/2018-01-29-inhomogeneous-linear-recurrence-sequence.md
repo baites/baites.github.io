@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Inhomogeneous linear recurrence sequences
-date: 2018-01-27 08:00:00 -0400
+date: 2018-01-29 08:00:00 -0400
 author: Victor E. Bazterra
 categories: algorithm-analysis computer-science math
 javascript:
