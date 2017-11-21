@@ -34,6 +34,8 @@ You can argue that the closed-form form is not only efficient but also aesthetic
 
 and therefore, it can be proved that recursive implementation of Fibonacci sequence has **exponential complexity** or \\|O(\varphi^n)\\|.
 
+#### References
+
 [^1]: [Adam Drozdek, Data Structures and Algorithms in C++, chap 5.](https://www.amazon.com/Data-Structures-Algorithms-Adam-Drozdek/dp/1133608426) \\|O(\cdot)\\| notation represents the asymptotic execution in time (sometimes also in memory space) of an algorithm for large instances. This is commonly referred as the algorithm complexity, see [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation) for more information.
 
 [^2]: Be aware the plot is in logarithmic scale, and therefore a linear growth in that scale is actually an exponential growth!

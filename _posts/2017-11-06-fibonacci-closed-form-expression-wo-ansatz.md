@@ -92,6 +92,8 @@ This was done by analyzing and rewriting the generating function of the sequence
 
 The main takeaway of this exercise is that you can use properties of an analytical function to derive facts about a discrete sequence of integers. In this particular case, this approach was used to find an efficiently way for computing the Fibonacci sequence!
 
+#### References
+
 [^1]: [Fibonacci numbers in matrix form](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form).
 
 [^2]: [Introduction to algorithms, 3rd edition, problem 4.4](https://mitpress.mit.edu/books/introduction-algorithms).
