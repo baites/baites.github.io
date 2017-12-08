@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Treasure hunt with secret messages
-date: 2018-01-29 08:00:00 -0400
+date: 2018-02-05 08:00:00 -0400
 author: Victor E. Bazterra
 categories: cryptography recreational
 ---
