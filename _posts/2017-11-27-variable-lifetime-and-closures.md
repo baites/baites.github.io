@@ -61,4 +61,6 @@ def main():
 
 Entering and exiting the function scope, the closure is created and destroyed respectively, as long there is not outside reference awaiting *returned closure*. The [example code](https://github.com/baites/examples/blob/master/idioms/python/VariableLifetimeInClosure.py) just verify that the variable lifetime with name *closure* is the same as closure lifetime. For javascript, I think it is safe to assume that it follows a similar logic as python regarding the lifetime of variables within closures.
 
+#### References
+
 [^1]: I would like reiterate previous post foot note in here: one that one should be careful of using the notion of **copy/value** and **reference** related closely to C++ but not directly translatable for garbage collected high level languages such python or javascript. This is why I will be using expression such as *behaves like by copy or reference*.

@@ -53,4 +53,6 @@ The variable *constant* is a property of the class, with a reference to the *ano
 
 I also worked out javascript examples for [freezing mutables](https://github.com/baites/examples/blob/master/idioms/javascript/FreezingMutableByClosure.js) and for [constant properties](https://github.com/baites/examples/blob/master/idioms/javascript/ConstantPropertyByClosure.js). The main realization you need to have in this case, it is that for javascript *freezing a mutable* is equal to *set constant properties* of an object. This is because, the global namespace in javascript is implemented as an object named **global**. By adding a constant property in *global* using the value pointed by *mutable*, we effectively create a frozen copy of this value.
 
+#### References
+
 [^1]: If you like to read more properties in python, I would recommend *Python 3: Object oriented Programming* by *Dusty Phillips*, ch. 5, pg 129. For javascript yo can look at *JavaScript: the definitive guide* by *David Flanagan*, ch. 6, pg. 130.
