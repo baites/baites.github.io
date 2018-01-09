@@ -104,8 +104,6 @@ GEM
     jekyll-optional-front-matter (0.2.0)
       jekyll (~> 3.0)
     jekyll-paginate (1.1.0)
-    jekyll-pseudocode (0.1.2)
-      jekyll
     jekyll-readme-index (0.1.0)
       jekyll (~> 3.0)
     jekyll-redirect-from (0.12.1)
@@ -215,9 +213,8 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.6)
-  jekyll-pseudocode
   minima (~> 2.0)
   tzinfo-data
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
