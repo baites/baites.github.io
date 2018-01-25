@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My approach to queuing theory and system modeling
-date: 2018-02-12 08:00:00 -0400
+date: 2018-02-26 08:00:00 -0400
 author: Victor E. Bazterra
 categories: queuing-theory system-modeling
 javascript:

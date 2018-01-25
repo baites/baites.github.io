@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Fibonacci is back in my life: Huge Fibonacci number modulo m"
-date: 2018-02-26 08:00:00 -0400
+date: 2018-03-26 08:00:00 -0400
 author: Victor E. Bazterra
 categories: algorithm algorithm-analysis computer-science
 javascript:

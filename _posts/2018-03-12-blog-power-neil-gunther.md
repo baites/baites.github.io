@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Blog power: Neil Gunther"
-date: 2018-02-19 08:00:00 -0400
+date: 2018-03-12 08:00:00 -0400
 author: Victor E. Bazterra
 categories: guerrilla-capacity-planning
 javascript:
