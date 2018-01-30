@@ -19,7 +19,7 @@ In this blog, I will show how to extend these results to include also the case o
 In the first blog, I showed that the generating function for *M*-linear recurrence sequence is given by a rational function or \\|F(z) = P(z)/Q(z) \\| for \\|P(z)\\| and \\|Q(z)\\| two polynomials of order \\|M-1\\| and \\|M\\|, respectively. In this case *partial fraction decomposition or expansion* of sequence generator function \\|F(z)\\| as following[^1]:
 
 <p>%%
-F(z) = \sum^{D}_{i=1} \sum^{m_i}_{k=0} \frac{r_{ik}}{(z-\eta_i)^k}
+F(z) = \sum^{D}_{i=1} \sum^{m_i}_{k=1} \frac{r_{ik}}{(z-\eta_i)^k}
 %%</p>
 
 where \\|\eta_i\\| and \\|m_i\\| are values and multiplicity of i-th pole, \\|c_{ik}\\| is the residue value of i-th pole in where \\|k\\| is an index that run over all the i-th pole multiplicities, and \\|D\\| is the number of distinct poles so that \\|\sum^{D}_{i=1} m_i = M\\|.
@@ -51,7 +51,7 @@ Now, you can say ok let get to the coding we are finally done with this. However
 <p>%%
 f_n = \begin{cases}
 1 & n = 0 \text{ and } n = 1 \\
-g_{n-1} + 2g_{n-2} + (-1)^n & n > 1
+f_{n-1} + 2f_{n-2} + (-1)^n & n > 1
 \end{cases}
 %%</p>
 
