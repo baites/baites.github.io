@@ -11,7 +11,7 @@ javascript:
 In a [previous blog]({% post_url 2017-10-30-fibonacci-closed-form-expression %}), I showed
 how using an ansatz we can verify the closed-form expression of the Fibonacci sequence. In this blog, I will show how to derive this expression without the support of an ansatz. Although there are several alternatives for doing this (such as using linear algebra[^1]), in this post I will use *generating function approach* following an exercise extracted from my favorite book about algorithms[^2].
 
-The *generating function* for Fibonacci sequence is defined by the following infinite series
+The *generating function* for the Fibonacci sequence is defined by the following infinite series
 
 <p>%%
 F(z) = \sum_{n \geq 0} f_n z^n
@@ -31,7 +31,7 @@ F(z) = z + z F(z) + z^2 F(z) \Leftrightarrow F(z) = \frac{z}{1 - z - z^2}.
 \end{aligned}
 %%</p>
 
-Here it is the proof of the previous expression
+Here it is the proof of the previous expression,
 
 <p>%%
 \begin{aligned}
@@ -45,7 +45,7 @@ Here it is the proof of the previous expression
 
 in where in the last steps I use the recurrence expression of the Fibonacci sequence and the fact the initial conditions are \\|f_0 = 0\\| and \\|f_1 = 1\\|.
 
-Implicitly, I have assumed that all intermediary series are absolutely convergent! For example, it is important to realize that should at least \\|\vert z \vert < 1\\|, because \\|F(1)\\| is the infinite sum of the whole Fibonacci sequence and therefore it diverges. However, previous expression gives that \\|F(1) = 1/(1-1-1^2) = -1\\|. Infinities series are magical, **but they are not inconsistently magical**!
+Implicitly, I have assumed that all intermediary series are absolutely convergent! For example, it is important to realize that should at least \\|\vert z \vert < 1\\| because \\|F(1)\\| is the infinite sum of the whole Fibonacci sequence and therefore it diverges. However, previous expression gives that \\|F(1) = 1/(1-1-1^2) = -1\\|. Infinities series are magical, **but they are not inconsistently magical**!
 
 Using the expression of generating function and the fact that polynomial in the denominator can be factorized \\|1 - z - z^2 = -(\mu - z)(\nu - z)\\| where \\|\mu\\| and \\|\nu\\| are its roots, then
 
@@ -88,9 +88,9 @@ The last expression for \\|F(z)\\| implies then that each term of the Fibonacci 
 f_n = \frac{\varphi^n - \psi^n}{\sqrt5}.
 %%</p>
 
-This was done by analyzing and rewriting the generating function of the sequence without using an ansatz.
+I derived the equation by analyzing and rewriting the generating function of the sequence without using an ansatz.
 
-The main takeaway of this exercise is that you can use properties of an analytical function to derive facts about a discrete sequence of integers. In this particular case, this approach was used to find an efficiently way for computing the Fibonacci sequence!
+The main takeaway from this exercise is that you can use properties of an analytical function to derive facts about a discrete sequence of integers. In this particular case, this approach was used to find an efficient way for computing the Fibonacci sequence!
 
 #### References
 
