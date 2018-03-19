@@ -12,13 +12,13 @@ This is the fourth post of a series dedicated to closures. You can find the othe
 * [Variable lifetime and closures]({% post_url 2017-11-27-variable-lifetime-and-closures %})
 * [Made up patterns with closures]({% post_url 2017-12-04-made-up-patterns-with-closures %})
 
-In my initial post, I said that I found closures *a bit trivial* for high level language. However, I ended up writing *four posts* about them. This last post is to explain what I meant with this statement to avoid looking like as a *self-contradicting arrogant*.
+In my initial post, I said that I found closures *a bit trivial* for a high-level language. However, I ended up writing *four blogs* about them. This last post is to explain what I meant by this statement to avoid looking like as a *self-contradicting arrogant*.
 
 > **Proposition**: closures are an avoidable (a necessary condition) when using **function objects**. By function objects I mean the ability of passing, creating, and returning functions from one function scope to another. For example, this is the case for languages in where function are first-class objects, or they support the use of lambda or anonymous functions.
 
-Imagine in javascript passing callback functions without a closure. Due to the asynchronous nature of most of the applications in where javascript performs well, this could mean that callback's environment are inconsistent or undefined at the time it is called. The same apply when passing and returning functions in general, in where for most scenarios, their execution are delegated to other scopes quite different to those in where functions were created. It seems as the only way to have a consistent behavior with object functions is by having closures.
+Imagine in javascript passing callback functions without a closure. Due to the asynchronous nature of most of the applications in where javascript performs well, this could mean that callback's environment is inconsistent or undefined at the time it is called. The same applies when passing and returning functions in general, where for most scenarios, their execution is delegated to other scopes entirely different to those in where functions were created. It seems as the only way to have a consistent behavior with object functions is by having closures.
 
-One way to support this point, it is to look at language without closures until recent, that is **C++**. Anonymous functions were introduced in C++11 standard, and necessarily with them, it came the possibility of capture variables into closures[^1]. A minimal working example is shown below, in where an anonymous function is returned after capturing *context* variable.
+One way to support this point, it is to look at language without closures until recent, that is **C++**. With the introduction of anonymous functions in C++11 standard came unavoidably the possibility of capture variables into closures[^1]. A minimal working example is shown below, where I return an anonymous function after capturing *context* variable.
 
 {% highlight cpp %}
 #include <iostream>
@@ -38,11 +38,11 @@ int main(int argc, const char* argv[]) {
 }
 {% endhighlight %}
 
-Now, one big difference, relative to javascript and python cases, is the fact that in C++ you need to *explicitly* specify if variable needs to be capture by copy/value or by reference. For example, in the code above, *context* variable is captured by copy that is the default option. This feature is somewhat an avoidable in case of C++ in where object types are low level construct in addition that C++ is not garbage collected. This means that it is important to control the mechanism to capture variables, to explicitly define the part of the code responsible to free resources consume by capture variables.
+Now, one big difference, relative to javascript and python cases, is the fact that in C++ you must specify if variable needs to be captured by copy/value or by reference. For example, in the code above, *context* variable is captured by copy that is the default option. This feature is somewhat unavoidable in case of C++ in where object types are low-level construct besides that C++ is not garbage collected. Therefore, it is essential to control the mechanism to capture variables, to explicitly define the part of the code responsible for freeing resources consume by capture variables.
 
 Please follow the links for working C++ examples in where I test creating anonymous functions by capturing a variable [by copy](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/ClosureByCopy.C) and [by reference](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/ClosureByReference.C).
 
-A previous post I discussed how variables can be shared between closures. I also explain the *apparent lifetime extension* for captured variables[^2]. An equivalent example in C++ would be as shown next example[^3].
+A previous post I discussed how variables could be shared between closures. I also explain the *apparent lifetime extension* for captured variables[^2]. An equivalent example in C++ would be as shown next example[^3].
 
 {% highlight cpp %}
 #include <functional>
@@ -64,11 +64,11 @@ int main(int argc, const char* argv[])
 }
 {% endhighlight %}
 
-The problem with this code is that its behavior is undefined. This is because *context* is captured by reference, and *context* value is destroyed as soon as *CreateMethods(...)* returns, resulting in a closure with a dangling reference. This is commonly summarized by saying in C++ **closure do no extend variables lifetime**[^4]. You can pass the variable by copy, but in that case, those changes done using *setContext(...)* only affects its local copy of *context*, and it is not possible to retrieve a copy of its value by calling *getContext()*. In short, capturing by value does not allow sharing a reference to the value of *context* between closures!
+The problem with this code is that its behavior is undefined. This is because *context* is captured by reference, and *context* value is destroyed as soon as *CreateMethods(...)* returns, resulting in a closure with a dangling reference. This is commonly summarized by saying in C++ **closure do no extend variables lifetime**[^4]. You can pass the variable by copy, but in that case, those changes are done using *setContext(...)* only affects its local copy of *context*, and it is not possible to retrieve a copy of its value by calling *getContext()*. In short, capturing by value does not allow sharing a reference to the value of *context* between closures!
 
-I wrote two versions of closures with dangling references  [BrokenSharedContextClosures1.C](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/BrokenSharedContextClosures1.C) and [BrokenSharedContextClosures2.C](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/BrokenSharedContextClosures2.C). These programs crash very differently based on my tests, even though they are essentially the same. I follow what is actually happening to input object by using a **LifetimeProbe** object like the one introduced for python examples in the previous post[^2].
+I wrote two versions of closures with dangling references  [BrokenSharedContextClosures1.C](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/BrokenSharedContextClosures1.C) and [BrokenSharedContextClosures2.C](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/BrokenSharedContextClosures2.C). These programs crash very differently based on my tests, even though they are mostly the same. I follow what is happening to input object by using a **LifetimeProbe** object like the one introduced for python examples in the previous post[^2].
 
-The fact that C++ do not extend the lifetime of the variables captured by a closure is not a limitation of the language. It is directly related to the fact C++ does not have a garbage collector. This does not mean that we cannot almost trivially emulate one using for example smart pointers. Take a look at the code below in where context is a *shared pointer* to a new value.
+The fact that C++ does not extend the lifetime of the variables captured by closure is not a limitation of the language but related to the fact C++ does not have a garbage collector. This does not mean that we cannot almost trivially emulate one using, for example, smart pointers. Take a look at the code below in where context is a *shared pointer* to a new value.
 
 {% highlight cpp %}
 #include <functional>
@@ -91,9 +91,9 @@ int main(int argc, const char* argv[])
 }
 {% endhighlight %}
 
-In this example, *context* is capture by copy by both methods: *setContext*, *getContext*. The "values" of *context* are in reality references to an object in memory. This means that both methods have different copy of a shared pointer in where both point to the same object in memory. When closures are destroyed at the end of the program, the last shared pointer will destroy the object value in memory. [Here there is an fully working example](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/SharedContextClosures.C) of closures having references to same value using smart pointer. We use the *LifetimeProbe* object to follow how objects are created and destroyed.
+In this example, *context* is capture by copy by both methods: *setContext*, *getContext*. The "values" of *context* is in reality references to an object in memory. This means that both methods have a different copy of a shared pointer in where both point to the same object in memory. When closures are destroyed at the end of the program, the last shared pointer will destroy the object value in memory. [Here there is a fully working example](https://github.com/baites/examples/blob/master/idioms/c%2B%2B/SharedContextClosures.C) of closures having references to same value using a smart pointer. We use the *LifetimeProbe* object to follow how objects are created and destroyed.
 
-So, are closures trivial? Of course not. However, it is important recognize they are an unavoidable result of support function objects!
+So, are closures trivial? Of course not. However, it is crucial recognize they are an unavoidable result when supporting function objects!
 
 # References
 
