@@ -8,14 +8,14 @@ javascript:
   katex: true
 ---
 
-This is the first instance of a series of posts I am calling *Blog Power*. I will be using these posts to tell about those bloggers that influence me the most, and I think you should be aware about them.
+This post is the first instance of a series of posts I am calling *Blog Power*. I will be using these posts to tell about those bloggers that influence me the most, and I think you should be aware of them.
 
 I will start with Tommaso Dorigo's blogs:
 
 * [A quantum dairies survivor](http://www.science20.com/quantum_diaries_survivor)
 * [Dorigo's blog at AMVA4newphysics](https://amva4newphysics.wordpress.com/author/dorigo)
 
-Tommaso's blogs where very influential on me after my PhD, when I switched physics fields from Material Science type of research to High Energy Physics. As post doctoral novice in a new research field, Tommaso was really fundamental in capturing concepts and its context in my new field.
+Tommaso's blogs were very influential on me after my Ph.D., when I switched physics fields from Material Science type of research to High Energy Physics. As a postdoctoral novice in a new research field, Tommaso was really fundamental in capturing concepts and its context in my new field.
 
 Throughout Tommaso's blogs, I did not only learn experimental high energy physics and its deep connection with machine learning and statistics, I also learned how scientist in the field think about experiments and their results. Tommaso's skepticism about results that he would love to be true are example why science is beautiful and also painfully hard: the pursue of truth independently anybody's agenda, hopes, and/or dreams.
 
@@ -27,7 +27,7 @@ To be fair, working in high energy physics is a highly collaborative enterprise[
 
 What impressed me at the time was my emotional reaction to Tommaso's blog. Even this was not my first paper, Tommaso's recognition meant a lot more that the fact of having peer-reviewed publication.
 
-There is a lot to say about my work in my high energy days (there may be more in future posts about that). However, I would like to make emphasis of the fact for several high energy physics analyses, there is not much conceptual separation between machine learning (or at least supervise learning), statistical inference, and hypothesis testing. But rather to blog about this in here, let me point to Tommaso's take on our work at that time:
+There is a lot to say about my work in my high energy days (there may be more in future posts about that). However, I would like to make emphasis of the fact for several high energy physics analyses, there is not much conceptual separation between machine learning (or at least supervise learning), statistical inference, and hypothesis testing. But rather to blog about that in here, let me point to Tommaso's take on our work at that time:
 
 * [Single Top: As Good As It Gets At The Tevatron](http://www.science20.com/quantum_diaries_survivor/single_top_good_it_gets_tevatron-81857)
 
