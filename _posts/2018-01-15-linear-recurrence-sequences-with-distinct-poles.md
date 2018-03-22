@@ -9,7 +9,7 @@ javascript:
   pseudocode: true
 ---
 
-This is a continuation of a initial post with the end goal of computing a closed form for any linear recurrence sequence. Details about what are these sequences and how to compute their generating function are in the first blog:
+This post is the continuation of the previous post with the end goal of computing a closed form for any linear recurrence sequence. Details about what are these sequences and how to compute their generating function are in the first blog:
 
 * [Linear recurrence sequences]({% post_url 2018-01-08-linear-recurrence-sequences %})
 
@@ -19,7 +19,7 @@ In that blog, I showed that for these sequences, their generating functions are 
 F(z) = \frac{P(z)}{Q(z)}
 %%</p>
 
-for \\|P(z)\\| and \\|Q(z)\\| two polynomials of order \\|M-1\\| and \\|M\\|, respectively. Moreover, the coefficients for these polynomials are given by sequence initial condition and the coefficients of the linear recurrence.
+for \\|P(z)\\| and \\|Q(z)\\| two polynomials of order \\|M-1\\| and \\|M\\|, respectively. Moreover, the coefficients for these polynomials are given by initial sequence condition and the coefficients of the linear recurrence.
 
 Now let's assume that the poles of \\|F(z)\\| are distinct and therefore, it is possible to write the polynomial \\|Q(z)\\| as follow[^1]
 
@@ -63,9 +63,9 @@ that for the case of distinct poles, there is a closed-form expression for the r
 c_i = \frac{-\rho_i P(\rho_i^{-1})}{Q'(\rho_i^{-1})}
 %%</p>
 
-It is important to realize, that the coefficient \\|r_i\\| and reciprocal roots \\|\rho_i\\| are not necessary real numbers. We will see that for most of the example sequences (see program examples), they are actually complex numbers! This will not be an issue if you write the algorithm in a language that support complex numbers as primitive types.
+It is important to realize, that the coefficient \\|r_i\\| and reciprocal roots \\|\rho_i\\| are not necessary real numbers. We will see that for most of the example sequences (see program examples), they are complex numbers! The use of complex number will not be an issue if you write the algorithm in a language that supports complex numbers as primitive types.
 
-Now, we have all the necessary ingredients to write the algorithm to compute the closed form. The algorithm is rather simple and can be easily express as the following pseudocode[^3].
+Now, we have all the necessary ingredients to write the algorithm to compute the closed form. The algorithm is rather simple, and it is easy to write in pseudocode[^3].
 
 {% include pseudocode id="CloseFormV1" code="
 \begin{algorithm}
@@ -86,13 +86,13 @@ Now, we have all the necessary ingredients to write the algorithm to compute the
 \end{algorithm}
 " %}
 
-This code depends of two other functions *CreateP* and *CreateQ* defined in the [previous post]({% post_url 2018-01-08-linear-recurrence-sequences %}). Moreover, the program needs some functions to manipulate polynomials that are easy to find in high level languages. For example, find a full working examples in [MATLAB](https://github.com/baites/examples/blob/master/algorithms/matlab/DistinctPolesLinearRecurrenceCloseForm.m) and [python](https://github.com/baites/examples/blob/master/algorithms/python/DistinctPolesLinearRecurrenceCloseForm.py) of this code.
+This code depends of two other functions *CreateP* and *CreateQ* defined in the [previous post]({% post_url 2018-01-08-linear-recurrence-sequences %}). Moreover, the program needs some functions to manipulate polynomials that are easy to find in high-level languages. For example, find full working examples in [MATLAB](https://github.com/baites/examples/blob/master/algorithms/matlab/DistinctPolesLinearRecurrenceCloseForm.m) and [python](https://github.com/baites/examples/blob/master/algorithms/python/DistinctPolesLinearRecurrenceCloseForm.py) of this code.
 
-When I started working in this project, I dreamed that I could create some kind of generalization to the Fibonacci sequence and put my name to it! I was already naming them the *Bazterra's sequences*.
+When I started working on this project, I dreamed that I could create some generalization to the Fibonacci sequence and put my name to it! I was already naming them the *Bazterra's sequences*.
 
 **Yes, I am that naive sometimes.**
 
-Anyway, I found that most of the sequence I could think of (the trivial ones) can be found in a wonderful resource know as *The On-Line Encyclopedia of Integer Sequences*[^4]. They provide information about the sequence themselves, and also other data as their generating function and more. I used this database to test the code on several sequences. Within the code comments, I provide the identification code for each sequence within the database, so you can verify the results by yourselves.
+Anyway, I realized that most of the sequence I could think of (the trivial ones) could be found in a beautiful resource know as *The On-Line Encyclopedia of Integer Sequences*[^4]. They provide information about the sequence themselves, and also other data as their generating function and more. I used this database to test the code on several sequences. Within the code comments, I provide the identification code for each sequence within the database so that you can verify the results by yourselves.
 
 #### References ####
 
@@ -100,6 +100,6 @@ Anyway, I found that most of the sequence I could think of (the trivial ones) ca
 
 [^2]: [Partial fraction decomposition](https://en.wikipedia.org/wiki/Partial_fraction_decomposition)
 
-[^3]: In this pseudocode I use the convention of expressing polynomial  coefficients as lowercase letters, and with the same letters in uppercase, the actual polynomial functions.
+[^3]: In this pseudocode, I use the convention of expressing polynomial coefficients as lowercase letters, and with the same letters in uppercase, the actual polynomial functions.
 
 [^4]: [The On-Line Encyclopedia of Integer Sequences](https://oeis.org/).

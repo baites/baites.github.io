@@ -9,15 +9,15 @@ javascript:
   pseudocode: true
 ---
 
-This is the last of a series of posts in where I discuss how to compute close-from expression for any linear recurrence sequences, see below.
+This post is the last of a series of posts in where I discuss how to compute closed-form expression for any linear recurrence sequences, see below.
 
 * [Linear recurrence sequences]({% post_url 2018-01-08-linear-recurrence-sequences %})
 * [Linear recurrence sequences with distinct poles]({% post_url 2018-01-15-linear-recurrence-sequences-with-distinct-poles %})
 * [Close-form for any linear recurrence sequences?]({% post_url 2018-01-22-close-form-for-any-linear-recurrence-sequence %})
 
-In the previous post, I found that the procedure does not work for sequence with inhomogeneous linear recurrences. So lets start first defining what are these kind of sequences.
+In the previous post, I found that the procedure does not work for a sequence with inhomogeneous linear recurrences. So let's start first defining what these kind of sequences are.
 
-> **Definition**: a M-inhomogeneous linear recurrence sequence is a sequence of numbers given by the following function
+> **Definition**: an M-inhomogeneous linear recurrence sequence is a sequence of numbers given by the following function
 
 <p>%%
 f_n = \begin{cases}
@@ -30,7 +30,7 @@ b_n & 0 \leq n < M \\
 
 The challenge now is that embedded in the recurrence, there is a whole new sequence \\|g_n\\| that somewhat break any regularity brought by the linear recurrence. So, we need some assumption about \\|g_n\\| to make possible to derive a close-form expression. Let's \\|G(z)\\| the generating function of the sequence \\|g_n\\| and, lets assume it can be expressed as a rational function \\|G(z)=P_I(z)/G_I(z)\\| where \\|P_I(z)\\| and \\|G_I(z)\\| are any two polynomials (suffix *I* is because they related to inhomogeneous series).
 
-It is not hard to prove following similar steps as one one shown in a previous post[^1] that the generating function \\|F(z)\\| for sequence \\|f_n\\| can be written then as
+It is not hard to prove following similar steps as one shown in a previous post[^1] that the generating function \\|F(z)\\| for sequence \\|f_n\\| can be written then as
 
 <p>%%
 \begin{aligned}
@@ -43,7 +43,7 @@ Q_O(z)F(z) &= P_O(z) + z^M \frac{P_I(z)}{Q_I(x)} \\
 
 in where \\|P_O(z)\\| and \\|Q_O(z)\\| are polynomials that form a rational generating function for homogeneous \\|f_n\\| sequence, e.i. the sequence resulting of linear recurrence for case \\|g_n = 0\\| as defined also previous sections.
 
-In summary, we define *sufficient condition* so the *inhomogeneous sequence* has a *rational function* as its generator. Therefore, we can now used what was developed in the previous blog to derive a close form[^2].
+In summary, we define *sufficient condition* so the *inhomogeneous sequence* has a *rational function* as its generator. Therefore, we can now use what was developed in the previous blog to derive a closed form[^2].
 
 There is however one caveat. The polynomial order or degree for \\|\text{deg}(P)\\| and \\|\text{deg}(Q)\\| depend on \\|G(z)\\|, and  it could be not true that \\|\text{deg}(P) < \text{deg}(Q)\\| as it was always the case homogeneous recurrence sequences. As result the *partial fraction decomposition*
 of the generating function for the whole sequence could contain a residual polynomial with coefficients \\|h_i\\| resulting in
@@ -64,7 +64,7 @@ in where
 c_i(n) = \sum^{m_i}_{k=1} \binom{k+n-1}{n} (-\eta_i)^{-k} r_{ik}
 %%</p>
 
-The pseudocode to compute the close form is shown below.
+I show the pseudocode to compute the closed form below.
 
 {% include pseudocode id="CloseFormV2" code="
 \begin{algorithm}
@@ -106,7 +106,7 @@ The pseudocode to compute the close form is shown below.
 \end{algorithm}
 " %}
 
-This pseudocode can be implemented in any high level language, here are two examples using [matlab](https://github.com/baites/examples/blob/master/algorithms/matlab/GeneralLinearRecurrenceCloseForm.m) and [python](https://github.com/baites/examples/blob/master/algorithms/python/GeneralLinearRecurrenceCloseForm.py).
+You can implement this pseudocode in any high-level language, here are two examples using [matlab](https://github.com/baites/examples/blob/master/algorithms/matlab/GeneralLinearRecurrenceCloseForm.m) and [python](https://github.com/baites/examples/blob/master/algorithms/python/GeneralLinearRecurrenceCloseForm.py).
 
 Let me give you now a numerical example using the sequence example of previous blog ([A006904](https://oeis.org/A006904))[^4]:
 
@@ -133,11 +133,11 @@ f_n =& [(-\eta_1)^{-1} r_{1,1} + (n+1)(-\eta_1)^{-2} r_{1,2}] \eta_1^{-n} + (-\e
 \end{aligned}
 %%</p>
 
-With this I just reproduced similar result derived for this sequence in Concrete Mathematics[^4]. The main advantage is that we are testing numerical approach that allow us to explore any other inhomogeneous linear recurrence sequence consistent with the blog assumptions.
+With this, I just reproduced similar result derived for this sequence in Concrete Mathematics[^4]. The main advantage is that we are testing a numerical approach that allows us to explore any other inhomogeneous linear recurrence sequence consistent with the blog assumptions.
 
 #### Conclusion ####
 
-After researching for sometime the close-form expressions, I found that my initial surprise of their existence was superficial. In many ways, linear recursive expressions looks like as a linear system of ordinary differential equations[^5]. You could even think recursive expression as linear system difference equations[^6]. Therefore the existence of a close form is equivalent of having analytical solution resulting of **integrating** these equations. As someone originally trained in Physics this is not surprising at all. However, because of the emphasis in physics is on studying continuum systems, I was not able initially to see the similarities between linear system of **differential** and **difference** equations!
+After researching for some time the closed-form expressions, I found that my initial surprise of their existence was superficial. In many ways, linear recursive expressions look like as a linear system of ordinary differential equations[^5]. You could even think recursive expression as linear system difference equations[^6]. Therefore the existence of a closed form is equivalent to having analytical solution resulting of **integrating** these equations. As someone initially trained in Physics, this is not surprising at all. However, because of the emphasis in physics is on studying continuum systems, I was not able to see the similarities between a linear system of **differential** and **difference** equations!
 
 #### Reference ####
 
