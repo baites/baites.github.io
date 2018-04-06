@@ -136,7 +136,7 @@ class A(metaclass=MetaclassSingleton):
 
 This singleton implementation does not transfer the singleton feature by inheritance. Instead, it declares the user class as belonging to a singleton metaclass type that redefines the *\_\_call\_\_(...)* function. As a result, the first call to *A(...)* returns a new instance created calling the default *\_\_call\_\_(...)* that, in turn, it calls the constructor *A.__init__(...)*.  Calling *A(...)* for a second time returns the first instance without running its default *\_\_call\_\_()* and therefore **avoiding re-initializing the instance again**.
 
-**Note**: this example cab be run `./MetaclassSingleton.py I` from my [repo](https://github.com/baites/examples/blob/master/patterns/python/singleton/MetaclassSingleton.py#L61). When using this singleton with inheritance we obtain the same behavior as
+**Note**: this example cab be run `./MetaclassSingleton.py I` from my [repo](https://github.com/baites/examples/blob/master/patterns/python/singleton/MetaclassSingleton.py#L61). When using this singleton with inheritance we obtain the same behavior as class variable singleton, check for example `./MetaclassSingleton.py A` and `./MetaclassSingleton.py B`.
 
 ## The Borg
 
@@ -156,16 +156,12 @@ class A(Borg):
 
 This version of the Borg relies upon redefining *\_\_new\_\_(...)* function as it is the case of a class variable singleton. However, in a Borg, every instantiation of the child class **A** returns a **different instance** of **A** but all of them with a **shared state** pointed by *\_state* class variable. This means that all the instances of **A**, although individually different, *belong to the Borg collective A* (and resistance is futile)!
 
-The Borg pattern has a similar drawback/feature as the class variable singleton, that is that the instance state is re-initialized. This process changes the state of the not only the returned instance but of the whole Borg collective, for example, check [this Borg example from my repo](https://github.com/baites/examples/blob/master/patterns/python/singleton/Borg.py#L61).
+The Borg pattern has a similar drawback/feature as the class variable singleton, that is that the instance state is re-initialized. This process changes the state of the not only the returned instance but of the whole Borg collective, for example, check this Borg example `./Borg.py I` from my [repo](https://github.com/baites/examples/blob/master/patterns/python/singleton/Borg.py#L61).
 
-{% highlight bash %}
-./Borg.py I
-Initialize A twice
-x.value = y
-y.value = y
-{% endhighlight %}
+Inheritance in the Borg works differently than from previous two singletons. For the Borg, there is not differences between parent and child classes. Assuming you have a parent class **A** and its child **B** then we always obtain the same shared state regardless of the order on how **A** or **B** were initialized, see for example the results of running `./Borg.py A` and `./Borg.py B`.
 
-Inheritance in the Borg works differently than from previous two singletons. For the Borg, there is not differences between parent and child classes. Assuming you have a parent class **A** and its child **B** then we always obtain the same shared state regardless of the order on how **A** or **B** were initialized.
+## The MetaBorg
+
 
 ### References
 
