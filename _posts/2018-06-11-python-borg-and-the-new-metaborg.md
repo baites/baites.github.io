@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Python Borg, and the new MetaBorg"
-date: 2018-05-28 08:00:00 -0400
+date: 2018-06-11 08:00:00 -0400
 author: Victor E. Bazterra
 categories: computer-science patterns
 ---
 
 This is the second post of a series dedicated to discuss singleton-like patterns in python. As a reference you can find the first post at
 
-* [Python singletons]({% post_url 2018-05-14-python-singletons %})
+* [Python singletons]({% post_url 2018-05-28-python-singletons %})
 
 ## The Borg
 

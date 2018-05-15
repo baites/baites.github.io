@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Timeouts in python and why you should use python 3"
-date: 2018-05-07 08:00:00 -0400
+date: 2018-05-14 08:00:00 -0400
 author: Victor E. Bazterra
 categories: computer-science patterns
 ---
 
-I started to prefer python 3 over python 2 recently and you should that too. First python 2.7 end of life date is in 2020 and there will not be a python 2.8[^1]. Second, python 3 syntax improvements and new API are so much nicer and practical, that so far it has being worth the effort of learning python 3. One example comes to my mind is when implementing timeout when making a system call or when calling a function within python interpreter.
+I started using python 3 over python 2 for the last three years, and I think you should do it too if you have not done yet. First python 2.7 end-of-life date is in 2020, and there will not be a python 2.8[^1]. Second, python 3 syntax improvements and new APIs are so much more helpful and practical, that so far it has to be worth the effort of learning python 3. One example that comes to my mind is when implementing timeouts when making a system call or when calling a function within python interpreter.
 
-Let's start with making a system call. An example of how to implement a system call protected by a timeout in python 2 can be found below
+Let's start first with the case of a system call. An example of how to implement a system call protected by a timeout in python 2 can be found below.
 
 {% highlight python %}
 import exceptions
@@ -53,7 +53,7 @@ print stdout, stderr
 
 The implementation of this example plus some more comments about its implementation can be found in this code at my exercise [repo](https://github.com/baites/examples/blob/master/patterns/python/timeout/py2_system_call_timeout.py).
 
-The equivalent example in python 3 is much simpler and it is shown below.
+The equivalent example in python 3 is much simpler, and it is shown below.
 
 {% highlight python %}
 from subprocess import PIPE, run
@@ -62,9 +62,9 @@ proc = run('echo works', shell=True, timeout=5, stdout=PIPE, stderr=PIPE)
 print (proc.stdout.decode('utf-8'), proc.stderr.decode('utf-8'))
 {% endhighlight %}
 
-As you can see, the previous example the timeout is now a native functionality of the new API. Now, you might think this is not such a big deal. However, inappropriate timeout implementation opens the possibility of leaving dangling subprocesses in some edge case when exceptions are raised. If your program run for a long time, this could leak processes used when for executing each command, eventually depleting host resources.
+As you can see, in python 3, the timeout is now a native functionality of the new API. Now, you might think this is not such a big deal. However, inappropriate timeout implementation opens the possibility of leaving dangling subprocesses in some edge cases when exceptions are raised. If your program runs for a long time, this could leak processes used when for executing each command, eventually depleting host resources.
 
-Another non trivial implementation is adding a timeout for function called within the python interpreter. This created several discussions in different forums[^2] and it was also the inspiration for small timeout library[^3]. However, using new python 3 *concurrent.futures* API, it is possible to create a simple function timeout. This is also because the timeout functionality is native functionality of the API.
+Another nontrivial implementation is adding a timeout for a function called within the python interpreter. This issue created several discussions in different forums[^2], and it was also the inspiration for small timeout library[^3]. However, using new python 3 *concurrent.futures* API, it is possible to create a simple function timeout because the timeout functionality is again a native functionality of the API.
 
 For example, if you would like to make a timeout decorator, you can write something like it is shown below.
 
@@ -85,7 +85,7 @@ def ftimeout(timeout):
     return decorator
 {% endhighlight %}
 
-You can now add a timeout by simply decorating the function of interest:
+Now, you can now add a timeout by simply decorating the function of interest:
 
 {% highlight python %}
 @ftimeout(timeout=2)
@@ -97,7 +97,7 @@ sleep(secs=4)
 
 for fully functional example can be found in my [example repo](https://github.com/baites/examples/blob/master/patterns/python/timeout/py3_function_call_timeout.py).
 
-It is also possible to decorate functions with timeouts that collect the amount of waiting time from the class itself. Take a look at this decorator below.
+It is also possible to decorate member functions with a timeout that collects the waiting time from the object itself. Take a look at this decorator below.
 
 {% highlight python %}
 from concurrent.futures import ThreadPoolExecutor
@@ -132,9 +132,9 @@ o = ObjectType(timeout=2)
 o.sleep(4)
 {% endhighlight %}
 
-for fully functional example can be found in my [example repo](https://github.com/baites/examples/blob/master/patterns/python/timeout/py3_member_call_timeout.py).
+For fully functional example can be found in my [example repo](https://github.com/baites/examples/blob/master/patterns/python/timeout/py3_member_call_timeout.py).
 
-So there you have it, a few examples of improved python 3 API that I found particular useful. This is because in the era of distributed applications and micro services, it is fundamental to protect your code from undefined behavior using timeouts.
+So there you have it, a few examples of improved python 3 API that I found particularly useful. In the era of distributed applications and microservices, it is fundamental to protect your code from unexpected behavior using timeouts.
 
 #### References
 
