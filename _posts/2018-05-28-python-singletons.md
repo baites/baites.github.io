@@ -8,16 +8,16 @@ categories: computer-science patterns
 
 ## Singletons
 
-Study pattern design for high-level languages like javascript or python is a weird exercise. This feeling originates in the intuition that there is a lot of these patterns that although necessary in C++, they seems to be almost invisible in python for example. This intuition prove to be profound resulting in a series of discussions by very smart people about what the role design pattern play in high-level languages[^1].
+Study pattern design for high-level languages like javascript or python is a uneasy exercise. This feeling originates in the intuition that there is a lot of these patterns that although necessary in C++, they seems to be almost invisible in language like python for example. I am not the only one having this intuition resulting in a series of discussions by very smart people about design pattern in high-level languages[^1].
 
-Singleton is one of those patterns that seems to be persistent pattern amount all the different languages[^2]. It is also a pattern that a lot of people hates[^3], more on that in a moment. However, this pattern is one of those things that people expect you should know if you are working on anything related to coding or programming.
+Singleton is one of those patterns that seems to be persistent amount all the different languages[^2]. It is also a pattern that a lot of people dislike[^3], more on that in a moment. However, this pattern is one of those things that people expect you should know if you are working on anything related to coding or programming.
 
-In this post, I would like to discuss singletons in python inspired by the following reference[^4]. Singleton pattern can be defined as *ensure a class only has one instance, and provide a global point of access it*[^5]. However, I think most of the issues with singletons arises when defining how they should behave at initialization time and when using inheritance.
+In this post, I would like to discuss singletons in python inspired by the following reference[^4]. Singleton pattern can be defined as *ensure a class only has one instance, and provide a global point of access it*[^5]. This definition although simple, I think it is too general keeping the pattern behavior a bit undefined. For example, as far I know, most of the issues with singletons arises when defining how they should behave at initialization time and when using inheritance.
 
-I implemented, three types of singletons in python with based on mostly reference [^4], and I selected them because[^6]:
+I implemented, three types of singletons in python based on mostly reference [^4], and I selected them because[^6]:
 
-* they are patterns that make traditional classes into a singleton-like object;
-* they also have different behavior at initialization.
+* they are patterns that make instances from traditional classes behave like singleton object;
+* they also have different behavior when initializing and when using inheritance.
 
 ## Class variable singleton
 
@@ -38,7 +38,7 @@ class A(ClassVariableSingleton):
 
 The implementation relies on having a class variable named *\_intance* and in redefining *\_\_new\_\_()* function in the parent **ClassVariableSingleton**. When the user initializes an instance of child class **A**, the call to *\_\_new\_\_(...)* is intercepted, creating a new instance if only if class variable *\_instance* points to **None**. In this case, the function points *\_instance* to the newly created instance and returns a reference to it. After this initialization, a reference to the first instance is always returned upon any other initialization of **A**.
 
-One important thing to notice with this implementation is that I implement the *global point to access* the instance by reusing python syntax for object instantiation. However, this brings one issue: although every apparent instantiation returns the same instance, the constructor *A.\_\_init\_\_(...)* is executed against this instance before it is returned. We can say therefore that the instance is re-initialized every time we access it. Here it is a schematic example of the re-initialization:
+One important thing to notice with this implementation is the *global point to access* the instance is done by reusing python syntax for object instantiation. However, this brings one issue: although every apparent instantiation returns the same instance, the constructor *A.\_\_init\_\_(...)* is executed against this instance before it is returned. We can say therefore that the instance is re-initialized every time we access it. Here it is a schematic example of the re-initialization:
 
 {% highlight python %}
 # Class A is now a singleton
@@ -69,7 +69,7 @@ y.value = y
 
 ## Metaclass singleton
 
-It is possible to avoid calling the constructor of the singleton more than once for the same instance and preserved in essence the previous pattern and shown in the following example.
+It is possible to avoid calling the constructor of the singleton more than once for the same instance and preserved in essence the previous pattern as shown in the following example.
 
 {% highlight python %}
 class MetaclassSingleton(type):
@@ -144,7 +144,7 @@ print('y.value = {}'.format(y.value))
 
 **Note**: this example can be run by executing `./ClassVariableSingleton.py B` or `./MetaclassSingleton.py B` from my [repo](https://github.com/baites/examples/blob/master/patterns/python/singleton).
 
-This issue is also is seen as a very undesirable due to the fact singleton behavior depends on the order of when parent or child classes are instantiated. This could produce undefined program behavior if for example singleton parent and child are initialized on different threads.
+This issue is also seemed as very undesirable due to the fact singleton behavior depends on the order of when parent or child classes are instantiated. This could produce undefined program behavior if for example singleton parent and child are initialized on different threads.
 
 In my next post I will show an alternative pattern that avoids instance re-initialization and it has a more consistent behavior when combine with inheritance.
 
