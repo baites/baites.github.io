@@ -8,7 +8,7 @@ categories: computer-science patterns
 
 ## Singletons
 
-Study pattern design for high-level languages like javascript or python is a uneasy exercise. This feeling originates in the intuition that there is a lot of these patterns that although necessary in C++, they seems to be almost invisible in language like python for example. I am not the only one having this intuition resulting in a series of discussions by very smart people about design pattern in high-level languages[^1].
+Study pattern design for high-level languages like javascript or python is an uneasy exercise. This feeling originates in the intuition that there is a lot of these patterns that although necessary in C++, they seems to be almost invisible in language like python for example. I am not the only one having this intuition resulting in a series of discussions by very smart people about design pattern in high-level languages[^1].
 
 Singleton is one of those patterns that seems to be persistent amount all the different languages[^2]. It is also a pattern that a lot of people dislike[^3], more on that in a moment. However, this pattern is one of those things that people expect you should know if you are working on anything related to coding or programming.
 
