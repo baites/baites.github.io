@@ -148,6 +148,10 @@ This issue is also seemed as very undesirable due to the fact singleton behavior
 
 In my next post I will show an alternative pattern that avoids instance re-initialization and it has a more consistent behavior when combine with inheritance.
 
+### Program assignment or examples
+
+* [Python singletons](https://github.com/baites/examples/blob/master/patterns/python/singleton)
+
 ### References
 
 [^1]: See, for example, this [stack exchange entry](https://softwareengineering.stackexchange.com/questions/157943/are-there-any-design-patterns-that-are-unnecessary-in-dynamic-languages-like-pyt).
