@@ -32,7 +32,7 @@ Proving this simple statement is not easy, and it is done for very generic case 
 
 Instead of getting the asymptotic limit of \\|C_N(U)\\|, it is easier to derive an asymptotic limit for Erlang C upper bound. The problem is that getting an upper bound Erlang C is not a trivial task. Likely, there is a considerable volume of superb work on queuing theory that is not always that well known (at least by me). An example of this is a work by Janssen et al., in where bounds and asymptotic expansion for Erlang C are developed[^8]. In particular, these bounds are direct results derived from early work by the authors, in where they find tight bounds for Erlang B function[^9].
 
-But before using these bounds to understand the asymptotic limit of a single queue, it would be nice to know how tight these bounds are. The first plot of the figure below shows the Erlang C function together with its lower and upper bound derived by Janssen et al. for \\|N = 10\\|[^8]. The other plots in the same figure show the resulting number of customers in the queue and their average waiting time using the original Erlang-C function as well it's lower and upper bound. As you can see the bound values are so tight that can be used as an excellent approximation of \\|C_N(U)\\|. [Here a link to the scripts for computing and generating the graph written in MATLAB](https://github.com/baites/examples/blob/master/analyses/queueing/MMnQueue/show_erlangc_tight_bounds.m).
+But before using these bounds to understand the asymptotic limit of a single queue, it would be nice to know how tight these bounds are. The first plot of the figure below shows the Erlang C function together with its lower and upper bound derived by Janssen et al. for \\|N = 10\\|[^8]. The other plots in the same figure show the resulting number of customers in the queue and their average waiting time using the original Erlang-C function as well it's lower and upper bound. As you can see the bound values are so tight that can be used as an excellent approximation of \\|C_N(U)\\|. [Here a link to the scripts for computing and generating the graph written in MATLAB](https://github.com/baites/examples/blob/master/analyses/queueing/mmnqueue/show_erlangc_tight_bounds.m).
 
 {% include image file="erlangc-tight-bound.svg" scale="100%" %}
 
@@ -45,11 +45,11 @@ Using upper tight bound (eq. 2.3 in reference [^8]), I can derive the following 
 \end{aligned}
 %%</p>
 
-where \\|\alpha = \sqrt{-2N (1-U + \ln{U})}\\|, \\|\phi(x) = \left(2\pi\right)^{-1/2} e^{-x^2/2}\\| is the normal density distribution center in zero and unitary variance, and \\|\Phi(x)\\| is its the cumulative distribution function[^10]. The simpler and looser upper bound is plotted and compare against both Erlang C function and its tighter upper bound in the next graph, [where here it is a link to MATLAB script that compute and generate the plot](https://github.com/baites/examples/blob/master/analyses/queueing/MMnQueue/show_erlangc_upper_bounds.m). This shows that for any level utilization \\|U < 1\\|. Therefore, this upper bound shows that the Erlang C function and as a consequence the number of customers in the system queue goes to zero or \\|q \rightarrow 0\\|, and this happens at a rate of at least \\|1/\sqrt{N}\\| when \\|N \rightarrow \infty\\|.
+where \\|\alpha = \sqrt{-2N (1-U + \ln{U})}\\|, \\|\phi(x) = \left(2\pi\right)^{-1/2} e^{-x^2/2}\\| is the normal density distribution center in zero and unitary variance, and \\|\Phi(x)\\| is its the cumulative distribution function[^10]. The simpler and looser upper bound is plotted and compare against both Erlang C function and its tighter upper bound in the next graph, [where here it is a link to MATLAB script that compute and generate the plot](https://github.com/baites/examples/blob/master/analyses/queueing/mmnqueue/show_erlangc_upper_bounds.m). This shows that for any level utilization \\|U < 1\\|. Therefore, this upper bound shows that the Erlang C function and as a consequence the number of customers in the system queue goes to zero or \\|q \rightarrow 0\\|, and this happens at a rate of at least \\|1/\sqrt{N}\\| when \\|N \rightarrow \infty\\|.
 
 {% include image file="erlangc-loose-bound.svg" scale="50%" %}
 
-We can directly assess this limit by computing the delay probability, the number of customers in the queue, and their average waiting time for a different number of servers \\| N = 1, 10, 100, 1000 \\|. I do this in the figure below, and [here it is the link of the MATLAB code generating the figure](https://github.com/baites/examples/blob/master/analyses/queueing/MMnQueue/show_erlangc_asympt.m).
+We can directly assess this limit by computing the delay probability, the number of customers in the queue, and their average waiting time for a different number of servers \\| N = 1, 10, 100, 1000 \\|. I do this in the figure below, and [here it is the link of the MATLAB code generating the figure](https://github.com/baites/examples/blob/master/analyses/queueing/mmnqueue/show_erlangc_asympt.m).
 
 {% include image file="erlangc-asymptotics.svg" scale="100%" %}
 
@@ -61,6 +61,10 @@ In conclusion, it seems that nature is kind enough to reward you IF you manage t
 
 * [My approach to queuing theory]({% post_url 2018-02-26-my-approach-to-queueing-theory %})
 * [Single open queue]({% post_url 2018-04-09-single-open-queue %})
+
+### Program assignment or examples
+
+* [M/M/N queues](https://github.com/baites/examples/tree/master/analyses/queueing/mmnqueue)
 
 #### References
 

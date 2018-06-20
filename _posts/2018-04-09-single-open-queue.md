@@ -33,7 +33,7 @@ that it gives the probability for a customer to be delayed in the queue upon arr
 
 Although the model has three parameters \\|\left(\lambda, \mu, N\right)\\|, its behavior is determine mostly by two independent parameters \\|\left(\lambda/\mu, N\right)\\|, in where \\|\mu\\| is a constant that fix the unit of time.
 
-My goal in this post is to introduce the primary results and notation that I will be using when discussing queues. In the referent section of this post, you can find references for more detailed discussions and deduction of these relationships. As program assignment, I implemented a simple [MATLAB function](https://github.com/baites/examples/blob/master/analyses/queueing/MMnQueue/model_mmn_queue.m) to calculate model's results. I also validated the result from the model against simulation as explain below. Erlang-C function was implemented by Brian Borches and its code can be download from [MathWorks' File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/824-erlang-b-and-c-probabilities?focused=5044423&tab=function).
+My goal in this post is to introduce the primary results and notation that I will be using when discussing queues. In the referent section of this post, you can find references for more detailed discussions and deduction of these relationships. As program assignment, I implemented a simple [MATLAB function](https://github.com/baites/examples/blob/master/analyses/queueing/mmnqueue/model_mmn_queue.m) to calculate model's results. I also validated the result from the model against simulation as explain below. Erlang-C function was implemented by Brian Borches and its code can be download from [MathWorks' File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/824-erlang-b-and-c-probabilities?focused=5044423&tab=function).
 
 The way I like to show any system performance is by given the response time \\|\left(R\right)\\| and system throughput \\|\left(X\right)\\| as a function of a proxy of the system load. For a single open queue, I like using the server utilization \\|U\\| as a proxy. The simplicity of this queueing model implies that throughput and utilization are trivially related by \\|X = N\left(U \wedge 1\right)\\|. This means that performance grows when more servers are use until they are all busy. The non-trivial result of this model is the response time. The following plot show single queue response time computed using the Erlang-C model and a simulation of an Erlang-C queue.
 
@@ -50,6 +50,10 @@ The figure shows that this simple model matches pretty closely with the simulati
 #### Related posts
 
 * [My approach to queuing theory]({% post_url 2018-02-26-my-approach-to-queueing-theory %})
+
+### Program assignment or examples
+
+* [M/M/N queues](https://github.com/baites/examples/tree/master/analyses/queueing/mmnqueue)
 
 #### References
 
