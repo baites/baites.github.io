@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Common misconception when sizing systems"
+title: "A common misconception when sizing systems"
 date: 2018-06-25 08:00:00 -0400
 author: Victor E. Bazterra
 categories: queuing-theory system-modeling
