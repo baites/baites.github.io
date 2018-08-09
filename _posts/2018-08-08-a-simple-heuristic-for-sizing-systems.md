@@ -79,7 +79,7 @@ N_F = \lceil n_I + \max \left\{\epsilon, \alpha n_I \theta(n_I) + \beta \sqrt{n_
 
 where the \\|\theta(\cdot)\\| is weighting function such as \\|\theta(0) = 1\\| and \\|\lim_{n \rightarrow \infty}\theta(n) = 0\\| that produces a smoothly between constant utilization heuristic and square-root rule. The simplest choice for \\|\theta(n)\\| that comes to mind is the exponential function or \\|\theta(n) = \exp(-n/\eta)\\| in where \eta parameter set how fast the transition is done.
 
-Next figure presents the result of applying the heuristics assuming different values for the initial number of busy servers \\|0 \leq n_I \leq 10000\\| and using the *M/M/N* queue model to derive the number of customers waiting in the queue.
+Next figure presents the result of applying the heuristics assuming different values for the initial number of busy servers \\|0 \leq n_I \leq 10000\\| and using the *M/M/N* queue model to derive the number of customers waiting in the queue. I choose as parameter values \\|\epsilon = 10\\|, \\|\alpha = 0.25\\|, \\|\beta = 2.3 \\|, and \\|\eta = 200\\|.
 
 {% include image file="mmn-combined-heuristic.svg" scale="90%" %}
 
