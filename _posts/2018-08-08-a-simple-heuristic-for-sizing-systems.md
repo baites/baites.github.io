@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A simple heuristic for sizing systems."
+title: "A simple heuristic for sizing systems"
 date: 2018-08-08 08:00:00 -0400
 author: Victor E. Bazterra
 categories: queuing-theory system-modeling
