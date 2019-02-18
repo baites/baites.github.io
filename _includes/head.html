@@ -14,8 +14,12 @@
 
   {% if page.javascript.katex %}
     <link href="/assets/css/katex.min.css" rel="stylesheet">
+    <link href="/assets/css/copy-tex.min.css" rel="stylesheet">
     <script src="/assets/js/katex.min.js" type="text/javascript"></script>
     <script src="/assets/js/contrib/auto-render.min.js" type="text/javascript"></script>
+    <script src="/assets/js/contrib/copy-tex.min.js" type="text/javascript"></script>
+    <script src="/assets/js/contrib/mhchem.min.js" type="text/javascript"></script>
+    <script src="/assets/js/contrib/mathtex-script-type.min.js" type="text/javascript"></script>
     <script>
       window.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body,
