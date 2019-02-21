@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Algorithmic magic of the median of two sorted arrays"
-date: 2019-02-20 08:00:00 -0400
+date: 2029-01-01 08:00:00 -0400
 author: Victor E. Bazterra
 categories: algorithms algorithm-analysis
 javascript:
