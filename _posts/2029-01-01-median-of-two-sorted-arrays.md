@@ -249,9 +249,21 @@ m_1 = S1 \text{ or } m_2 = 0 &\text{ or } A_2[m_2-1] \leq A_1[m_1]
 
 The question now is how do we find those \\|m_1\\| and \\|m_2\\|.
 
-If we already have candidates for \\|i_1\\| and \\|i_2\\| such as \\|i_1 + i_2 = \lfloor S/2 \rfloor\\| then we have three option:
+Any candidate pair of indices to be pointing to the median \\|i_1, i_2\\| belongs to a pair of intervals \\|i_1 \in [l_1, r_1)\\| and \\|i_2 \in [l_2, r_2)\\|. For example, initially the intervals are trivially \\|i_1 \in [0, S_1)\\| and \\|i_2 \in [0, S_2)\\|. For the pair to be a candidate it should be also true that \\|i_1 + i_2 = m\\| where \\|m = \lfloor S/2 \rfloor\\|. Therefore if for example \\|i_1 \in [l_1, r_1)\\| the first corollary condition implies also that \\|i_2 \in [\max\lbrace 0, m-r_1+1\rbrace, m-l_1)\\|. But then \\|i_2 \in [\max\lbrace 0, m-r_1+1\rbrace, m-l_1) \cap [l_2, r_2) = [l, r)\\| where
 
-1. If the candidates failed the second condition of the lemma \\|i_1 > 0 \text{ and } i_2 < S_2 \text{ and } A_1[i_1-1] > A_2[i_2]\\| then we know that the values for \\|A_1\\| or \\|A_2\\| have to at least decrease or increase, respectively. Because both arrays are sorted, this means that the indexes pointing to the median has to be between the following ranges \\|m_1 \in [l , i_1+1)\\| and \\|m_2 \in [i_2, r_2)\\|. However, we already know that the initial combination \\|m_1 = i_1\\| and \\|m_2 = i_2\\| is not solution (it fails the second condition) therefore \\|m_1 < i_1\\| or \\|m_2 > i_2\\|. Now it is easy to see the combinations \\|m_1 = i_1\\| and \\|m_2 = i_2 + 1\\| or \\|m_1 = i_1+1\\| and \\|m_2 = i_2\\| are excluded because in both cases \\|m_1 + m_2 = i_1 + i_2 + 1 = 1\\| (failing the first condition). As result, we can derive a tighter ranges for the indexes pointing to the median \\|m_1 \in [l , i_1)\\| and \\|m_2 \in [i_2+1, r_2)\\|.
+<p>%%
+\begin{aligned}
+l &= \max\left\lbrace\max\lbrace 0, m-r_1+1\rbrace, l_2\right\rbrace \\
+r &= \min\left\lbrace m-l_1, r_2\right\rbrace
+\end{aligned}
+%%</p>
+
+If we already have some candidates bound in a given intervals so \\|i_1 \in [l_1, r_1)\\| and \\|i_2 \in [l_2, r_2)\\| such as \\|i_1 + i_2 = \lfloor S/2 \rfloor\\| then we have three possibility:
+
+1. If the candidates failed the second condition of the lemma \\|i_1 > 0 \text{ and } i_2 < S_2 \text{ and } A_1[i_1-1] > A_2[i_2]\\| then we know that the values for \\|A_1\\| or \\|A_2\\| have to at least decrease or increase, respectively. Because both arrays are sorted, this means that the indexes pointing to the median has to be between the following ranges \\|m_1 \in [l , i_1+1)\\| and \\|m_2 \in [i_2, r_2)\\|. However, we already know that the initial combination \\|m_1 = i_1\\| and \\|m_2 = i_2\\| is not solution (it fails the second condition) therefore \\|m_1 < i_1\\| or \\|m_2 > i_2\\|. Now it is easy to see the combinations \\|m_1 = i_1\\| and \\|m_2 = i_2 + 1\\| or \\|m_1 = i_1+1\\| and \\|m_2 = i_2\\| are excluded because in both cases \\|m_1 + m_2 = i_1 + i_2 + 1 = 1\\| (failing the first condition). As result, we can derive a tighter intervals for the indexes pointing to the median \\|m_1 \in [l_1 , i_1)\\| and \\|m_2 \in [i_2+1, r_2)\\|.
+2. If the candidates does not failed the second condition of the lemma, but it does third one \\|i_1 < S_1 \text{ and } i_2 > 0 \text{ and } A_2[i_2-1] > A_1[i_1]\\|. Following the same reasoning as above it is not hard to see that the indexes pointing to the median has to belong to the following intervals \\|m_1 \in [i_1+1 , r_1)\\| and \\|m_2 \in [l_2, i_2)\\|.
+3. All the conditions are met therefore the median of two arrays is \\|V(m_1, m_2)\\|.
+
 
 ### References
 
