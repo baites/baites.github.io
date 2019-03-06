@@ -235,15 +235,18 @@ Now, I need to prove you that any pair of indexes following the lemma conditions
 
 3. The complementary reasoning follows in case of \\|i_1 > 0\\| and \\|i_2 = 0\\|. The only difference is in this case of \\|A_1[i_1-1] = A_2[0]\\| then \\|E[i_1-1] = \text{true}\\| because the first index was updated.
 4. If both \\|i_1 > 0\\| and \\|i_2 > 0\\| then:
-    * if \\|A_2[i_2-1] < A_1[i_1-1]\\| then the index value before the update were \\|i_1 = (i_1-1)\\| and \\|i2 = i2\\| because it is the only way keep the lemma condition invariant:
+    * if \\|A_2[i_2-1] < A_1[i_1-1]\\| then the index value before the update were \\|i_1 = (i_1-1)\\| and \\|i_2 = i_2\\| because it is the only way keep the lemma condition invariant:
         * \\|A_1[(i_1-1)-1] \leq A_1[(i_1-1)] \leq A_[i_2]\\| because \\|A_1\\| is sorted,
         * \\|A_2[i_2-1] < A_1[(i_1-1)]\\| by assumption
         * if \\|A_1[i_1-1] == A_2[i_2]\\| implies \\|E[i_1+i_2-1] = \text{true}\\| because the first index was updated.
-    * Similar reasoning for the condition \\|A_1[i_1-1] < A_1[i_2-1]\\| implies that values before the update were \\|i_1 = i_1\\| and \\|i2 = (i2-1)\\|. However, in this case if \\|A_1[i_1] == A_2[i_2-1]\\| implies \\|E[i_1+i_2-1] = \text{false}\\| because the second index is updated.
+    * Similar reasoning for the condition \\|A_1[i_1-1] < A_2[i_2-1]\\| implies that values before the update were \\|i_1 = i_1\\| and \\|i2 = (i2-1)\\|. However, in this case if \\|A_1[i_1] == A_2[i_2-1]\\| implies \\|E[i_1+i_2-1] = \text{false}\\| because the second index is updated.
     * If \\|A_2[i_2-1] = A_1[i_1-1]\\| you can choose either the first or the second index as the one that was updated. You can always choose to be the first index for example and therefore if \\|A_1[i_1-1] == A_2[i_2]\\| implies \\|E[i_1+i_2-1] = \text{true}\\|.
 5. For those elements of \\|E\\| we do need to make any choice, so by default we can set it to be false.
 
-In this process we can derive the values of the array \\|E\\| so that **MergeArrays** produces a merge sorted array up to the original indices \\|i_1, i_2\\|. Therefore the condition of the lemma are also sufficient to determine a pair of indexes are part of the merge sorted map.
+In this process we can derive the values of the array \\|E\\| so that **MergeArrays** produces a merge sorted array up to the original indices \\|i_1, i_2\\| as shown in the next figure. Therefore the condition of the lemma are also sufficient to determine a pair of indexes are part of the merge-sort map.
+
+{% include image file="median-two-sorted-arrays-fig-3.svg" scale="70%" %}
+<center><p>Example of backtracking the merge-sort map.</p></center>
 
 ## Merge-sort map and the median of two arrays
 
@@ -272,11 +275,14 @@ r &= \min\left\lbrace m-l_1, r_2\right\rbrace
 \end{aligned}
 %%</p>
 
-Therefore the interval \\|[l, r)\\| represent all the possible candidate solutions for \\|i_2\\| and therefore also for the whole problem because \\|i_1 = m - m_2\\|. I can get then a candidate solution by bisecting \\|[l, r)\\| such as \\|i_2 = (l+r)/2\\|. Using this candidate solution and updating the \\|i_2\\| interval so \\|l_2 = l\\| and \\|r_2 = r\\| we have then the following three possibilities:
+Therefore the interval \\|[l, r)\\| represent all the possible candidate solutions for \\|i_2\\| and therefore also for the whole problem because \\|i_1 = m - m_2\\|. I can get then a candidate solution by bisecting \\|[l, r)\\| such as \\|i_2 = (l+r)/2\\|. Using this candidate solution and updating the \\|i_2\\| interval so \\|l_2 = l\\| and \\|r_2 = r\\| we have then the following three possibilities (schematically shown in the next figure):
 
 1. If the candidates failed the second condition of the lemma \\|i_1 > 0 \text{ and } i_2 < S_2 \text{ and } A_1[i_1-1] > A_2[i_2]\\| then we know that the values for \\|A_1\\| or \\|A_2\\| have to at least decrease or increase, respectively. Because both arrays are sorted, this means that the indexes pointing to the median \\|(m_1, m_2)\\| have to be between the following ranges \\|m_1 \in [l , i_1+1)\\| and \\|m_2 \in [i_2, r_2)\\|. However, we already know that the initial combination \\|m_1 = i_1\\| and \\|m_2 = i_2\\| is not solution (it fails the second condition) therefore \\|m_1 < i_1\\| or \\|m_2 > i_2\\|. Now it is easy to see the combinations \\|m_1 = i_1\\| and \\|m_2 = i_2 + 1\\| or \\|m_1 = i_1+1\\| and \\|m_2 = i_2\\| are excluded because in both cases \\|m_1 + m_2 = i_1 + i_2 + 1 = 1\\| (failing the first condition). As result, we can derive a tighter intervals for the indexes pointing to the median \\|m_1 \in [l_1 , i_1)\\| and \\|m_2 \in [i_2+1, r_2)\\|.
 2. If the candidates does not failed the second condition of the lemma, but it does third one \\|i_1 < S_1 \text{ and } i_2 > 0 \text{ and } A_2[i_2-1] > A_1[i_1]\\|. Following the same reasoning as above it is not hard to see that the indexes pointing to the median has to belong to the following intervals \\|m_1 \in [i_1+1 , r_1)\\| and \\|m_2 \in [l_2, i_2)\\|.
 3. All the conditions are met then \\|m_1 = i_1\\| and \\|m_2 = i_2\\| and therefore the median value is \\|V(m_1, m_2)\\|.
+
+{% include image file="median-two-sorted-arrays-fig-2.svg" scale="40%" %}
+<center><p>Example of how solution intervals are adjusted.</p></center>
 
 In summary the algorithm then looks like this:
 
@@ -346,7 +352,19 @@ def FindMedianHelper(A1, S1, A2, S2):
     return 0.5*(median1+median2)
 {% endhighlight %}
 
-## Merge-sort map and the median of two arrays
+## Correctness and time complexity
+
+### Correctness
+
+I will show the algorithm correctness using a fix-point type of approach[^5]. The *while* loop in the **FindMedianHelper** works as a function \\|W()\\| with inputs given by the interval ranges \\|l_1,r_1,l_2,r_2\\| where all possible solutions is located. It returns as output another set of intervals ranges where all solutions are also located \\|l^{\prime}_1, r^{\prime}_1, l^{\prime}_2, r^{\prime}_2 = W(l_1,r_1,l_2,r_2)\\|. This is as long the solution is not found, because if that case we scape from the loop.
+
+Every time the loop do not find a solution then either the first or the second interval is updated. However, by construction \\|r^{\prime}_1 - l^{\prime}_1 = r_1 - l_1 + 1\\| or \\|r^{\prime}_2 - l^{\prime}_2 = r_2 - l_2 + 1\\|. This can continue in the worse case until \\|r_1 - l_1 = 1\\| and \\|r_2 - l_2 = 1\\|. This is because we know there is at least one pair of indexes in the merge-sort map pointing to \\|A[m]\\| and it is guaranteed to be \\|m_1 = l_1\\| and \\|m_2 = l_2\\|. Thus when entering in the while loop we just verify we find the solution escaping the loop and algorithm halts.
+
+### Time complexity
+
+{% include image file="median-two-sorted-arrays-fig-4.svg" scale="90%" %}
+<center><p>Example of algorithm worse case.</p></center>
+
 
 ### References
 
@@ -354,3 +372,4 @@ def FindMedianHelper(A1, S1, A2, S2):
 [^2]: [Wikipedia: Median](https://en.wikipedia.org/wiki/Median)
 [^3]: [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 [^4]: [Wikipedia: Merge sort](https://en.wikipedia.org/wiki/Merge_sort)
+[^5]: [Wikipedia: Fixed-point iteration](https://en.wikipedia.org/wiki/Fixed-point_iteration)
