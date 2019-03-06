@@ -358,13 +358,33 @@ def FindMedianHelper(A1, S1, A2, S2):
 
 I will show the algorithm correctness using a fix-point type of approach[^5]. The *while* loop in the **FindMedianHelper** works as a function \\|W()\\| with inputs given by the interval ranges \\|l_1,r_1,l_2,r_2\\| where all possible solutions is located. It returns as output another set of intervals ranges where all solutions are also located \\|l^{\prime}_1, r^{\prime}_1, l^{\prime}_2, r^{\prime}_2 = W(l_1,r_1,l_2,r_2)\\|. This is as long the solution is not found, because if that case we scape from the loop.
 
-Every time the loop do not find a solution then either the first or the second interval is updated. However, by construction \\|r^{\prime}_1 - l^{\prime}_1 = r_1 - l_1 + 1\\| or \\|r^{\prime}_2 - l^{\prime}_2 = r_2 - l_2 + 1\\|. This can continue in the worse case until \\|r_1 - l_1 = 1\\| and \\|r_2 - l_2 = 1\\|. This is because we know there is at least one pair of indexes in the merge-sort map pointing to \\|A[m]\\| and it is guaranteed to be \\|m_1 = l_1\\| and \\|m_2 = l_2\\|. Thus when entering in the while loop we just verify we find the solution escaping the loop and algorithm halts.
+Every time the loop do not find a solution then either the first or the second interval is updated. However, by construction \\|r^{\prime}_1 - l^{\prime}_1 = r_1 - l_1 + 1\\| or \\|r^{\prime}_2 - l^{\prime}_2 = r_2 - l_2 + 1\\|. This can continue in the worse case until \\|r_1 - l_1 = 1\\| or \\|r_2 - l_2 = 1\\|. This is because we know there is at least one pair of indexes in the merge-sort map pointing to \\|A[m]\\| and when the size of either interval is equal to 1 the it is guaranteed the solution to be either \\|m_1 = l_1\\| and \\|m_2 = m - l_1\\|, or \\|m_2 = l_2\\| and \\|m_1 = m - l_2\\|. Thus when entering in the while loop we just verify we find the solution escaping the loop and algorithm halts.
 
-### Time complexity
+### Time complexity and an a surprise
+
+It is very easy to find input instances that produces the worse case for this algorithm. The next figure shows an example if where I follow the algorithm as it cornered the solution.
 
 {% include image file="median-two-sorted-arrays-fig-4.svg" scale="90%" %}
 <center><p>Example of algorithm worse case.</p></center>
 
+From the figure it is clear that the time complexity \\|T(S_1, S_2)\\| is bound by
+
+<p>%%
+T(S_1, S_2) \leq O\left(\lfloor \log_2 \min\lbrace S_1, S_2 \rbrace \rfloor\right)
+%%</p>
+
+This is a significant improvement the time complexity of the problem over \\|O(log_2 S)\\|, although it is practically meaningless because only at impractically huge instance sizes will make any difference.
+
+## Code performance as measured by LeetCode
+
+I program a C++ and Python version of the code[^6]. I submitted both versions to be tested and ranked by LeetCode. Both versions were accepted and ranked as follow:
+
+* For C++ the runtime 40 ms, faster than 97.04% of C++ online submissions for Median of Two Sorted Arrays
+* For python the runtime 52 ms, faster than 99.36% of Python online submissions for Median of Two Sorted Arrays.
+
+## Why I am doing this?
+
+It is clear this is not helping to code faster. However, my hope is this at least will help me to code better.
 
 ### References
 
@@ -373,3 +393,4 @@ Every time the loop do not find a solution then either the first or the second i
 [^3]: [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 [^4]: [Wikipedia: Merge sort](https://en.wikipedia.org/wiki/Merge_sort)
 [^5]: [Wikipedia: Fixed-point iteration](https://en.wikipedia.org/wiki/Fixed-point_iteration)
+[^6]: [C++ version](https://github.com/baites/examples/blob/master/coding/leet/median_two_sorted_arrays_v5.C), [Python version](https://github.com/baites/examples/blob/master/coding/leet/median_two_sorted_arrays_v5.py)
