@@ -79,19 +79,24 @@ def MergeArrays(A1, S1, A2, S2, E):
     A = [0]*S
     i1 = 0; i2 = 0; i = 0
     while i1 < S1 or i2 < S2:
+        # at the end of the first array
         if i1 == S1:
             A[i] = A2[i2]
             i2 += 1
+        # at the end of the second array
         elif i2 == S2:
             A[i] = A1[i1]
             i1 += 1
-        elif A1[i1] < A2[i2] and not E[i] or\
-              A1[i1] <= A2[i2] and E[i]:
-            A[i] = A1[i1]
-            i1 += 1
+        # if any indexes not at the end
         else:
-            A[i] = A2[i2]
-            i2 += 1
+            # choose comparison operator
+            selectA1 = A1[i1] <= A2[i2] if E[i] else A1[i1] < A2[i2]
+            if selectA1:
+                A[i] = A1[i1]
+                i1 += 1
+            else:
+                A[i] = A2[i2]
+                i2 += 1
         i += 1
     return A
 
