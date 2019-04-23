@@ -2,7 +2,7 @@
 layout: post
 title: "Algorithmic magic of the median of two sorted arrays"
 date: 2029-01-01 08:00:00 -0400
-author: Victor E. Bazterra
+author: Victor E. Bazterra, Codeforces' Mandinga
 categories: algorithms algorithm-analysis
 javascript:
   katex: true
@@ -12,403 +12,193 @@ javascript:
 
 ## Here I go again
 
-It being a while since my last post. I stopped blogging for a while because of some personal issues I need to resolve. However, these are technical blogs that are not meant to be mass produced. I write them with the intention of practicing my writing, get some bragging rights about my creative and knowledge (or lack of them), and more important because I enjoy it.
+It being a while since my last post. I stopped blogging for a while because of some personal issues I need to resolve. However, these are technical blogs that are not meant to be mass produced. I write them with the intention of practicing my writing, also to get some bragging rights about my creative and knowledge, and more important because I enjoy it.
 
 ## Formalizing algorithms
 
 I decided that I needed to formalize my knowledge about algorithms. Although I have worked with them all my life, I never was *classically train* on them, and therefore I decided it was time for me to do so.
 
-The most important step I am taking is to practice algorithms. I started looking at LeetCode[^1] for practicing algorithms, and this blog is about the first **hard** problem I solved from that site.
+The most important step I am taking is to practice following a competitive coding format. I started looking at LeetCode[^1] for coding questions, and this blog is about the first **hard** problem I solved from that site.
 
-I have not read the solution yet, although I believe it can be found on the site. I am giving you my word that I only look for the definition of the median of an array that I will discuss next. Once I am done posting the blog, I will read about other solutions or discuss it with people deep in algorithmic games. I will update in another post making some comparison between solutions.
+This blog was written in collaboration with Codeforces' Mandinga. We starting sharing some our solution to the problem and some our approaches to prove our algorithm's correctness and time complexity. My initial attempt to do that with my solution was very messy at best. Mandinga came up with a framework that made simpler to understand the algorithm works. Then we worked in defining a notation based on this framework and use it to prove the main lemma that shows that the algorithm is correct. This framework also allows us to write a code that is easy to read and derive its time complexity.
 
-## Median of one and two arrays
+## Median of two arrays
 
-Before going to the specific problem, we need to define what is the median of an array.
+Before going to the specific problem, let's need to define what is the median of an array.
 
 > **Definition:** Given an sorted array \\|A[0..S-1]\\| where \\|S\\| is the array size its median is defined as:
 <p>%%
-MedianSortedArray(A) = \begin{cases}
+\text{MedianSortedArray}(A) = \begin{cases}
 A[m] & \text{if S is odd} \\
 \frac{1}{2} \lparen A[m] + A[m - 1] \rparen  & \text{otherwise}
 \end{cases}
 %%</p>
 >where \\|m = \lfloor S/2 \rfloor \\| is the index pointing to the **middle** of the array[^2].
 
-It is easy to see that this definition implies the following constant run time algorithm or \\|O(1)\\|:
+It is easy to see that this definition implies the following constant run time algorithm or \\|O(1)\\|. For example in python you could write:
 
 {% highlight python %}
-def MedianSortedArray(A, S):
-    m = S // 2
-    if S % 2:
-      return A[m]
-    return 0.5*(A[m]+A[m-1])
+def MedianSortedArray(A):
+    S = len(A)
+    return 0.5*(A[(S-1)//2] + A[S//2])
 {% endhighlight %}
 
-However, if the array is not assorted a naive solution of the problem can be written in python for example:
+The median for an arbitrary array can be computed simply by sorting the array first as shown next
 
 {% highlight python %}
-def MedianOneArray(A, S):
+def MedianOneArray(A):
     A.sort()
-    return MedianSortedArray(A, S)
+    return MedianSortedArray(A)
 {% endhighlight %}
 
 where its runtime is \\|O(S \log S)\\| where all of it comes from the need to sort the array first and \\|O(1)\\| in memory if we allow in-place sorting.
 
-This algorithm can be easily generalized to the media of two arrays as follow
+With this definition in place the coding question is the following.
+
+> **Problem:** There are two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\| of size \\|S_A\\| and \\|S_B\\| respectively. Find the median of the two sorted arrays with a time complexity \\|O(\log(S_A+S_B))\\| and in constant space complexity. You may assume \\|A\\| and \\|B\\| cannot be both empty.[^3]
+
+It is easy to see this problem can have a linear solution \\|O(S_1 + S_2)\\| in time and space complexities by exploiting the fact both input arrays are sorted. The trick is to use the *merge* step of the **MergeSort** algorithm[^4] to merge the two sorted arrays in a third one and then call **MedianSortedArray**.
 
 {% highlight python %}
-def MedianTwoArrays(A1, S1, A2, S2):
-    A = A1 + A2
-    S = S1 + S2
-    return MedianOneArray(A, S)
-{% endhighlight %}
-
-where \\|A_1 + A_2\\| in python represent the concatenation of the two arrays. The runtime complexity stays the same as before (with the caveat \\|S = S1 + S2\\|) however, the algorithm needs \\|O(S)\\| of memory to hold the concatenated array \\|A\\|.
-
-
-## Median of two sorted arrays
-
-> **Problem:** There are two sorted arrays \\|A_1[0..S_1-1]\\| and \\|A_2[0..S_2-1]\\| of size \\|S_1\\| and \\|S_2\\| respectively. Find the median of the two sorted arrays with a time complexity \\|O(\log(S))\\| where \\|S = S_1 + S_2\\| and a constant space complexity. You may assume \\|A_1\\| and \\|A_2\\| cannot be both empty.[^3]
-
-Once I recovered from the feeling this is not possible, it is easy to see you can improve upon the naive but general purpose **MedianTwoArrays** to a solution with a time and space complexity of \\|O(S)\\| when arrays are already sorted. The trick is to reuse the *merge* step of the **MergeSort** algorithm[^4] to merge the two sorted arrays in a third one and then call **MedianSortedArray**.
-
-{% highlight python %}
-def MergeArrays(A1, S1, A2, S2, E):
-    S = S1 + S2
-    A = [0]*S
-    i1 = 0; i2 = 0; i = 0
-    while i1 < S1 or i2 < S2:
+def MergeArrays(A, B):
+    SA = len(A)
+    SB = len(B)
+    S = SA + SB
+    AB = [0]*S
+    iA = 0; iA = 0; i = 0
+    while iA < SA or iB < SB:
         # at the end of the first array
-        if i1 == S1:
-            A[i] = A2[i2]
-            i2 += 1
+        if iA == SA:
+            A[i] = B[iB]
+            iB += 1
         # at the end of the second array
-        elif i2 == S2:
-            A[i] = A1[i1]
-            i1 += 1
+        elif iB == SB:
+            A[i] = A[iA]
+            iA += 1
         # if any indexes not at the end
         else:
-            # choose comparison operator
-            selectA1 = A1[i1] <= A2[i2] if E[i] else A1[i1] < A2[i2]
-            if selectA1:
-                A[i] = A1[i1]
-                i1 += 1
+            if A[iA] < B[iB]:
+                A[i] = A[iA]
+                iA += 1
             else:
-                A[i] = A2[i2]
-                i2 += 1
+                A[i] = AB[iB]
+                iB += 1
         i += 1
-    return A
+    return AB
 
-def MergeMedianTwoSortedArrays(A1, S1, A2, S2):
-    A = MergeArrays(A1, S1, A2, S2, E=[False]*(S1+S2))
-    return MedianSortedArray(A, S)
+def MergeMedianTwoSortedArrays(A, B):
+    AB = MergeArrays(A, B)
+    return MedianSortedArray(AB)
 {% endhighlight %}
 
-The most important part of **MergeMedianTwoSortedArrays** is the merge step **MergeArrays** in where I made explicit if we use *the less* or *the less and equal* operator to compare elements of \\|A_1\\| and \\|A_2\\| at each position of merge sorted array \\|A\\|. I save these choice in an array \\|E\\| in where \\|E[i] = \text{false(true)} \\| when using the the less (the less and equal) operator. The use of a \\|E\\| array is unusual, and in general, people choose one operator throughout the process of merging \\|A\\|. However, I would like to make an emphasis to the fact that there are different ways of merging \\|A_1\\| and \\|A_2\\| based on the way the algorithm behaves when encounters the condition \\|A_1[i_1] == A_2[i_2]\\|. We shall see this is an important property to understand when designing a more efficient algorithm.
+The question is now how can we improve upon this solution.
 
+## The merge-sort map problem
 
-## Algorithm edge cases in O(1)
+The finding the median of two sorted array can be thought as a particular case of a more generic problem we call the merge-sort map problem.
 
-Let me start discussing all the edge cases that can be solved as \\|O(1)\\| in both time and space:
+> **Merge-Sort Map Problem:** Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\|, let's define \\|AB\\| as the sorted concatenation of \\|A\\| and \\|B\\|, then find the value of the \\|n\\|-th element of \\|AB\\| for any \\|n \in [1, S_A+S_B]\\| with a sub-linear runtime and \\|O(1)\\| space complexities. It is safe to assume at least one of the array is not empty.
 
-1. One of the two arrays is empty: in this case, the problem becomes to find the median of the other non-empty and sorted array.
+We call this problem the Merge-Sort Map because we would like to find a function that points to the value of the merge-sort array \\|AB\\| without explicitly building it. This is because the problem can be easily solved my merging the two sorted arrays using **MergeArrays** method as shown above, however this renders the problem to a \\|O(S_A + S_B)\\| time and space complexity require to merge the arrays. Now, it is possible to know the value of sort-merge array in any position more efficiently, then it becomes easy to find the median of this array as it is done in **MedianSortedArray** function above.
 
-2. Array value range do not overlap when \\|A_1[S_1-1] < A_2[0]\\| or \\|A_2[S_2-1] < A_1[0]\\|. Within this case there are the following alternatives:
+We adopt the following notation to simplify the discussion of the problem. We annotate concatenation of \\|A\\| and \\|B\\| as \\|A + B\\| and the sorted concatenation as \\|A \oplus B\\| (using this notation then \\|AB = A \oplus B\\|). We also say that these two arrays \\|A \leq B\\| if it is true that all elements of \\|A\\| are less or equal to any the element in \\|B\\|. In particular, if both arrays are already sorted, this condition can be verified in constant time simply by \\|A \leq B \equiv A[S_A-1] \leq B[0]\\|.
 
-    1. For \\|S\\| odd the median is either close to the end one of the arrays or alternative close to the begin of the other array.
-    2. For \\|S\\| even both values to compute the median are either in one of the two arrays or exactly at the begin of one of the arrays and the end of the other.
+We also define \\|\text{Head}(A,n)\\| where \\|A\\| is an array and \\|n\\| a positive integer, as the array form by the first \\|n\\| inclusive elements of \\|A\\|. In particular, we say that \\|\text{Head}(A,0)\\| is an empty array and also that \\|A =  \text{Head}(A,n)\\| for any \\|n \geq S_A\\|.
 
-In this case, it is easy to read the code. This particular function is implemented such as return a **None** if the arrays do not present an edge case.
+In a complementary way, we write \\|\text{Tail}(A,n)\\| as the resulting array after removing the first \\|n\\| inclusive elements of \\|A\\| such as \\|A = \text{Head}(A,n) + \text{Tail}(A,n)\\| for any value of \\|n\\|. From this definition it should be clear that \\|A = \text{Tail}(A,0)\\| and \\|\text{Tail}(A,S_A)\\| is an empty array.
 
-{% highlight python %}
-def IsEdgeCase(A1, S1, A2, S2):
-    S = S1 + S2
-    m = S//2
+We would like to remark using this notation that if \\|A\\| is already sorted, then for any the value of \\|n\\| then \\|A = \text{Head}(A,n) \oplus \text{Tail}(A,n)\\|. Also, \\|A\\| head is always less or equal than its tail or \\|\text{Head}(A,n) \leq \text{Tail}(A,n)\\| for \\|0 < n < S_A\\|. Finally, in the case of having now two sorted arrays \\|A\\| and \\|B\\| such as \\|A \leq B\\| then sorted concatenation of both array is just a simple concatenation or \\|A \oplus B = A + B\\|.
 
-    # E1: One empty array
-    if S1 == 0:
-        return MedianSortedArray(A2, S2)
-    if S2 == 0:
-        return MedianSortedArray(A1, S1)
+Using this notation, a solution the merge-sort map problem can be formulated as follow. Assume you have two integers \\|n_A\\| and \\|n_B\\| where at least on of them is not zero then
 
-    # E2: No overlapping arrays
-    if A1[-1] < A2[0]:
-        #E2.1: S is odd
-        if S % 2:
-            if S1 > m:
-                return A1[m]
-            else:
-                return A2[m-S1]
-        #E2.2: S is even
-        else:
-            if S1 > m:
-                return 0.5*(A1[m]+A1[m-1])
-            elif m > S1:
-                return 0.5*(A2[m-S1]+A2[m-1-S1])
-            else:
-                return 0.5*(A2[0]+A1[-1])
-    # E2: Complementary case for no overlapping arrays
-    if A2[-1] < A1[0]:
-        #E2.1: S is odd
-        if S % 2:
-            if S2 > m:
-                return A2[m]
-            else:
-                return A1[m-S2]
-        #E2.2: S is even
-        else:
-            if S2 > m:
-                return 0.5*(A2[m]+A2[m-1])
-            elif m > S2:
-                return 0.5*(A1[m-S2]+A1[m-1-S2])
-            else:
-                return 0.5*(A1[0]+A2[-1])
-    return None
-{% endhighlight %}
+<p>%%
+\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) = \text{Head}(A \oplus B, n_A + n_B) \text{ (1)}
+%%</p>
 
-
-## Map to the merge-sort array
-
-Once I removed the edge cases, I have two sorted arrays with an overlap between their value ranges. In this case, the seed for an efficient algorithm is the use of the merged and sorted array (merge-sort array or \\|A\\| for short) like the one in **MergedMedianTwoArrays** but without actually creating the array. This is because as soon you create the array the complexity can only be \\|O(S)\\|.
-
-I do this using the following map between two integers \\|i_1 \in [0,S_1+1)\\| and \\|i_2 \in [0,S_2+1)\\| as follow
+then the value for the \\|n\\|-th element of the merge-sort array \\|AB\\| where \\|n = n_A + n_B\\| is
 
 <p>%%
 \begin{aligned}
-V(i_1, i_2) &=  \begin{cases}
-\min\{A_1[i_1], A_2[i_2]\} & m_1 < S_1 \text{ and } m_2 < S_2 \\
-A_1[i_1]                   & m_2 == S_2 \\
-A_2[i_2]                   & \text{otherwise}
-\end{cases} \\
-I(i_1, i_2) &= i_1 + i_2
+AB[n - 1] &=  \begin{cases}
+\min\{A[0], B[0]\} & \text{if } n_A = 0 \text{ or } n_B = 0\\
+\max\{A[n_A-1], B[n_B-1]\} & \text{otherwise}
+\end{cases}
 \end{aligned}
 %%</p>
 
-where I write this function in python because I am going to need it later
+Next figure shows an example of the above condition for two arbitrary arrays. This reformulation is just equivalent to explicitly build a sort-merge array. However, it will be clear soon this reformulation is useful to find the most efficient way of solving the problem.
 
-{% highlight python %}
-def MergeSortValue(A1, i1, S1, A2, i2, S2)
-    if i1 < S1 and i2 < S2:
-        return min(A1[i1], A2[i2])
-    elif i2 == S2:
-        return A1[i1]
-    return A2[i2]
-{% endhighlight %}
+{% include image file="median-two-sorted-arrays-fig-1a.svg" scale="80%" %}
+<center><p>Head and tail relationships for a sort-merge array.</p></center>
 
-It is not hard to see that for some combinations of \\|(i_1, i_2)\\| (although not all of them) it is true that:
-
-<p>%%
-A[I(i_1, i_2)] = V(i_1, i_2)
-%%</p>
-
-As result of this map that I call the *merge-sort map* plus knowing the proper sequence of \\|(i_1, i_2)\\|, it might be to get all the values and their indexes for the merge-sort array \\|A\\| without in principle building it. In particular, the above equation is valid for the sequence of integers generated by **MergeArrays** step of **MergedMedianTwoArrays** algorithm, see an example the figure below. However, running the algorithm is not an option due to the fact the problem would have a time complexity of \\|O(S)\\|.
-
-{% include image file="median-two-sorted-arrays-fig-1a.svg" scale="90%" %}
-<center><p>Two examples of merge-sort map for different E arrays.</p></center>
-
-At this point, I asked myself, what are the conditions for a pair of \\|i_1, i_2\\| such as they are part of the merge-sort map? To answer that question, I came up with the following lemma.
-
-> **Lemma (merge-sort map)**: Given two sorted arrays \\|A_1[0..S_1-1]\\| and \\|A_2[0..S_2-1]\\| and the resulting sorted array \\|A(0..S-1)\\| with \\|S = S_1 + S_2\\| after merging them using some arbitrary \\|E\\| array, and the indexes \\|i_1, i_2\\| complying with the following conditions
+The merge-sort array has also complementary tail relationship in where for those \\|n_A\\| and \\|n_B\\| complying with the previous condition (1) we can write
 
 <p>%%
 \begin{aligned}
-i_1 = 0 \text{ or } i_2 = S_2 &\text{ or } A_1[i_1-1] \leq A_2[i_2] \\
-i_1 = S1 \text{ or } i_2 = 0 &\text{ or } A_2[i_2-1] \leq A_1[i_1]
+A \oplus B &= \left[\text{Head}(A, n_A) \oplus \text{Tail}(A, n_A)\right] \oplus \left[\text{Head}(B, n_B) \oplus \text{Tail}(B, n_B)\right] \\
+           &= \left[\text{Head}(A, n_A) \oplus \text{Head}(B, n_B)\right] \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \\
+           &= \text{Head}(A \oplus B, n_A + n_B) \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right]
 \end{aligned}
 %%</p>
 
-> then it is true that \\|A[I(i_1, i_2)] = V(i_1, i_2)\\|.
+and because \\|A \oplus B =  \text{Head}(A \oplus B, n) \oplus \text{Tail}(A \oplus B, n)\\| for any \\|n\\| it has to be true that
 
-The figure below demonstrates how two possible \\|i_1, i_2\\| pairs of the merge-sort map comply with the lemma inequalities that return the value of the merge-sort array \\|A[8]\\| from initial example. It is important to realize that these two possibilities are the result of different choices of \\|E\\|. However, both pairs are acceptable under the lemma condition and in the example they point to the same element of the merge-sort array \\|A\\|.
-
-{% include image file="median-two-sorted-arrays-fig-1b.svg" scale="80%" %}
-<center><p>Example of the lemma condition apply to a pair of indexes in the merge-sort map.</p></center>
-
-## Draft the proof of the merge map lemma
-
-I will just draft the proof in this blog. I recommend to fill up the details if interested.
-
-First let me show you that the lemma conditions are an invariant of the **MergeArrays** algorithm for an arbitrary choice of \\|E\\|. The demonstration can be done by induction:
-
-1. By definition the condition is true for \\|i_1 = i_2 = 0\\|.
-2. Assuming \\|i_1 = S_1\\| and \\|i_2 < S_2\\| the algorithm updates \\|i_2 \leftarrow i_2 + 1\\|. As result we have two possible cases that keep invariant the lemma conditions after the update:
-    * either \\|(i_2 + 1) = S2\\|
-    * or \\|A_1[i_1-1] \leq A_2[i_2] \leq A_2[(i_2+1)]\\| because \\|A_2\\| is sorted.
-
-3. The same reasoning applies to the case when \\|i_1 < S_1\\| and \\|i_2 = S_2\\| for an update \\|i_1 \leftarrow i_1 + 1\\|.
-4. Now if \\|i_1 < S_1\\| and \\|i_2 < S_2\\| then the algorithm can make two possible updates:
-    * if \\|A_1[i_1] < A_2[i_2]\\| for \\|E[i] = \text{false}\\| or \\|A_1[i_1] \geq A_2[i_2]\\| for \\|E[i] = \text{true}\\| resulting in the following update \\|i_1 \leftarrow i_1 + 1\\| maintains the lemma conditions invariant:
-        * \\|A_1[(i_1+1)-1] \leq A_2[i_2]\\| that covers both cases for the value of \\|E[i]\\| and
-        * \\|A_2[i_2-1] \leq A_1[i_1] \leq A_1[(i_1+1)]\\| because \\|A_2\\| is sorted.
-    * a similar reasoning applies to the case of having \\|A_1[i_1] \geq A_2[i_2]\\| for \\|E[i] = \text{false}\\| or \\|A_1[i_1] > A_2[i_2]\\| for \\|E[i] = \text{true}\\| that produces the update \\|i_2 \leftarrow i_2 + 1\\|.
-
-Now, I need to prove you that any pair of indexes following the lemma conditions has to be one of those generated by **MergeArrays** algorithm for some choice of \\|E\\|. I can show this backtracking **MergeArray**  when having as inputs \\|A_1, A_2\\| and initial index values \\|i_1, i_2\\| that obey the lemma conditions.
-
-1. If \\|i_1 = 0\\| or \\|i_2 = 0\\| no condition is checked by **MergeArrays** so \\|E=[]\\|.
-2. If \\|i_1 = 0\\| and \\|i_2 > 0\\| the index values before the **MergeArrays** update were \\|i_1 = 0\\| and \\|i_2 = i_2-1\\|. Now if the value of \\|A_1[0] = A_2[i_2-1]\\| implies \\|E[i_2-1] = \text{false}\\| because the second index was updated. It is easy to verify that the new value of \\|(i_2-1)\\| obeys the second inequality of the lemma, a necessary condition if indexes were generated by **MergeArrays**:
-    * either \\|(i_2-1) = 0\\|
-    * or \\|A_2[(i_2-1)-1)] \leq A_2[i_2-1] \leq A_1[0]\\| because \\|A_2\\| is sorted and \\|i_2 > 0\\| complies with the second lemma condition
-
-3. The complementary reasoning follows in case of \\|i_1 > 0\\| and \\|i_2 = 0\\|. The only difference is in this case of \\|A_1[i_1-1] = A_2[0]\\| then \\|E[i_1-1] = \text{true}\\| because the first index is updated.
-4. If both \\|i_1 > 0\\| and \\|i_2 > 0\\| then:
-    * if \\|A_2[i_2-1] < A_1[i_1-1]\\| then the index value before the update were \\|i_1 = (i_1-1)\\| and \\|i_2 = i_2\\| because it is the only way keep the lemma condition invariant:
-        * \\|A_1[(i_1-1)-1] \leq A_1[(i_1-1)] \leq A_[i_2]\\| because \\|A_1\\| is sorted,
-        * \\|A_2[i_2-1] < A_1[(i_1-1)]\\| by assumption
-        * if \\|A_1[i_1-1] == A_2[i_2]\\| implies \\|E[i_1+i_2-1] = \text{true}\\| because the first index was updated.
-    * Similar reasoning for the condition \\|A_1[i_1-1] < A_2[i_2-1]\\| implies that values before the update were \\|i_1 = i_1\\| and \\|i2 = (i2-1)\\|. However, in this case if \\|A_1[i_1] == A_2[i_2-1]\\| implies \\|E[i_1+i_2-1] = \text{false}\\| because the second index is updated.
-    * If \\|A_2[i_2-1] = A_1[i_1-1]\\| you can choose either the first or the second index as the one that was updated. You can always choose to be the first index for example and therefore if \\|A_1[i_1-1] == A_2[i_2]\\| implies \\|E[i_1+i_2-1] = \text{true}\\|.
-5. For those elements of \\|E\\| we do need to make any choice, so by default we can set it to be false.
-
-This process permits define the values of the array \\|E\\| so that **MergeArrays** produces a merge-sort array up to the original indices \\|i_1, i_2\\|. I provide a simple example of the backtracking process in the figure below. Therefore the condition of the lemma is also sufficient to determine if a pair of indexes are part of the merge-sort map.
-
-{% include image file="median-two-sorted-arrays-fig-3.svg" scale="60%" %}
-<center><p>Example of backtracking the merge-sort map.</p></center>
+<p>%%
+\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) = \text{Tail}(A \oplus B, n_A + n_B) \text{ (2)}
+%%</p>
 
 
-## Merge-sort map and the median of two arrays
+## The merge-sort map lemma
 
-From the previous lemma, I can derive the following corollary that allows me to locate the median of two sorted arrays in a particular case.
+As formulated, the head-tail relationships (1) and (2) presented in the previous section is not enough to help us in building a more efficient way of solving the problem. However, the following lemma provide us to find a new set of head-tail relationships that can be checked efficiently.
 
-> **Corollary**: Given two sorted arrays \\|A_1[0..S_1-1]\\| and \\|A_2[0..S_2-1]\\| with associated merge-sort array \\|A(0..S-1)\\| so that \\|S = S_1 + S_2\\| is **odd**, and the indexes \\|m_1, m_2\\| with following conditions
+> **Lemma (merge-sort map)**: Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\| and two positive integer \\|n_A\\| and \\|n_B\\|, then they comply with the head-tail conditions (1) and (2) if and only if it is true that
 
 <p>%%
 \begin{aligned}
-m_1 + m_2 &= m \\
-m_1 = 0 \text{ or } m_2 = S_2 &\text{ or } A_1[m_1-1] \leq A_2[m_2] \\
-m_1 = S1 \text{ or } m_2 = 0 &\text{ or } A_2[m_2-1] \leq A_1[m_1]
+\text{Head}(A, n_A) &\leq \text{Tail}(B, n_B) \text{ (3)} \\
+\text{Head}(B, n_B) &\leq \text{Tail}(A, n_A) \text{ (4)}
 \end{aligned}
 %%</p>
 
-> where \\|m = \lfloor S/2 \rfloor\\|, then the median of \\|A\\| is \\|V(m_1, m_2)\\| meaning \\|A[m] = V(m_1, m_2)\\|.
-
-It is easy to illustrate how indexes \\|m_1, m_2\\|, that obey the corollary conditions, ***point to the median of the two arrays I am using as example***. This is show in the figure below in where both index pairs \\|(m_1 = 3, m_2 = 3)\\| and \\|(m_1 = 4, m_2 = 2)\\| are valid solutions to the corollary conditions and therefore \\|V(3,3) = V(4,2) = 0\\| is the media of the two arrays.
-
-{% include image file="median-two-sorted-arrays-fig-1c.svg" scale="90%" %}
-<center><p>Applying the corollary result to arrays used as example.</p></center>
-
-The question now is how do we find those \\|m_1\\| and \\|m_2\\|?
-
-Any candidate pair of indices \\|i_1, i_2\\| to be pointing to the median belongs some intervals \\|i_1 \in [l_1, r_1)\\| and \\|i_2 \in [l_2, r_2)\\|. For example, initially the intervals are trivially \\|i_1 \in [0, S_1)\\| and \\|i_2 \in [0, S_2)\\|. For the pair to be a candidate it should be also valid that \\|i_1 + i_2 = m\\|. Therefore if for example \\|i_1 \in [l_1, r_1)\\| the first corollary condition implies also that \\|i_2 \in [\max\lbrace 0, m-r_1+1\rbrace, m-l_1)\\|. Thus \\|i_2\\| belongs to the intersection between two intervals \\|i_2 \in [\max\lbrace 0, m-r_1+1\rbrace, m-l_1) \cap [l_2, r_2) = [l, r)\\| where
+Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_b\\| the conditions (1) and (2) implies the lemma conditions (3) and (4):
 
 <p>%%
 \begin{aligned}
-l &= \max\left\lbrace\max\lbrace 0, m-r_1+1\rbrace, l_2\right\rbrace \\
-r &= \min\left\lbrace m-l_1, r_2\right\rbrace
+\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) &=    \text{Head}(A \oplus B, n_A + n_B) \\
+                                               &\leq \text{Tail}(A \oplus B, n_A + n_B) \\
+                                               &\leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B).
 \end{aligned}
 %%</p>
 
-Therefore the interval \\|[l, r)\\| represents all the possible candidate solutions for \\|i_2\\| and therefore also for the whole problem because \\|i_1 = m - m_2\\|. I can get then a candidate solution by bisecting \\|[l, r)\\| such as \\|i_2 = (l+r)/2\\|. Using this candidate solution, and updating the \\|i_2\\| interval so \\|l_2 = l\\| and \\|r_2 = r\\|, I have then the following three possibilities (schematically shown in the next figure):
+where the first inequality is because for sorted array its head is always less than or equal to its tail. Now because it is trivially true that \\|\text{Head}(X, n_X) \leq \text{Head}(X, n_X)\\| and \\|\text{Tail}(X, n_X) \leq \text{Tail}(X, n_X)\\| the previous expression can only be true if only if the conditions (3) and (4) of the lemma are also true.
 
-1. If the candidates failed the second condition of the lemma \\|i_1 > 0 \text{ and } i_2 < S_2 \text{ and } A_1[i_1-1] > A_2[i_2]\\| then I know that the values for \\|A_1\\| or \\|A_2\\| have to at least decrease or increase, respectively. Because both arrays are sorted implies that the indexes pointing to the median \\|(m_1, m_2)\\| have to be between the following ranges \\|m_1 \in [l , i_1+1)\\| and \\|m_2 \in [i_2, r_2)\\|. However, I already know that the initial combination \\|m_1 = i_1\\| and \\|m_2 = i_2\\| is not solution (it fails the second condition) therefore \\|m_1 < i_1\\| or \\|m_2 > i_2\\|. However, the following combinations \\|m_1 = i_1\\| and \\|m_2 = i_2 + 1\\| or \\|m_1 = i_1+1\\| and \\|m_2 = i_2\\| are excluded because in both cases \\|m_1 + m_2 = i_1 + i_2 + 1 = 1\\| because of failing the first condition. As result, indexes pointing to the median are located in the following ranges \\|m_1 \in [l_1 , i_1)\\| and \\|m_2 \in [i_2+1, r_2)\\|.
-2. If the candidates instead fails third condition \\|i_1 < S_1 \text{ and } i_2 > 0 \text{ and } A_2[i_2-1] > A_1[i_1]\\|, then following the same reasoning as above it is not hard to see that the indexes pointing to the median  are located in the following ranges \\|m_1 \in [i_1+1 , r_1)\\| and \\|m_2 \in [l_2, i_2)\\|.
-3. If all the conditions are met then \\|m_1 = i_1\\| and \\|m_2 = i_2\\| and median of the merge-sort array is  \\|V(m_1, m_2)\\|.
-
-{% include image file="median-two-sorted-arrays-fig-2.svg" scale="40%" %}
-<center><p>Example of how solution intervals are adjusted.</p></center>
-
-In summary the algorithm then looks like this:
-
-{% highlight python %}
-def FindMedianHelper(A1, S1, A2, S2):
-     """Help to find the median between arrays."""
-     # Array size
-     S = S1 + S2
-     m = S//2
-     l1 = 0
-     r1 = S1+1
-     l2 = 0
-     r2 = S2+1
-     # Binary search
-     while 1:
-         l = max(m-r1+1,l2)
-         r = min(m-l1+1,r2)
-         m2 = (l+r)//2
-         m1 = m-m2
-         if m1 > 0 and m2 < S2 and A1[m1-1] > A2[m2]:
-            r1 = m1
-            l2 = m2+1
-         elif m2 > 0 and m1 < S1 and A2[m2-1] > A1[m1]:
-             l1 = m1+1
-             r2 = m2
-         else:
-             break
-     median1 = MergeSortValue(A1, m1, S1, A2, m2, S2)
-     if S%2 == 1:
-         return median1
-    # ... extension for S1+S2 even see below ...
-
-def MedianSortedArrays(self, A1, A2):
-    """
-    #    :type A1: List[int]
-    #    :type A2: List[int]
-    #    :rtype: float
-    #    """
-    S1 = len(A1)
-    S2 = len(A2)
-    S = S1 + S2
-    edge = IsEdgeCase(A1, S1, A2, S2)
-    if edge is not None:
-        return float(edge)
-    return FindMedianHelper(A1, S1, A2, S2)
-{% endhighlight %}
-
-It is straightforward to extend this to the case of \\|S_1+S_2\\| is even. For this I just need to locate the element before the index \\|m\\| in the merge-sort array. Using the first part of the algorithm **FindMedianHelper**, I locate two indexes \\|m_1\\| and \\|m_2\\| such as \\|V(m_1,m_2) = A[m]\\|. Therefore, the previous value in merge-sort array \\|A[m-1] = V(n_1,n_2)\\| is givein by either \\|n_1 = m_1-1\\| and \\|n_2 = m_2\\| or \\|n_1 = m_1\\| and \\|n_2 = m_2-1\\|. Which of the two options can be decided by choosing the one that comply with lemma conditions to be part of merge-sort map. This is what I do below by extending the **FindMedianHelper**.
-
-{% highlight python %}
-def FindMedianHelper(A1, S1, A2, S2):
-    # ... code for S1+S2 odd see above ...
-    if m1 == 0:
-        n1 = m1
-        n2 = m2-1
-    elif m2 == 0:
-        n1 = m1-1
-        n2 = m2
-    else:
-        n1 = m1-1
-        n2 = m2
-        if n1 > 0 and n2 < S2 and A1[n1-1] > A2[n2] or\
-            n2 > 0 and n1 < S1 and A2[n2-1] > A1[n1]:
-                n1 = m1
-                n2 = m2-1
-    median2 = MergeSortValue(A1, n1, S1, A2, n2, S2)
-    return 0.5*(median1+median2)
-{% endhighlight %}
-
-
-## Correctness and time complexity
-
-### Correctness
-
-I will show the algorithm correctness using a fix-point type of approach[^5]. The *while* loop in the **FindMedianHelper** works as a function \\|W()\\| with inputs given by the interval ranges \\|l_1,r_1,l_2,r_2\\| where all possible solutions is located. It returns as output another set of intervals ranges where all solutions are also located \\|l^{\prime}_1, r^{\prime}_1, l^{\prime}_2, r^{\prime}_2 = W(l_1,r_1,l_2,r_2)\\|. This is as long the solution is not found, because if that case the algorithm scapes the while loop and halts.
-
-Every time the loop run and no solution is found, either the first or the second interval is updated. However, by construction \\|r^{\prime}_1 - l^{\prime}_1 = r_1 - l_1 + 1\\| or \\|r^{\prime}_2 - l^{\prime}_2 = r_2 - l_2 + 1\\|. This can continue in the worse case until \\|r_1 - l_1 = 1\\| or \\|r_2 - l_2 = 1\\|. This is because there is at least one pair of indexes in the merge-sort map that points to \\|A[m]\\|, and when the size of either interval is equal to 1, it is guaranteed the solution to be either \\|m_1 = l_1\\| and \\|m_2 = m - l_1\\|, or \\|m_2 = l_2\\| and \\|m_1 = m - l_2\\|. Thus when the algorithm enters in the while loop, it just verifies that the indexes are solution and therefore scape the loop and algorithm halts.
-
-### Time complexity
-
-It is straightforward to find input instances that produce the worse case for this algorithm. The next figure shows an example where I follow the algorithm as it corners the solution.
-
-{% include image file="median-two-sorted-arrays-fig-4.svg" scale="90%" %}
-<center><p>Example of algorithm worse case.</p></center>
-
-From the figure, it is clear that the time complexity \\|T(S_1, S_2)\\| is bound by
+Now let's show the other way around, and assume that two integers comply with the conditions (3) and (4) then we notice that:
 
 <p>%%
-T(S_1, S_2) \leq O\left(\lfloor \log_2 \min\lbrace S_1, S_2 \rbrace \rfloor\right)
+\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) \text{ (5)}
 %%</p>
 
-This is a significant improvement in the time complexity of the problem over \\|O(log_2 S)\\| because the time complexity is limited by the size of the smaller array. However, this improvement is practically meaningless because only at impractically huge instance sizes will make any difference.
+But then we can build \\|A \oplus B\\| by <span style="color:red">**simple concatenation**</span> two arrays. These two arrays are the sorted concatenation of the heads and the tails of \\|A\\| and \\|B\\| or
 
-## Code performance as measured by LeetCode
+<p>%%
+A \oplus B = \text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \textcolor{red}{+} \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)
+%%</p>
 
-I program a C++ and Python version of the code[^6]. I submitted both versions to be tested and ranked by LeetCode. Both versions were accepted and listed as follow:
+where the simple concatenation is thanks to (5). But then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are given by the sorted and concatenated arrays, meaning therefore that (1) and (2) are true concluding the proof.
 
-* For C++ the runtime 40 ms, faster than 97.04% of C++ online submissions for Median of Two Sorted Arrays
-* For python the runtime 52 ms, faster than 99.36% of Python online submissions for Median of Two Sorted Arrays.
+## A new approach
 
-## Why I am doing this?
+Verify the lemma conditions (3) and (4) is very simple and it can be done in constant time as follow
 
-It is clear this is not helping to code faster the goal of LeetCode. It is also clear I did not strictly solve the original problem but rather a more difficult due to its reduced time complexity. Therefore, my hope is that with this exercise and the extra time I spent at least I am learning how to code better.
+<p>%%
+\begin{aligned}
+\text{Head}(A, n_A) &\leq \text{Tail}(B, n_B) \equiv n_A > 0 \text{ and } n_B < S_B \text{ and } A[n_A-1] \leq B[n_B] \\
+\text{Head}(B, n_B) &\leq \text{Tail}(A, n_A) \equiv n_B > 0 \text{ and } n_A < S_A \text{ and } B[n_B-1] \leq A[n_A]
+\end{aligned}
+%%</p>
+
+due to the fact both A and B are sorted arrays. Therefore the merge-sort map lemma allow us to define the follow strategy to find \\|AB\\| n-th element.
 
 ### References
 
