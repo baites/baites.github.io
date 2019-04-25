@@ -109,18 +109,19 @@ In a complementary way, we write \\|\text{Tail}(A,n)\\| as the resulting array a
 
 We would like to remark using this notation that if \\|A\\| is already sorted, then for any the value of \\|n\\| then \\|A = \text{Head}(A,n) \oplus \text{Tail}(A,n)\\|. Also, \\|A\\| head is always less or equal than its tail or \\|\text{Head}(A,n) \leq \text{Tail}(A,n)\\| for \\|0 < n < S_A\\|. Finally, in the case of having now two sorted arrays \\|A\\| and \\|B\\| such as \\|A \leq B\\| then sorted concatenation of both array is just a simple concatenation or \\|A \oplus B = A + B\\|.
 
-Using this notation, a solution the merge-sort map problem can be formulated as follow. Assume you have two integers \\|n_A\\| and \\|n_B\\| where at least on of them is not zero then
+Using this notation, a solution the merge-sort map problem can be formulated as follow. Assume you have two integers \\|n_A\\| and \\|n_B\\| where at least on of them is not zero and it is true that
 
 <p>%%
 \text{Head}(A, n_A) \oplus \text{Head}(B, n_B) = \text{Head}(A \oplus B, n_A + n_B) \text{ (1)}
 %%</p>
 
-then the value for the \\|n\\|-th element of the merge-sort array \\|AB\\| where \\|n = n_A + n_B\\| is
+then the value for the \\|n\\|-th element of the merge-sort array \\|AB\\| where \\|n = n_A + n_B\\| for the case that \\|n_A \leq S_A\\| and \\|n_B \leq S_B\\| is given by following function
 
 <p>%%
 \begin{aligned}
-AB[n - 1] &=  \begin{cases}
-\min\{A[0], B[0]\} & \text{if } n_A = 0 \text{ or } n_B = 0\\
+\text{Value}(n_A,n_B) &\doteq  \begin{cases}
+A[n_A-1] & \text{if } n_B = 0 \\
+B[n_B-1] & \text{if } n_A = 0 \\
 \max\{A[n_A-1], B[n_B-1]\} & \text{otherwise}
 \end{cases}
 \end{aligned}
@@ -152,16 +153,16 @@ and because \\|A \oplus B =  \text{Head}(A \oplus B, n) \oplus \text{Tail}(A \op
 
 As formulated, the head-tail relationships (1) and (2) presented in the previous section is not enough to help us in building a more efficient way of solving the problem. However, the following lemma provide us to find a new set of head-tail relationships that can be checked efficiently.
 
-> **Lemma (merge-sort map)**: Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\| and two positive integer \\|n_A\\| and \\|n_B\\|, then they comply with the head-tail conditions (1) and (2) if and only if it is true that
+> **Lemma (merge-sort map)**: Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\| and two positive integer \\|n_A\\| and \\|n_B\\| where at least on of them is not zero, then they comply with the head-tail conditions (1) and (2) if and only if it is true that
 
 <p>%%
 \begin{aligned}
-\text{Head}(A, n_A) &\leq \text{Tail}(B, n_B) \text{ (3)} \\
-\text{Head}(B, n_B) &\leq \text{Tail}(A, n_A) \text{ (4)}
+n_A = 0 \text{ or } n_B \geq S_B \text{ or } \text{Head}(A, n_A) &\leq \text{Tail}(B, n_B) \text{ (3)} \\
+n_B = 0 \text{ or } n_A \geq S_A \text{ or } \text{Head}(B, n_B) &\leq \text{Tail}(A, n_A) \text{ (4)}
 \end{aligned}
 %%</p>
 
-Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_b\\| the conditions (1) and (2) implies the lemma conditions (3) and (4):
+Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_B\\| the conditions (1) and (2) implies the lemma conditions (3) and (4):
 
 <p>%%
 \begin{aligned}
@@ -171,9 +172,9 @@ Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_b
 \end{aligned}
 %%</p>
 
-where the first inequality is because for sorted array its head is always less than or equal to its tail. Now because it is trivially true that \\|\text{Head}(X, n_X) \leq \text{Head}(X, n_X)\\| and \\|\text{Tail}(X, n_X) \leq \text{Tail}(X, n_X)\\| the previous expression can only be true if only if the conditions (3) and (4) of the lemma are also true.
+where the first inequality is because for sorted array its head is always less than or equal to its tail. Now it is trivially true that \\|\text{Head}(X, n_X) \leq \text{Head}(X, n_X)\\| and \\|\text{Tail}(X, n_X) \leq \text{Tail}(X, n_X)\\| as long \\|0 < n_X < S_X\\| where \\|X\\| represent any of the two integers \\|(X = A \text{ or } B)\\|. Therefore, the above expression can only be true if only if the conditions (3) and (4) of the lemma are also true. The conditions (3) and (4) are by definition satisfied in the case that any of the two integers is either \\|0\\|, or equal or greater than \\|S_X\\|.
 
-Now let's show the other way around, and assume that two integers comply with the conditions (3) and (4) then we notice that:
+Now let's show the other way around, and assume that two integers comply with the conditions (3) and (4) and also that both integers comply with \\|0 < n_X < S_X\\| then we notice that:
 
 <p>%%
 \text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) \text{ (5)}
@@ -185,7 +186,7 @@ But then we can build \\|A \oplus B\\| by <span style="color:red">**simple conca
 A \oplus B = \text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \textcolor{red}{+} \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)
 %%</p>
 
-where the simple concatenation is thanks to (5). But then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are given by the sorted and concatenated arrays, meaning therefore that (1) and (2) are true concluding the proof.
+where the simple concatenation is possible because of (5). But then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are given by the sorted and concatenated arrays, meaning therefore that (1) and (2) are true. The conditions (1) and (2) are automatically satisfied in the case that any of the two integers is either \\|0\\| or \\|S_X\\| concluding the proof.
 
 ## A new approach
 
@@ -193,12 +194,20 @@ Verify the lemma conditions (3) and (4) is very simple and it can be done in con
 
 <p>%%
 \begin{aligned}
-\text{Head}(A, n_A) &\leq \text{Tail}(B, n_B) \equiv n_A > 0 \text{ and } n_B < S_B \text{ and } A[n_A-1] \leq B[n_B] \\
-\text{Head}(B, n_B) &\leq \text{Tail}(A, n_A) \equiv n_B > 0 \text{ and } n_A < S_A \text{ and } B[n_B-1] \leq A[n_A]
+n_A = 0 \text{ or } n_B \geq S_B \text{ or } A[n_A-1] \leq B[n_B] \text{ (3')}\\
+n_B = 0 \text{ or } n_A \geq S_A \text{ or } B[n_B-1] \leq A[n_A] \text{ (4')}
 \end{aligned}
 %%</p>
 
-due to the fact both A and B are sorted arrays. Therefore the merge-sort map lemma allow us to define the follow strategy to find \\|AB\\| n-th element.
+due to the fact both A and B are sorted arrays. Therefore the merge-sort map lemma allow us to transform the merge-sort map problem into one in which we need to find two integers \\|n_A\\| and \\|n_B\\| such as \\|n_A + n_B = n \\| and also comply with conditions (3') and (4'). The values of the \\|AB\\| n-th element is then simply \\|\text{Value}(n_A, n_B)\\|.
+
+Finding this pair of integer can be done using binary search. We  
+
+* Do a binary search to locate an integer \\|n_A\\| between \\|0\\| and \\|\min\lbrace n, S_A\rbrace\\|.
+* The value of the other integer cannot be other than \\|n_B = n - n_A\\|.
+* Use the conditions (3') and (4') as follow:
+  * if condition (3') fails, it means that the value of \\|n_A\\| is too large,
+  * if condition (4') fails, it means that the value of \\|n_A\\| is too small
 
 ### References
 
