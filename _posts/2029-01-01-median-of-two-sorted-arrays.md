@@ -94,22 +94,38 @@ The question is now how can we improve upon this solution.
 
 ## Exploring array properties
 
-We adopt the following notation to simplify the subsequent discussion of the problem. We annotate concatenation of two arbitrary arrays \\|A\\| and \\|B\\| as \\|A + B\\| and their sorted concatenation or \\|\text{Sort}(A+B)\\| as \\|A \oplus B\\|. We also say that two arrays \\|A \leq B\\| if it is true that sorted concatenation of both arrays just the concatenation of both arrays or
+We adopt the following notation to simplify the subsequent discussion of the problem. We annotate concatenation of two arbitrary arrays \\|A\\| and \\|B\\| as \\|A + B\\| and their sorted concatenation as \\|A \oplus B\\|
 
 <p>%%
-A \leq B \Leftrightarrow A \oplus B = A + B \text{ (d.1).}
+A \oplus B = \text{Sort}(A+B) \text{ (d.1)}.
 %%</p>
 
-This is equivalent to say that all elements of \\|A\\| are less or equal to any the element in \\|B\\| in the case neither of both arrays are not empty. However, (d.1) also holds for the cases in where one or both arrays are empty. This is because for an non-empty array \\|A\\| then (d.1) implies
-
-* \\|A \oplus [] = A + [] \rightarrow A \leq [] \\|
-* \\|[] \oplus A = [] + A \rightarrow [] \leq A \\|
-* \\|[] \oplus [] = [] + [] \rightarrow [] \leq [] \\|
-
-In the case of having two arrays \\|A\\| and \\|B\\| are already sorted, this condition can be verified in constant time simply by
+An essential property of the sorted concatenation is that its result is independent of the order of the input arrays, meaning
 
 <p>%%
-A \leq B \equiv S_A = 0 \text{ or } S_B = 0 \text{ or } A[S_A-1] \leq B[0] \text{ (p.1)}
+A \oplus B = B \oplus A \text{ (p.1)}
+%%</p>
+
+The two types of concatenations are related as follow. We say that for two arrays \\|A \leq B\\| if it is true that sorted concatenation of both arrays just the simple concatenation of both arrays or
+
+<p>%%
+A + B = A \oplus B \Leftrightarrow A \leq B \text{ (d.2).}
+%%</p>
+
+The definition (d.2) is equivalent to say that all elements of \\|A\\| are less or equal to any the element in \\|B\\| in the case neither of both arrays is empty. However, (d.2) also works for the cases in where one or both arrays are empty. For a non-empty array \\|A\\| then (d.2) implies
+
+<p>%%
+\begin{aligned}
+A \oplus [] = A + [] \Leftrightarrow & A \leq [] \\
+[] \oplus A = [] + A \Leftrightarrow & [] \leq A \\
+[] \oplus [] = [] + [] \Leftrightarrow & [] \leq []
+\end{aligned}
+%%</p>
+
+In the case of having two arrays \\|A\\| and \\|B\\| are already sorted, this condition can be verified in constant time only by
+
+<p>%%
+A \leq B \equiv S_A = 0 \text{ or } S_B = 0 \text{ or } A[S_A-1] \leq B[0] \text{ (p.2)}
 %%</p>
 
 We define the \\|\text{Head}(A,n)\\| where \\|A[0..S_A-1]\\| is an array and \\|n\\| an integer such as \\|n \in [0, S_A]\\|, as the array form by the first \\|n\\| elements of \\|A\\|. In particular, we say that \\|\text{Head}(A,0)\\| is an empty array, and also that \\|A =  \text{Head}(A,S_A)\\|.
@@ -119,32 +135,32 @@ In a complementary way, we write \\|\text{Tail}(A,n)\\| as the resulting array a
 We would like to remark that if an array \\|A\\| is already sorted, then for any the value of \\|n \in [0, S_A]\\|
 
 <p>%%
-A = \text{Head}(A,n) + \text{Tail}(A,n) = \text{Head}(A,n) \oplus \text{Tail}(A,n) \text{ (p.2)}
+A = \text{Head}(A,n) + \text{Tail}(A,n) = \text{Head}(A,n) \oplus \text{Tail}(A,n) \text{ (p.3)}
 %%</p>
 
-and therefore by definition (d.1), its head is always less or equal than its tail or:
+and therefore by definition (d.2), its head is always less or equal than its tail or:
 
 <p>%%
-\text{Head}(A,n) \leq \text{Tail}(A,n) \text{ for all } n \in [0, S_A] \text{ (p.3).}
+\text{Head}(A,n) \leq \text{Tail}(A,n) \text{ for all } n \in [0, S_A] \text{ (p.4).}
 %%</p>
 
 For an arbitrary group of arrays \\|A\\|, \\|X\\|, \\|Y\\|, and \\|F\\| it is easy to see that
 
 <p>%%
-A + X = F \text{ and } A + Y = F \Leftrightarrow X = Y \text{ (p.4).}
+A + X = F \text{ and } A + Y = F \Leftrightarrow X = Y \text{ (p.5).}
 %%</p>
 
-An equivalent property for the sorted concatenation can be obtain in the case that all the arrays \\|A\\|, \\|X\\|, \\|Y\\|, and \\|F\\| are already sorted where in this case
+An equivalent property for the sorted concatenation can be obtained in the case that all the arrays \\|A\\|, \\|X\\|, \\|Y\\|, and \\|F\\| are already sorted where in this case
 
 <p>%%
-A \oplus X = F \text{ and } A \oplus Y = F \Leftrightarrow X = Y \text{ (p.5).}
+A \oplus X = F \text{ and } A \oplus Y = F \Leftrightarrow X = Y \text{ (p.6).}
 %%</p>
 
-It is easy to see that if \\|X = Y\\| then left side of (p.5) has to be true. However, to the opposite direction of (p.5) we need to define first \\|N(X,v)\\| the number of elements in the array \\|X\\| with value \\|v\\|. If a given value \\|u\\| is not present in the array \\|X\\| then we say \\|N(X,u) = 0\\|. Two sorted arrays \\|X\\| and \\|Y\\| are equal if and only if for all the values of \\|v\\| in \\|X\\| or \\|Y\\| it is true that \\|N(X,v) = N(Y,v)\\|. Now, we can see that the left size of the property (p.5) implies that \\|N(A,v) + N(X,v) = N(F,v)\\| and also that \\|N(A,v) + N(Y,v) = N(F,v)\\| for all the values \\|v\\| present in \\|F\\|. This means that \\|N(X,v) = N(Y,v)\\| for all the values of \\|F\\| that includes all the values of \\|X\\| and \\|Y\\|, and because both arrays elements are sorted then \\|X = Y\\|.
+It is easy to see that if \\|X = Y\\| then left side of (p.6) has to be true. However, to the opposite direction of (p.6) we need to define first \\|N(X,v)\\| the number of elements in the array \\|X\\| with value \\|v\\|. If a given value \\|u\\| is not present in the array \\|X\\| then we say \\|N(X,u) = 0\\|. Two sorted arrays \\|X\\| and \\|Y\\| are equal if and only if for all the values of \\|v\\| in \\|X\\| or \\|Y\\| it is true that \\|N(X,v) = N(Y,v)\\|. Now, we can see that the left size of the property (p.6) implies that \\|N(A,v) + N(X,v) = N(F,v)\\|, and also, that \\|N(A,v) + N(Y,v) = N(F,v)\\| for all the values \\|v\\| present in \\|F\\|. This means that \\|N(X,v) = N(Y,v)\\| for all the values of \\|F\\| that includes all the values of \\|X\\| and \\|Y\\|, and because both arrays elements are sorted then \\|X = Y\\|.
 
 ## The merge-sort map problem
 
-Finding the median of two sorted arrays can be thought as a particular case of a more generic problem we call the merge-sort map problem.
+Finding the median of two sorted arrays can be thought of as a particular case of a more generic problem we call the merge-sort map problem.
 
 
 > **Merge-Sort Map Problem:** Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\|, let's define \\|F\\| as the sorted concatenation of \\|A\\| and \\|B\\| \\|\left(F = A \oplus B\right)\\|, then find the value of the\\|n\\|-th element of \\|F\\| for any \\|n \in [1, S_A+S_B]\\| with a sub-linear runtime and \\|O(1)\\| space complexities. It is safe to assume that at least one of the arrays is not empty.
@@ -178,18 +194,17 @@ The merge-sort array also has a complementary tail relationship in where for tho
 
 <p>%%
 \begin{aligned}
-A \oplus B &= \left[\text{Head}(A, n_A) \oplus \text{Tail}(A, n_A)\right] \oplus \left[\text{Head}(B, n_B) \oplus \text{Tail}(B, n_B)\right] \text{ (using p.2 on A and B)} \\
-           &= \left[\text{Head}(A, n_A) \oplus \text{Head}(B, n_B)\right] \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \\
+A \oplus B &= \left[\text{Head}(A, n_A) \oplus \text{Tail}(A, n_A)\right] \oplus \left[\text{Head}(B, n_B) \oplus \text{Tail}(B, n_B)\right] \text{ (using p.3 on A and B)} \\
+           &= \left[\text{Head}(A, n_A) \oplus \text{Head}(B, n_B)\right] \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \text{(because of p.1)} \\
            &= \text{Head}(A \oplus B, n_A + n_B) \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \text{ (using c.1 assumed to be true)}
 \end{aligned}
 %%</p>
 
-It is also true that \\|A \oplus B =  \text{Head}(A \oplus B, n) \oplus \text{Tail}(A \oplus B, n)\\| for any \\|n \in [0, S_A + S_B]\\| using property (p.2). But then because of (p.5) then is has to true that
+Due to (p.3) we know also that \\|A \oplus B =  \text{Head}(A \oplus B, n) \oplus \text{Tail}(A \oplus B, n)\\| for any \\|n \in [0, S_A + S_B]\\|. But then because of (p.6) then is has to true that
 
 <p>%%
-\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) = \text{Tail}(A \oplus B, n_A + n_B) \text{ (2)}
+\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) = \text{Tail}(A \oplus B, n_A + n_B) \text{ (c.2)}
 %%</p>
-
 
 ## The merge-sort map lemma
 
@@ -204,7 +219,7 @@ As formulated, the head-tail relationships (c.1) and (c.2) presented in the prev
 \end{aligned}
 %%</p>
 
-Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_B\\| the conditions (1) and (2) implies the lemma conditions (3) and (4):
+Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_B\\| the conditions (c.1) and (c.2) implies the lemma conditions (c.3) and (c.4):
 
 <p>%%
 \begin{aligned}
@@ -214,12 +229,12 @@ Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_B
 \end{aligned}
 %%</p>
 
-where the first inequality is because for sorted array its head is always less than or equal to its tail. Now it is trivially true that \\|\text{Head}(X, n_X) \leq \text{Head}(X, n_X)\\| and \\|\text{Tail}(X, n_X) \leq \text{Tail}(X, n_X)\\| as long \\|0 < n_X < S_X\\| where \\|X\\| represent any of the two integers \\|(X = A \text{ or } B)\\|. Therefore, the above expression can only be true if only if the conditions (3) and (4) of the lemma are also true. The conditions (3) and (4) are by definition satisfied in the case that any of the two integers is either \\|0\\|, or equal or greater than \\|S_X\\|.
+where the first inequality is because for sorted array its head is always less than or equal to its tail. Now it is trivially true that \\|\text{Head}(X, n_X) \leq \text{Head}(X, n_X)\\| and \\|\text{Tail}(X, n_X) \leq \text{Tail}(X, n_X)\\| for \\|n_X \in [0, S_X]\\| where \\|X\\| represent any of the two integers \\|(X = A \text{ or } B)\\|. Therefore, the above expression can only be true if only if the conditions (c.3) and (c.4) of the lemma are also true.
 
-Now let's show the other way around, and assume that two integers comply with the conditions (3) and (4) and also that both integers comply with \\|0 < n_X < S_X\\| then we notice that:
+Now let's show the other way around, and assume that two integers comply with the conditions (c.3) and (c.4) we notice that:
 
 <p>%%
-\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) \text{ (5)}
+\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) \text{ (c.5)}
 %%</p>
 
 But then we can build \\|A \oplus B\\| by <span style="color:red">**simple concatenation**</span> two arrays. These two arrays are the sorted concatenation of the heads and the tails of \\|A\\| and \\|B\\| or
@@ -228,35 +243,35 @@ But then we can build \\|A \oplus B\\| by <span style="color:red">**simple conca
 A \oplus B = \text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \textcolor{red}{+} \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)
 %%</p>
 
-where the simple concatenation is possible because of (5), but then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are given by the sorted and concatenated arrays, meaning therefore that (1) and (2) are true. The conditions (1) and (2) are automatically satisfied in the case that any of the two integers is either \\|0\\| or \\|S_X\\| concluding the proof.
+where the simple concatenation is possible because of (c.5), but then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are given by the sorted and concatenated arrays, meaning therefore that (c.1) and (c.2) are true.
 
 ## A new approach
 
-Verify the lemma conditions (3) and (4) is very simple and it can be done in constant time as follow
+Verify the lemma conditions (c.3) and (c.4) is very simple, and it can be done in constant because of property (p.2)
 
 <p>%%
 \begin{aligned}
-n_A = 0 \text{ or } n_B \geq S_B \text{ or } A[n_A-1] \leq B[n_B] \text{ (3')}\\
-n_B = 0 \text{ or } n_A \geq S_A \text{ or } B[n_B-1] \leq A[n_A] \text{ (4')}
+n_A = 0 \text{ or } n_B = S_B \text{ or } A[n_A-1] \leq B[n_B] \text{ (c.3')}\\
+n_B = 0 \text{ or } n_A = S_A \text{ or } B[n_B-1] \leq A[n_A] \text{ (c.4')}
 \end{aligned}
 %%</p>
 
-due to the fact both A and B are sorted arrays. Therefore the merge-sort map lemma allow us to transform the merge-sort map problem into one where we need to find two integers \\|n_A \leq S_A\\| and \\|n_B \leq S_B\\| where at least one of them is not zero, such as \\|n_A + n_B = n\\| and they also comply with conditions (3') and (4'). The values of the \\|AB\\| n-th element is then simply \\|\text{Value}(n_A, n_B)\\|.
+due to the fact, both A and B are sorted arrays. Therefore the merge-sort map lemma allow us to transform the merge-sort map problem into one where we need to find two positive integers \\|n_A \leq S_A\\| and \\|n_B \leq S_B\\| such as \\|n_A + n_B = n\\| and also they comply with conditions (c.3') and (c.4'). The values of the n-th element in the merge-sort array \\|F\\| is then given by (e.1).
 
 Binary search can be use to find this pair on integers:
 
 * Choose to label the arrays \\|A\\| and \\|B\\| such as it is always true that \\|S_A \leq S_B\\|.
-* With thos choice of labels, the binary search is done over the \\|n_A\\| integer.
+* Using these labels, the binary search is done over the \\|n_A\\| integer.
 * Let's define \\|left\\| and \\|right\\| as the left and right values for the range of \\|n_A\\|.
 * Initially the values of \\|n_A\\| are between \\|left \leftarrow 0\\| and \\|right \leftarrow \min \lbrace n, S_A \rbrace\\|
   * this initial value for \\|right\\| makes sure that \\|n_A \leq S_A\\| a required condition for solution,
-  * also this selection forces \\|n_A \leq n\\| so \\|n_B\\| is always zero or positive.
-* Choose the value of \\|n_A\\| by bipartition its range.
+  * also this selection forces \\|n_A \leq n\\| so \\|n_B\\| is always positive.
+* Choose a value of \\|n_A\\| by bipartitioning its range.
 * The value of the other integer has to be \\|n_B = n - n_A\\|.
 * However, it is possible that \\|n_B > S_B\\|, meaning the value of \\|n_A\\| is too small and therefore the range of the solution should be updated so \\|left \leftarrow n_A + 1\\| and repeat the bipartition.
-* Check if conditions (3') and (4') fail:
-  * if (3') fails, it means that the value of \\|n_A\\| is too large and therefore the range of the solution should be updated so \\|right \leftarrow n_A - 1\\| and repeate the bipartition.
-  * if (4') fails, it means that the value of \\|n_A\\| is too small and therefore the range of the solution should be updated so \\|left \leftarrow n_A + 1\\| and repeat the bipartition.
+* Check if conditions (c.3') and (c.4') fail:
+  * if (c.3') fails, it means that the value of \\|n_A\\| is too large and therefore the range of the solution should be updated so \\|right \leftarrow n_A - 1\\| and repeate the bipartition.
+  * if (c.4') fails, it means that the value of \\|n_A\\| is too small and therefore the range of the solution should be updated so \\|left \leftarrow n_A + 1\\| and repeat the bipartition.
 
 For the last two points, we rely on the condition that both \\|A\\| and \\|B\\| are sorted arrays, and therefore we know in which direction we need to update our search. Below you can find a python code that implements this search.
 
@@ -313,11 +328,11 @@ def MergeSortMap(self, A, B, n):
         # meaning nA too small.
         if nB > SB:
             left = nA + 1
-        # Check if first head/tail condition tails
+        # Check if first head/tail condition fails
         # meaning that nA is too large
         elif self.isNotHeadTailCondition(A, B, nA, nB):
             right = nA - 1
-        # Check if first head/tail condition tails
+        # Check if first head/tail condition fails
         # meaning that nA is too small
         elif self.isNotHeadTailCondition(B, A, nB, nA):
             left = nA + 1
@@ -333,9 +348,9 @@ def MergeSortMap(self, A, B, n):
 
 The correctness of the algorithm comes directly from the merge-sort map lemma that we used to derive the algorithm in the first place.
 
-It is easy to see the complexity of the algorithm is the one given by the binary search in the range of \\|n_A\\|, meaning that the algorithm takes just \\|O(log(S_A))\\| to run because verifying all the solution conditions are done in constant time. However, we choose to label the input vectors so the \\|A\\| is the smaller array. Therefore, for two arbitrary arrays the time complexity is just \\|O(\log(\min\lbrace S_A, S_B\rbrace))\\|!
+It is easy to see the complexity of the algorithm is the one given by the binary search in the range of \\|n_A\\|, meaning that the algorithm takes just \\|O(log(S_A))\\| to run because verifying all the solution conditions are done in constant time. However, we choose to label the input vectors so the \\|A\\| is the smaller array. Therefore, for two arbitrary sorted arrays the time complexity is just \\|O(\log(\min\lbrace S_A, S_B\rbrace))\\|!
 
-The solution of the median of two sorted arrays implemented using the merge-sort map also has a time complexity of \\|O(\log(\min\lbrace S_A, S_B\rbrace))\\|. This means we found a more efficient solution to the problem than the one requested in the model.
+The solution of the median of two sorted arrays implemented using the merge-sort map also has a time complexity of \\|O(\log(\min\lbrace S_A, S_B\rbrace))\\|. This means we found a more efficient solution to the problem than the one required by the LeetCode's problem statement.
 
 Do we wonder if this **the most efficient solution** for both problems?
 
@@ -343,14 +358,14 @@ Do we wonder if this **the most efficient solution** for both problems?
 
 We submitted to LeetCode the merge-sort map problem as a contribution. At the moment of this writing, the problem is pending for review. We wrote most of the code using LeetCode API for automated judging although this is not available for the merge-sort map problem.
 
-The complete implementation of this algorithm can be found in the following links:
+The complete implementation of all the algorithms can be found in the following links:
 
 * [Merge-Sort Map implemented using LeetCode API for judging.](https://github.com/baites/examples/blob/master/coding/contribs/merge-sort-map/merge_sort_map.py)
 * [Stress testing of merge-sort map.](https://github.com/baites/examples/blob/master/coding/contribs/merge-sort-map/merge_sort_map_stress.py)
 * [Median of two sorted arrays using merge-sort map.](https://github.com/baites/examples/blob/master/coding/contribs/merge-sort-map/median_two_sorted_arrays.py)
 * [Stress testing of the median of two sorted arrays](https://github.com/baites/examples/blob/master/coding/contribs/merge-sort-map/median_two_sorted_arrays_stress.py)
 
-I hope you enjoy the beautiful algorithmic gem that seems hard but once it is understood it becomes trivial!
+I hope you enjoy this beautiful algorithmic gem, that it seems hard, but once it is understood, it is rather trivial!
 
 ### References
 
