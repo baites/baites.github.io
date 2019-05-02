@@ -15,15 +15,15 @@ It is a while since my last post. I stopped blogging for a while because of some
 
 ## Formalizing algorithms
 
-I decided that I needed to formalize my knowledge about algorithms. Although I have worked with them all my life, I never was *classically train* on them, and therefore I decided it was time for me to do so.
+I decided that I needed to formalize my knowledge about algorithms. Although I have worked with them all my life, I never was *classically train* on them, and therefore I thought it was time for me to do so.
 
 The most crucial step I am taking is to practice following a competitive coding format. I started looking at LeetCode[^1] for coding questions, and this blog is about the first **hard** problem I solved from that site.
 
-This blog was written in collaboration with Codeforces' Mandinga. We were starting sharing some of our solution to the problem and some of our approaches to prove our algorithm's correctness and time complexity. My initial attempt to do that with my solution was very messy at best. Mandinga came up with a framework that made more straightforward to understand how the algorithm works. Then we worked in defining a notation based on this framework and use it to prove the main lemma that shows that the algorithm is correct. This framework also allows us to write a code that is easy to read and derive its time complexity.
+This blog was written in collaboration with Codeforces' Mandinga. We were starting sharing some of our solution to the problem and some of our approaches to prove our algorithm's correctness and time complexity. My initial attempt to do that with my own solution was very messy at best. Mandinga came up with a framework that made more straightforward to understand how the algorithm works. We worked in defining a notation based on this framework and use it to prove the main lemma that shows that the algorithm is correct. This framework also allows us to write a code that is easy to read and derive its time complexity.
 
 ## Median of two arrays
 
-Before going to the specific problem, let's need to define what is the median of an array.
+Before going to the specific problem, we need to define what is the median of an array.
 
 > **Definition:** Given an sorted array \\|A[0..S-1]\\| where \\|S\\| is the array size its median is defined as:
 <p>%%
@@ -34,7 +34,7 @@ A[m] & \text{if S is odd} \\
 %%</p>
 >where \\|m = \lfloor S/2 \rfloor \\| is the index pointing to the **middle** of the array[^2].
 
-It is easy to see that this definition implies the following constant run time algorithm or \\|O(1)\\|. For example in python you could write:
+This definition implies the following constant run time algorithm or \\|O(1)\\| to the the median that in python looks like as:
 
 {% highlight python %}
 def MedianSortedArray(A):
@@ -42,7 +42,7 @@ def MedianSortedArray(A):
     return 0.5*(A[(S-1)//2] + A[S//2])
 {% endhighlight %}
 
-The median for an arbitrary array can be computed simply by sorting the array first as shown next
+The median for an arbitrary array can be computed simply by sorting the array first and then using the **MedianSortedArray** method
 
 {% highlight python %}
 def MedianOneArray(A):
@@ -50,13 +50,13 @@ def MedianOneArray(A):
     return MedianSortedArray(A)
 {% endhighlight %}
 
-where its runtime is \\|O(S \log S)\\| where all of it comes from the need to sort the array first and \\|O(1)\\| in memory if we allow in-place sorting.
+where its runtime is \\|O(S \log S)\\| where all of it comes from the need to sort the array first and \\|O(1)\\| in memory if we allow in-place sorting. It is easy to extend this definition for the case of having two arrays in where their median is just the median of their concatenation.
 
-With this definition in place, the coding question is the following.
+With these definitions in place, the LeetCode's coding question is the following.
 
 > **Problem:** There are two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\| of size \\|S_A\\| and \\|S_B\\| respectively. Find the median of the two sorted arrays with a time complexity \\|O(\log(S_A+S_B))\\| and in constant space complexity. You may assume \\|A\\| and \\|B\\| cannot be both empty.[^3]
 
-It is easy to see this problem can have a linear solution \\|O(S_1 + S_2)\\| in time and space complexities by exploiting the fact both input arrays are sorted. The trick is to use the *merge* step of the **MergeSort** algorithm[^4] to merge the two sorted arrays in a third one and then call **MedianSortedArray**.
+It is easy to see this problem can have a linear solution \\|O(S_1 + S_2)\\| in time and space complexities by exploiting the fact both input arrays are sorted. The trick is to use the *merge* step of the merge-sort algorithm[^4] to merge the two sorted arrays in a third one and then call **MedianSortedArray**.
 
 {% highlight python %}
 def MergeArrays(A, B):
@@ -86,8 +86,8 @@ def MergeArrays(A, B):
     return AB
 
 def MergeMedianTwoSortedArrays(A, B):
-    AB = MergeArrays(A, B)
-    return MedianSortedArray(AB)
+    F = MergeArrays(A, B)
+    return MedianSortedArray(F)
 {% endhighlight %}
 
 The question is now how can we improve upon this solution.
@@ -106,13 +106,13 @@ An essential property of the sorted concatenation is that its result is independ
 A \oplus B = B \oplus A \text{ (p.1)}
 %%</p>
 
-The two types of concatenations are related as follow. We say that for two arrays \\|A \leq B\\| if it is true that sorted concatenation of both arrays just the simple concatenation of both arrays or
+The two types of concatenations are related as follow. We say that for two arrays \\|A \leq B\\| if it is true that their sorted concatenation is the simple concatenation of both arrays or
 
 <p>%%
 A + B = A \oplus B \Leftrightarrow A \leq B \text{ (d.2).}
 %%</p>
 
-The definition (d.2) is equivalent to say that all elements of \\|A\\| are less or equal to any the element in \\|B\\| in the case neither of both arrays is empty. However, (d.2) also works for the cases in where one or both arrays are empty. For a non-empty array \\|A\\| then (d.2) implies
+The definition (d.2) is equivalent to say that all elements of \\|A\\| are less or equal to any the element in \\|B\\| in the case neither of both arrays are empty. However, (d.2) also works for the cases in where one or both arrays are empty. For a non-empty array \\|A\\| then (d.2) implies
 
 <p>%%
 \begin{aligned}
@@ -122,7 +122,7 @@ A \oplus [] = A + [] \Leftrightarrow & A \leq [] \\
 \end{aligned}
 %%</p>
 
-In the case of having two arrays \\|A\\| and \\|B\\| are already sorted, this condition can be verified in constant time only by
+In the case of having two sorted arrays \\|A\\| and \\|B\\|, this condition can be verified in constant time only by
 
 <p>%%
 A \leq B \equiv S_A = 0 \text{ or } S_B = 0 \text{ or } A[S_A-1] \leq B[0] \text{ (p.2)}
@@ -156,16 +156,16 @@ An equivalent property for the sorted concatenation can be obtained in the case 
 A \oplus X = F \text{ and } A \oplus Y = F \Leftrightarrow X = Y \text{ (p.6).}
 %%</p>
 
-It is easy to see that if \\|X = Y\\| then left side of (p.6) has to be true. However, to the opposite direction of (p.6) we need to define first \\|N(X,v)\\| the number of elements in the array \\|X\\| with value \\|v\\|. If a given value \\|u\\| is not present in the array \\|X\\| then we say \\|N(X,u) = 0\\|. Two sorted arrays \\|X\\| and \\|Y\\| are equal if and only if for all the values of \\|v\\| in \\|X\\| or \\|Y\\| it is true that \\|N(X,v) = N(Y,v)\\|. Now, we can see that the left size of the property (p.6) implies that \\|N(A,v) + N(X,v) = N(F,v)\\|, and also, that \\|N(A,v) + N(Y,v) = N(F,v)\\| for all the values \\|v\\| present in \\|F\\|. This means that \\|N(X,v) = N(Y,v)\\| for all the values of \\|F\\| that includes all the values of \\|X\\| and \\|Y\\|, and because both arrays elements are sorted then \\|X = Y\\|.
+It is easy to see that if \\|X = Y\\| then left side of (p.6) has to be true. However, to show the opposite direction of (p.6) we need to define first \\|N(X,v)\\| the number of elements in the array \\|X\\| with value \\|v\\|. If a given value \\|u\\| is not present in the array \\|X\\| then we say \\|N(X,u) = 0\\|. Two sorted arrays \\|X\\| and \\|Y\\| are equal if and only if for all the values of \\|v\\| in \\|X\\| or \\|Y\\| it is true that \\|N(X,v) = N(Y,v)\\|. Now, we can see that the left size of the property (p.6) implies that \\|N(A,v) + N(X,v) = N(F,v)\\|, and also, that \\|N(A,v) + N(Y,v) = N(F,v)\\| for all the values \\|v\\| present in \\|F\\|. This means that \\|N(X,v) = N(Y,v)\\| for all the values of \\|F\\| that includes all the values of \\|X\\| and \\|Y\\|, and therefore because both arrays elements are sorted then \\|X = Y\\|.
 
 ## The merge-sort map problem
 
 Finding the median of two sorted arrays can be thought of as a particular case of a more generic problem we call the merge-sort map problem.
 
 
-> **Merge-Sort Map Problem:** Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\|, let's define \\|F\\| as the sorted concatenation of \\|A\\| and \\|B\\| \\|\left(F = A \oplus B\right)\\|, then find the value of the\\|n\\|-th element of \\|F\\| for any \\|n \in [1, S_A+S_B]\\| with a sub-linear runtime and \\|O(1)\\| space complexities. It is safe to assume that at least one of the arrays is not empty.
+> **Merge-Sort Map Problem:** Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\|, let's define \\|F\\| as the sorted concatenation of \\|A\\| and \\|B\\| \\|\left(F = A \oplus B\right)\\|, then find the value of the \\|n\\|-th element of \\|F\\| for any \\|n \in [1, S_A+S_B]\\| with a sub-linear runtime and \\|O(1)\\| space complexities. It is safe to assume that at least one of the arrays is not empty.
 
-We call this problem the Merge-Sort Map problem because we would like to find a function that points to the value of the merge-sort array \\|F\\| without explicitly building it. This is because the problem can be easily solved by merging the two sorted arrays using **MergeArrays** method as shown in the previous section. However, this renders the problem to a \\|O(S_A + S_B)\\| time and space complexity required to merge the arrays. However, if it is possible to know the value of sort-merge array in any position more efficiently, then it becomes easy to find the median of these two arrays by running **MedianSortedArray** method.
+We call this problem the Merge-Sort Map problem because we would like to find a function that points to the value of the merge-sort array \\|F\\| without explicitly building it. This is because the problem can be easily solved by merging the two sorted arrays using **MergeArrays** method defined in previous sections. However, this renders the problem to a \\|O(S_A + S_B)\\| time and space complexity required to merge the arrays. However, if it is possible to know the value of sort-merge array in any position more efficiently, then it becomes easy to find the median of these two arrays by running **MedianSortedArray** method.
 
 A solution to the merge-sort map problem can be formulated as follow. Assume you have two integers \\|n_A \in [0, S_A]\\| and \\|n_B \in [0, S_B]\\| and it is true that
 
@@ -208,9 +208,9 @@ Due to (p.3) we know also that \\|A \oplus B =  \text{Head}(A \oplus B, n) \oplu
 
 ## The merge-sort map lemma
 
-As formulated, the head-tail relationships (c.1) and (c.2) presented in the previous section is not enough to help us in building a more efficient way of solving the problem. However, the following lemma provides us to find a new set of head-tail relationships that can be checked efficiently.
+As formulated, the head-tail relationships (c.1) and (c.2) presented in the previous section is not enough to help us building a more efficient way of solving the problem. However, the following lemma provides us with a new set of head-tail relationships that can be verified efficiently.
 
-> **Lemma (merge-sort map)**: Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\| and two positive integer \\|n_A\\| and \\|n_B\\| where at least on of them is not zero, then they comply with the head-tail conditions (c.1) and (c.2) if and only if it is true that
+> **Lemma (merge-sort map)**: Given two sorted arrays \\|A[0..S_A-1]\\| and \\|B[0..S_B-1]\\| and two positive integer \\|n_A\\| and \\|n_B\\|, then they comply with the head-tail conditions (c.1) (and therefore also (c.2)) if and only if it is true that
 
 <p>%%
 \begin{aligned}
@@ -223,9 +223,9 @@ Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_B
 
 <p>%%
 \begin{aligned}
-\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) &=    \text{Head}(A \oplus B, n_A + n_B) \\
-                                               &\leq \text{Tail}(A \oplus B, n_A + n_B) \\
-                                               &\leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B).
+\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) &=    \text{Head}(A \oplus B, n_A + n_B) \text{ (using c.1 assumed to be true)}\\
+                                               &\leq \text{Tail}(A \oplus B, n_A + n_B) \text{ (using p.4)}\\
+                                               &\leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) \text{ (using c.2 implied by c.1)}.
 \end{aligned}
 %%</p>
 
@@ -243,22 +243,22 @@ But then we can build \\|A \oplus B\\| by <span style="color:red">**simple conca
 A \oplus B = \text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \textcolor{red}{+} \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)
 %%</p>
 
-where the simple concatenation is possible because of (c.5), but then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are given by the sorted and concatenated arrays, meaning therefore that (c.1) and (c.2) are true.
+where the simple concatenation is possible because of (c.5), but then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are sorted concatenated the heads(tails) of \\|A\\| and \\|B\\|, meaning therefore that (c.1) and (c.2) are true.
 
 ## A new approach
 
-Verify the lemma conditions (c.3) and (c.4) is very simple, and it can be done in constant because of property (p.2)
+Verify the lemma conditions (c.3) and (c.4) is very simple, and it can be done in constant time because of property (p.2)
 
 <p>%%
 \begin{aligned}
-n_A = 0 \text{ or } n_B = S_B \text{ or } A[n_A-1] \leq B[n_B] \text{ (c.3')}\\
-n_B = 0 \text{ or } n_A = S_A \text{ or } B[n_B-1] \leq A[n_A] \text{ (c.4')}
+n_A = 0 \text{ or } n_B = S_B \text{ or }& A[n_A-1] \leq B[n_B] \text{ (c.3') and}\\
+n_B = 0 \text{ or } n_A = S_A \text{ or }& B[n_B-1] \leq A[n_A] \text{ (c.4')}
 \end{aligned}
 %%</p>
 
 due to the fact, both A and B are sorted arrays. Therefore the merge-sort map lemma allow us to transform the merge-sort map problem into one where we need to find two positive integers \\|n_A \leq S_A\\| and \\|n_B \leq S_B\\| such as \\|n_A + n_B = n\\| and also they comply with conditions (c.3') and (c.4'). The values of the n-th element in the merge-sort array \\|F\\| is then given by (e.1).
 
-Binary search can be use to find this pair on integers:
+We can use a binary search can be use to find this pair on integers:
 
 * Choose to label the arrays \\|A\\| and \\|B\\| such as it is always true that \\|S_A \leq S_B\\|.
 * Using these labels, the binary search is done over the \\|n_A\\| integer.
@@ -291,7 +291,7 @@ def GetMergeSortArrayValue(self, A, B, nA, nB):
     return value
 
 def MergeSortMap(self, A, B, n):
-    """Help to find the median between arrays."""
+    """Find the values in the merge-sort map."""
 
     # Array size
     SA = len(A)
