@@ -100,19 +100,31 @@ We adopt the following notation to simplify the subsequent discussion of the pro
 A \oplus B = \text{Sort}(A+B) \text{ (d.1)}.
 %%</p>
 
-An essential property of the sorted concatenation is that its result is independent of the order of the input arrays, meaning
+An essential property of the sorted concatenation is that its result is independent of the order of the input arrays, meaning the concatenated sort obeys the commutative property[^5]
 
 <p>%%
-A \oplus B = B \oplus A \text{ (p.1)}
+A \oplus B = B \oplus A \text{ (p.0).}
 %%</p>
 
-The two types of concatenations are related as follow. We say that for two arrays \\|A \leq B\\| if it is true that their sorted concatenation is the simple concatenation of both arrays or
+It is also can be show that the sorted concatenation obeys also the associative property[^5] or
 
 <p>%%
-A + B = A \oplus B \Leftrightarrow A \leq B \text{ (d.2).}
+(A \oplus B) \oplus C = A \oplus (B \oplus C) \text{ (p.1).}
 %%</p>
 
-The definition (d.2) is equivalent to say that all elements of \\|A\\| are less or equal to any the element in \\|B\\| in the case neither of both arrays are empty. However, (d.2) also works for the cases in where one or both arrays are empty. For a non-empty array \\|A\\| then (d.2) implies
+We say that these two nonempty arrays are \\|A \leq B\\| if it is true that for all elements of \\|A\\| are less or equal to any element of \\|B\\|. We will let the reader to prove that the following property relates the simple and sorted concatenations by the condition
+
+<p>%%
+A \leq B \Leftrightarrow A \oplus B = A + B.
+%%</p>
+
+In words, if all the elements of \\|A\\| are less or equal to any element of \\|B\\| if and only if the sorted concatenation between both arrays is given just by the simple concatenation between them. We promote this property as the actual definition \\|A \leq B\\| by writing
+
+<p>%%
+A \leq B \doteq A \oplus B = A + B \text{ (d.2)}
+%%</p>
+
+The main advantage of using the definition (d.2) is that it also works for the cases in where one or both arrays are empty. This is because for a non-empty array \\|A\\| then (d.2) implies
 
 <p>%%
 \begin{aligned}
@@ -122,7 +134,7 @@ A \oplus [] = A + [] \Leftrightarrow & A \leq [] \\
 \end{aligned}
 %%</p>
 
-In the case of having two sorted arrays \\|A\\| and \\|B\\|, this condition can be verified in constant time only by
+In the case of having two sorted arrays \\|A\\| and \\|B\\|, condition (d.2) can be verified in constant time as follow
 
 <p>%%
 A \leq B \equiv S_A = 0 \text{ or } S_B = 0 \text{ or } A[S_A-1] \leq B[0] \text{ (p.2)}
@@ -156,7 +168,7 @@ An equivalent property for the sorted concatenation can be obtained in the case 
 A \oplus X = F \text{ and } A \oplus Y = F \Leftrightarrow X = Y \text{ (p.6).}
 %%</p>
 
-It is easy to see that if \\|X = Y\\| then left side of (p.6) has to be true. However, to show the opposite direction of (p.6) we need to define first \\|N(X,v)\\| the number of elements in the array \\|X\\| with value \\|v\\|. If a given value \\|u\\| is not present in the array \\|X\\| then we say \\|N(X,u) = 0\\|. Two sorted arrays \\|X\\| and \\|Y\\| are equal if and only if for all the values of \\|v\\| in \\|X\\| or \\|Y\\| it is true that \\|N(X,v) = N(Y,v)\\|. Now, we can see that the left size of the property (p.6) implies that \\|N(A,v) + N(X,v) = N(F,v)\\|, and also, that \\|N(A,v) + N(Y,v) = N(F,v)\\| for all the values \\|v\\| present in \\|F\\|. This means that \\|N(X,v) = N(Y,v)\\| for all the values of \\|F\\| that includes all the values of \\|X\\| and \\|Y\\|, and therefore because both arrays elements are sorted then \\|X = Y\\|.
+It is easy to see that if \\|X = Y\\| then left side of (p.6) has to be true. However, to show the opposite direction of (p.6) we need to define first \\|N(X,v)\\| the number of elements in the array \\|X\\| with value \\|v\\|. If a given value \\|u\\| is not present in the array \\|X\\| then we say \\|N(X,u) = 0\\|. Two sorted arrays \\|X\\| and \\|Y\\| are equal if and only if for all the values of \\|v\\| present in \\|X\\| or \\|Y\\| it is true that \\|N(X,v) = N(Y,v)\\|[^5]. Now, we can see that the left size of the property (p.6) implies that \\|N(A,v) + N(X,v) = N(F,v)\\|, and also, that \\|N(A,v) + N(Y,v) = N(F,v)\\| for all the values \\|v\\| present in \\|F\\|. This means that \\|N(X,v) = N(Y,v)\\| for all the values of \\|F\\| that includes all the possible values of \\|X\\| and \\|Y\\|, and therefore because both arrays elements are sorted then \\|X = Y\\|.
 
 ## The merge-sort map problem
 
@@ -195,7 +207,7 @@ The merge-sort array also has a complementary tail relationship in where for tho
 <p>%%
 \begin{aligned}
 A \oplus B &= \left[\text{Head}(A, n_A) \oplus \text{Tail}(A, n_A)\right] \oplus \left[\text{Head}(B, n_B) \oplus \text{Tail}(B, n_B)\right] \text{ (using p.3 on A and B)} \\
-           &= \left[\text{Head}(A, n_A) \oplus \text{Head}(B, n_B)\right] \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \text{(because of p.1)} \\
+           &= \left[\text{Head}(A, n_A) \oplus \text{Head}(B, n_B)\right] \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \text{ (because of p.0 and p.1)} \\
            &= \text{Head}(A \oplus B, n_A + n_B) \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \text{ (using c.1 assumed to be true)}
 \end{aligned}
 %%</p>
@@ -229,21 +241,9 @@ Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_B
 \end{aligned}
 %%</p>
 
-where the first inequality is because for sorted array its head is always less than or equal to its tail. Now it is trivially true that \\|\text{Head}(X, n_X) \leq \text{Head}(X, n_X)\\| and \\|\text{Tail}(X, n_X) \leq \text{Tail}(X, n_X)\\| for \\|n_X \in [0, S_X]\\| where \\|X\\| represent any of the two integers \\|(X = A \text{ or } B)\\|. Therefore, the above expression can only be true if only if the conditions (c.3) and (c.4) of the lemma are also true.
+where the first inequality is because for sorted array its head is always less than or equal to its tail. Now it is trivially true that \\|\text{Head}(X, n_X) \leq \text{Tail}(X, n_X)\\| for \\|n_X \in [0, S_X]\\| where \\|X\\| represent any of the two sorted arrays \\|(X = A \text{ or } B)\\|. Therefore, the above expression can only be true if only if the conditions (c.3) and (c.4) of the lemma are also true.
 
 Now let's show the other way around, and assume that two integers comply with the conditions (c.3) and (c.4) we notice that:
-
-<p>%%
-\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) \text{ (c.5)}
-%%</p>
-
-But then we can build \\|A \oplus B\\| by <span style="color:red">**simple concatenation**</span> two arrays. These two arrays are the sorted concatenation of the heads and the tails of \\|A\\| and \\|B\\| or
-
-<p>%%
-A \oplus B = \text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \textcolor{red}{+} \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)
-%%</p>
-
-where the simple concatenation is possible because of (c.5), but then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are sorted concatenated the heads(tails) of \\|A\\| and \\|B\\|, meaning therefore that (c.1) and (c.2) are true.
 
 ## A new approach
 
@@ -367,11 +367,34 @@ The complete implementation of all the algorithms can be found in the following 
 
 I hope you enjoy this beautiful algorithmic gem, that it seems hard, but once it is understood, it is rather trivial!
 
+## Appendix
+
+### Another approach to prove the lemma other way around
+
+This is another way to prove correctness. However, this approach requires the use of several properties of the sorted arrays so we decided to add it as appendix of the blog.
+
+Let's assume that two integers comply with the conditions (c.3) and (c.4) we notice that:
+
+<p>%%
+\text{Head}(A, n_A) \oplus \text{Head}(B, n_B) \leq \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) \text{ (c.5)}
+%%</p>
+
+But then we can build \\|A \oplus B\\| by <span style="color:red">**simple concatenation**</span> two arrays:
+
+<p>%%
+\begin{aligned}
+A \oplus B &= \left[\text{Head}(A, n_A) \oplus \text{Tail}(A, n_A)\right] \oplus \left[\text{Head}(B, n_B) \oplus \text{Tail}(B, n_B)\right] \text{ (using p.3 on A and B)} \\
+           &= \left[\text{Head}(A, n_A) \oplus \text{Head}(B, n_B)\right] \oplus \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \text{ (because of p.0 and p.1)} \\
+           &= \left[\text{Head}(A, n_A) \oplus \text{Head}(B, n_B)\right] \textcolor{red}{+} \left[\text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B)\right] \text{ (using c.5 and d.2).}
+\end{aligned}
+%%</p>
+
+But then this implies by definition that the first(last) \\|n_A+n_B\\| elements of \\|A \oplus B\\| (its head and tail) are sorted concatenated the heads(tails) of \\|A\\| and \\|B\\|, meaning therefore that (c.1) and (c.2) are true.
+
 ### References
 
 [^1]: [LeetCode](https://leetcode.com/)
 [^2]: [Wikipedia: Median](https://en.wikipedia.org/wiki/Median)
 [^3]: [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 [^4]: [Wikipedia: Merge sort](https://en.wikipedia.org/wiki/Merge_sort)
-[^5]: [Wikipedia: Fixed-point iteration](https://en.wikipedia.org/wiki/Fixed-point_iteration)
-[^6]: [C++ version](https://github.com/baites/examples/blob/master/coding/leet/median_two_sorted_arrays_v5.C), [Python version](https://github.com/baites/examples/blob/master/coding/leet/median_two_sorted_arrays_v5.py)
+[^5]: This property needs to be proved so we invite the reader to try it out.
