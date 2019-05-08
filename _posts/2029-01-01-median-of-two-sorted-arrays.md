@@ -62,28 +62,17 @@ It is easy to see this problem can have a linear solution \\|O(S_1 + S_2)\\| in 
 def MergeArrays(A, B):
     SA = len(A)
     SB = len(B)
-    S = SA + SB
-    AB = [0]*S
-    iA = 0; iA = 0; i = 0
+    F = [0]*(SA+SB)
+    iA = 0; iB = 0
     while iA < SA or iB < SB:
-        # at the end of the first array
-        if iA == SA:
-            A[i] = B[iB]
-            iB += 1
-        # at the end of the second array
-        elif iB == SB:
-            A[i] = A[iA]
+        AHeadIsSmaller = (iA != SA) && (iB == SB || [iA] < B[iB])
+        if AHeadIsSmaller:
+            F[iA+iB] = A[iA]
             iA += 1
-        # if any indexes not at the end
         else:
-            if A[iA] < B[iB]:
-                A[i] = A[iA]
-                iA += 1
-            else:
-                A[i] = AB[iB]
-                iB += 1
-        i += 1
-    return AB
+            F[iA+iB] = B[iB]
+            iB += 1
+    return F
 
 def MergeMedianTwoSortedArrays(A, B):
     F = MergeArrays(A, B)
@@ -241,9 +230,13 @@ Let's star first with showing that for any pair of integers \\|n_A\\| and \\|n_B
 \end{aligned}
 %%</p>
 
-where the first inequality is because for sorted array its head is always less than or equal to its tail. Now it is trivially true that \\|\text{Head}(X, n_X) \leq \text{Tail}(X, n_X)\\| for \\|n_X \in [0, S_X]\\| where \\|X\\| represent any of the two sorted arrays \\|(X = A \text{ or } B)\\|. Therefore, the above expression can only be true if only if the conditions (c.3) and (c.4) of the lemma are also true.
+where the first inequality is because for sorted array its head is always less than or equal to its tail. Now because of property (p.4) we know that \\|\text{Head}(X, n_X) \leq \text{Tail}(X, n_X)\\| for \\|n_X \in [0, S_X]\\| where \\|X\\| represent any of the two sorted arrays \\|(X = A \text{ or } B)\\|. Therefore, the above expression can only be true if only if the conditions (c.3) and (c.4) of the lemma are also true.
 
-Now let's show the other way around, and assume that two integers comply with the conditions (c.3) and (c.4) we notice that:
+Now let's show the other way around and assume that two integers \\|n_A\\| and \\|n_B\\| comply with the conditions (c.3) and (c.4). In the case that \\|n_A + n_B = 0\\| then by definition \\|\text{Head}(A \oplus B, n_A + n_B)\\|,\\|\text{Head}(A, n_A)\\|, and \\|\text{Head}(B, n_B)\\| are all empty arrays and therefore condition (c.1) is trivially true.
+
+Alternative, if \\|n_A + n_B = n\\| where \\|n > 0\\| let's consider the first element of the \\|\text{Head}(A \oplus B, n_A + n_B)\\| that is the smallest element of \\|A \oplus B\\|. This element must be present in some of the following four arrays \\|\text{Head}(A, n_A)\\|, \\|\text{Head}(B, n_B)\\|, \\|\text{Tail}(A, n_A)\\|, or \\|\text{Tail}(B, n_B)\\|. However, it cannot be present in the tail of \\|A\\| or \\|B\\| because it contradict the condition (c.3) or (c.4) that are assumed to be true. Therefore, the first element of \\|\text{Head}(A \oplus B, n_A + n_B)\\| has to be in either \\|\text{Head}(A, n_A)\\| or \\|\text{Head}(B, n_B)\\|. We can then remove the first element from \\|\text{Head}(A \oplus B, n_A + n_B)\\|, and from \\|\text{Head}(A, n_A)\\| or \\|\text{Head}(B, n_B)\\|, allowing us to do the same argument in the case \\|n_A + n_B = n - 1\\|. It is possible to repeat this argument until \\|\text{Head}(A \oplus B, n_A + n_B)\\| is an empty array. But then, all the elements of \\|\text{Head}(A \oplus B, n_A + n_B)\\| come from either \\|\text{Head}(A, n_A)\\| or \\|\text{Head}(B, n_B)\\| and therefore condition (c.1) is true.
+
+Because we considered this part of the proof critical for proving algorithm correctness, we provide an alternative demonstration the appendix section of this post.
 
 ## A new approach
 
