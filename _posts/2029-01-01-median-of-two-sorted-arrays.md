@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Algorithmic magic of the median of two sorted arrays"
-date: 2029-01-01 08:00:00 -0400
+date: 2019-05-12 08:00:00 -0400
 author: Victor E. Bazterra, Codeforces' Mandinga
 categories: algorithms algorithm-analysis
 javascript:
@@ -278,7 +278,6 @@ def IsNotHeadTailCondition(self, X, Y, nX, nY):
     return nX > 0 and nY < len(Y) and X[nX-1] > Y[nY]
 
 def GetMergeSortArrayValue(self, A, B, nA, nB):
-    """Get the value of merge-sort array."""
     if nA == 0:
         value = B[nB-1]
     elif nB == 0:
@@ -288,8 +287,6 @@ def GetMergeSortArrayValue(self, A, B, nA, nB):
     return value
 
 def MergeSortMap(self, A, B, n):
-    """Find the values in the merge-sort map."""
-
     # Array size
     SA = len(A)
     SB = len(B)
@@ -327,11 +324,11 @@ def MergeSortMap(self, A, B, n):
             left = nA + 1
         # Check if first head/tail condition fails
         # meaning that nA is too large
-        elif self.isNotHeadTailCondition(A, B, nA, nB):
+        elif self.IsNotHeadTailCondition(A, B, nA, nB):
             right = nA - 1
         # Check if second head/tail condition fails
         # meaning that nA is too small
-        elif self.isNotHeadTailCondition(B, A, nB, nA):
+        elif self.IsNotHeadTailCondition(B, A, nB, nA):
             left = nA + 1
         # Break if all conditions are met
         else:
@@ -350,6 +347,8 @@ It is easy to see the complexity of the algorithm is dominated by the binary sea
 The solution of the median of two sorted arrays implemented using the merge-sort map also has a time complexity of \\|O(\log(\min\lbrace S_A, S_B\rbrace))\\|. This means we found a more efficient solution to the problem than the one required by the LeetCode's problem statement.
 
 Do we wonder if this **the most efficient solution** for both problems?
+
+An early python [version of this algorithm plus a few optimizations](https://github.com/baites/examples/blob/master/coding/leetcode/median_two_sorted_arrays_v5.py) run in the LeetCode's judging in 52 ms or faster than 99.36% of the other python submissions. The [same code written in C++](https://github.com/baites/examples/blob/master/coding/leetcode/median_two_sorted_arrays_v5.C) took 40ms or faster than 97.04% of other C++ submission.
 
 ## Final comments
 
