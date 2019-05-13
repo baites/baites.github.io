@@ -363,6 +363,16 @@ The complete implementation of all the algorithms can be found in the following 
 
 I hope you enjoy this beautiful algorithmic gem, that it seems hard, but once it is understood, it is rather trivial!
 
+## Update
+
+After finish and publish this blog, we looked at the solution as documented in LeetCode because we avoid looking at it until we were done posting our solution.
+
+* [LeetCode documented solution](https://leetcode.com/problems/median-of-two-sorted-arrays/solution/).
+
+We are happy (and also a bit disappointing) to find that LeetCode explained solution is basically the one we developed for this blog. We came with the solution by ourselves as you can see by the different style we used to derive the algorithm. We thought (naively) that we might have a better solution because the problem statement says the answer should be in \\|O(\log(S_A+S_B))\\| runtime complexity and not in \\|O(\log(\min\lbrace S_A, S_B\rbrace))\\| as it is in our case. However, their statement about algorithm complexity is corrected when explaining their solution.
+
+We do not think that much is lost though. This was never about an algorithm breakthrough. This is was always about explaining and bringing to your attention this algorithmic beauty.
+
 ## Appendix
 
 ### Another approach to prove the lemma other way around
