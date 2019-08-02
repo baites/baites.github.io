@@ -1,22 +1,22 @@
 ---
 layout: post
 title: "Policy-based design in python"
-date: 2028-01-01 08:00:00 -0400
+date: 2019-08-02 08:00:00 -0400
 author: Victor E. Bazterra
 categories: computer-science patterns
 ---
 
 ## Policy-based design
 
-Policy-based design is an approach[^1] pioneer as far as I know in the book Modern C++ Design by Andrei Alexandrescu[^2]. Most people believe that this idiom can only be implemented in C++ because it looks like as a compile-time analog of Strategy pattern that works at runtime[^3]. As a result, this pattern may not exist for interpreted languages such as python[^4]. Before I move forward with this post, I need to clarify what I call policy-based design.
+Policy-based design is an approach[^1] pioneer (as far as I know) in the book Modern C++ Design by Andrei Alexandrescu[^2]. Most people believe that this idiom can only be implemented in C++ because it looks like as a compile-time analog of Strategy pattern that works at runtime[^3]. As a result, this pattern may not exist for interpreted languages such as python[^4]. Before I move forward with this post, I need to clarify what **I call** policy-based design.
 
-For me, the goal of policy-based design is to provide a collection of classes where their inheritance relationships are not entirely defined in advance. It is developer responsibility to assign those relationships based on the project requirements. A developer mostly establishes those relationships at compile time or run time depending on the language. I am using the expression *at coding time* to express any of the two previous scenarios, i.e. coding time = compile or run time.
+For me, the goal of policy-based design is to provide a collection of classes where their inheritance relationships are not entirely defined in advance. It is developer responsibility to assign those relationships based on the project requirements. A developer mostly establishes those relationships at compile or run time depending on the language. I am using the expression *at coding time* to express any of the two previous scenarios, i.e. coding time = compile or run time.
 
 In the following section, I am providing the definitions to accomplish this in Python. When possible, I will show what I think is the closest equivalent on C++ as reference.
 
 ## Policy and host classes
 
-Under this pattern, classes are divided between *policy classes* and *host classes*. Policy classes are classes that implement a policy to modify the behavior or the interface of a host class by inheritance. For example, here its Python code for the *HelloWorld* example found in the Wikipedia entry[^5].
+Under this pattern, classes are divided between *policy classes* and *host classes*. Policy classes implement modifications to the behavior or to the interface of a host class by inheritance. For example, here it is the Python code for the *HelloWorld* example found in the Wikipedia entry[^5].
 
 {% highlight python %}
 # Example of policy-based design
@@ -61,7 +61,7 @@ hw.run() # prints "Hei maailma!"
 {% endhighlight %}
 **Note**: find full example in my [github](https://github.com/baites/examples/blob/master/idioms/python/PolicyBasedDesignEx1.py).
 
-The classes **EnglishLanguage** and **FinnishLanguage** are the policy classes that implement the *"Hello World!"* messages in different languages. The class **PrintOutput** is at the moment the only class that implements an output policy for the message. Each of these policy classes affects the host class **HelloWorld** throughout inheritance at coding time. It is possible, therefore, for a developer to customize the **HelloWorld** class for English or Finnish, and also for a particular output class based on the program requirements.
+The **EnglishLanguage** and the **FinnishLanguage** are two policy classes that implement the *"Hello World!"* messages in different languages. The class **PrintOutput** is for now the only class that implements an output policy for the message. Each of these policy classes affects the host class **HelloWorld** throughout inheritance at coding time. It is possible, therefore, for a developer to customize the **HelloWorld** class for English or Finnish, and also for a particular output class based on the project requirements.
 
 ## Strategy and Dependency Injection
 
@@ -104,9 +104,9 @@ hw = HelloWorld(FinnishLanguage)
 hw.run() # prints "Hei maailma!"
 {% endhighlight %}
 
-I think that the main reason people do not explore the use of the policy-based design in Python is due to this perceived equivalence with these runtime patterns. However, I would like to argue that policy-based design is a more general idiom that can express Strategy or Dependency Injection pattern as particular cases.
+I think that the main reason people do not explore the use of the policy-based design in Python is due to this perceived equivalence with these runtime patterns. However, I would like to argue that policy-based design is a more general idiom that can express Strategy or Dependency Injection patterns as particular cases.
 
-Now, using the policy-based design I can change both the behavior and also the *interface* of the **HelloWorld** class! Take for the first example and define **SaveOutput** policy class:
+Using the policy-based design I can change both the behavior and also the *interface* of the **HelloWorld** class! Using the first example I can define a new **SaveOutput** policy class:
 
 {% highlight python %}
 # Example of policy-based design
@@ -133,9 +133,9 @@ hw.run() # save "Hello World!" in output.txt
 {% endhighlight %}
 **Note**: find full example in my [github](https://github.com/baites/examples/blob/master/idioms/python/PolicyBasedDesignEx2.py).
 
-In the example, the nature of the class because its interface is not the same. This is because **HelloWorldEnglish** has now a new member function *set_filename* inherited from **SaveOutput**. For this particular case, it might be possible to write a program that does the same using dependency injection and functors. However, the main issue is not about behavior, but rather what you need to express is a new class:
+The nature of the class **HelloWorldEnglish** is not the same as before, because the class has now a new member function *set_filename* inherited from **SaveOutput**. For this particular case, it might be possible to write a program that does the same using dependency injection and functors. However, the main issue is not about behavior, but rather what you need to express is a new class:
 
-***Policy-based design allows us to create new classes (not only new functionalities) using as building block other predefine classes known as policies.***
+***Policy-based design allows us to create new classes (not only new functionalities) using as building block predefine host and policy classes.***
 
 ## Elements of policy-based designed
 
@@ -145,7 +145,7 @@ Multiple inheritance is a feature in both C++ and Python, so no need to say more
 
 ### Postpone inheritance
 
-Policy-based design requires postponing the definition of the inheritance relationship between policy and host classes until coding time. You can accomplish this in C++ using templates.
+Policy-based design requires postponing the definition of the inheritance relationship between host and policy classes until coding time. You can accomplish this in C++ using templates.
 
 {% highlight C++ %}
 template<typename Policy1, typename Policy2, ...>
@@ -169,7 +169,7 @@ The function **HostClass** is a factory of the "*class _*". I am using the class
 
 ### Class instantiation
 
-The host class is instantiated when inherits from policy classes. This instantiation is done in C++ directly when coding or by using **typedef**.
+I say that the host class is instantiated when inherits from policy classes. This instantiation is done in C++ directly when coding or by using **typedef**.
 
 {% highlight C++ %}
 typedef HostClass<Policy1Class, Policy2Class, ...> NewClass;
@@ -230,16 +230,16 @@ message.run()
 
 ## An example in a more realistic application
 
-One example I can show when I am applying policy-based design is the following example of my implementation of an [interval tree](https://github.com/baites/pyds/blob/master/examples/avl_interval_tree.py). An interval tree is a specialized binary tree that supports operation in a dynamic set of closed intervals[^7]. In particular, this tree needs an extra function in the interface that I called *interval(...)*. This function takes as input an interval and returns a node in the tree with an overlapping interval or none otherwise.
+One example I can show when I am applying policy-based design is my implementation of an [interval tree](https://github.com/baites/pyds/blob/master/examples/avl_interval_tree.py). An interval tree is a specialized binary tree that supports operation in a dynamic set of closed intervals[^7]. In particular, this tree needs an extra function in the interface that I called *interval(...)*. This function takes as input an interval and returns a node in the tree representing overlapping interval or none otherwise.
 
-In principle, any self-balance tree can be used to build this class, resulting in the following options:
+In principle, any self-balanced tree can be used to build this class, resulting in the following options:
 
 * define an interval tree using one type of tree implementation, or
 * define several interval trees as a child of all and each available tree implementation, or
 * set interval tree-like class that get the tree implementation by object composition, or
 * **define interval tree as a host class and inherence the tree implementations as a policy!**
 
-I opted to use the latter approach because it clearly expresses that the interval tree is a tree (because of inherence the full tree interface from the policy). The host class implement the small addition to the tree interface is needed to query for overlapping intervals:
+I opted to use the last approach because it clearly expresses that the interval tree is a tree (because of inherence the full tree interface from the policy). The host class implement the small addition to the tree interface is needed to query for overlapping intervals:
 
 {% highlight python %}
 # Define the tree type
@@ -251,7 +251,7 @@ tree = Tree()
 {% endhighlight %}
 **Note**: find full example in my [pyds/avl_internal_tree](https://github.com/baites/pyds/blob/master/examples/avl_interval_tree.py).
 
-If you suspect that interval values are inserted somewhat randomly, then you might want to avoid the use of balanced tree altogether!
+If you suspect that interval values are inserted somewhat randomly, then you might want to avoid the use of self-balanced tree altogether!
 
 {% highlight python %}
 # Define the tree type
@@ -265,7 +265,7 @@ tree = Tree()
 
 ## Final remarks
 
-I hope I was able to convince you that it is possible to have a policy-based design in Python. However, likely, this approach is not as attractive as it is in C++ due to the fact Python is an interpreted language, and everything is at runtime. There is also a certain amount of controversy in the C++ community about this approach (do not take my word for it, just google it).
+I hope I was able to convince you that it is possible to have a policy-based design in Python. However, likely, this approach is not as attractive as it is in C++ due to the fact Python is an interpreted language, and there might be powerful runtime alternatives. There is also a certain amount of controversy in the C++ community about this approach (do not take my word for it, just google it).
 
 Therefore, remember to think twice if you need this approach in Python because as always ***with great power comes great responsibility***![^8]
 
@@ -279,7 +279,7 @@ Therefore, remember to think twice if you need this approach in Python because a
 
 [^4]: [Policy based design in Python](https://stackoverflow.com/questions/26533073/policy-based-design-in-python)
 
-[^5]: Example in C++ example in [Wikipedia: Modern C++ Design, Policy-based design](https://en.wikipedia.org/wiki/Modern_C%2B%2B_Design#Policy-based_design). In the Python example, I am using the convention that one underscore implies a protected object variable. I am also doing the example in Finnish instead of German just for fun!
+[^5]: Example in C++ example in [Wikipedia: Modern C++ Design, Policy-based design](https://en.wikipedia.org/wiki/Modern_C%2B%2B_Design#Policy-based_design). In the Python example, I am using the Python convention that one underscore implies a protected object variable. I am also doing the example in Finnish instead of German just for fun!
 
 [^6]: [See Python Dependency Injection by Alex Martelli](http://www.aleax.it/yt_pydi.pdf).
 
