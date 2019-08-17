@@ -14,7 +14,7 @@ In principle, this is not possible because as [Alex Martelli](https://en.wikiped
 
 However, Python is such a dynamic language that allows the creation of a construct that looks and feels as a constant. This blog is to explore what can be expressed by the language. Likely, you do not need these idioms, please be careful and do not attempt this at home!
 
-In this post, I will call a constant variable to a constant reference to values (immutable or otherwise). Moreover, I say that a variable has a frozen value when it references a mutable object that a client-code to update its value(s).
+In this post, I will call a constant variable to a constant reference to values (immutable or otherwise). Moreover, I say that a variable has a frozen value when it references a mutable object that a client-code cannot update its value(s).
 
 Now, without further ado, here are the idioms.
 
