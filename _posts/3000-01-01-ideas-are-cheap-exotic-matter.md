@@ -8,6 +8,9 @@ javascript:
   katex: true
 ---
 
+* TOC
+{:toc}
+
 ## Ideas are cheap, details are priceless
 
 I will kickstart in this blog a new recurrent set of posts labeled: Ideas are cheap, details are priceless. This entry is also the first one after stop writing for a while because of some personal issues I need to resolve. However, these are technical blogs that are not meant to be mass produced. I write them with the intention of practicing my writing, get some bragging rights about my creative and knowledge (or lack of them), and more important because I enjoy it.

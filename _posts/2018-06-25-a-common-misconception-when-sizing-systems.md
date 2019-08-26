@@ -9,6 +9,11 @@ javascript:
   pseudocode: true  
 ---
 
+* TOC
+{:toc}
+
+## Introduction
+
 This post is a continuation of a series of blogs about queueing theory; please see below the section about related posts that belong to this series. The goal of this post is to show some applications of what I introduced in the previous blogs about open queues.
 
 When sizing a system, it is common to describe it as an open queue at first order. In this case, I found it is the common the belief that the number of customers waiting in the queue is a good indicator of demand for resources. I would like to show you this notion is dangerously wrong.
@@ -81,16 +86,16 @@ Running this algorithm that I call **MMNExactSize**, I found I need to add only 
 
 So be careful with your intuition when working with saturated queues. Do not forget that when your system is close to its saturation point, *your are face to face against the elbow curve of death*.
 
-#### Program assignment or examples
+## Program assignment or examples
 
 * [MATLAB code with sizing heuristics](https://github.com/baites/examples/tree/master/analyses/queueing/sizing)
 
-#### Related posts
+## Related posts
 
 * [My approach to queuing theory]({% post_url 2018-02-26-my-approach-to-queueing-theory %})
 * [Single open queue]({% post_url 2018-04-09-single-open-queue %})
 * [Single open queue at scale]({% post_url 2018-04-23-single-open-queue-at-scale %})
 
-#### References
+## References
 
 [^1]: The **elbow** curve name came from a great post by Neil Gunther [Hockey, Elbow and, Other Response Time Injuries](http://perfdynamics.blogspot.com/2015/07/hockey-elbow-and-other-response-time.html). I just add the **death** part to make clear it would be safer for your career that the system you are managing is away from it!

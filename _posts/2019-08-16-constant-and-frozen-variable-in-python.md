@@ -6,6 +6,9 @@ author: Victor E. Bazterra
 categories: computer-science idioms
 ---
 
+* TOC
+{:toc}
+
 ## Wait what, constants in Python?
 
 This post in the result a question I found in StackOverflow and some research I was doing about Python idioms. The problem is basically *how do I create a constant in Python?*.[^1]

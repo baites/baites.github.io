@@ -6,6 +6,9 @@ author: Victor E. Bazterra
 categories: computer-science patterns
 ---
 
+* TOC
+{:toc}
+
 ## Policy-based design
 
 Policy-based design is an approach[^1] pioneer (as far as I know) in the book Modern C++ Design by Andrei Alexandrescu[^2]. Most people believe that this idiom can only be implemented in C++ because it looks like as a compile-time analog of Strategy pattern that works at runtime[^3]. As a result, this pattern may not exist for interpreted languages such as python[^4]. Before I move forward with this post, I need to clarify what **I call** policy-based design.
@@ -268,6 +271,14 @@ tree = Tree()
 I hope I was able to convince you that it is possible to have a policy-based design in Python. However, likely, this approach is not as attractive as it is in C++ due to the fact Python is an interpreted language, and there might be powerful runtime alternatives. There is also a certain amount of controversy in the C++ community about this approach (do not take my word for it, just google it).
 
 Therefore, remember to think twice if you need this approach in Python because as always ***with great power comes great responsibility***![^8]
+
+## Update
+
+Find my entry in stackoverflow with the question:
+
+[What are the measures to call a Python code a policy-based design?](https://stackoverflow.com/questions/57365189/what-are-the-measures-to-call-a-python-code-a-policy-based-design)
+
+I will be soon answer (my own question) with a summary of all I found about this issue. However, before that I am planning to write a accompanying post as a follow up of this blog.
 
 ## References
 

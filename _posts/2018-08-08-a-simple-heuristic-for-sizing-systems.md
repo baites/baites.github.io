@@ -9,11 +9,16 @@ javascript:
   pseudocode: true  
 ---
 
+* TOC
+{:toc}
+
+## Introduction
+
 This post is a continuation of a series of blogs about queueing theory; please see below the section about related posts that belong to this series. The goal of this post is to provide a quick and dirty heuristic when sizing systems, as a complement of my previous entry ([A common misconception when sizing systems]({% post_url 2018-06-25-a-common-misconception-when-sizing-systems %})) in where I talk about some incorrect heuristics that can be derived from misconceptions about how systems behave. In particular, I argued you should be careful in using queue size as an indicator of system demand.
 
 As an alternative, heuristics based on the number of used servers tend are safer. In these heuristics, the mission is to preserve some available servers ready to provide services to incoming customers. If the added servers are intimidatingly put in use, then you should enable more servers until reaching the targeted number of available servers. These heuristics, therefore, provide a prescription about the desirable number of standby servers establishing a provision safety policy against sudden increases in customer demand.
 
-### Fix idle server heuristic
+## Fix idle server heuristic
 
 > **Fix idle server heuristic:** increase the number of servers such as preserving a constant number of available servers, meaning that if the initial number of used servers in the system is \\|n_I\\| then the final of servers should be:
 
@@ -31,7 +36,7 @@ Eventually server utilization improves as the number of busy servers increases o
 
 In the same figure, I show in blue the final state of the same system after adding 10 more servers. Assuming no change in user demand, those extra 10 servers are available resulting in a total server utilization of \\|U \approx 0.99\\|. From the figure, we can expect a significant reduction of delay customer. However, customer services might still be far from ideal because on average 51 users are waiting in the queue at any given time. Therefore at scale, this heuristic produces recommendations that are purely efficient driven at the expense of customer quality of service.
 
-### Constant server utilization heuristic
+## Constant server utilization heuristic
 
 With the goal of avoiding previous heuristic drawback, I could instead set the number of available servers proportional to the number of busy servers.
 
@@ -51,7 +56,7 @@ One issue with the previous recommendation at scale is that it is possible to in
 
 {% include image file="mmn-fixutil-heuristic.svg" scale="70%" %}
 
-### Square-root heuristic
+## Square-root heuristic
 
 Therefore the question is, for large systems with large demand, how should we scale the number of available servers? The answer for this is IMHO an essential asymptotic result in queue theory know the Square Root Rule[^3]. From it, I can come up with the following recommendation.
 
@@ -69,7 +74,7 @@ Applying this rule the saturated test system with a \\|\beta = 2.3\\| results in
 
 As added value this recommendation is robust at scale. For example, let's consider the case in where number of servers is now ten times more or \\|N = 10000\\| and there are \\|5000\\| customers in queue. The square-rule recommendation with the same \\|\beta = 2.3\\| suggest adding an extra 230 servers. As result the new server utilization is now \\|U = 0.98\\| and the mean number of waiting customers is \\|w = 0.5\\| or half of the time the queue is empty. It is important to notice that the server utilization improves for large \\|n_I\\| as \\|U \approx (1+\beta/\sqrt{n_I})^{-1}\\|.
 
-### Combined heuristic
+## Combined heuristic
 
 Can we combined all the into one having the all the benefits without the drawbacks? I think the answer is yes and general for I can write this *combined heuristic* as follow:
 
@@ -85,22 +90,22 @@ Next figure presents the result of applying the heuristics assuming different va
 
 For low values of \\|n_I\\|, the recommendations are more wasteful by suggesting to run the system at relatively low utilization. However, it is in this regime in where keeping customers happy is worth the cost of maintaining an underutilized but small system. As the system scales, the square-rule rule becomes the dominant component of the recommendation increasing overall system utilization by taking advantage of the system economy at scales.
 
-### Caveats and final remarks
+## Caveats and final remarks
 
 The results showed in the last graph are valid for a *M/M/N* queue. Although the heuristic might work for a queue with different stochastic properties than *M/M/N*, the parameters of the combined heuristic need to be adjusted using other stochastic models or by running simulations. Also, I use results assuming queues are in their steady states. If the demand change over the time, the conclusions are still valid if the typical timescale of this variation is longer than the time that takes for the queue to reach a steady-state equilibrium.
 
-#### Program assignment or examples
+## Program assignment or examples
 
 * [MATLAB code with sizing heuristics](https://github.com/baites/examples/tree/master/analyses/queueing/sizing)
 
-#### Related posts
+## Related posts
 
 * [My approach to queuing theory]({% post_url 2018-02-26-my-approach-to-queueing-theory %})
 * [Single open queue]({% post_url 2018-04-09-single-open-queue %})
 * [Single open queue at scale]({% post_url 2018-04-23-single-open-queue-at-scale %})
 * [A common misconception when sizing systems]({% post_url 2018-06-25-a-common-misconception-when-sizing-systems %})
 
-#### References
+## References
 
 [^1]: This is the **elbow** curve of death that was introduced in the previous post of this series: [A common misconception when sizing systems.]({% post_url 2018-06-25-a-common-misconception-when-sizing-systems %})
 [^2]: Zeltyn, Sergey, and Avishai Mandelbaum. "Call centers with impatient customers: many-server asymptotics of the M/M/n+ G queue." Queueing Systems 51.3-4 (2005): 361-402.

@@ -8,6 +8,9 @@ javascript:
   katex: true
 ---
 
+* TOC
+{:toc}
+
 ## Here I go again
 
 It is a while since my last post. I stopped blogging for some time because of some personal issues I need to resolve. However, these are technical blogs that are not meant to be mass produced. I write them intending to practice my writing, also to get some bragging rights about my creative and knowledge, and more important because I enjoy it.
