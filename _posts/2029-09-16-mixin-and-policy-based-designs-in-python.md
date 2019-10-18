@@ -9,19 +9,19 @@ categories: computer-science patterns
 * TOC
 {:toc}
 
-## introduction
+## Introduction
 
-This post is supporting material for an answer I give to my own original question in stackoverflow:
+This post is supporting material for an answer I give to my original question in StackOverflow:
 
 [What are the measures to call a Python code a policy-based design?](https://stackoverflow.com/questions/57365189/what-are-the-measures-to-call-a-python-code-a-policy-based-design)
 
-The answer is the product of what I learn based my own research and some of the comments from stackoverflow.
+The answer is the product of what I learn based on my research and some comments from StackOverflow.
 
 ## Design requirements and implementations
 
 ### Requirement
 
-Design a Python module with so users can create classes with new behavior and interfaces by inheriting from a predefine set of classes. If the module is correctly design, this approach provide a large number of classes available to the users based on all possible ways classes can be combined into new ones.
+Design a Python module such users can create classes with new behavior and interfaces by inheriting from a predefined set of classes. This approach provides a large number of classes available to the users based on all possible ways they can be combined into new ones.
 
 This requirement can be implemented using mixin and policy-based implementations.
 
@@ -31,7 +31,7 @@ Mixin implementation is defined as follow:
 
 * Module classes are divided between mixin and base classes.
 * Mixin classes implement modifications to the behavior or interface of a base class.
-* Users create a new class from by combining one or more mixin(s) with base classes by inheritance.
+* Users create a new class by combining one or more mixin(s) with base classes by inheritance.
 
 {% highlight python %}
 class Mixin1Class:
@@ -58,9 +58,9 @@ Policy-based implementation is defined as follow:
 
 * Module classes are divided between policy and host classes.
 * Policy classes implement modifications to the behavior or interface of the host.
-* Host classes are defined withing class factories i.e. function that return type objects.
-* Users invoke the creation of new classes using *class factories*.
-* Policy classes are passed as argument to the class factory.
+* Host classes are defined withing class factories i.e., a function that returns type objects.
+* Users invoke the creation of new class using *class factories*.
+* Policy classes are passed as arguments to the class factory.
 * Withing the class factory, the host class is created with all the policy classes as its parents.
 
 {% highlight python %}
@@ -89,9 +89,9 @@ NewClass = HostClassFactory(Policy1Class, [Policy2Class,...])
 
 Here a list of the differences between approaches:
 
-* The relationship between classes are not the same affecting the Python's Method Resolution Order or MRO, see figure below.
-* The mixin's base classes are defined or instantiated the user create the new class.
-* However, policy-based host classes definition is delayed until the user calls the factory function.
+* The relationship between classes is not the same affecting the Python's Method Resolution Order or MRO, see figure below.
+* The mixin's base classes are defined or instantiated when the user creates the new class.
+* However, policy-based host class definition is delayed until the user calls the factory function.
 * It is possible to provide default policy classes, but you cannot have mixin default classes.
 
 <center>
@@ -106,7 +106,7 @@ Here a list of the differences between approaches:
 
 ### Adding mixin defaults with class factory decorators
 
-Reusing the *class factory* pattern within a class decorator, we can improve mixin pattern to allow for default mixin classes. I implemented the decorator as it is shown below
+Reusing the *class factory* pattern within a class decorator, we can improve the mixin pattern to allow for default mixin classes. I implemented the decorator as it is shown below
 
 {% highlight python %}
 def mixinbase(*defaults):
@@ -125,7 +125,7 @@ def mixinbase(*defaults):
     return decorator
 {% endhighlight %}
 
-The function **mixinbase** is a parametric decorator that returns a class **decorator** with the *default* variable within its closure. The class decorator is a function that takes as input a class and return the **decoration** function with *baseclass* within its closure. This **decoration** function is a class factory that take as input a collection of *mixins* as input. If the user calls the **decoration** with some input mixins, a new type object (a.k.a. a class) is returned using those *mixins* and closure's *baseclass* as its parents. However, if the user omit to input any mixins, then the returned class has as parents the class collection in closure's *defaults* plus *baseclass*.
+The function **mixinbase** is a parametric decorator that returns a class **decorator** with the *default* variable within its closure. The class decorator is a function that takes as input a class and returns the **decoration** function with *baseclass* within its closure. This **decoration** function is a class factory that takes as input a collection of *mixins*. If the user calls the **decoration** with some input mixins, a new type object (a.k.a. a class) is returned using those *mixins* and closure's *baseclass* as its parents. However, if the user omits to input any mixins, then the returned class has as parents the class collection in closure's *defaults* plus *baseclass*.
 
 Below I show an example on how to use this decorator:
 
@@ -173,7 +173,7 @@ Find a full working example of this code in my [github account](https://github.c
 
 ### Decorator approach to policy-based design
 
-It is possible to use the previous mixin decorator approach to emulate a policy-based implementation that does not delay the instantiation of the host class. It is also aesthetically more appealing that user do not need to define host class within a class factory.
+It is possible to use the previous mixin decorator approach to emulate a policy-based implementation that does not delay the instantiation of the host class. It is also aesthetically more appealing because the user does not need to define the host class within a class factory.
 
 This implementation is based on the following decorator:
 
@@ -194,7 +194,7 @@ def hostclass(*defaults):
     return decorator
 {% endhighlight %}
 
-This decorator is identical to the mixin decorator (see previous section) with the only difference the first parent of the returned type is the host class follow by the policy class (instead of the mixins follow by base class).
+This decorator is identical to the mixin decorator (see the previous section) with the only difference the first parent is the host class follow by the policy class. This case is in contrast with the mixin, where the base class is the last parent.
 
 Here it is an example on how to use this decorator:
 
@@ -240,7 +240,7 @@ Find a full working example of this code in my [github account](https://github.c
 
 ### Difference between these two class decorators
 
-The previous two decorators looks almost identical except for class's MRO is not the same. For example, here it is an example I showed in StackOverflow that cannot be done either with traditional or decorator mixin as I defined:
+The previous two decorators look almost identical except for the class's MRO is not the same. For example, here it is an example I showed in StackOverflow that cannot be done either with traditional or decorator mixin as I defined above:
 
 {% highlight python %}
 class InputMessage:
@@ -282,7 +282,7 @@ message.set_suffix(' and goodbye!')
 message.run() # print: Victor says: hello world and goodbye!
 {% endhighlight %}
 
-The example shows how to create a composition by using a host class as a policy class for another host class. The composition has to start from an initial policy class and can continue as long the user requires. This approach needs that the MRO is such that the call to **super()** provide access to the members the proper *previous* policy. It is almost trivially possible to write this using policy-based design decorator:
+The example shows how to create a composition by using a host class as a policy class for another host class. The composition has to start from an initial policy class and can continue as long the user requires. This approach needs that the MRO is such that the call to **super()** provides access to the members the proper *previous* policy. It is possible to write this using policy-based design decorator as:
 
 {% highlight python %}
 class InputMessage:
@@ -318,8 +318,15 @@ message.set_suffix(' and goodbye!')
 message.run() # print: Victor says: hello world and goodbye!
 {% endhighlight %}
 
-Find a full working example of this code in my [github account](https://github.com/baites/examples/blob/master/idioms/python/PolicyBasedDecoratorEx2.py).
+Find a full working example of this code in my [github account](https://github.com/baites/examples/blob/master/idioms/python/PolicyBasedDecoratorEx2.py). Both approaches to policy-based design are functionally equivalent. However, they do not share the same underlying class hierarchy.
 
-# conclusion
+<center>
+<p>
+  <img src="{{ site.url }}/assets/images/class-composition-diagram.svg" width="110%" />
+</p>
+<p>Class diagram for the two policy-based design approaches.</p>
+</center>
 
-Mixin and policy-based design are two implementations of an abstract pattern to develop customizable classes in Python modules. In the process of research these approaches and stumbled with a simple pattern I called *class factory*. Class factory seems to be a incredible versatile idiom that I have not seen discussed much. I have few more thing to say about class factories and I planning to do so in future blogs.
+# Conclusion
+
+Mixin and policy-based design are two implementations of an abstract pattern to develop customizable classes in Python modules. In the process of research these approaches and stumbled with a simple pattern, I called *class factory*. The class factory seems to be an incredibly versatile idiom that I have not seen discussed much. I have a few more things to say about class factories, and I am planning to do so in future blogs.
