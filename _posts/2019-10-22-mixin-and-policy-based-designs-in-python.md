@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mixin and policy-based design in python"
-date: 2029-09-16 08:00:00 -0400
+date: 2019-10-22 06:00:00 -0400
 author: Victor E. Bazterra
 categories: computer-science patterns
 ---
@@ -329,4 +329,4 @@ Find a full working example of this code in my [github account](https://github.c
 
 # Conclusion
 
-Mixin and policy-based design are two implementations of an abstract pattern to develop customizable classes in Python modules. In the process of research these approaches and stumbled with a simple pattern, I called *class factory*. The class factory seems to be an incredibly versatile idiom that I have not seen discussed much. I have a few more things to say about class factories, and I am planning to do so in future blogs.
+Mixin and policy-based design are two implementations of an abstract pattern to develop customizable classes in Python modules. In the process of research these approaches and stumbled with a simple pattern, I called *class factory*. The class factory seems to be an incredibly versatile idiom that I have not seen discussed much. I may have a few more things to say about class factories, perhaps I would do so in future blogs.
