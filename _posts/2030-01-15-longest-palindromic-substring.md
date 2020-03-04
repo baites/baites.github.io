@@ -11,76 +11,110 @@ javascript:
 * TOC
 {:toc}
 
-## Intro (TODO)
-
-Do the INTRO[^1].
-
 ## Longest palindromic substring
 
-Lets start with the problem definition.
+### Problem definition
 
-> **Problem:** Given a string \\|S\\|, find the longest palindromic substring in s. You may assume that the maximum length of \\|\|S\|\\| is 1000.
+This is about a problem I found in leetcode[^1]. Let's start with the problem definition.
 
-> **Definitions**: For a string \\|S\\| of length \\|L\\|, I define its **reverse string** to the string \\|R\\| of the same length such as \\|R[i] = S[L-i-1]\\|. A string \\|S\\| is **a palindrome** if it is equal to its reverse string \\|R\\|.
+> **Problem:** Given a string \\|S\\|, find the longest palindromic substring in s. You may assume that the maximum length of \\|\|S\|\\| is 1000.[^2]
+
+Just to be sure, here are the main definition to understand what is a palindrome also know as palindromic string.
+
+> **Definitions**: For a string \\|S\\| of length \\|L\\|, I define its **reverse string** to the string \\|R\\| of the same length such as \\|R[i] = S[L-i-1]\\|. A string \\|S\\| is **a palindrome** if it is equal to its reverse string or \\|S = R\\|.
+
+### Solutions
+
+The naive solution to the problem has a time complexity of \\|O(L^3)\\| as it is explain [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/solution/). In this same site also shows several solution in \\|O(L^2)\\|:
+
+* Using dynamic programming.
+* Expand around center.
+
+There is also another solution \\|O(L)\\| known as the Manacher's Algorithm[^3].
+
+The main goal of this blog is to document another \\|O(L^2)\\| that uses hashes. As result I needed to learn a lot about hashing strings, plus some of the properties of Polynomial Hash Function or polyhash for short. I will provide links to other application of hashing for solving problems related to palindromes.
 
 ## Hashing strings with polyhash
 
-### Polyhash
+### Polyhash definition
+
+Let me start with polyhash shown below.
 
 > **Definition:** Given a string \\|S\\| of length \\|L\\|, the polyhash \\|H(S)\\| of that string is give by
-
-<p>%%
+>
+><p>%%
 H_S = \left(\sum^{L-1}_{i=0} S[i] x^{i} \right) \text{mod } p
 %%</p>
-
+>
 >where \\|p\\| is a prime (and usually large) number, and \\|x\\| some integer \\|x \in [1, p-1]\\|.
 
-It is trivial to see that the polyhash value for identical strings is the same. The question is therefore what happen for two distinct strings. The following lemma answer this question by saying that the probability of for two different strings to share the same hash is very low[^2].
+It is trivial to see that the polyhash values for identical strings are the same. The question is therefore what happen for two distinct strings. The following lemma answer this question by saying that the probability of for two different strings to share the same hash is very low[^4].
 
-> **Lemma:** For any two string \\|S\\| and \\|Q\\| of length at most \\|L+1\\|, and  a polyhash created by selecting at random a \\|x \in [1,p-1]\\| for some prime \\|p\\|, then the probability of both string having the same hash is bound by
-
-<p>%%
+> **Lemma:** For any two string \\|S\\| and \\|Q\\| of length at most \\|L+1\\|, and  a polyhash created by selecting at random a \\|x \in [1,p-1]\\| for some (usually large) prime \\|p\\|, then the probability of both string having the same hash is bound by
+>
+><p>%%
 \text{Prob}[H_{S} = H_{Q}] \leq \frac{L}{p}
 %%</p>
 
-> **Corollary:** For a non-palindromic string \\|S\\| of length \\|L\\| and its reverse string \\|R\\|, plus a polyhash as define in the previous lemma, then the probability of both string having the same hash is bound by
+Hashing and palindrome can be related by using the previous lemma and the definition of a palindrome resulting in the following corollary.
 
-<p>%%
+> **Corollary:** For a non-palindromic string \\|S\\| of length \\|L\\| and its reverse string \\|R\\|, plus a polyhash as define in the previous lemma, then the probability of both string having the same hash is bound by
+>
+><p>%%
 \text{Prob}[H_{S} = H_{R}] \leq \frac{L}{p}
 %%</p>
 
+This corollary shows that in principle we can detect a palindrome \\|S\\| by comparing polyhash values of itself and its reverse \\|R\\| with arbitrarily high precision.
+
 ### Forward and backward hashes
 
-> **Definition:** Given a string \\|S\\| I define its forward hashes \\|F_S[n]\\| as the hash values of the \\|n\\|-size prefixes of \\|S\\| or  
+I just showed you that it is possible to detect palindrome using hashing. The remaining questions are how to extend this check to substring of \\|S\\| and if this can be done efficiently.
 
-<p>%%
+A first step to answer these questions requires the definition two types of hash functions that I named forward and backward hashes.
+
+> **Definition:** Given a string \\|S\\| I define its forward hashes \\|F_S[n]\\| as the hash values of the \\|n\\|-length prefix of \\|S\\| or  
+>
+><p>%%
 F_S[n] = \left(\sum^{n-1}_{i=0} S[i] x^{i} \right) \text{mod } p
 %%</p>
+>
+> where arbitrarily I choose for \\|n = 0\\| the following hash value \\|F_S[0] = 0\\|.
 
-> where arbitrarily I choose the value of \\|F_S[0] = 0\\|.
-
-It is easy to see that for string S of length L its hash value is \\|F_S[L]\\|.
+It is easy to see that for string S its hash value is given by \\|F_S[L]\\|.
 
 > **Definition:** Given a string \\|S\\| I define its backward hashes \\|B_S[n]\\| as the hash values of the \\|n\\|-size suffixes of \\|S\\| or  
-
-<p>%%
+>
+><p>%%
 B_S[n] = \left(\sum^{L-1}_{i=L-n} S[i] x^{i-L+n} \right) \text{mod } p
 %%</p>
+>
+> where arbitrarily I choose for \\|n = 0\\| the following hash value \\|B_S[0] = 0\\|.
 
-> where arbitrarily I choose the value of \\|B_S[0] = 0\\|.
-
-Also, it is easy to see that for string S of length L its hash value is \\|B_S[L]\\|.
+Also, it is easy to see that for string S its hash value is given by \\|B_S[L]\\|.
 
 Now if a string \\|S\\| is palindrome then its hash value \\|F_S[L]\\| is equal to the hash value of its reverse string \\|F_R[L]\\| that is also equal to \\|B_R[L]\\|.
 Therefore, for a palindrome \\|S\\| is true that \\|F_S[L] = B_R[L]\\|.
 
-More importantly, if \\|S\\| contains a \\|n\\|-sized palindromic prefix, then it is easy to see that \\|F_S[n] = B_R[n]\\|, that is the \\|n\\|-th forward hash of the string has to be the same as the \\|n\\|-th backward hash of the reverse string. Conversely, the probability for a string of having non-palindromic prefix of size \\|n\\| such as \\|F_S[n] = B_R[n]\\| cannot be higher than \\|n/p\\| based on the corollary of the previous section.
+More importantly, if \\|S\\| contains a \\|n\\|-length palindromic prefix, then it is easy to see that \\|F_S[n] = B_R[n]\\|, that is the \\|n\\|-th forward hash of the string has to be the same as the \\|n\\|-th backward hash of the reverse string, see the next figure.
+
+<center>
+<p>
+  <img src="{{ site.url }}/assets/images/hash-palindromic-string.svg" width="80%" />
+</p>
+<p>Detecting palindromic prefix using forward and backward hashes in string S and its reverse R.</p>
+</center>
+
+Conversely, the probability for a string of having non-palindromic prefix of size \\|n\\| such as \\|F_S[n] = B_R[n]\\| cannot be higher than \\|n/p\\| based on the corollary of the previous section.
 
 ### Computing forward and backward hashes
 
-> **Proposition:** The forward hashes for the string \\|S\\| are related by the following recurrence:
+So far I found a way of detecting any palindromic prefixes using forward and backward hashing. So, in this section I will concentrate on how to compute those hashing efficiently.
 
-<p>%%
+Let me start with a proposition that establish a recurrence relationship between forward hashes.
+
+> **Proposition:** The forward hashes for the string \\|S\\| are related by the following recurrence:
+>
+><p>%%
 F_S[n+1] = \left(F_S[n] + x^nS[n]\right) \text{ mod } p
 %%</p>
 
@@ -94,9 +128,11 @@ F_S[n+1] &= \left(\sum^{n}_{i=0} S[i] x^i \right) \text{mod } p \\
 \end{aligned}
 %%</p>
 
-> **Proposition:** The backwards hashes for the reverse string \\|R\\| of \\|S\\| are related by the following recurrence:
+**Note**: In this proof I use all the properties of the modular arithmetic I described in the last section of this post.
 
-<p>%%
+> **Proposition:** The backwards hashes for the reverse string \\|R\\| of \\|S\\| are related by the following recurrence:
+>
+><p>%%
 B_R[n+1] = \left(xB_R[n] + S[n]\right) \text{ mod } p
 %%</p>
 
@@ -115,37 +151,58 @@ B_R[n+1] &= \left(\sum^{L-1}_{i=L-n-1} S[L-i-1] x^{i-L+n+1} \right) \text{mod } 
 
 ### Defining forward and backward hashes for substrings
 
-It is easy to generalize the notion of forward hash for a substring \\|S[m..n]\\| as simply the hash value of the substring.
+It is easy to generalize the notion of forward hash of a substring \\|S[m..n]\\| as simply the hash value of the substring[^5].
 
 > **Definition:** Given a substring \\|S[m..n]\\| I define its forward hash \\|F_S[m..n]\\| as the hash value given by
-
-<p>%%
+>
+><p>%%
 F_S[m..n] = H(S[m..n]) = \left(\sum^{n-1}_{i=m} S[i] x^{i-m} \right) \text{mod } p
 %%</p>
 
-> **Definition:** Given a substring \\|S[m..n]\\| I define its backward hash \\|B_S[m..n]\\| as the hash value given by
+The same can be done for the backward hash of a substring \\|S[m..n]\\| as the hash value
 
-<p>%%
+> **Definition:** Given a substring \\|S[m..n]\\| I define its backward hash \\|B_S[m..n]\\| as the hash value given by
+>
+><p>%%
 B_S[m..n] = H(S[L-n..L-m]) = \left(\sum^{L-m-1}_{i=L-n} S[i] x^{i-L+n} \right) \text{mod } p
 %%</p>
 
-It is easy to see that under these definitions \\|F_S[0..n] = F_S[n]\\| and \\|B_S[0..n] = B_S[n]\\|.
+Under these definitions I get that \\|F_S[0..n] = F_S[n]\\| and \\|B_S[0..n] = B_S[n]\\|.
 
 > **Proposition:** For a substring \\|S[m..n]\\| we have
 > * if it is a palindrome then
-<p>%%
-F_S[m..n] = B_R[m..n]
-%%</p>
+><p>%%
+>F_S[m..n] = B_R[m..n]
+>%%</p>
 > * otherwise
-<p>%%
-\text{Prob}(F_S[m..n] = B_R[m..n]) \leq (n-m)/p
-%%</p>
+><p>%%
+>\text{Prob}(F_S[m..n] = B_R[m..n]) \leq (n-m)/p
+>%%</p>
+
+The proof of this proposition is simply combining these definitions of forward and backward substring hashes, the condition for a substring to be a palindrome, and the main polyhash lemma, see also next figure.
+
+<center>
+<p>
+  <img src="{{ site.url }}/assets/images/hash-palindromic-substring.svg" width="50%" />
+</p>
+<p>Detecting palindromic substring using forward and backward hashes of substrings of S and R.</p>
+</center>
 
 ### Computing forward and backward hashes for substrings
 
+In this section I show a way to compute the substring forward \\|F_S[m..n]\\| and backward \\|B_S[m..n]\\| hashes in constant time.
+
+In the case of the forward hashes of a substring \\|F_S[m..n]\\|, this computation is possible by first pre-computing the full forward hashes of a string \\|F_S[n]\\| and using the following relationship[^6].
+
 <p>%%
-F_S[n] - F_S[m] = x^m F_S[m..n]
+\begin{aligned}
+F_S[n] - F_S[m] &= \sum^{n-1}_{i=0} S[i] x^{i} - \sum^{m-1}_{i=0} S[i] x^{i} = \sum^{n-1}_{i=m} S[i] x^{i} \\
+                &= x^m \sum^{n-1}_{i=m} S[i] x^{i-m} \\
+                &= x^m F_S[m..n]
+\end{aligned}
 %%</p>
+
+In the case of the backward hashes of a substring \\|B_S[m..n]\\|, this computation is possible by first pre-computing the full backward hashes of a string \\|B_S[n]\\| and using the following relationship.
 
 <p>%%
 \begin{aligned}
@@ -156,9 +213,17 @@ B_S[n] - x^{n-m} B_S[m] &= \sum^{L-1}_{i=L-n} S[i] x^{i-L+n} - x^{n-m} \sum^{L-1
 \end{aligned}
 %%</p>
 
-<p>%%
-F_S[n] - F_S[m] = x^m B_R[n] - x^n B_R[m]
-%%</p>
+In the previous section, I propose that for a palindromic substring, the hash value is of the the forward hash of the substring is the same as the backward hash value of the same substring of the reverse string or \\|F_S[m..n] = B_R[m..n]\\|. This statement is equivalent to say \\|x^mF_S[m..n] \equiv x^mB_R[m..n] (\text{mod }p)\\|, resulting in the following alternative proposition.
+
+> **Proposition:** For a substring \\|S[m..n]\\| we have that
+> * if it is a palindrome then
+><p>%%
+>F_S[n] - F_S[m] \equiv x^m B_R[n] - x^n B_R[m] (\text{mod }p)
+>%%</p>
+> * otherwise
+><p>%%
+>\text{Prob}[F_S[n] - F_S[m] \equiv x^m B_R[n] - x^n B_R[m] (\text{mod }p)] \leq (n-m)/p
+>%%</p>
 
 ## Modular arithmetic
 
@@ -170,5 +235,9 @@ F_S[n] - F_S[m] = x^m B_R[n] - x^n B_R[m]
 ## References
 
 [^1]: [LeetCode](https://leetcode.com/)
-[^2]: Reference to the lemma demonstration.
-[^3]: [GeeksForGeeks: modular division](https://www.geeksforgeeks.org/modular-division/)
+[^2]: [Longest palindromic substring](https://leetcode.com/problems/longest-palindromic-substring/)
+[^3]: [Manacher's Algorithm](https://www.hackerrank.com/topics/manachers-algorithm).
+[^4]: Reference to the lemma demonstration.
+[^5]: [GeekForGeek: Palindrome Substring Queries](https://www.geeksforgeeks.org/palindrome-substring-queries/)
+[^6]: [CP-Algorithms: String Hashing](https://cp-algorithms.com/string/string-hashing.html)
+[^7]: [GeeksForGeeks: modular division](https://www.geeksforgeeks.org/modular-division/)
