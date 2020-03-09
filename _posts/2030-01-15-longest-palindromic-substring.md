@@ -11,28 +11,21 @@ javascript:
 * TOC
 {:toc}
 
-## Longest palindromic substring
+## String hashing and palindromes
 
-### Problem definition
+This blog started after I came up with a way of using string hashing to solve Longest palindromic substring problem[^1] from leetcode[^2]. I studied the relationship between hashing and palindrome due to the fact I found no reference in any of my algorithmic books. However, as I was researching this relationship, I found out that using hashing for detecting palindromic strings is a relatively well know tool used in competitive coding, as I will be showing in the references thought this post.
 
-This is about a problem I found in leetcode[^1]. Let's start with the problem definition.
+In this blog post I will show everything I know about hashing string with polyhash, its properties, and its relationship with palindromes. I will also give basic steps to solve the following problem as example of the power of this tool:
 
-> **Problem:** Given a string \\|S\\|, find the longest palindromic substring in s. You may assume that the maximum length of \\|\|S\|\\| is 1000.[^2]
+* Longest palindromic substring (a medium-difficult problem from leetcode[^2]).
+* Shortest palindrome (a hard-difficult problem from leetcode[^3]).
+* Palindrome degree (a codeforces' problem with difficulty x2200[^4])
 
-Just to be sure, here are the main definition to understand what is a palindrome also know as palindromic string.
+Just to be sure we are on the same page here, let me give a definition of what is a palindrome or a palindromic string.
 
 > **Definitions**: For a string \\|S\\| of length \\|L\\|, I define its **reverse string** to the string \\|R\\| of the same length such as \\|R[i] = S[L-i-1]\\|. A string \\|S\\| is **a palindrome** if it is equal to its reverse string or \\|S = R\\|.
 
-### Solutions
-
-The naive solution to the problem has a time complexity of \\|O(L^3)\\| as it is explain [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/solution/). In this same site also shows several solution in \\|O(L^2)\\|:
-
-* Using dynamic programming.
-* Expand around center.
-
-There is also another solution \\|O(L)\\| known as the Manacher's Algorithm[^3].
-
-The main goal of this blog is to document another \\|O(L^2)\\| that uses hashes. As result I needed to learn a lot about hashing strings, plus some of the properties of Polynomial Hash Function or polyhash for short. I will provide links to other application of hashing for solving problems related to palindromes.
+Also, it is important to notice that I am assuming throughout this post a [zero-based numbering](https://en.wikipedia.org/wiki/Zero-based_numbering) to enumerate the elements in a string.
 
 ## Hashing strings with polyhash
 
@@ -225,6 +218,25 @@ In the previous section, I propose that for a palindromic substring, the hash va
 >\text{Prob}[F_S[n] - F_S[m] \equiv x^m B_R[n] - x^n B_R[m] (\text{mod }p)] \leq (n-m)/p
 >%%</p>
 
+## Longest palindromic substring
+
+### Problem definition
+
+This is about a problem I found in leetcode[^1]. Let's start with the problem definition.
+
+> **Problem:** Given a string \\|S\\|, find the longest palindromic substring in s. You may assume that the maximum length of \\|\|S\|\\| is 1000.[^2]
+
+### Solutions
+
+The naive solution to the problem has a time complexity of \\|O(L^3)\\| as it is explain [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/solution/). In this same site also shows several solution in \\|O(L^2)\\|:
+
+* Using dynamic programming.
+* Expand around center.
+
+There is also another solution \\|O(L)\\| known as the Manacher's Algorithm[^3].
+
+The main goal of this blog is to document another \\|O(L^2)\\| that uses hashes. As result I needed to learn a lot about hashing strings, plus some of the properties of Polynomial Hash Function or polyhash for short. I will provide links to other application of hashing for solving problems related to palindromes.
+
 ## Modular arithmetic
 
 * \\|(a \text{ mod } p) \text{ mod } p = a \text{ mod } p\\|
@@ -234,10 +246,12 @@ In the previous section, I propose that for a palindromic substring, the hash va
 
 ## References
 
-[^1]: [LeetCode](https://leetcode.com/)
-[^2]: [Longest palindromic substring](https://leetcode.com/problems/longest-palindromic-substring/)
-[^3]: [Manacher's Algorithm](https://www.hackerrank.com/topics/manachers-algorithm).
-[^4]: Reference to the lemma demonstration.
-[^5]: [GeekForGeek: Palindrome Substring Queries](https://www.geeksforgeeks.org/palindrome-substring-queries/)
-[^6]: [CP-Algorithms: String Hashing](https://cp-algorithms.com/string/string-hashing.html)
-[^7]: [GeeksForGeeks: modular division](https://www.geeksforgeeks.org/modular-division/)
+[^1]: [Longest palindromic substring](https://leetcode.com/problems/longest-palindromic-substring/)
+[^2]: [LeetCode](https://leetcode.com/).
+[^3]: [Shortest palindrome](https://leetcode.com/problems/shortest-palindrome/).
+[^4]: [Palindrome Degree](https://codeforces.com/contest/7/problem/D).
+[^5]: [Manacher's Algorithm](https://www.hackerrank.com/topics/manachers-algorithm).
+[^6]: Reference to the lemma demonstration.
+[^7]: [GeekForGeek: Palindrome Substring Queries](https://www.geeksforgeeks.org/palindrome-substring-queries/)
+[^8]: [CP-Algorithms: String Hashing](https://cp-algorithms.com/string/string-hashing.html)
+[^9]: [GeeksForGeeks: modular division](https://www.geeksforgeeks.org/modular-division/)
