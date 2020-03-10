@@ -13,9 +13,9 @@ javascript:
 
 ## String hashing and palindromes
 
-This blog started after I came up with a way of using string hashing to solve Longest palindromic substring problem[^1] from leetcode[^2]. I studied the relationship between hashing and palindrome due to the fact I found no reference in any of my algorithmic books. However, as I was researching this relationship, I found out that using hashing for detecting palindromic strings is a relatively well know tool used in competitive coding, as I will be showing in the references thought this post.
+This blog started after I came up with a way of using string hashing to solve Longest palindromic substring problem[^1] from leetcode[^2]. I studied the use of hashing to detect palindrome because I found no reference in any of algorithmic books. However, eventually I found out that detecting palindromic strings with hashing is a relatively well know tool used in competitive coding, as I will be referring throughout this post.
 
-In this blog post I will show everything I know about hashing string with polyhash, its properties, and its relationship with palindromes. I will also give basic steps to solve the following problem as example of the power of this tool:
+In this blog post I discuss hwo to hash string with polyhash, its properties, and its relationship with palindromes. I will also give basic steps to solve the following problem as example of the power of this tool:
 
 * Longest palindromic substring (a medium-difficult problem from leetcode[^2]).
 * Shortest palindrome (a hard-difficult problem from leetcode[^3]).
@@ -25,7 +25,7 @@ Just to be sure we are on the same page here, let me give a definition of what i
 
 > **Definitions**: For a string \\|S\\| of length \\|L\\|, I define its **reverse string** to the string \\|R\\| of the same length such as \\|R[i] = S[L-i-1]\\|. A string \\|S\\| is **a palindrome** if it is equal to its reverse string or \\|S = R\\|.
 
-Also, it is important to notice that I am assuming throughout this post a [zero-based numbering](https://en.wikipedia.org/wiki/Zero-based_numbering) to enumerate the elements in a string.
+Also, it is important to notice that I am enumerating the elements of a string using a [zero-based numbering system](https://en.wikipedia.org/wiki/Zero-based_numbering).
 
 ## Hashing strings with polyhash
 
@@ -41,7 +41,7 @@ H_S = \left(\sum^{L-1}_{i=0} S[i] x^{i} \right) \text{mod } p
 >
 >where \\|p\\| is a prime (and usually large) number, and \\|x\\| some integer \\|x \in [1, p-1]\\|.
 
-It is trivial to see that the polyhash values for identical strings are the same. The question is therefore what happen for two distinct strings. The following lemma answer this question by saying that the probability of for two different strings to share the same hash is very low[^4].
+It is trivial to see that the polyhash values for identical strings are the same. The question is therefore what happen for two distinct strings. The following lemma answer this question by saying that the probability of for two different strings to share the same hash is very low[^5].
 
 > **Lemma:** For any two string \\|S\\| and \\|Q\\| of length at most \\|L+1\\|, and  a polyhash created by selecting at random a \\|x \in [1,p-1]\\| for some (usually large) prime \\|p\\|, then the probability of both string having the same hash is bound by
 >
@@ -88,24 +88,24 @@ Also, it is easy to see that for string S its hash value is given by \\|B_S[L]\\
 Now if a string \\|S\\| is palindrome then its hash value \\|F_S[L]\\| is equal to the hash value of its reverse string \\|F_R[L]\\| that is also equal to \\|B_R[L]\\|.
 Therefore, for a palindrome \\|S\\| is true that \\|F_S[L] = B_R[L]\\|.
 
-More importantly, if \\|S\\| contains a \\|n\\|-length palindromic prefix, then it is easy to see that \\|F_S[n] = B_R[n]\\|, that is the \\|n\\|-th forward hash of the string has to be the same as the \\|n\\|-th backward hash of the reverse string, see the next figure.
+More importantly, if \\|S\\| contains a palindromic prefix os size \\|n\\|, then it is easy to see that \\|F_S[n] = B_R[n]\\|, that is the \\|n\\|-th forward hash of the string has to be the same as the \\|n\\|-th backward hash of the reverse string. The next next figure illustrate this point.
 
 <center>
 <p>
   <img src="{{ site.url }}/assets/images/hash-palindromic-string.svg" width="80%" />
 </p>
-<p>Detecting palindromic prefix using forward and backward hashes in string S and its reverse R.</p>
+<p>Detecting palindromic prefix using forward and backward hashes in string S and its reverse R. I use number representing character ordinals instead of the actual characters.</p>
 </center>
 
 Conversely, the probability for a string of having non-palindromic prefix of size \\|n\\| such as \\|F_S[n] = B_R[n]\\| cannot be higher than \\|n/p\\| based on the corollary of the previous section.
 
 ### Computing forward and backward hashes
 
-So far I found a way of detecting any palindromic prefixes using forward and backward hashing. So, in this section I will concentrate on how to compute those hashing efficiently.
+So far, I found a way of detecting any palindromic prefixes using forward and backward hashing. So, in this section I will concentrate on how to compute efficiently those hashes.
 
-Let me start with a proposition that establish a recurrence relationship between forward hashes.
+Let me start with a proposition that establish a recurrence between forward hashes with different sizes.
 
-> **Proposition:** The forward hashes for the string \\|S\\| are related by the following recurrence:
+> **Proposition (A):** The forward hashes for the string \\|S\\| are related by the following recurrence:
 >
 ><p>%%
 F_S[n+1] = \left(F_S[n] + x^nS[n]\right) \text{ mod } p
@@ -123,10 +123,10 @@ F_S[n+1] &= \left(\sum^{n}_{i=0} S[i] x^i \right) \text{mod } p \\
 
 **Note**: In this proof I use all the properties of the modular arithmetic I described in the last section of this post.
 
-> **Proposition:** The backwards hashes for the reverse string \\|R\\| of \\|S\\| are related by the following recurrence:
+> **Proposition (B):** The backwards hashes for the reverse string \\|R\\| of \\|S\\| are related by the following recurrence:
 >
 ><p>%%
-B_R[n+1] = \left(xB_R[n] + S[n]\right) \text{ mod } p
+B_R[n+1] = \left(xB_R[n] + S[n]\right) \text{ mod } p \text{ eq. 2}
 %%</p>
 
 **Proof**:
@@ -208,7 +208,7 @@ B_S[n] - x^{n-m} B_S[m] &= \sum^{L-1}_{i=L-n} S[i] x^{i-L+n} - x^{n-m} \sum^{L-1
 
 In the previous section, I propose that for a palindromic substring, the hash value is of the the forward hash of the substring is the same as the backward hash value of the same substring of the reverse string or \\|F_S[m..n] = B_R[m..n]\\|. This statement is equivalent to say \\|x^mF_S[m..n] \equiv x^mB_R[m..n] (\text{mod }p)\\|, resulting in the following alternative proposition.
 
-> **Proposition:** For a substring \\|S[m..n]\\| we have that
+> **Proposition (C):** For a substring \\|S[m..n]\\| we have that
 > * if it is a palindrome then
 ><p>%%
 >F_S[n] - F_S[m] \equiv x^m B_R[n] - x^n B_R[m] (\text{mod }p)
@@ -218,24 +218,44 @@ In the previous section, I propose that for a palindromic substring, the hash va
 >\text{Prob}[F_S[n] - F_S[m] \equiv x^m B_R[n] - x^n B_R[m] (\text{mod }p)] \leq (n-m)/p
 >%%</p>
 
-## Longest palindromic substring
+## Practical applications
 
-### Problem definition
+### Longest palindromic substring
 
-This is about a problem I found in leetcode[^1]. Let's start with the problem definition.
+Let's start with the problem definition.
 
 > **Problem:** Given a string \\|S\\|, find the longest palindromic substring in s. You may assume that the maximum length of \\|\|S\|\\| is 1000.[^2]
 
-### Solutions
+A naive solution to the problem has a time complexity of \\|O(L^3)\\| as it is explain [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/solution/). In this same site also shows several solution in \\|O(L^2)\\| using dynamic programming or expand around center approach. There is also another solution \\|O(L)\\| known as the Manacher's Algorithm[^5].
 
-The naive solution to the problem has a time complexity of \\|O(L^3)\\| as it is explain [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/solution/). In this same site also shows several solution in \\|O(L^2)\\|:
+It is easy to formulate a solution to this problem with a complexity of \\|O(L^2)\\| for most of the cases.
 
-* Using dynamic programming.
-* Expand around center.
+* Select a random value of \\|x \in [1, p-1]\\| for some large prime \\|p\\|.
+* Precompute the values of \\|F_S[n]\\| and \\|B_R[n]\\| in arrays using proposition A and B.
+* Scan all possible substring starting from longest to the smallest ones and do:
+  * Check it it is a candidate to be a palindrome using proposition C.
+  * If it is a candidate verify if the substring is actually a palindrome.
+    * If it is a palindrome return the substring.
+    * Otherwise, keep scanning for other substring candidates.
 
-There is also another solution \\|O(L)\\| known as the Manacher's Algorithm[^3].
+As example you can find my code I submitted and pass [leetcode graduation system](https://github.com/baites/examples/blob/master/coding/leetcode/longest_palindromic_substring_hashing_v5.py).
 
-The main goal of this blog is to document another \\|O(L^2)\\| that uses hashes. As result I needed to learn a lot about hashing strings, plus some of the properties of Polynomial Hash Function or polyhash for short. I will provide links to other application of hashing for solving problems related to palindromes.
+### Shortest palindrome
+
+In this case the problem is to create the shortest possible palindrome from an initial string.
+
+> **Problem:** Given a string \\|S\\|, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.[^3]
+
+It is easy to formulate a \\|O(L)\\| solution to this problem with hashing.
+
+* If the string is only one character, just return that character.
+* Select a random value of \\|x \in [1, p-1]\\| for some large prime \\|p\\|.
+* Precompute the values of \\|F_S[n]\\| and \\|B_R[n]\\| in arrays using proposition A and B.
+* Scan all possible substring starting from longest to the smallest ones and do:
+  * Check it it is a candidate to be a palindrome using proposition C.
+  * If it is a candidate verify if the substring is actually a palindrome.
+    * If it is a palindrome return the substring.
+    * Otherwise, keep scanning for other substring candidates.
 
 ## Modular arithmetic
 
@@ -250,8 +270,8 @@ The main goal of this blog is to document another \\|O(L^2)\\| that uses hashes.
 [^2]: [LeetCode](https://leetcode.com/).
 [^3]: [Shortest palindrome](https://leetcode.com/problems/shortest-palindrome/).
 [^4]: [Palindrome Degree](https://codeforces.com/contest/7/problem/D).
-[^5]: [Manacher's Algorithm](https://www.hackerrank.com/topics/manachers-algorithm).
-[^6]: Reference to the lemma demonstration.
-[^7]: [GeekForGeek: Palindrome Substring Queries](https://www.geeksforgeeks.org/palindrome-substring-queries/)
-[^8]: [CP-Algorithms: String Hashing](https://cp-algorithms.com/string/string-hashing.html)
-[^9]: [GeeksForGeeks: modular division](https://www.geeksforgeeks.org/modular-division/)
+[^5]: Reference to the lemma demonstration.
+[^6]: [Manacher's Algorithm](https://www.hackerrank.com/topics/manachers-algorithm).
+[^8]: [GeekForGeek: Palindrome Substring Queries](https://www.geeksforgeeks.org/palindrome-substring-queries/)
+[^9]: [CP-Algorithms: String Hashing](https://cp-algorithms.com/string/string-hashing.html)
+[^10]: [GeeksForGeeks: modular division](https://www.geeksforgeeks.org/modular-division/)
