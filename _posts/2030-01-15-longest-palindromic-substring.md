@@ -183,7 +183,7 @@ The proof of this proposition is simply combining these definitions of forward a
 
 ### Computing forward and backward hashes for substrings
 
-In this section I show a way to compute the substring forward \\|F_S[m..n]\\| and backward \\|B_S[m..n]\\| hashes in constant time.
+In this section I show a way to compute the substring forward \\|F_S[m..n]\\| and backward \\|B_S[m..n]\\| hashes in constant time after precomputing the forward and backward hashes. For this section I took a lot of inspiration from this great blog port in cp-algorithms[^6].
 
 In the case of the forward hashes of a substring \\|F_S[m..n]\\|, this computation is possible by first pre-computing the full forward hashes of a string \\|F_S[n]\\| and using the following relationship[^6].
 
@@ -226,19 +226,19 @@ Let's start with the problem definition.
 
 > **Problem:** Given a string \\|S\\|, find the longest palindromic substring in s. You may assume that the maximum length of \\|\|S\|\\| is 1000.[^2]
 
-A naive solution to the problem has a time complexity of \\|O(L^3)\\| as it is explain [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/solution/). In this same site also shows several solution in \\|O(L^2)\\| using dynamic programming or expand around center approach. There is also another solution \\|O(L)\\| known as the Manacher's Algorithm[^5].
+A naive solution to the problem has a time complexity of \\|O(L^3)\\| as it is explain [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/solution/). In this same site also shows several solution in \\|O(L^2)\\| using dynamic programming or expand around center approach. There is also another solution \\|O(L)\\| known as the Manacher's Algorithm[^6].
 
 It is easy to formulate a solution to this problem with a complexity of \\|O(L^2)\\| for most of the cases.
 
 * Select a random value of \\|x \in [1, p-1]\\| for some large prime \\|p\\|.
 * Precompute the values of \\|F_S[n]\\| and \\|B_R[n]\\| in arrays using proposition A and B.
 * Scan all possible substring starting from longest to the smallest ones and do:
-  * Check it it is a candidate to be a palindrome using proposition C.
+  * Check if substring is a candidate to be a palindrome using proposition C.
   * If it is a candidate verify if the substring is actually a palindrome.
     * If it is a palindrome return the substring.
     * Otherwise, keep scanning for other substring candidates.
 
-As example you can find my code I submitted and pass [leetcode graduation system](https://github.com/baites/examples/blob/master/coding/leetcode/longest_palindromic_substring_hashing_v5.py).
+You can find my version of the algorithm I submitted and pass [leetcode graduation system](https://github.com/baites/examples/blob/master/coding/leetcode/longest_palindromic_substring_hashing_v5.py).
 
 ### Shortest palindrome
 
@@ -246,23 +246,38 @@ In this case the problem is to create the shortest possible palindrome from an i
 
 > **Problem:** Given a string \\|S\\|, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.[^3]
 
+One way to solve this problem is by locating the longest palindromic prefix of the input string. Then create the reverse of the input string and remove the longest palindromic suffix (that is the same as the longest palindromic prefix of the input string). Concatenate this modified reverse string with the original string, see figure below.
+
 It is easy to formulate a \\|O(L)\\| solution to this problem with hashing.
 
 * If the string is only one character, just return that character.
 * Select a random value of \\|x \in [1, p-1]\\| for some large prime \\|p\\|.
-* Precompute the values of \\|F_S[n]\\| and \\|B_R[n]\\| in arrays using proposition A and B.
-* Scan all possible substring starting from longest to the smallest ones and do:
-  * Check it it is a candidate to be a palindrome using proposition C.
-  * If it is a candidate verify if the substring is actually a palindrome.
-    * If it is a palindrome return the substring.
-    * Otherwise, keep scanning for other substring candidates.
+* Compute recursively the values of \\|F_S\\| and \\|B_R\\| using proposition A and B.
+  * In this case you do not need to save all the values in an array.
+  * Every time you detect a collision (\\|F_S = B_R\\|) save the location in a stack.
+* Scan the stack starting from its last value
+  * Check if the resulting prefix is palindrome.
+    * If it is a palindrome return the concatenation between the reverse string minus the palindromic, and the original string.
+    * Otherwise, keep scanning for another collision.
 
-## Modular arithmetic
+You can find my version of the algorithm I submitted and pass [leetcode graduation system](https://github.com/baites/examples/blob/master/coding/leetcode/shortest_palindrome.py).
 
-* \\|(a \text{ mod } p) \text{ mod } p = a \text{ mod } p\\|
-* \\|(a + b) \text{ mod } p =(a \text{ mod } p + b \text{ mod } p) \text{ mod } p\\|
-* \\|(a \times b) \text{ mod } p =(a \text{ mod } p \times b \text{ mod } p) \text{ mod } p\\|
-* \\|c = (a/b) \text{ mod } p \text{ iff exist a integer } c \text{ so } (b \times c) \text{ mod } p = a \\|[^3]
+<center>
+<p>
+  <img src="{{ site.url }}/assets/images/hash-shortest-palindromic-string.svg" width="70%" />
+</p>
+<p>Illustration of how to solve the shortest palindromic string problem.</p>
+</center>
+
+### Palindrome degree
+
+I will leave this problem as a homework. If you get stack you can take a look at this [effectively five line C++ submission in codeforces](https://codeforces.com/contest/7/submission/3686936). It should take you no time to read the code with the information provided by this blog.
+
+## Choosing a hash parameters
+
+In practice I do not randomly choose the value of the hash. Instead, I set its value to be \\|x = 31\\| because of alphabet size, and \\|p = 10^9+9\\| that is a [prime number](https://primes.utm.edu/curios/page.php?short=1000000009). This is following a recommendation from the cp-algorithms post[^6].
+
+In some occasions, people working with fix size integer choose \\|p = 10^64\\| to save time by avoiding the modular arithmetic. However, this is not recommended for competitive coding due to the fact it know how create colliding strings for any value of \\|x \in [1, p-1]\\|! In particular, this Zlobober's blog  shows how palindrome degree solution based on hashing if you avoid modular arithmetic[^8].
 
 ## References
 
@@ -271,7 +286,6 @@ It is easy to formulate a \\|O(L)\\| solution to this problem with hashing.
 [^3]: [Shortest palindrome](https://leetcode.com/problems/shortest-palindrome/).
 [^4]: [Palindrome Degree](https://codeforces.com/contest/7/problem/D).
 [^5]: Reference to the lemma demonstration.
-[^6]: [Manacher's Algorithm](https://www.hackerrank.com/topics/manachers-algorithm).
-[^8]: [GeekForGeek: Palindrome Substring Queries](https://www.geeksforgeeks.org/palindrome-substring-queries/)
-[^9]: [CP-Algorithms: String Hashing](https://cp-algorithms.com/string/string-hashing.html)
-[^10]: [GeeksForGeeks: modular division](https://www.geeksforgeeks.org/modular-division/)
+[^6]: [CP-Algorithms: String Hashing](https://cp-algorithms.com/string/string-hashing.html)
+[^7]: [Manacher's Algorithm](https://www.hackerrank.com/topics/manachers-algorithm).
+[^8]: [Anti-hash test](https://codeforces.com/blog/entry/4898)
