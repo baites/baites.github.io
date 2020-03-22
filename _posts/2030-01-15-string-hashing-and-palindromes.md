@@ -206,6 +206,8 @@ B_S[n] - x^{n-m} B_S[m] &= \sum^{L-1}_{i=L-n} S[i] x^{i-L+n} - x^{n-m} \sum^{L-1
 \end{aligned}
 %%</p>
 
+**Note**: In the last two equations for clarity, I avoided the use of modular arithmetic notation. I will leave the reader as a homework to verify the equalities are also true in modular arithmetic.
+
 In the previous section, I showed that for a palindromic substring, the forward hash value of the substring must be the same as the backward hash value for a substring in the reverse string or \\|F_S[m..n] = B_R[m..n]\\|. This statement is equivalent to say \\|x^mF_S[m..n] \equiv x^mB_R[m..n] (\text{mod }p)\\|, resulting in the following alternative proposition.
 
 > **Proposition (C):** For a substring \\|S[m..n]\\| we have that
