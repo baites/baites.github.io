@@ -278,7 +278,7 @@ I will leave this problem as homework. If you get stuck, you can take a look at 
 
 In practice, I do not randomly choose the value of the hash. Instead, I set its value to be \\|x = 31\\| because of alphabet size, and \\|p = 10^9+9\\| that is a [prime number](https://primes.utm.edu/curios/page.php?short=1000000009). I use these choices following a recommendation from the cp-algorithms post[^6].
 
-On some occasions, people working with language with fix-sized integer choose to use the integer overflow as an equivalent of modular arithmetic with \\|p = 10^64\\|. However, this is not recommended for competitive coding. People designing problems know how to create colliding strings for any value of \\|x \in [1, p-1]\\|! In particular, this Zlobober's blog shows how to break the solution to the palindrome degree problem based on hashing if you avoid modular arithmetic[^8].
+On some occasions, people working with language with fix-sized integer choose to use the integer overflow as an equivalent of modular arithmetic with \\|p = 10^{64}\\|. However, this is not recommended for competitive coding. People designing problems know how to create colliding strings for any value of \\|x \in [1, p-1]\\|! In particular, this Zlobober's blog shows how to break the solution to the palindrome degree problem based on hashing if you avoid modular arithmetic[^8].
 
 ## References
 
@@ -286,7 +286,7 @@ On some occasions, people working with language with fix-sized integer choose to
 [^2]: [LeetCode](https://leetcode.com/).
 [^3]: [Shortest palindrome](https://leetcode.com/problems/shortest-palindrome/).
 [^4]: [Palindrome Degree](https://codeforces.com/contest/7/problem/D).
-[^5]: Reference to the lemma demonstration.
+[^5]: [Data structure's Coursera course](https://www.coursera.org/learn/data-structures/lecture/KKYUc/hashing-strings).
 [^6]: [CP-Algorithms: String Hashing](https://cp-algorithms.com/string/string-hashing.html)
 [^7]: [Manacher's Algorithm](https://www.hackerrank.com/topics/manachers-algorithm).
 [^8]: [Anti-hash test](https://codeforces.com/blog/entry/4898)
