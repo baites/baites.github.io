@@ -13,25 +13,25 @@ javascript:
 
 ## Introduction
 
-This blog started after I came up with a way of using string hashing to solve the Longest palindromic substring problem[^1] from leetcode[^2]. I studied the use of hashing to detect palindrome because I did not see any reference in any of my usual books about algorithms. However, eventually, I found out that identifying palindromic strings with hashing is a relatively known tool used in competitive coding, as I will be referring throughout this post.
+This blog started after I came up with a way of using string hashing to solve the Longest palindromic substring problem[^1] from leetcode[^2]. I decided to document the use of hashing to detect palindromes because I did not find much information in my usual books about algorithms. However, eventually, I found out that identifying palindromic strings with hashing is a relatively well known tool used in competitive coding.
 
-In this blog post, I discuss how to hash string with polyhash, its properties, and its relationship with palindromes. I will also give the necessary steps to solve the following problem as an example of the power of this tool:
+In this blog post, I discuss how to hash string with polyhash, its properties, and its relationship with palindromes. I examples of problems that can be solved with this power of this tool:
 
 * Longest palindromic substring (a medium-difficult problem from leetcode[^2]).
 * Shortest palindrome (a hard-difficult problem from leetcode[^3]).
 * Palindrome degree (a codeforces' problem with difficulty x2200[^4])
 
-I want to be sure we are on the same page here, so let me define what a palindrome or a palindromic string is.
+I want to be sure that we are all on the same page here, so let me define what a palindrome or a palindromic string is.
 
 > **Definitions**: For a string \\|S\\| of length \\|L\\|, I define its **reverse string** to the string \\|R\\| of the same length such as \\|R[i] = S[L-i-1]\\|. A string \\|S\\| is **a palindrome** if it is equal to its reverse string or \\|S = R\\|.
 
-I this post, I am enumerating the elements of a string using a [zero-based numbering system](https://en.wikipedia.org/wiki/Zero-based_numbering).
+**Note**: I am enumerating the elements of a string using a [zero-based numbering system](https://en.wikipedia.org/wiki/Zero-based_numbering).
 
 ## Hashing strings with polyhash
 
 ### Polyhash definition
 
-Let me start with polyhash shown below.
+Let me start with the definition of polyhash.
 
 > **Definition:** Given a string \\|S\\| of length \\|L\\|, the polyhash \\|H(S)\\| of that string is give by
 >
@@ -39,7 +39,7 @@ Let me start with polyhash shown below.
 H_S = \left(\sum^{L-1}_{i=0} S[i] x^{i} \right) \text{mod } p
 %%</p>
 >
->where \\|p\\| is a prime (and usually large) number, and \\|x\\| some integer \\|x \in [1, p-1]\\|.
+>where \\|p\\| is a (and usually large) prime number, and \\|x\\| some integer \\|x \in [1, p-1]\\|.
 
 It is trivial to see that the polyhash values for identical strings are the same. The question is then what happens for two distinct strings. The following lemma answer this question by saying that the probability of two different strings having the same hash value is very low[^5].
 
@@ -57,15 +57,15 @@ Hashing and palindrome can be related as follow.
 \text{Prob}[H_{S} = H_{R}] \leq \frac{L}{p}
 %%</p>
 
-This result shows that, in principle, we can detect a palindrome \\|S\\| by comparing polyhash values of itself and its reverse \\|R\\| with arbitrarily high precision depending on the hash parameters.
+This result shows that, in principle, we can detect a palindrome \\|S\\| by comparing the hash values of itself and its reverse \\|R\\| with arbitrarily high precision depending on the selected prime \\|p\\|.
 
 ### Forward and backward hashes
 
-I just showed you that it is possible to detect palindrome using hashing. The remaining issue is how to extend this check to a substring of \\|S\\| efficiently.
+I just showed you that it is possible to detect palindrome using hashing. The remaining issue is how to extend this check to a substring of \\|S\\|.
 
-A first step to answer these questions requires the definition of two types of hash functions that I arbitrarily named *forward* and *backward* hashes.
+A first step to answer this question requires the definition of two types of hash functions that I arbitrarily named *forward* and *backward* hashes.
 
-> **Definition:** Given a string \\|S\\| I define its forward hashes \\|F_S[n]\\| as the hash values of the \\|n\\|-length prefix of \\|S\\| or  
+> **Definition:** I define for string \\|S\\| its forward hashes \\|F_S[n]\\| as the hash values of the \\|n\\|-length prefix of \\|S\\| or  
 >
 ><p>%%
 F_S[n] = \left(\sum^{n-1}_{i=0} S[i] x^{i} \right) \text{mod } p
@@ -75,7 +75,7 @@ F_S[n] = \left(\sum^{n-1}_{i=0} S[i] x^{i} \right) \text{mod } p
 
 It is easy to see that the hash value of a string \\|S\\| is \\|F_S[L]\\|.
 
-> **Definition:** Given a string \\|S\\| I define its backward hashes \\|B_S[n]\\| as the hash values of the \\|n\\|-size suffixes of \\|S\\| or  
+> **Definition:** I define for string \\|S\\| its backward hashes \\|B_S[n]\\| as the hash values of the \\|n\\|-size suffixes of \\|S\\| or  
 >
 ><p>%%
 B_S[n] = \left(\sum^{L-1}_{i=L-n} S[i] x^{i-L+n} \right) \text{mod } p
@@ -85,7 +85,7 @@ B_S[n] = \left(\sum^{L-1}_{i=L-n} S[i] x^{i-L+n} \right) \text{mod } p
 
 In a similar way as before, the hash value for string \\|S\\| is \\|B_S[L]\\|.
 
-Now if a string \\|S\\| is palindrome then its hash value \\|F_S[L]\\| is equal to the hash value of its reverse string \\|F_R[L]\\| that is also equal to \\|B_R[L]\\|.
+Now if a string \\|S\\| is palindrome then its hash value \\|F_S[L]\\| is equal to the hash value of its reverse string \\|F_R[L]\\|, that is also equal to \\|B_R[L]\\|.
 Therefore, for a palindrome \\|S\\| is true that \\|F_S[L] = B_R[L]\\|.
 
 More importantly, if \\|S\\| contains a palindromic prefix of size \\|n\\|, then it is easy to see that \\|F_S[n] = B_R[n]\\|, that is the \\|n\\|-th forward hash of the string has to be the same as the \\|n\\|-th backward hash of the reverse string. The following figure illustrates this point.
@@ -121,8 +121,6 @@ F_S[n+1] &= \left(\sum^{n}_{i=0} S[i] x^i \right) \text{mod } p \\
 \end{aligned}
 %%</p>
 
-**Note**: In this proof, I use all the properties of the [modular arithmetic](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic).
-
 > **Proposition (B):** The backwards hashes for the reverse string \\|R\\| of \\|S\\| are related by the following recurrence:
 >
 ><p>%%
@@ -140,27 +138,29 @@ B_R[n+1] &= \left(\sum^{L-1}_{i=L-n-1} S[L-i-1] x^{i-L+n+1} \right) \text{mod } 
 \end{aligned}
 %%</p>
 
+**Note**: For these proofs, I use all the properties of the [modular arithmetic](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic).
+
 ## Forward and backward hashes of a substring
 
-### Defining forward and backward hashes for substrings
+### Defining substring forward and backward hashes
 
-It is easy to generalize the notion of the forward hash of a substring \\|S[m..n]\\| as the hash value of the substring[^5].
+It is easy to generalize the notion of the forward hash but for substrings.
 
-> **Definition:** Given a substring \\|S[m..n]\\| I define its forward hash \\|F_S[m..n]\\| as the hash value given by
+> **Definition:** I define its forward hash \\|F_S[m..n]\\| as the hash value of the substring \\|S[m..n]\\|
 >
 ><p>%%
 F_S[m..n] = H(S[m..n]) = \left(\sum^{n-1}_{i=m} S[i] x^{i-m} \right) \text{mod } p
 %%</p>
 
-The same can be done for the backward hash of a substring \\|S[m..n]\\| as defined below.
+The backward hash for substrings is by analogy.
 
-> **Definition:** Given a substring \\|S[m..n]\\| I define its backward hash \\|B_S[m..n]\\| as the hash value given by
+> **Definition:** I define its backward hash \\|B_S[m..n]\\| as the hash value of the substring \\|S[L-n..L-m]\\|
 >
 ><p>%%
 B_S[m..n] = H(S[L-n..L-m]) = \left(\sum^{L-m-1}_{i=L-n} S[i] x^{i-L+n} \right) \text{mod } p
 %%</p>
 
-Under these definitions I get that \\|F_S[0..n] = F_S[n]\\| and \\|B_S[0..n] = B_S[n]\\|.
+These definitions are motivated so when \\|m = 0\\| we obtain the previous forward and backward hashes, meaning \\|F_S[0..n] = F_S[n]\\| and \\|B_S[0..n] = B_S[n]\\|.
 
 > **Proposition:** For a substring \\|S[m..n]\\| we have
 > * if it is a palindrome then
@@ -183,7 +183,7 @@ The proof of this proposition is done by combining these definitions of forward 
 
 ### Computing forward and backward hashes for substrings
 
-In this section, I show a way to compute the substring forward \\|F_S[m..n]\\| and backward \\|B_S[m..n]\\| hashes in constant time after precomputing the forward and backward hashes for the whole string. For the content in this section, I took a lot of inspiration from this excellent blog post in cp-algorithms[^6].
+Let me now show you a way to compute the forward and forward substring hashes \\|F_S[m..n]\\| and \\|B_S[m..n]\\| in constant time after precomputing the forward and backward hashes for the whole string. For the content in this section, I took a lot of inspiration from this excellent blog post in cp-algorithms[^6].
 
 In the case of the forward hashes of a substring \\|F_S[m..n]\\|, this computation is possible by first precomputing the full-forward hashes of a string \\|F_S[n]\\| and using the following relationship[^6].
 
@@ -206,7 +206,7 @@ B_S[n] - x^{n-m} B_S[m] &= \sum^{L-1}_{i=L-n} S[i] x^{i-L+n} - x^{n-m} \sum^{L-1
 \end{aligned}
 %%</p>
 
-**Note**: In the last two equations for clarity, I avoided the use of modular arithmetic notation. I will leave the reader as a homework to verify the equalities are also true in modular arithmetic.
+**Note**: In the last two equations for clarity, I avoided the use of modular arithmetic notation. I will leave the reader as a homework to verify the equalities are also true after accounting for the modular arithmetic.
 
 In the previous section, I showed that for a palindromic substring, the forward hash value of the substring must be the same as the backward hash value for a substring in the reverse string or \\|F_S[m..n] = B_R[m..n]\\|. This statement is equivalent to say \\|x^mF_S[m..n] \equiv x^mB_R[m..n] (\text{mod }p)\\|, resulting in the following alternative proposition.
 
@@ -230,7 +230,7 @@ Let's start with the problem definition.
 
 A simple solution to the problem has a time complexity of \\|O(L^3)\\| as it is explained [LeetCode](https://leetcode.com/problems/longest-palindromic-substring/solution/). This same site also shows several solutions in \\|O(L^2)\\| using dynamic programming or expand around center approach. There is also another solution \\|O(L)\\| known as the Manacher's Algorithm[^6].
 
-It is easy to come up with a solution in time \\|O(L^2)\\| for most of the cases.
+It is easy to come up with an alternative solution in \\|O(L^2)\\| time for most of the instances as follow:
 
 * Select a random value of \\|x \in [1, p-1]\\| for some large prime \\|p\\|.
 * Precompute the values of \\|F_S[n]\\| and \\|B_R[n]\\| in arrays using proposition A and B.
@@ -244,11 +244,11 @@ You can find my version of the algorithm I submitted and pass [leetcode graduati
 
 ### Shortest palindrome
 
-In this case, the problem is to create the shortest possible palindrome from an initial string.
+In this case I need to create the shortest possible palindrome from an initial string.
 
 > **Problem:** Given a string \\|S\\|, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.[^3]
 
-One way to solve this problem is by locating the longest palindromic prefix of the input string. Then create the reverse of the input string and remove the longest palindromic suffix (that is the same as the longest palindromic prefix of the input string). Concatenate this modified reverse string with the original string; see the figure below.
+One way to solve this problem is by locating the longest palindromic prefix of the input string. Then create the reverse of the input string and remove the longest palindromic suffix (that is the same as the longest palindromic prefix of the input string). Then concatenate modified reverse string with the original string; see the figure below.
 
 It is easy to formulate a \\|O(L)\\| solution to this problem with hashing.
 
@@ -260,7 +260,7 @@ It is easy to formulate a \\|O(L)\\| solution to this problem with hashing.
 * While the stack is not empty
   * Pop a collision location from the stack
   * Check if the resulting prefix ending in the given location is palindrome.
-    * If it is a palindrome, return the concatenation between the reverse string minus the palindromic plus the original string.
+    * If it is a palindrome, return the concatenation between the reverse string minus the palindromic suffix with the original string.
     * Otherwise, continue.
 
 You can find my version of the algorithm I submitted and pass [leetcode graduation system](https://github.com/baites/examples/blob/master/coding/leetcode/shortest_palindrome.py).
