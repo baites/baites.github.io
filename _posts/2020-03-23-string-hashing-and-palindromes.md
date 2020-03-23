@@ -1,7 +1,7 @@
 ---
 layout: post
 title: String hashing and palindromes
-date: 2030-01-15 08:00:00 -0400
+date: 2020-03-23 08:00:00 -0400
 author: Victor E. Bazterra
 categories: algorithms algorithm-analysis
 javascript:
@@ -142,7 +142,7 @@ B_R[n+1] &= \left(\sum^{L-1}_{i=L-n-1} S[L-i-1] x^{i-L+n+1} \right) \text{mod } 
 
 ## Forward and backward hashes of a substring
 
-### Defining substring forward and backward hashes
+### Defining forward and backward substring hashes
 
 It is easy to generalize the notion of the forward hash but for substrings.
 
@@ -172,20 +172,22 @@ These definitions are motivated so when \\|m = 0\\| we obtain the previous forwa
 >\text{Prob}(F_S[m..n] = B_R[m..n]) \leq (n-m)/p
 >%%</p>
 
-The proof of this proposition is done by combining these definitions of forward and backward substring hashes, the condition for a substring to be a palindrome, and the main polyhash lemma, see also next figure.
+The proof of this proposition is done by combining these definitions of forward and backward substring hashes, the condition for a substring to be a palindrome, and the main polyhash lemma. The next figure shows an example for some generic palindromic substring.
 
 <center>
 <p>
   <img src="{{ site.url }}/assets/images/hash-palindromic-substring.svg" width="50%" />
 </p>
-<p>Detecting palindromic substring using forward and backward hashes of substrings of S and R.</p>
+<p>Detecting palindromic substring using forward and backward substring hashes of S and R.</p>
 </center>
 
-### Computing forward and backward hashes for substrings
+### Computing forward and backward substring hashes
 
 Let me now show you a way to compute the forward and forward substring hashes \\|F_S[m..n]\\| and \\|B_S[m..n]\\| in constant time after precomputing the forward and backward hashes for the whole string. For the content in this section, I took a lot of inspiration from this excellent blog post in cp-algorithms[^6].
 
-In the case of the forward hashes of a substring \\|F_S[m..n]\\|, this computation is possible by first precomputing the full-forward hashes of a string \\|F_S[n]\\| and using the following relationship[^6].
+**Note**: At this moment I am discussing the value of \\|B_S[m..n]\\| for a generic string \\|S\\| and not necessarily its reverse \\|R\\|. I discuss the use of the value \\|B_R[m..n]\\| (for the reverse of the string \\|S\\|) in the last proposition in this section.
+
+In the case of the forward substring hashes \\|F_S[m..n]\\|, this computation is possible by first precomputing the full-forward hashes of a string \\|F_S[n]\\| and using the following relationship[^6].
 
 <p>%%
 \begin{aligned}
@@ -195,7 +197,7 @@ F_S[n] - F_S[m] &= \sum^{n-1}_{i=0} S[i] x^{i} - \sum^{m-1}_{i=0} S[i] x^{i} = \
 \end{aligned}
 %%</p>
 
-In the case of the backward hashes of a substring \\|B_S[m..n]\\|, this computation is possible by first precomputing the full backward hashes of a string \\|B_S[n]\\| and using the following relationship.
+In the case of the backward substring hashes \\|B_S[m..n]\\|, this computation is possible by first precomputing the full backward hashes of a string \\|B_S[n]\\| and using the following relationship.
 
 <p>%%
 \begin{aligned}
@@ -220,7 +222,7 @@ In the previous section, I showed that for a palindromic substring, the forward 
 >\text{Prob}[F_S[n] - F_S[m] \equiv x^m B_R[n] - x^n B_R[m] (\text{mod }p)] \leq (n-m)/p
 >%%</p>
 
-## Practical applications
+## Applications in algorithms
 
 ### Longest palindromic substring
 
@@ -280,7 +282,7 @@ I will leave this problem as homework. If you get stuck, you can take a look at 
 
 In practice, I do not randomly choose the value of the hash. Instead, I set its value to be \\|x = 31\\| because of alphabet size, and \\|p = 10^9+9\\| that is a [prime number](https://primes.utm.edu/curios/page.php?short=1000000009). I use these choices following a recommendation from the cp-algorithms post[^6].
 
-On some occasions, people working with language with fix-sized integer choose to use the integer overflow as an equivalent of modular arithmetic with \\|p = 10^{64}\\|. However, this is not recommended for competitive coding. People designing problems know how to create colliding strings for any value of \\|x \in [1, p-1]\\|! In particular, this Zlobober's blog shows how to break the solution to the palindrome degree problem based on hashing if you avoid modular arithmetic[^8].
+On some occasions, people working with language with fix-sized integer choose to use the integer overflow as an equivalent of modular arithmetic with \\|p = 10^{64}\\|. However, this might not be a good idea for competitive coding. People designing problems know how to create colliding strings for any value of \\|x \in [1, p-1]\\|! In particular, this Zlobober's blog shows how to break the solution to the palindrome degree problem based on hashing if you avoid modular arithmetic[^8].
 
 ## References
 
