@@ -13,7 +13,7 @@ categories: computer-science patterns
 
 This post is supporting material for an answer I give to my original question in StackOverflow:
 
-[What are the measures to call a Python code a policy-based design?](https://stackoverflow.com/questions/57365189/what-are-the-measures-to-call-a-python-code-a-policy-based-design)
+* [What are the measures to call a Python code a policy-based design?](https://stackoverflow.com/questions/57365189/what-are-the-measures-to-call-a-python-code-a-policy-based-design)
 
 The answer is the product of what I learn based on my research and some comments from StackOverflow.
 

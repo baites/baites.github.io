@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Constant and frozen variables in Python"
+title: "Constant and frozen variables in python"
 date: 2019-08-16 08:00:00 -0400
 author: Victor E. Bazterra
 categories: computer-science idioms

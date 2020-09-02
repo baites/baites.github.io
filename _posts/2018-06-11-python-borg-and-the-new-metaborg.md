@@ -6,6 +6,8 @@ author: Victor E. Bazterra
 categories: computer-science patterns
 ---
 
+# Introduction
+
 This is the second post of a series dedicated to discuss singleton-like patterns in python. As a reference you can find the first post at
 
 * [Python singletons]({% post_url 2018-05-28-python-singletons %})
