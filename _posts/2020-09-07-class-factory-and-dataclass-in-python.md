@@ -124,7 +124,7 @@ Likely for me, python developers were listening to my prayers and created python
 
 # Solution using data class
 
-Data classes are a relatively recent addition to python three define in PEP-557[^7]. I will not discuss all the features that are part of the data classes. Instead, I will show how to implement my simple examples using the **@dataclass** class decorator.
+Data classes are a relatively recent addition to python three define in PEP-557[^7]. I will not discuss all the features that are part of the data classes. You can read about it at your own leisure[^8]. Instead, I will show how to implement my simple examples using the **@dataclass** class decorator.
 
 In the first example, I can write it as follow.
 
@@ -165,3 +165,5 @@ I use a class factory in an attempt to improve python syntax to define classes w
 [^6]: Imaging doing this in a technical interview on a whiteboard. How many silly syntax mistakes can occur you can make that would like rather bad for you.
 
 [^7]: [PEP 557 -- Data Classes](https://www.python.org/dev/peps/pep-0557/)
+
+[^8]: [The Ultimate Guide to Data Classes in Python 3.7](https://realpython.com/python-data-classes/) or [dataclasses — Data Classes](https://docs.python.org/3/library/dataclasses.html).
