@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Class factory and dataclass in python"
-date: 2020-09-07 06:00:00 -0400
+date: 2020-09-08 08:00:00 -0400
 author: Victor E. Bazterra
 categories: computer-science patterns
 ---
