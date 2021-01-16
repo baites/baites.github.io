@@ -3,13 +3,15 @@ layout: post
 title: "Policy-based design in python"
 date: 2019-08-02 08:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science patterns
+categories: computer-science patterns python-policy-based-mixins-series
 ---
+
+| This blog is part of a series dedicated to policy-based and mixins approaches in python. [In the Series page you can find all the posts of the series]({{ 'series#python-policy-based-mixins-series' | relative_url}} ). |
 
 * TOC
 {:toc}
 
-## Policy-based design
+# Policy-based design
 
 Policy-based design is an approach[^1] pioneer (as far as I know) in the book Modern C++ Design by Andrei Alexandrescu[^2]. Most people believe that this idiom can only be implemented in C++ because it looks like as a compile-time analog of Strategy pattern that works at runtime[^3]. As a result, this pattern may not exist for interpreted languages such as python[^4]. Before I move forward with this post, I need to clarify what **I call** policy-based design.
 
@@ -17,7 +19,7 @@ For me, the goal of policy-based design is to provide a collection of classes wh
 
 In the following section, I am providing the definitions to accomplish this in Python. When possible, I will show what I think is the closest equivalent on C++ as reference.
 
-## Policy and host classes
+# Policy and host classes
 
 Under this pattern, classes are divided between *policy classes* and *host classes*. Policy classes implement modifications to the behavior or to the interface of a host class by inheritance. For example, here it is the Python code for the *HelloWorld* example found in the Wikipedia entry[^5].
 
@@ -66,7 +68,7 @@ hw.run() # prints "Hei maailma!"
 
 The **EnglishLanguage** and the **FinnishLanguage** are two policy classes that implement the *"Hello World!"* messages in different languages. The class **PrintOutput** is for now the only class that implements an output policy for the message. Each of these policy classes affects the host class **HelloWorld** throughout inheritance at coding time. It is possible, therefore, for a developer to customize the **HelloWorld** class for English or Finnish, and also for a particular output class based on the project requirements.
 
-## Strategy and Dependency Injection
+# Strategy and Dependency Injection
 
 The previous code can be implemented using a Strategy or Dependency Injection pattern in Python[^6] if we are only interesting of changing the behavior of the **HelloWorld**:
 
@@ -140,13 +142,13 @@ The nature of the class **HelloWorldEnglish** is not the same as before, because
 
 ***Policy-based design allows us to create new classes (not only new functionalities) using as building block predefine host and policy classes.***
 
-## Elements of policy-based designed
+# Elements of policy-based designed
 
-### Multiple inheritance
+## Multiple inheritance
 
 Multiple inheritance is a feature in both C++ and Python, so no need to say more.
 
-### Postpone inheritance
+## Postpone inheritance
 
 Policy-based design requires postponing the definition of the inheritance relationship between host and policy classes until coding time. You can accomplish this in C++ using templates.
 
@@ -170,7 +172,7 @@ def HostClass(Policy1, Policy2=Default2, ...):
 
 The function **HostClass** is a factory of the "*class _*". I am using the class name *"_"* to signal that the name of the class inside of the factory is irrelevant. I define the structure of the host class inside of the factory. However, only when calling the factory function, the host class inherits from the policy classes.
 
-### Class instantiation
+## Class instantiation
 
 I say that the host class is instantiated when inherits from policy classes. This instantiation is done in C++ directly when coding or by using **typedef**.
 
@@ -184,7 +186,7 @@ In Python, I do the class instantiation by calling the factory function and pass
 NewClass = HostClass(Policy1Class, Policy2Class, ...)
 {% endhighlight %}
 
-### A policy can be an instantiated host class
+## A policy can be an instantiated host class
 
 An instantiated host class can also be a policy class. As a result, it is possible to create new policies by the composition of multiple successions host and policy classes, as shown below.
 
@@ -231,7 +233,7 @@ message.run()
 {% endhighlight %}
 **Note**: find full example in my [github](https://github.com/baites/examples/blob/master/idioms/python/PolicyBasedDesignEx3.py).
 
-## An example in a more realistic application
+# An example in a more realistic application
 
 One example I can show when I am applying policy-based design is my implementation of an [interval tree](https://github.com/baites/pyds/blob/master/examples/avl_interval_tree.py). An interval tree is a specialized binary tree that supports operation in a dynamic set of closed intervals[^7]. In particular, this tree needs an extra function in the interface that I called *interval(...)*. This function takes as input an interval and returns a node in the tree representing overlapping interval or none otherwise.
 
@@ -266,13 +268,13 @@ tree = Tree()
 {% endhighlight %}
 **Note**: find full example in my [pyds/simple_internal_tree](https://github.com/baites/pyds/blob/master/examples/simple_interval_tree.py).
 
-## Final remarks
+# Final remarks
 
 I hope I was able to convince you that it is possible to have a policy-based design in Python. However, likely, this approach is not as attractive as it is in C++ due to the fact Python is an interpreted language, and there might be powerful runtime alternatives. There is also a certain amount of controversy in the C++ community about this approach (do not take my word for it, just google it).
 
 Therefore, remember to think twice if you need this approach in Python because as always ***with great power comes great responsibility***![^8]
 
-## Update
+# Update
 
 Find my entry in stackoverflow with the question:
 
@@ -280,7 +282,7 @@ Find my entry in stackoverflow with the question:
 
 I will be soon answer (my own question) with a summary of all I found about this issue. However, before that I am planning to write a accompanying post as a follow up of this blog.
 
-## References
+# References
 
 [^1]: [Wikipedia: Modern C++ Design](https://en.wikipedia.org/wiki/Modern_C%2B%2B_Design#Policy-based_design).
 

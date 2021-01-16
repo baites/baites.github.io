@@ -3,10 +3,12 @@ layout: post
 title: Fibonacci recursive and iterative algorithms
 date: 2017-10-23 13:20:00 -0400
 author: Victor E. Bazterra
-categories: algorithms computer-science
+categories: algorithms computer-science fibonacci-series
 javascript:
   katex: true
 ---
+
+| This blog is part of a series dedicated to Fibonacci sequence. [In the Series page you can find the other posts of the series]({{ 'series#fibonacci-series' | relative_url }} ). |
 
 The subject of this blog started as a simple coding exercise to illustrate to some of my coworkers one of my early intuition about recursive and iterative algorithms.
 
@@ -18,7 +20,7 @@ Since my teens I had a conjecture, that I would call **Bazterra's conjecture #1*
 
 The relationship between recursive and iterative algorithms is by no means anything new, and it's currently a well-understood concept. Moreover, there are heuristics rules of when is reasonable to use recursive or iterative algorithm based on the problem instance sizes, and language characteristics used in its implementation[^2].
 
-For example, you find a simple [recursive](https://github.com/baites/examples/blob/master/algorithms/javascript/RecursiveFibonacci.js) and [iterative](https://github.com/baites/examples/blob/master/algorithms/javascript/IterativeFibonacci.js) versions written in javascript to compute the *Fibonacci* series in my [example GitHub repo](https://github.com/baites/examples). The Fibonacci series is a sequence of numbers defined by the following linear recurrence equation
+You can find a simple [recursive](https://github.com/baites/examples/blob/master/algorithms/javascript/RecursiveFibonacci.js) and [iterative](https://github.com/baites/examples/blob/master/algorithms/javascript/IterativeFibonacci.js) versions written in javascript to compute the *Fibonacci* series in my [example GitHub repo](https://github.com/baites/examples). The Fibonacci series is a sequence of numbers defined by the following linear recurrence equation
 
 <p>%%
 f_n = f_{n-1} + f_{n-2} \text{   for any   } n > 1
@@ -40,7 +42,7 @@ Because I am not formally trained in algorithms, I thought to myself *how in the
 
 In my **next post**, I will try to break this mystical spell by showing that indeed this formula can be used to compute Fibonacci series.
 
-#### References
+# References
 
 [^1]: This will be one of my recurrent jokes in this blog, inspired by another Argentinian-American physics know to come up with *"simple conjectures"* such as [AdS/CFT correspondence](https://en.wikipedia.org/wiki/AdS/CFT_correspondence) or more recently [ER=EPR](https://en.wikipedia.org/wiki/ER%3DEPR).
 

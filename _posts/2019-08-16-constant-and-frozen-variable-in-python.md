@@ -9,7 +9,7 @@ categories: computer-science idioms
 * TOC
 {:toc}
 
-## Wait what, constants in Python?
+# Wait what, constants in Python?
 
 This post in the result a question I found in StackOverflow and some research I was doing about Python idioms. The problem is basically *how do I create a constant in Python?*.[^1]
 
@@ -21,7 +21,7 @@ In this post, I will call a constant variable to a constant reference to values 
 
 Now, without further ado, here are the idioms.
 
-## A space of constants (SpaceConstants)
+# A space of constants (SpaceConstants)
 
 This idiom creates what looks like a namespace of constant variables (a.k.a. SpaceConstants). It is a modification of a code snippet by Alex[^2] to avoid the use of module objects. In particular, this modification uses what I call a class factory because within **SpaceConstants** function, a class called **SpaceConstants** is defined, and an instance of it is returned.
 
@@ -53,7 +53,7 @@ print(sc.y) # print "{'name': 'yprime', 'value': 2}"
 sc.y = {} # raise "AttributeError: Cannot reassign members"
 {% endhighlight %}
 
-## A space of frozen values (SpaceFrozenValues)
+# A space of frozen values (SpaceFrozenValues)
 
 This next idiom is a modification of the **SpaceConstants** in where referenced mutable objects are frozen. This implementation exploits what I call *shared closure* between **setattr** and **getattr** functions[^5]. The value of the mutable object is copy and referenced by variable *cache* define inside of the function shared closure. It forms what I call a *closure protected copy of a mutable object*[^6].
 
@@ -96,7 +96,7 @@ print(fv.y) # print "{'name': 'y', 'value': 2}"
 fv.y = {} # raise "AttributeError: Cannot reassign members"
 {% endhighlight %}
 
-## A constant space (ConstantSpace)
+# A constant space (ConstantSpace)
 
 This idiom is an immutable namespace of constant variables or **ConstantSpace**. It is a combination of awesomely simple Jon Betts' answer in stackoverflow[^7] with a class factory[^3].
 
@@ -120,7 +120,7 @@ cs.y = {} # raise "AttributeError: 'ConstantSpace' object attribute 'x' is read-
 cs.z = 3 # raise "AttributeError: 'ConstantSpace' object has no attribute 'z'"
 {% endhighlight %}
 
-## A frozen space (FrozenSpace)
+# A frozen space (FrozenSpace)
 
 This idiom is an immutable namespace of frozen variables or **FrozenSpace**. It is derived from the previous pattern by making each variable a *protected property by closure*[^6] of the generated **FrozenSpace** class.
 
@@ -154,7 +154,7 @@ fs.z = 3 # raise "AttributeError: 'FrozenSpace' object has no attribute 'z'"
 {% endhighlight %}
 
 
-## References
+# References
 
 [^1]: [How do I create a constant in Python?](https://stackoverflow.com/questions/2682745/how-do-i-create-a-constant-in-python).
 [^2]: [Constants in Python (Python Recipe)](http://code.activestate.com/recipes/65207-constants-in-python/)

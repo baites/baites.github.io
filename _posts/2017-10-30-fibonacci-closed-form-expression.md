@@ -3,10 +3,12 @@ layout: post
 title: Fibonacci closed-form expression
 date: 2017-10-30 10:30:00 -0400
 author: Victor E. Bazterra
-categories: computer-science math
+categories: computer-science math fibonacci-series
 javascript:
   katex: true
 ---
+
+| This blog is part of a series dedicated to Fibonacci sequence. [In the Series page you can find the other posts of the series]({{ 'series#fibonacci-series' | relative_url }} ). |
 
 In a [previous blog]({% post_url 2017-10-23-fibonacci-recursive-and-iterative-algorithms %}) I discussed different ways of implementing Fibonacci series, finishing with the mind-blowing and straightforward closed-form expression.
 
@@ -68,6 +70,6 @@ where \\|[\cdot]\\| denote round to the closest integer.
 
 Now the question is, is it possible to derive this formula without being assisted by the ansatz? Can we gain more insight into why this particular closed form? I am planning to explore these questions in future blogs.
 
-#### References
+# References
 
 [^1]: This is by no means new, see for example the [wikipedia entry](https://en.wikipedia.org/wiki/Fibonacci_number). However, the particular form I choose to prove it, it was written by me without using external references.

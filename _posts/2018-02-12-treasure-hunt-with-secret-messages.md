@@ -3,8 +3,10 @@ layout: post
 title: Treasure hunt with secret messages
 date: 2018-02-12 08:00:00 -0400
 author: Victor E. Bazterra
-categories: cryptography recreational
+categories: cryptography recreational-series
 ---
+
+| This blog is part of a series dedicated to recreational topics for my daughter. [In the Series page you can find all the posts of the series]({{ 'series#recreational-series' | relative_url }} ). |
 
 **My daughter in her late 5-year old**: *daddy, you know there is a language that can be used to write secrets.*
 

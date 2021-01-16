@@ -3,8 +3,10 @@ layout: post
 title: Getting some closures
 date: 2017-11-21 05:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science idioms
+categories: computer-science idioms closure-series
 ---
+
+| This blog is part of a series dedicated to function closures. [In the Series page you can find the other posts of the series]({{ 'series#closure-series' | relative_url }} ). |
 
 I find the notion of closures fundamental and a bit trivial in high-level languages with *first-class function*. So, I was surprised seeing a large number of forums in where they are discussed, and also how it is used in for job interviews that requires coding in a high-level language (in particular for javascript).
 
@@ -65,7 +67,7 @@ One question that naturally arises is how the variables are captured, by copy/va
 
 A follow-up question is then: what about the life cycle of those variables capture in closures? The answer to that question will be the topic of my next post.
 
-#### References
+# References
 
 [^1]: [Closure (computer programming).](https://en.wikipedia.org/wiki/Closure_(computer_programming))
 

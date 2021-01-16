@@ -3,18 +3,14 @@ layout: post
 title: Are closures trivial?
 date: 2017-12-11 08:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science idioms
+categories: computer-science idioms closure-series
 ---
 
-This is the fourth post of a series dedicated to closures. You can find the other post links in chronological order below.
+| This blog is part of a series dedicated to function closures. [In the Series page you can find the other posts of the series]({{ 'series#closure-series' | relative_url }} ). |
 
-* [Getting some closures]({% post_url 2017-11-20-getting-some-closures %})
-* [Variable lifetime and closures]({% post_url 2017-11-27-variable-lifetime-and-closures %})
-* [Made up patterns with closures]({% post_url 2017-12-04-made-up-patterns-with-closures %})
+In the initial post of the series, I said that I found closures *a bit trivial* for a high-level language. However, I ended up writing *four blogs* about them. This last post is to explain what I meant by this statement to avoid looking like as a *self-contradicting arrogant*.
 
-In my initial post, I said that I found closures *a bit trivial* for a high-level language. However, I ended up writing *four blogs* about them. This last post is to explain what I meant by this statement to avoid looking like as a *self-contradicting arrogant*.
-
-> **Proposition**: closures are an avoidable (a necessary condition) when using **function objects**. By function objects I mean the ability of passing, creating, and returning functions from one function scope to another. For example, this is the case for languages in where function are first-class objects, or they support the use of lambda or anonymous functions.
+> **Proposition**: closures are unavailable (a necessary condition) when using **function objects**. By function objects I mean the ability of passing, creating, and returning functions from one function scope to another. For example, this is the case for languages in where function are first-class objects, or they support the use of lambda or anonymous functions.
 
 Imagine in javascript passing callback functions without a closure. Due to the asynchronous nature of most of the applications in where javascript performs well, this could mean that callback's environment is inconsistent or undefined at the time it is called. The same applies when passing and returning functions in general, where for most scenarios, their execution is delegated to other scopes entirely different to those in where functions were created. It seems as the only way to have a consistent behavior with object functions is by having closures.
 

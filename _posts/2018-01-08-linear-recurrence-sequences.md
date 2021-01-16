@@ -3,20 +3,17 @@ layout: post
 title: Linear recurrence sequences
 date: 2018-01-09 08:00:00 -0400
 author: Victor E. Bazterra
-categories: algorithm-analysis computer-science math
+categories: algorithm-analysis computer-science math linear-recurrence-series
 javascript:
   katex: true
   pseudocode: true  
 ---
 
-These notes are the result of how I lost my mind when researching the Fibonacci sequence. I wrote already four posts about it, in where I discussed how to derive a closed form to compute the whole series, see below.
+| This blog is part of a series dedicated to linear recurrence sequences. [In the Series page you can find all the posts of the series]({{ 'series#linear-recurrence-series' | relative_url }}). |
 
-* [Fibonacci recursive and iterative algorithms]({% post_url 2017-10-23-fibonacci-recursive-and-iterative-algorithms %})
-* [Fibonacci closed-form expression]({% post_url 2017-10-30-fibonacci-closed-form-expression %})
-* [Fibonacci closed-from expression without ansatz]({% post_url 2017-11-06-fibonacci-closed-form-expression-wo-ansatz %})
-* [Fibonacci excessive recursion]({% post_url 2017-11-13-fibonacci-excessive-recursion %})
+These notes are the result of how I lost my mind when researching the Fibonacci sequence. [You can find all the posts dedicated to Fibonacci sequence in the Series page.]({{ 'series#fibonacci-series' | relative_url }}). 
 
-Around the time I was writing the third blog, it was easy to see that procedure I was following to derive the closed form would also work for ANY linear recurrence sequence. I thought it would be neat (maybe even original) idea to try to create an algorithm to derive the closed form for any linear recurrence sequence and I started working on it. But first, let me define what I mean for a linear recurrence sequence.
+In those blogs I discussed how to derive a closed form to compute the whole series. Around the time I was writing the third blog, it was easy to see that procedure I was following to derive the closed form would also work for ANY linear recurrence sequence. I thought it would be neat (maybe even original) idea to try to create an algorithm to derive the closed form for any linear recurrence sequence and I started working on it. But first, let me define what I mean for a linear recurrence sequence.
 
 > **Definition**: a M-linear recurrence sequence is a sequence of numbers given by the following function
 
@@ -114,7 +111,7 @@ If you are unsure of the previous steps, do not worry. In the next post, I will 
 \end{algorithm}
 " %}
 
-#### References ####
+# References
 
 [^1]: [Concrete Mathematics: A Foundation for Computer Science (2nd Edition)](https://www.amazon.com/Concrete-Mathematics-Foundation-Computer-Science/dp/0201558025).
 

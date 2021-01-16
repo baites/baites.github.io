@@ -3,13 +3,10 @@ layout: post
 title: Made up patterns with closures
 date: 2017-12-04 10:30:00 -0400
 author: Victor E. Bazterra
-categories: computer-science idioms
+categories: computer-science idioms closure-series
 ---
 
-This is the third post related to my playing around with closures. Here are links to the previous posts.
-
-* [Getting some closures]({% post_url 2017-11-20-getting-some-closures %})
-* [Variable lifetime and closures]({% post_url 2017-11-27-variable-lifetime-and-closures %})
+| This blog is part of a series dedicated to function closures. [In the Series page you can find the other posts of the series]({{ 'series#closure-series' | relative_url }} ). |
 
 In this post, I will show some made up patterns based on closures. I created these patterns by myself when research closures. It is likely, however, that they are already known and described previously by somebody else. Also, it is expected they are not useful at all. Please do not expect much of them; I just made them for fun.
 
@@ -53,6 +50,6 @@ The variable *constant* is a property of the class, with a reference to the *ano
 
 I also worked out javascript examples for [freezing mutables](https://github.com/baites/examples/blob/master/idioms/javascript/FreezingMutableByClosure.js) and [constant properties](https://github.com/baites/examples/blob/master/idioms/javascript/ConstantPropertyByClosure.js). It is important to realize in this case, it is that for javascript *freezing a mutable* is equal to *set constant properties* of an object. This is because the global namespace in javascript is implemented as an object named **global**. By adding a constant property in *global* using the value pointed by *mutable*, we effectively create a frozen copy of this value.
 
-#### References
+# References
 
 [^1]: If you like to read more properties in python, I would recommend *Python 3: Object-oriented Programming* by *Dusty Phillips*, ch. 5, pg 129. For javascript you can look at *JavaScript: the definitive guide* by *David Flanagan*, ch. 6, pg. 130.

@@ -11,7 +11,7 @@ javascript:
 * TOC
 {:toc}
 
-## Introduction
+# Introduction
 
 This blog started after I came up with a way of using string hashing to solve the Longest palindromic substring problem[^1] from leetcode[^2]. I decided to document the use of hashing to detect palindromes because I did not find much information in my usual books about algorithms. However, eventually, I found out that identifying palindromic strings with hashing is a relatively well known tool used in competitive coding.
 
@@ -27,9 +27,9 @@ I want to be sure that we are all on the same page here, so let me define what a
 
 **Note**: I am enumerating the elements of a string using a [zero-based numbering system](https://en.wikipedia.org/wiki/Zero-based_numbering).
 
-## Hashing strings with polyhash
+# Hashing strings with polyhash
 
-### Polyhash definition
+## Polyhash definition
 
 Let me start with the definition of polyhash.
 
@@ -59,7 +59,7 @@ Hashing and palindrome can be related as follow.
 
 This result shows that, in principle, we can detect a palindrome \\|S\\| by comparing the hash values of itself and its reverse \\|R\\| with arbitrarily high precision depending on the selected prime \\|p\\|.
 
-### Forward and backward hashes
+## Forward and backward hashes
 
 I just showed you that it is possible to detect palindrome using hashing. The remaining issue is how to extend this check to a substring of \\|S\\|.
 
@@ -99,7 +99,7 @@ More importantly, if \\|S\\| contains a palindromic prefix of size \\|n\\|, then
 
 Conversely, the probability for a string of having non-palindromic prefix of size \\|n\\| such as \\|F_S[n] = B_R[n]\\| cannot be higher than \\|n/p\\| based on the corollary of the previous section.
 
-### Computing forward and backward hashes
+## Computing forward and backward hashes
 
 So far, I found a way of detecting any palindromic prefixes using forward and backward hashing. So, in this section, I will concentrate on how to compute those hashes efficiently.
 
@@ -140,9 +140,9 @@ B_R[n+1] &= \left(\sum^{L-1}_{i=L-n-1} S[L-i-1] x^{i-L+n+1} \right) \text{mod } 
 
 **Note**: For these proofs, I use all the properties of the [modular arithmetic](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic).
 
-## Forward and backward hashes of a substring
+# Forward and backward hashes of a substring
 
-### Defining forward and backward substring hashes
+## Defining forward and backward substring hashes
 
 It is easy to generalize the notion of the forward hash but for substrings.
 
@@ -181,7 +181,7 @@ The proof of this proposition is done by combining these definitions of forward 
 <p>Detecting palindromic substring using forward and backward substring hashes of S and R.</p>
 </center>
 
-### Computing forward and backward substring hashes
+## Computing forward and backward substring hashes
 
 Let me now show you a way to compute the forward and forward substring hashes \\|F_S[m..n]\\| and \\|B_S[m..n]\\| in constant time after precomputing the forward and backward hashes for the whole string. For the content in this section, I took a lot of inspiration from this excellent blog post in cp-algorithms[^6].
 
@@ -222,9 +222,9 @@ In the previous section, I showed that for a palindromic substring, the forward 
 >\text{Prob}[F_S[n] - F_S[m] \equiv x^m B_R[n] - x^n B_R[m] (\text{mod }p)] \leq (n-m)/p
 >%%</p>
 
-## Applications in algorithms
+# Applications in algorithms
 
-### Longest palindromic substring
+## Longest palindromic substring
 
 Let's start with the problem definition.
 
@@ -244,7 +244,7 @@ It is easy to come up with an alternative solution in \\|O(L^2)\\| time for most
 
 You can find my version of the algorithm I submitted and pass [leetcode graduation system](https://github.com/baites/examples/blob/master/coding/leetcode/longest_palindromic_substring_hashing_v5.py).
 
-### Shortest palindrome
+## Shortest palindrome
 
 In this case I need to create the shortest possible palindrome from an initial string.
 
@@ -274,17 +274,17 @@ You can find my version of the algorithm I submitted and pass [leetcode graduati
 <p>Illustration of how to solve the shortest palindromic string problem.</p>
 </center>
 
-### Palindrome degree
+## Palindrome degree
 
 I will leave this problem as homework. If you get stuck, you can take a look at this [effectively five-line C++ submission in codeforces](https://codeforces.com/contest/7/submission/3686936). It should take you no time to read the code with the information provided by this blog.
 
-## Choosing hash parameters
+# Choosing hash parameters
 
 In practice, I do not randomly choose the value of the hash. Instead, I set its value to be \\|x = 31\\| because of alphabet size, and \\|p = 10^9+9\\| that is a [prime number](https://primes.utm.edu/curios/page.php?short=1000000009). I use these choices following a recommendation from the cp-algorithms post[^6].
 
 On some occasions, people working with language with fix-sized integer choose to use the integer overflow as an equivalent of modular arithmetic with \\|p = 10^{64}\\|. However, this might not be a good idea for competitive coding. People designing problems know how to create colliding strings for any value of \\|x \in [1, p-1]\\|! In particular, this Zlobober's blog shows how to break the solution to the palindrome degree problem based on hashing if you avoid modular arithmetic[^8].
 
-## References
+# References
 
 [^1]: [Longest palindromic substring](https://leetcode.com/problems/longest-palindromic-substring/)
 [^2]: [LeetCode](https://leetcode.com/).

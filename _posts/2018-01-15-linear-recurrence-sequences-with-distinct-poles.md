@@ -3,11 +3,13 @@ layout: post
 title: Linear recurrence sequences with distinct poles
 date: 2018-01-15 08:00:00 -0400
 author: Victor E. Bazterra
-categories: algorithm-analysis computer-science math
+categories: algorithm-analysis computer-science math linear-recurrence-series
 javascript:
   katex: true
   pseudocode: true
 ---
+
+| This blog is part of a series dedicated to linear recurrence sequences. [In the Series page you can find all the posts of the series]({{ 'series#linear-recurrence-series' | relative_url }} ). |
 
 This post is the continuation of the previous post with the end goal of computing a closed form for any linear recurrence sequence. Details about what are these sequences and how to compute their generating function are in the first blog:
 
@@ -94,7 +96,7 @@ When I started working on this project, I dreamed that I could create some gener
 
 Anyway, I realized that most of the sequence I could think of (the trivial ones) could be found in a beautiful resource know as *The On-Line Encyclopedia of Integer Sequences*[^4]. They provide information about the sequence themselves, and also other data as their generating function and more. I used this database to test the code on several sequences. Within the code comments, I provide the identification code for each sequence within the database so that you can verify the results by yourselves.
 
-#### References ####
+# References
 
 [^1]: [Concrete Mathematics: A Foundation for Computer Science (2nd Edition)](https://www.amazon.com/Concrete-Mathematics-Foundation-Computer-Science/dp/0201558025).
 

@@ -3,11 +3,13 @@ layout: post
 title: Close-form for any linear recurrence sequences?
 date: 2018-01-22 08:00:00 -0400
 author: Victor E. Bazterra
-categories: algorithm-analysis computer-science math
+categories: algorithm-analysis computer-science math linear-recurrence-series
 javascript:
   katex: true
   pseudocode: true
 ---
+
+| This blog is part of a series dedicated to linear recurrence sequences. [In the Series page you can find all the posts of the series]({{ 'series#linear-recurrence-series' | relative_url }} ). |
 
 In previous posts, I discussed what is a linear recurrence sequence, and how to compute close-form expression to generate them in the case their generating functions have distinct poles:
 

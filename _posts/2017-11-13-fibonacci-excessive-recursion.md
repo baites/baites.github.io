@@ -3,18 +3,14 @@ layout: post
 title: Fibonacci excessive recursion
 date: 2017-11-13 11:20:00 -0400
 author: Victor E. Bazterra
-categories: algorithm-analysis computer-science
+categories: algorithm-analysis computer-science fibonacci-series
 javascript:
   katex: true
 ---
 
-This post is the last of a series of posts in where I discuss different ways of generating Fibonacci sequence:
+| This blog is part of a series dedicated to Fibonacci sequence. [In the Series page you can find the other posts of the series]({{ 'series#fibonacci-series' | relative_url }} ). |
 
-* [Fibonacci recursive and iterative algorithms]({% post_url 2017-10-23-fibonacci-recursive-and-iterative-algorithms %})
-* [Fibonacci closed-form expression]({% post_url 2017-10-30-fibonacci-closed-form-expression %})
-* [Fibonacci closed-from expression without ansatz]({% post_url 2017-11-06-fibonacci-closed-form-expression-wo-ansatz %})
-
-A natural question that arises is then: *which of the different implementations are the best?*
+This post is the last of a series of posts in where I discuss different ways of generating Fibonacci sequence. A natural question that arises is then: *which of the different implementations are the best?*
 
 For sure you can say that the **recursive implementation is the worse**. This is because it is easy to prove that to compute \\|f_n\\|, a number of \\|O(f_n)\\| additions (and therefore also function calls) are needed[^1].
 
@@ -34,7 +30,7 @@ You can argue that the closed-form form is not only efficient but also aesthetic
 
 and therefore, it can be proved that recursive implementation of the Fibonacci sequence has **exponential complexity** or \\|O(\varphi^n)\\|.
 
-#### References
+# References
 
 [^1]: [Adam Drozdek, Data Structures, and Algorithms in C++, chap 5.](https://www.amazon.com/Data-Structures-Algorithms-Adam-Drozdek/dp/1133608426) \\|O(\cdot)\\| notation represents the asymptotic execution in time (sometimes also in memory space) of an algorithm for large instances. This is commonly referred as the algorithm complexity, see [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation) for more information.
 

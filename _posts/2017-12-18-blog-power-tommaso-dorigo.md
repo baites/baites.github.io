@@ -3,10 +3,12 @@ layout: post
 title: "Blog power: Tommaso Dorigo"
 date: 2017-12-18 11:00:00 -0400
 author: Victor E. Bazterra
-categories: blogs science high-energy-physics
+categories: blogs science high-energy-physics power-blog-series
 javascript:
   katex: true
 ---
+
+| This blog is part of a series dedicated to some of the blogs I enjoy to read. [In the Series page you can find the other posts of the series]({{ 'series#power-blog-series' | relative_url }} ). |
 
 This post is the first instance of a series of posts I am calling *Blog Power*. I will be using these posts to tell about those bloggers that influence me the most, and I think you should be aware of them.
 

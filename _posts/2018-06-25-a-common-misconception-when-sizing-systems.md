@@ -3,16 +3,13 @@ layout: post
 title: "A common misconception when sizing systems"
 date: 2018-06-25 08:00:00 -0400
 author: Victor E. Bazterra
-categories: queuing-theory system-modeling
+categories: queuing-theory system-modeling queuing-theory-series
 javascript:
   katex: true
   pseudocode: true  
 ---
 
-* TOC
-{:toc}
-
-## Introduction
+| This blog is part of a series dedicated to queuing theory. [In the Series page you can find all the posts of the series]({{ 'series#queuing-theory-series' | relative_url}} ). |
 
 This post is a continuation of a series of blogs about queueing theory; please see below the section about related posts that belong to this series. The goal of this post is to show some applications of what I introduced in the previous blogs about open queues.
 
@@ -86,16 +83,10 @@ Running this algorithm that I call **MMNExactSize**, I found I need to add only 
 
 So be careful with your intuition when working with saturated queues. Do not forget that when your system is close to its saturation point, *your are face to face against the elbow curve of death*.
 
-## Program assignment or examples
+# Program assignment or examples
 
 * [MATLAB code with sizing heuristics](https://github.com/baites/examples/tree/master/analyses/queueing/sizing)
 
-## Related posts
-
-* [My approach to queuing theory]({% post_url 2018-02-26-my-approach-to-queueing-theory %})
-* [Single open queue]({% post_url 2018-04-09-single-open-queue %})
-* [Single open queue at scale]({% post_url 2018-04-23-single-open-queue-at-scale %})
-
-## References
+# References
 
 [^1]: The **elbow** curve name came from a great post by Neil Gunther [Hockey, Elbow and, Other Response Time Injuries](http://perfdynamics.blogspot.com/2015/07/hockey-elbow-and-other-response-time.html). I just add the **death** part to make clear it would be safer for your career that the system you are managing is away from it!

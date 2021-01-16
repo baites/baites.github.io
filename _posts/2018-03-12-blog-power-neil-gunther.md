@@ -3,8 +3,10 @@ layout: post
 title: "Blog power: Neil Gunther"
 date: 2018-03-12 08:00:00 -0400
 author: Victor E. Bazterra
-categories: guerrilla-capacity-planning
+categories: guerrilla-capacity-planning power-blog-series
 ---
+
+| This blog is part of a series dedicated to some of the blogs I enjoy to read. [In the Series page you can find the other posts of the series]({{ 'series#power-blog-series' | relative_url }} ). |
 
 How many times you hear people saying with a very authoritative voice that **history is not a good predictor of the future events**. Well, although it is likely to be true that past performance does not predict future returns for certain types of financial instruments, still could be right for a large number of systems. So, I would be very careful in discarding the emergence of momentum in the dynamics of complex systems.
 

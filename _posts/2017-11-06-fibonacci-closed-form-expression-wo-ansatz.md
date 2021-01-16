@@ -3,13 +3,17 @@ layout: post
 title: Fibonacci closed-form expression without ansatz
 date: 2017-11-06 14:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science math
+categories: computer-science math fibonacci-series
 javascript:
   katex: true
 ---
 
+| This blog is part of a series dedicated to Fibonacci sequence. [In the Series page you can find the other posts of the series]({{ 'series#fibonacci-series' | relative_url }} ). |
+
 In a [previous blog]({% post_url 2017-10-30-fibonacci-closed-form-expression %}), I showed
-how using an ansatz we can verify the closed-form expression of the Fibonacci sequence. In this blog, I will show how to derive this expression without the support of an ansatz. Although there are several alternatives for doing this (such as using linear algebra[^1]), in this post I will use *generating function approach* following an exercise extracted from my favorite book about algorithms[^2].
+how using an ansatz we can verify the closed-form expression of the Fibonacci sequence.
+
+In this blog, I will show how to derive this expression without the support of an ansatz. Although there are several alternatives for doing this (such as using linear algebra[^1]), in this post I will use *generating function approach* following an exercise extracted from my favorite book about algorithms[^2].
 
 The *generating function* for the Fibonacci sequence is defined by the following infinite series
 
@@ -92,7 +96,7 @@ I derived the equation by analyzing and rewriting the generating function of the
 
 The main takeaway from this exercise is that you can use properties of an analytical function to derive facts about a discrete sequence of integers. In this particular case, this approach was used to find an efficient way for computing the Fibonacci sequence!
 
-#### References
+# References
 
 [^1]: [Fibonacci numbers in matrix form](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form).
 

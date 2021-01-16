@@ -3,7 +3,7 @@ layout: post
 title: "New Year blog: Single graphite server with grafana"
 date: 2018-01-02 18:30:00 -0400
 author: Victor E. Bazterra
-categories: system-design telemetry graphite grafana ansible
+categories: system-design telemetry graphite grafana
 ---
 
 Several of my past and current projects require collecting a lot of data that can naturally be saved as time series. Looking for options of how to save time series, I found out about Graphite, one of the most straightforward and scalable open-source time-series database[^1].

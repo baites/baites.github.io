@@ -3,10 +3,12 @@ layout: post
 title: My approach to queuing theory
 date: 2018-02-26 08:00:00 -0400
 author: Victor E. Bazterra
-categories: queuing-theory system-modeling
+categories: queuing-theory system-modeling queuing-theory-series
 javascript:
   katex: true
 ---
+
+| This blog is part of a series dedicated to linear recurrence sequences. [In the Series page you can find all the posts of the series]({{ 'series#queuing-theory-series' | relative_url }} ). |
 
 My initial need of queuing theory arose when working with distributed and parallel programs as part of my physics researcher. Later as an engineer, it became fundamental for modeling distributed applications and systems in my projects. It also became one of the primary sources of inspirations for automation, in where the algorithm was derived from relationships originated from queuing theory.
 
@@ -29,7 +31,7 @@ What follows are all parameters and their definition, that I am planning to use 
 
 In the next post, I will start discussing some primary results that can be derived from these parameters.
 
-#### References
+# References
 
 [^1]: It is common the following notation in queuing theory papers of using \\|x \wedge y = \min(x,y)\\| and \\|x \vee y = \max(x,y)\\|
 

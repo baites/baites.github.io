@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Categories
+title: Series
 ---
 
 <div id="archives">
 {% for category in site.categories %}
   {% capture category_name %}{{ category | first }}{% endcapture %}
+  {% unless category_name contains "series" %}{% continue %}{% endunless %}
   <div class="archive-group">
-    {% capture category_name %}{{ category | first }}{% endcapture %}
     <div id="#{{ category_name | slugize }}"></div>
     <p></p>
 

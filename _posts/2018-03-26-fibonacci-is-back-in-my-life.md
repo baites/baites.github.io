@@ -3,11 +3,13 @@ layout: post
 title: "Fibonacci is back in my life: Huge Fibonacci number modulo m"
 date: 2018-03-26 08:00:00 -0400
 author: Victor E. Bazterra
-categories: algorithm algorithm-analysis computer-science
+categories: algorithm algorithm-analysis computer-science fibonacci-series
 javascript:
   katex: true
   pseudocode: true
 ---
+
+| This blog is part of a series dedicated to Fibonacci sequence. [In the Series page you can find the other posts of the series]({{ 'series#fibonacci-series' | relative_url }} ). |
 
 Just when I thought the spell of the Fibonacci series was gone, it came back to my life. I recently started the so far terrific Coursera course *Algorithmic Toolbox* that is part of the *Data structures and algorithms*[^1]. The first advance problem in the second week is as follow.
 
@@ -117,7 +119,7 @@ Assuming that all Pisano periods are 32-bit integers, we need only 100000 of the
 
 I just give you all the necessary components to create a code with the values of the Pisano periods hard coded. Stress testing my C++ version of this code, I found that it run at most ~1ms well within problem requirements!
 
-#### References
+# References
 
 [^1]: [Algorithmic toolbox](https://www.coursera.org/learn/algorithmic-toolbox/home/welcome).
 

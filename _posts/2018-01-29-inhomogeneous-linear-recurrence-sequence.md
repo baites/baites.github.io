@@ -3,11 +3,13 @@ layout: post
 title: Inhomogeneous linear recurrence sequences
 date: 2018-01-29 08:00:00 -0400
 author: Victor E. Bazterra
-categories: algorithm-analysis computer-science math
+categories: algorithm-analysis computer-science math linear-recurrence-series
 javascript:
   katex: true
   pseudocode: true
 ---
+
+| This blog is part of a series dedicated to linear recurrence sequences. [In the Series page you can find all the posts of the series]({{ 'series#linear-recurrence-series' | relative_url }} ). |
 
 This post is the last of a series of posts in where I discuss how to compute closed-form expression for any linear recurrence sequences, see below.
 

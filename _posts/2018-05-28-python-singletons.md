@@ -3,12 +3,19 @@ layout: post
 title: "Python Singletons"
 date: 2018-05-28 08:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science patterns
+categories: computer-science patterns singleton-series
 ---
 
-## Singletons
+| This blog is part of a series dedicated to the singleton pattern. [In the Series page you can find all the posts of the series]({{ 'series#singleton-series' | relative_url}} ). |
+
+* TOC
+{:toc}
+
+# Introduction
 
 Study pattern design for high-level languages like javascript or python is an uneasy exercise. This feeling originates in the intuition that there is a lot of these patterns that although necessary in C++, they seems to be almost invisible in language like python for example. I am not the only one having this intuition resulting in a series of discussions by very smart people about design pattern in high-level languages[^1].
+
+# Singletons
 
 Singleton is one of those patterns that seems to be persistent amount all the different languages[^2]. It is also a pattern that a lot of people dislike[^3], more on that in a moment. However, this pattern is one of those things that people expect you should know if you are working on anything related to coding or programming.
 
@@ -19,7 +26,7 @@ I implemented, three types of singletons in python based on mostly reference [^4
 * they are patterns that make instances from traditional classes behave like singleton object;
 * they also have different behavior when initializing and when using inheritance.
 
-## Class variable singleton
+# Class variable singleton
 
 Class variable singleton is one of the most common singleton implementations. The idea is to create a class that by inheritance make a user-defined class a singleton. I show an example of this pattern next.
 
@@ -67,7 +74,7 @@ x.value = y
 y.value = y
 {% endhighlight %}
 
-## Metaclass singleton
+# Metaclass singleton
 
 It is possible to avoid calling the constructor of the singleton more than once for the same instance and preserved in essence the previous pattern as shown in the following example.
 
@@ -88,7 +95,7 @@ This singleton implementation does not transfer the singleton feature by inherit
 
 **Note**: this example can be run by executing `./MetaclassSingleton.py I` from my [repo](https://github.com/baites/examples/blob/master/patterns/python/singleton).
 
-## Inheritance
+# Inheritance
 
 Inheritance works in the same way for both patterns describe above. So let's assume I define a child class **B** of **A**, where **A** is a class-variable or a metaclass singleton
 
@@ -148,11 +155,11 @@ This issue is also seemed as very undesirable due to the fact singleton behavior
 
 In my next post I will show an alternative pattern that avoids instance re-initialization and it has a more consistent behavior when combine with inheritance.
 
-### Program assignment or examples
+# Program assignment or examples
 
 * [Python singletons](https://github.com/baites/examples/blob/master/patterns/python/singleton)
 
-### References
+# References
 
 [^1]: See, for example, this [stack exchange entry](https://softwareengineering.stackexchange.com/questions/157943/are-there-any-design-patterns-that-are-unnecessary-in-dynamic-languages-like-pyt).
 

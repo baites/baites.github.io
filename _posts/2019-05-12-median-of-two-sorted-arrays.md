@@ -11,11 +11,11 @@ javascript:
 * TOC
 {:toc}
 
-## Here I go again
+# Here I go again
 
 It is a while since my last post. I stopped blogging for some time because of some personal issues I need to resolve. However, these are technical blogs that are not meant to be mass produced. I write them intending to practice my writing, also to get some bragging rights about my creative and knowledge, and more important because I enjoy it.
 
-## Formalizing algorithms
+# Formalizing algorithms
 
 I decided that I needed to formalize my knowledge about algorithms. Although I have worked with them all my life, I never was *classically train* on them, and therefore I thought it was time for me to do so.
 
@@ -23,7 +23,7 @@ The most crucial step I am taking is to practice following a competitive coding 
 
 The blog was written in collaboration with Codeforces' Mandinga. We were starting sharing some of our solution to the problem, and also some of our approaches to prove our algorithm's correctness and time complexity. My initial attempt to do that with my own solution was very messy at best. Mandinga came up with a framework that made more straightforward to understand how the algorithm works. We worked in defining a notation based on this framework and use it to prove the main lemma that shows that the algorithm is correct. This framework also allows us to write a code that is easy to read and derive its time complexity.
 
-## Median of two arrays
+# Median of two arrays
 
 Before going to the specific problem, we need to define what is the median of an array.
 
@@ -88,7 +88,7 @@ def MergeMedianTwoSortedArrays(A, B):
 
 The question is now how can we improve upon this solution.
 
-## Exploring properties of the sorted concatenation
+# Exploring properties of the sorted concatenation
 
 We adopt the following notation to simplify the subsequent discussion of the problem. We annotate concatenation of two arbitrary arrays \\|A\\| and \\|B\\| as \\|A + B\\| and their sorted concatenation as \\|A \oplus B\\|
 
@@ -166,7 +166,7 @@ A \oplus X = F \text{ and } A \oplus Y = F \Leftrightarrow X = Y \text{ (p.9).}
 
 It is easy to see that if \\|X = Y\\| then left side of (p.9) has to be true. However, to show the opposite direction of (p.9) we need to define first \\|N(X,v)\\| the number of elements in the array \\|X\\| with value \\|v\\|. If a given value \\|u\\| is not present in the array \\|X\\| then we say \\|N(X,u) = 0\\|. Two sorted arrays \\|X\\| and \\|Y\\| are equal if and only if for all the values of \\|v\\| present in \\|X\\| or \\|Y\\| it is true that \\|N(X,v) = N(Y,v)\\|[^5]. Now, we can see that the left size of the property (p.9) implies that \\|N(A,v) + N(X,v) = N(F,v)\\|, and also, that \\|N(A,v) + N(Y,v) = N(F,v)\\| for all the values \\|v\\| present in \\|F\\|. This means that \\|N(X,v) = N(Y,v)\\| for all the values of \\|F\\| that includes all the possible values of \\|X\\| and \\|Y\\|, and therefore because both arrays elements are sorted then \\|X = Y\\|.
 
-## The merge-sort map problem
+# The merge-sort map problem
 
 Finding the median of two sorted arrays can be thought of as a particular case of a more generic problem we call the merge-sort map problem.
 
@@ -214,7 +214,7 @@ Due to (p.6) we know also that \\|A \oplus B =  \text{Head}(A \oplus B, n) \oplu
 \text{Tail}(A, n_A) \oplus \text{Tail}(B, n_B) = \text{Tail}(A \oplus B, n_A + n_B) \text{ (c.12)}
 %%</p>
 
-## The merge-sort map lemma
+# The merge-sort map lemma
 
 As formulated, the head-tail relationships (c.10) and (c.12) presented in the previous section is not enough to help us building a more efficient way of solving the problem. However, the following lemma provides us with a new set of head-tail relationships that can be verified efficiently.
 
@@ -245,7 +245,7 @@ Alternative, if \\|n_A + n_B = n\\| where \\|n > 0\\| we can select the first el
 
 Because we considered this part of the proof critical for proving algorithm correctness, we provide an alternative demonstration in an appendix section by the end of this post.
 
-## A new approach
+# A new approach
 
 Verify the lemma conditions (c.13) and (c.14) is very simple, and it can be done in constant time because of property (p.5)
 
@@ -341,7 +341,7 @@ def MergeSortMap(self, A, B, n):
 {% endhighlight %}
 
 
-## Correctness and time complexity
+# Correctness and time complexity
 
 The correctness of the algorithm comes directly from the merge-sort map lemma that we used to derive the algorithm in the first place.
 
@@ -353,7 +353,7 @@ Do we wonder if this **the most efficient solution** for both problems?
 
 An early python [version of this algorithm plus a few optimizations](https://github.com/baites/examples/blob/master/coding/leetcode/median_two_sorted_arrays_v5.py) run in the LeetCode's judging in 52 ms or faster than 99.36% of the other python submissions. The [same code written in C++](https://github.com/baites/examples/blob/master/coding/leetcode/median_two_sorted_arrays_v5.C) took 40ms or faster than 97.04% of other C++ submission.
 
-## Final comments
+# Final comments
 
 We submitted to LeetCode the merge-sort map problem as a contribution. At the moment of this writing, the problem is pending for review. We wrote most of the code using LeetCode API for automated judging although this is not available for the merge-sort map problem.
 

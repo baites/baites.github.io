@@ -3,10 +3,12 @@ layout: post
 title: "Single open queue at scale"
 date: 2018-04-23 08:00:00 -0400
 author: Victor E. Bazterra
-categories: queuing-theory system-modeling
+categories: queuing-theory system-modeling queuing-theory-series
 javascript:
   katex: true
 ---
+
+| This blog is part of a series dedicated to queuing theory. [In the Series page you can find all the posts of the series]({{ 'series#queuing-theory-series' | relative_url}} ). |
 
 This post is a continuation of a series of blogs about queueing theory; please see below the section about related posts that belong to this series.
 
@@ -57,16 +59,11 @@ This graph shows, in my opinion, one of the nicest academical examples of econom
 
 In conclusion, it seems that nature is kind enough to reward you IF you manage to conquer running a system at scale. This is because the large a system becomes, the less sensitive is to stochastic fluctuations.
 
-#### Related posts
-
-* [My approach to queuing theory]({% post_url 2018-02-26-my-approach-to-queueing-theory %})
-* [Single open queue]({% post_url 2018-04-09-single-open-queue %})
-
-### Program assignment or examples
+# Program assignment or examples
 
 * [M/M/N queues](https://github.com/baites/examples/tree/master/analyses/queueing/mmnqueue)
 
-#### References
+# References
 
 [^1]: [Wikipedia: Asymptotic theory (statistics).](https://en.wikipedia.org/wiki/Asymptotic_theory_(statistics))
 [^2]: This has inspired many people including in the arts. If you have not read [Isaac Asimov foundation books](https://en.wikipedia.org/wiki/Foundation_series) you should!!! If you do not have the time and you need a short version, then read [The End of Eternity](https://en.wikipedia.org/wiki/The_End_of_Eternity). In the end, we all want somewhat inspire to be [psychohistorians](https://www.theguardian.com/books/2012/dec/04/paul-krugman-asimov-economics).

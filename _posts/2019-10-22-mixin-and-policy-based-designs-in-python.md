@@ -3,13 +3,15 @@ layout: post
 title: "Mixin and policy-based design in python"
 date: 2019-10-22 06:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science patterns
+categories: computer-science patterns python-policy-based-mixins-series
 ---
+
+| This blog is part of a series dedicated to policy-based and mixins approaches in python. [In the Series page you can find all the posts of the series]({{ 'series#python-policy-based-mixins-series' | relative_url}} ). |
 
 * TOC
 {:toc}
 
-## Introduction
+# Introduction
 
 This post is supporting material for an answer I give to my original question in StackOverflow:
 
@@ -17,15 +19,15 @@ This post is supporting material for an answer I give to my original question in
 
 The answer is the product of what I learn based on my research and some comments from StackOverflow.
 
-## Design requirements and implementations
+# Design requirements and implementations
 
-### Requirement
+## Requirement
 
 Design a Python module such users can create classes with new behavior and interfaces by inheriting from a predefined set of classes. This approach provides a large number of classes available to the users based on all possible ways they can be combined into new ones.
 
 This requirement can be implemented using mixin and policy-based implementations.
 
-### Mixin implementation
+## Mixin implementation
 
 Mixin implementation is defined as follow:
 
@@ -52,7 +54,7 @@ class NewClass(Mixin1Class, [Mixin2Class, ...], BasedClass):
 * [Wikipedia: Mixin](https://en.wikipedia.org/wiki/Mixin).
 * [StackOverflow answer about mixin](https://stackoverflow.com/a/547714/11875212).
 
-### Policy-based implementation
+## Policy-based implementation
 
 Policy-based implementation is defined as follow:
 
@@ -85,7 +87,7 @@ NewClass = HostClassFactory(Policy1Class, [Policy2Class,...])
 * [My question in stackoverflow](https://stackoverflow.com/q/57365189/11875212).
 * [My technical blog: Policy-based design in python](https://baites.github.io/computer-science/patterns/2019/08/02/policy-based-design-in-python.html)
 
-### Comparison between implementations
+## Comparison between implementations
 
 Here a list of the differences between approaches:
 
@@ -102,9 +104,9 @@ Here a list of the differences between approaches:
 <p>Class diagram for mixin (left) and policy-based class (right) approaches.</p>
 </center>
 
-## Improvements
+# Improvements
 
-### Adding mixin defaults with class factory decorators
+## Adding mixin defaults with class factory decorators
 
 Reusing the *class factory* pattern within a class decorator, we can improve the mixin pattern to allow for default mixin classes. I implemented the decorator as it is shown below
 
@@ -171,7 +173,7 @@ hw.run() # save "Hello World!" in output.txt
 
 Find a full working example of this code in my [github account](https://github.com/baites/examples/blob/master/idioms/python/MixinDesign.py).
 
-### Decorator approach to policy-based design
+## Decorator approach to policy-based design
 
 It is possible to use the previous mixin decorator approach to emulate a policy-based implementation that does not delay the instantiation of the host class. It is also aesthetically more appealing because the user does not need to define the host class within a class factory.
 
@@ -238,7 +240,7 @@ hw.run() # save "Hello World!" in output.txt
 
 Find a full working example of this code in my [github account](https://github.com/baites/examples/blob/master/idioms/python/PolicyBasedDecoratorEx1.py).
 
-### Difference between these two class decorators
+## Difference between these two class decorators
 
 The previous two decorators look almost identical except for the class's MRO is not the same. For example, here it is an example I showed in StackOverflow that cannot be done either with traditional or decorator mixin as I defined above:
 

@@ -3,8 +3,13 @@ layout: post
 title: "Python Borg, and the new MetaBorg?"
 date: 2018-06-11 08:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science patterns
+categories: computer-science patterns singleton-series
 ---
+
+| This blog is part of a series dedicated to the singleton pattern. [In the Series page you can find all the posts of the series]({{ 'series#singleton-series' | relative_url}} ). |
+
+* TOC
+{:toc}
 
 # Introduction
 
@@ -12,7 +17,7 @@ This is the second post of a series dedicated to discuss singleton-like patterns
 
 * [Python singletons]({% post_url 2018-05-28-python-singletons %})
 
-## The Borg
+# The Borg
 
 A Borg[^1] is popular pattern created or at least promoted by Alex Martelli[^2]. A Borg is not a singleton, however, for most practical purposes it behaves like one. This pattern is generally implemented using inheritance to transform a standard class in a singleton-like type. Below you can find my distilled version of this pattern.
 
@@ -34,7 +39,7 @@ The Borg pattern has a similar drawback/feature as the class variable singleton,
 
 Inheritance in the Borg works differently than from previous two singletons in previous post (see link above). For the Borg, there is not differences between parent and child classes. Assuming you have a parent class **A** and its child **B** then we always obtain the same shared state regardless of the order on how **A** or **B** were initialized, see for example the results of running `./Borg.py A` and `./Borg.py B`.
 
-## Metaclass + Borg = MetaBorg ?
+# Metaclass + Borg = MetaBorg ?
 
 **This pattern is my invention!** As I usually do, *here it is a warning that is it likely somebody already did this!*. However, I give you my word that I created this pattern all by myself as derivative work of previous patters.
 
@@ -76,11 +81,11 @@ Here it is the [full implementation of this pattern](https://github.com/baites/e
 
 So you have it the MetaBorg, a pattern might not be that useful but it has a cool name!
 
-### Program assignment or examples
+# Program assignment or examples
 
 * [Python singletons](https://github.com/baites/examples/blob/master/patterns/python/singleton)
 
-### References
+# References
 
 [^1]: [SINGLETON? WE DON'T NEED NO STINKIN' SINGLETON: THE BORG DESIGN PATTERN (PYTHON RECIPE)](http://code.activestate.com/recipes/66531-singleton-we-dont-need-no-stinkin-singleton-the-bo/)
 

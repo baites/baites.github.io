@@ -3,10 +3,12 @@ layout: post
 title: "Single open queue"
 date: 2018-04-09 08:00:00 -0400
 author: Victor E. Bazterra
-categories: queuing-theory system-modeling
+categories: queuing-theory system-modeling queuing-theory-series
 javascript:
   katex: true
 ---
+
+| This blog is part of a series dedicated to queuing theory. [In the Series page you can find all the posts of the series]({{ 'series#queuing-theory-series' | relative_url}} ). |
 
 This blog I am writing more about a simple queue I started in previous blogs, see the section of related posts below. The simplest queue that represents the minimal unit to model large number of systems is the Erlang-C model (aka M/M/N queue)[^1]. This model is the one defined in the previous post[^2] in where it assumes:
 
@@ -47,15 +49,11 @@ For the simulation runs, I set the number of servers \\|N = 10\\| and \\|\mu = 1
 
 The figure shows that this simple model matches pretty closely with the simulation. From this post forward, I will assume the validity of the model and the code. Next, I am planning to discuss the behavior of a single queue with a large number of servers, a significant case that I call single open queue at scale.
 
-#### Related posts
-
-* [My approach to queuing theory]({% post_url 2018-02-26-my-approach-to-queueing-theory %})
-
-### Program assignment or examples
+# Program assignment or examples
 
 * [M/M/N queues](https://github.com/baites/examples/tree/master/analyses/queueing/mmnqueue)
 
-#### References
+# References
 
 [^1]: [Wikipedia: Erlang-C](https://en.wikipedia.org/wiki/M/M/c_queue)
 [^2]: [My approach to queuing theory]({% post_url 2018-02-26-my-approach-to-queueing-theory %})

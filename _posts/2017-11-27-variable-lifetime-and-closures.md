@@ -3,8 +3,10 @@ layout: post
 title: Variable lifetime and closures
 date: 2017-11-27 04:00:00 -0400
 author: Victor E. Bazterra
-categories: computer-science idioms
+categories: computer-science idioms closure-series
 ---
+
+| This blog is part of a series dedicated to function closures. [In the Series page you can find the other posts of the series]({{ 'series#closure-series' | relative_url }} ). |
 
 In the [previous blog]({% post_url 2017-11-20-getting-some-closures %}) I discussed what are closures using javascript and python, and I also explained what they are not using examples in C++, javascript, and python. In particular, I showed that closures in javascript and python capture variables as like by copy/value or reference depending on variable mutability[^1].
 
@@ -61,6 +63,6 @@ def main():
 
 Entering and exiting the function scope, the closure is created and destroyed respectively, as long there is not outside reference awaiting *returned closure*. The [example code](https://github.com/baites/examples/blob/master/idioms/python/VariableLifetimeInClosure.py) just verify that the variable lifetime with name *closure* is the same as closure lifetime. For javascript, I think it is safe to assume that it follows a similar logic as python regarding the lifetime of variables within closures.
 
-#### References
+# References
 
 [^1]: One should be careful of using the notion of **copy/value** and **reference** related closely to C++ but not directly translatable for garbage collected high-level languages such python or javascript. This is why I will be using the expression *behaves like by copy or reference*.
