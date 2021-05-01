@@ -44,7 +44,7 @@ There is a huge number of way to represent music. However, most of them fall in 
 
 Signal processing uses for the most part some type of literal notation. By other hand, most of the music theory defines some kind of symbolic notation. For most of the initial blogs of this series I will be interested on discussing notes's pitch, its representation and combinations.
 
-> **Definition**: 
+> **Definition**: the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch \\|x \in \mathcal{S}\\| has a frequency \\|f(x)\\| where \\|f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}\\| is a function from the pitch space \\|\mathcal{S}\\| to positive real numbers. 
 
 **Example:**
 
