@@ -51,6 +51,12 @@ the *pitch* of a note is the frequency of the sound represented by that note. As
 {% include statement/lemma content="
 the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch \\|x \in \mathcal{S}\\| has a frequency \\|f(x)\\| where \\|f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}\\| is a function from the pitch space \\|\mathcal{S}\\| to positive real numbers." %}
 
+{% include statement/remark content="
+the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch \\|x \in \mathcal{S}\\| has a frequency \\|f(x)\\| where \\|f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}\\| is a function from the pitch space \\|\mathcal{S}\\| to positive real numbers." %}
+
+{% include statement/theorem content="
+the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch \\|x \in \mathcal{S}\\| has a frequency \\|f(x)\\| where \\|f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}\\| is a function from the pitch space \\|\mathcal{S}\\| to positive real numbers." %}
+
 **Example:**
 
 # References

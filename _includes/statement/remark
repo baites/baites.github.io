@@ -1,0 +1,3 @@
+<div markdown="span" class="remark" role="alert">
+    <i class="fas fa-exclamation-circle"/> <b>Remark:</b> {{include.content}}
+</div>

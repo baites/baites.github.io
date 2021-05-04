@@ -1,0 +1,3 @@
+<div markdown="span" class="theorem" role="alert">
+    <i class="fa fa-arrow-alt-circle-right"/> <b>Theorem:</b> {{include.content}}
+</div>
