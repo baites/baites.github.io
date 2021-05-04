@@ -1,0 +1,27 @@
+.statement,
+.definition,
+.disclaimer,
+.lemma
+{
+    border-radius: 5px;
+    color: #111;
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px
+}
+
+.definition {
+    background-color: #eef;
+    border-color: #e8e8e8;
+}
+
+.disclaimer {
+    background-color: lightgray;
+    border-color: gray;
+}
+
+.lemma {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}

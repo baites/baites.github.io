@@ -1,0 +1,3 @@
+<div markdown="span" class="lemma" role="alert">
+    <i class="far fa-arrow-alt-circle-right"/> <b>Lemma:</b> {{include.content}}
+</div>

@@ -1,0 +1,3 @@
+<div markdown="span" class="disclaimer" role="alert">
+    <i class="fa fa-exclamation-triangle"/> <b>Disclaimer:</b> {{include.content}}
+</div>
