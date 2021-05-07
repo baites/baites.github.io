@@ -2,6 +2,7 @@
 .definition,
 .disclaimer,
 .lemma,
+.problem,
 .remark,
 .theorem
 {
@@ -26,6 +27,11 @@
 .lemma {
     background-color: #dff0d8;
     border-color: #d6e9c6;
+}
+
+.problem {
+    background-color: lightsteelblue;
+    border-color: steelblue;
 }
 
 .remark {

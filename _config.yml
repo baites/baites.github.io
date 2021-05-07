@@ -47,7 +47,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
-
 google_analytics: UA-108168462-1
 
 # Exclude from processing.

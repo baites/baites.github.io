@@ -1,3 +1,8 @@
-<div markdown="span" class="theorem" role="alert">
-    <i class="fa fa-arrow-alt-circle-right"/> <b>Theorem:</b> {{include.content}}
-</div>
+{% assign class = "theorem" %}
+{% assign logo = "fa fa-arrow-alt-circle-right" %}
+<div markdown="span" class="{{ class }}" role="statement">
+{% if include.name %}
+<i class="{{ logo }}"/> <b>{{ class | capitalize }} <i>({{ include.name }})</i>:</b>
+{% else %}
+<i class="{{ logo }}"/> <b>{{ class | capitalize }}:</b>
+{% endif %}

@@ -1,3 +1,8 @@
-<div markdown="span" class="lemma" role="alert">
-    <i class="far fa-arrow-alt-circle-right"/> <b>Lemma:</b> {{include.content}}
-</div>
+{% assign class = "lemma" %}
+{% assign logo = "far fa-arrow-alt-circle-right" %}
+<div markdown="span" class="{{ class }}" role="statement">
+{% if include.name %}
+<i class="{{ logo }}"/> <b>{{ class | capitalize }} <i>({{ include.name }})</i>:</b>
+{% else %}
+<i class="{{ logo }}"/> <b>{{ class | capitalize }}:</b>
+{% endif %}

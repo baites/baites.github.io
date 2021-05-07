@@ -1,5 +1,5 @@
-{% assign class = "disclaimer" %}
-{% assign logo = "fa fa-exclamation-triangle" %}
+{% assign class = "problem" %}
+{% assign logo = "far fa-question-circle" %}
 <div markdown="span" class="{{ class }}" role="statement">
 {% if include.name %}
 <i class="{{ logo }}"/> <b>{{ class | capitalize }} <i>({{ include.name }})</i>:</b>

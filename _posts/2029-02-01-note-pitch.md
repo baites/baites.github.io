@@ -31,8 +31,9 @@ I will combining different definitions using concepts of Abstract Algebra inspir
 
 I have little or no expertise about the details discussed in here, therefore a diclaimer inspire by MIT license wording:
 
-{% include statement/disclaimer content="
-THE \"KNOWLEDGE\" IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \"KNOWLEDGE\" OR THE USE OR OTHER DEALINGS OF THE \"KNOWLEDGE\"." %}
+{% include statement/disclaimer %}
+THE \"KNOWLEDGE\" IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \"KNOWLEDGE\" OR THE USE OR OTHER DEALINGS OF THE \"KNOWLEDGE\".
+{% include statement/end %}
 
 Therefore expect conceptual errors and constant updates the whole blog series.
 
@@ -45,17 +46,10 @@ There is a huge number of way to represent music. However, most of them fall in 
 
 Signal processing uses for the most part some type of literal notation. By other hand, most of the music theory defines some kind of symbolic notation. For most of the initial blogs of this series I will be interested on discussing notes's pitch, its representation and combinations.
 
-{% include statement/definition content="
-the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch \\|x \in \mathcal{S}\\| has a frequency \\|f(x)\\| where \\|f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}\\| is a function from the pitch space \\|\mathcal{S}\\| to positive real numbers." %}
+{% include statement/definition %}
+the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch $x \in \mathcal{S}$ has a frequency $f(x)$ where $f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}$ is a function from the pitch space $\mathcal{S}$ to positive real numbers.
+{% include statement/end %}
 
-{% include statement/lemma content="
-the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch \\|x \in \mathcal{S}\\| has a frequency \\|f(x)\\| where \\|f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}\\| is a function from the pitch space \\|\mathcal{S}\\| to positive real numbers." %}
-
-{% include statement/remark content="
-the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch \\|x \in \mathcal{S}\\| has a frequency \\|f(x)\\| where \\|f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}\\| is a function from the pitch space \\|\mathcal{S}\\| to positive real numbers." %}
-
-{% include statement/theorem content="
-the *pitch* of a note is the frequency of the sound represented by that note. As such, I say that for any pitch \\|x \in \mathcal{S}\\| has a frequency \\|f(x)\\| where \\|f: \mathcal{S} \rightarrow \mathbb{R}_{\geq0}\\| is a function from the pitch space \\|\mathcal{S}\\| to positive real numbers." %}
 
 **Example:**
 

@@ -1,3 +1,8 @@
-<div markdown="span" class="definition" role="alert">
-    <i class="fa fa-info-circle"/> <b>Definition:</b> {{include.content}}
-</div>
+{% assign class = "definition" %}
+{% assign logo = "fa fa-info-circle" %}
+<div markdown="span" class="{{ class }}" role="statement">
+{% if include.name %}
+<i class="{{ logo }}"/> <b>{{ class | capitalize }} <i>({{ include.name }})</i>:</b>
+{% else %}
+<i class="{{ logo }}"/> <b>{{ class | capitalize }}:</b>
+{% endif %}
