@@ -1,0 +1,8 @@
+{% assign class = "proposition" %}
+{% assign logo = "fas fa-chevron-right" %}
+<div markdown="span" class="{{ class }}" role="statement">
+{% if include.name %}
+<i class="{{ logo }}"/> <b>{{ class | capitalize }} <i>({{ include.name }})</i>:</b>
+{% else %}
+<i class="{{ logo }}"/> <b>{{ class | capitalize }}:</b>
+{% endif %}

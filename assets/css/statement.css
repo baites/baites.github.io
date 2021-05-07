@@ -1,9 +1,11 @@
-.statement,
+.collorary,
 .definition,
 .disclaimer,
 .lemma,
 .problem,
+.proposition,
 .remark,
+.statement,
 .theorem
 {
     border-radius: 5px;
@@ -12,6 +14,11 @@
     padding: 10px;
     margin-top: 15px;
     margin-bottom: 15px
+}
+
+.collorary {
+    background-color: lightyellow;
+    border-color: yellow;
 }
 
 .definition {
@@ -32,6 +39,11 @@
 .problem {
     background-color: lightsteelblue;
     border-color: steelblue;
+}
+
+.proposition {
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }
 
 .remark {

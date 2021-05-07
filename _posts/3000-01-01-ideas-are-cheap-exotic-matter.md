@@ -15,7 +15,11 @@ javascript:
 
 I will kickstart in this blog a new recurrent set of posts labeled: Ideas are cheap, details are priceless. This entry is also the first one after stop writing for a while because of some personal issues I need to resolve. However, these are technical blogs that are not meant to be mass produced. I write them with the intention of practicing my writing, get some bragging rights about my creative and knowledge (or lack of them), and more important because I enjoy it.
 
-> **Disclaimer:** I have little or no expertise about the details discussed in here. These are unscripted ideas I had in the past that eventually, I found out other people thought about them and worked out some of the details. The goal is twofold: **to show how seeding ideas are not that hard, and to point out the work of those who took the challenge of working out the details.** Also, inspire from MIT license wording: THE "KNOWLEDGE" IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE "KNOWLEDGE" OR THE USE OR OTHER DEALINGS OF THE "KNOWLEDGE".
+I have little or no expertise about the details discussed in here. These are unscripted ideas I had in the past that eventually, I found out other people thought about them and worked out some of the details. The goal is twofold: **to show how seeding ideas are not that hard, and to point out the work of those who took the challenge of working out the details.** I would like to offer the following disclamer inspire by MIT license wording.
+
+{% include statement/disclaimer %}
+THE "KNOWLEDGE" IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE "KNOWLEDGE" OR THE USE OR OTHER DEALINGS OF THE "KNOWLEDGE".
+{% include statement/end %}
 
 ## Main idea(s)
 
