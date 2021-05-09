@@ -12,7 +12,9 @@ I find the notion of closures fundamental and a bit trivial in high-level langua
 
 But before getting too much into the discussion, let me define first what are **closures**. The most straightforward definition I can think of goes something like this:
 
-> A **closure** is the association between a function and some variables present in the scope when the function was defined. Effectively, a closure becomes a combination of the function and an environment made of the these **captured** variables[^1].
+{% include statement/definition %}
+A **closure** is the association between a function and some variables present in the scope when the function was defined. Effectively, a closure becomes a combination of the function and an environment made of the these **captured** variables[^1].
+{% include statement/end %}
 
 Closures are a computer language feature, so I will be using C++, javascript, and python to illustrate the central concepts in this and future posts. The minimal example of a closure is the following code
 

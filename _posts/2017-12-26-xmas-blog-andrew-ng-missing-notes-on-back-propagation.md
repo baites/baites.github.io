@@ -28,131 +28,131 @@ The next figure shows a deep neural network (multilayered neural network) using 
 
 {% include image file="neural-networks.svg" %}
 
-The activation value for the *j*-node in the *l*-layer when input the *i*-example of the training set (annotated as \\| a^{\[l\](i)}_j \\|) is computed using the following forward-propagated algorithm:
+The activation value for the *j*-node in the *l*-layer when input the *i*-example of the training set (annotated as $ a^{\[l\](i)}_j $) is computed using the following forward-propagated algorithm:
 
-<p>%%
+$$
 \begin{aligned}
-z^{[l](i)}_j &= \sum^{n^{[l-1]}}_{k=1} w^{[l]}_{jk} a^{[l-1](i)}_k + b^{[l]}_j \\
+z^{[l](i)}_j &= \sum^{n^{[l-1]}}_{k=1} w^{[l]}_{jk} a^{[l-1](i)}_k + b^{[l]}_j \newline
 a^{[l](i)}_j &= g^{[l]}\left(z^{[l](i)}_j\right)
 \end{aligned}
-%%</p>
+$$
 
-where \\|g^{\[l\]}(\cdot)\\| is the activation function in the *l*-layer. These equations can be written in using matrix and vector notation as
+where $g^{\[l\]}(\cdot)$ is the activation function in the *l*-layer. These equations can be written in using matrix and vector notation as
 
-<p>%%
+$$
 \begin{aligned}
-Z^{[l]} &= W^{[l]} A^{[l-1]} + B^{[l]} \\
+Z^{[l]} &= W^{[l]} A^{[l-1]} + B^{[l]} \newline
 A^{[l]} &= g^{[l]}\left(Z^{[l]}\right)
 \end{aligned}
-%%</p>
+$$
 
-If there are \\|L\\| layers and in each one there are \\|n^{\[l\]}\\| nodes, and your training set contains \\| m \\| examples, then the dimensions of the previous matrices and vectors are:
+If there are $L$ layers and in each one there are $n^{\[l\]}$ nodes, and your training set contains $ m $ examples, then the dimensions of the previous matrices and vectors are:
 
-<p>%%
+$$
 \begin{aligned}
-A^{[l]}, Z^{[l]} &\in \mathbb{R}^{\left(n^{[l]} \times m\right)} \\
-W^{[l]} &\in \mathbb{R}^{\left(n^{[l]} \times n^{[l-1]}\right)} \\
+A^{[l]}, Z^{[l]} &\in \mathbb{R}^{\left(n^{[l]} \times m\right)} \newline
+W^{[l]} &\in \mathbb{R}^{\left(n^{[l]} \times n^{[l-1]}\right)} \newline
 B^{[l]} &\in \mathbb{R}^{\left(n^{[l]} \times m\right)}
 \end{aligned}
-%%</p>
+$$
 
-Supervised learning goal is to minimize a *cost* function \\|\mathcal{C}\\| define as the average of a *loss* function \\|\mathcal{L}\\| over the whole training set
+Supervised learning goal is to minimize a *cost* function $\mathcal{C}$ define as the average of a *loss* function $\mathcal{L}$ over the whole training set
 
-<p>%%
+$$
 \mathcal{C} = \frac{1}{m} \sum^m_{i=1} \mathcal{L}\left(A^{[L](i)},Y^{(i)}\right)
-%%</p>
+$$
 
-in where the loss function introduces the notion of how wrong is the activation values of the last layer relative to the labels of your training set \\|\{Y^{(i)}\}\\|. The form of the loss function depends on the type of learning being done like logistic regression, softmax regression, or multitasking learning as a few examples[^3]. However, we do not need to assume any particular functional form for the loss function to derive backpropagation algorithm.
+in where the loss function introduces the notion of how wrong is the activation values of the last layer relative to the labels of your training set $\{Y^{(i)}\}$. The form of the loss function depends on the type of learning being done like logistic regression, softmax regression, or multitasking learning as a few examples[^3]. However, we do not need to assume any particular functional form for the loss function to derive backpropagation algorithm.
 
-The minimization of cost function is done by updating neural network weights \\|\{W^{\[l\]}\}\\| and bias \\|\{B^{\[l\]}\}\\| using in the simplest case the steepest or gradient descent algorithm as follows
+The minimization of cost function is done by updating neural network weights $\{W^{\[l\]}\}$ and bias $\{B^{\[l\]}\}$ using in the simplest case the steepest or gradient descent algorithm as follows
 
-<p>%%
+$$
 \begin{aligned}
-W^{[l]} & = W^{[l]} - \alpha dW^{[l]} \\
+W^{[l]} & = W^{[l]} - \alpha dW^{[l]} \newline
 B^{[l]} & = B^{[l]} - \alpha dB^{[l]}
 \end{aligned}
-%%</p>
+$$
 
-in where \\|\alpha\\| is a constant learning rate, \\| dW^{[l]} \\| and \\| dB^{[l]} \\| is Andrew's short notation for the gradient of the cost function relatively network weights and biases, more details of the notation will be given shortly.
+in where $\alpha$ is a constant learning rate, $ dW^{[l]} $ and $ dB^{[l]} $ is Andrew's short notation for the gradient of the cost function relatively network weights and biases, more details of the notation will be given shortly.
 
-The **goal** of the back-propagation algorithm is to compute the gradient of the cost function for an arbitrary deep neural network efficiently. The main tool to derive back-propagation equations is the chain rule of derivatives[^4]. The rule says that the derivative of the composition of two functions \\|f: \mathbb{R}^n \rightarrow \mathbb{R}\\| and \\|G: \mathbb{R}^m \rightarrow \mathbb{R}^n\\| is given by the following expression:
+The **goal** of the back-propagation algorithm is to compute the gradient of the cost function for an arbitrary deep neural network efficiently. The main tool to derive back-propagation equations is the chain rule of derivatives[^4]. The rule says that the derivative of the composition of two functions $f: \mathbb{R}^n \rightarrow \mathbb{R}$ and $G: \mathbb{R}^m \rightarrow \mathbb{R}^n$ is given by the following expression:
 
-<p>%%
+$$
 \frac{\partial}{\partial x_i} f(G(X)) = \sum^n_{i=1} \frac{\partial f}{\partial g_j}\Big\vert_{G(X)} \frac{\partial g_j}{\partial x_i}\Big\vert_{X}
-%%</p>
+$$
 
 or in words, the derivative of the composition of two functions can be written as the sum of the multiplication of the derivatives of the individual functions that make the composition.
 
 We now can derive the expression for two very important auxiliaries gradients. The first one is the gradient of the loss function as a function of node activation:
 
-<p>%%
+$$
 \begin{aligned}
-{\color{blue} da^{[l](i)}_j} = \frac{\partial \mathcal{\color{blue} L}}{\partial a^{[l](i)}_j} & = \sum^{n^{[l+1]}}_{j'=1} \frac{\partial \mathcal{L}}{\partial z^{[l+1](i)}_{j'}} \frac{\partial z^{[l+1](i)}_{j'}}{\partial a^{[l](i)}_j} \\  
-&= \sum^{n^{[l+1]}}_{j'=1} dz^{[l+1](i)}_{j'} w^{[l+1]}_{j'j} \\
+{\color{blue} da^{[l](i)}_j} = \frac{\partial \mathcal{\color{blue} L}}{\partial a^{[l](i)}_j} & = \sum^{n^{[l+1]}}_{j'=1} \frac{\partial \mathcal{L}}{\partial z^{[l+1](i)}_{j'}} \frac{\partial z^{[l+1](i)}_{j'}}{\partial a^{[l](i)}_j} \newline
+&= \sum^{n^{[l+1]}}_{j'=1} dz^{[l+1](i)}_{j'} w^{[l+1]}_{j'j} \newline
 {\color{blue} dA^{[l]}} &= W^{[l+1]\top} {\color{blue} dZ^{[l+1]}}
 \end{aligned}
-%%</p>
+$$
 
 in where I used the *blue* color to designate this gradient is of the loss function instead of the cost function. The second gradient is of the loss function relative to the value of the nodes before applying the activation function:
 
-<p>%%
+$$
 \begin{aligned}
-{\color{blue} dz^{[l](i)}_j} = \frac{\partial \color{blue}\mathcal{L}}{\partial z^{[l](i)}_j} &= \sum^{n^{[l]}}_{j'=1} \frac{\partial \mathcal{L}}{\partial a^{[l](i)}_{j'}} \frac{\partial a^{[l](i)}_{j'}}{\partial z^{[l](i)}_j} \\  
-&= \sum^{n^{[l]}}_{j'=1} da^{[l](i)}_{j'} g^{[l]'}\left(z^{[l](i)}_j\right)\delta_{j'j} \\
+{\color{blue} dz^{[l](i)}_j} = \frac{\partial \color{blue}\mathcal{L}}{\partial z^{[l](i)}_j} &= \sum^{n^{[l]}}_{j'=1} \frac{\partial \mathcal{L}}{\partial a^{[l](i)}_{j'}} \frac{\partial a^{[l](i)}_{j'}}{\partial z^{[l](i)}_j} \newline
+&= \sum^{n^{[l]}}_{j'=1} da^{[l](i)}_{j'} g^{[l]'}\left(z^{[l](i)}_j\right)\delta_{j'j} \newline
 {\color{blue} dZ^{[l]}} &= {\color{blue} dA^{[l]}} \odot g^{[l]'}\left(Z^{[l]}\right)
 \end{aligned}
-%%</p>
+$$
 
-in where the notation \\|\odot\\| represent the element-wise or Hadamard product[^5]. It is possible to see that the values of \\|dA^{[l]}\\| and therefore also \\|dZ^{[l]}\\| depend on the values \\|dZ^{[l+1]}\\| of the forward layer and the reason the algorithm is called back-propagation (or backprop for short).
+in where the notation $\odot$ represent the element-wise or Hadamard product[^5]. It is possible to see that the values of $dA^{[l]}$ and therefore also $dZ^{[l]}$ depend on the values $dZ^{[l+1]}$ of the forward layer and the reason the algorithm is called back-propagation (or backprop for short).
 
 It is possible to estimate the gradient of the cost function relative to network weights using previous auxiliaries gradients as
 
-<p>%%
+$$
 \begin{aligned}
-{\color{red} dw^{[l]}_{jk}} = \frac{\partial \color{red}\mathcal{C}}{\partial w^{[l]}_{jk}} &= \sum^{m}_{i=1}\sum^{n^{[l]}}_{j'=1} \frac{\partial \mathcal{C}}{\partial z^{[l](i)}_{j'}} \frac{\partial z^{[l](i)}_{j'}}{\partial w^{[l]}_{jk}} \\  
-&= \frac{1}{m} \sum^{m}_{i=1} {\color{blue} dz^{[l](i)}_{j}} a^{[l-1](i)}_{k} \\
+{\color{red} dw^{[l]}_{jk}} = \frac{\partial \color{red}\mathcal{C}}{\partial w^{[l]}_{jk}} &= \sum^{m}_{i=1}\sum^{n^{[l]}}_{j'=1} \frac{\partial \mathcal{C}}{\partial z^{[l](i)}_{j'}} \frac{\partial z^{[l](i)}_{j'}}{\partial w^{[l]}_{jk}} \newline
+&= \frac{1}{m} \sum^{m}_{i=1} {\color{blue} dz^{[l](i)}_{j}} a^{[l-1](i)}_{k} \newline
 {\color{red} dW^{[l]}} &= \frac{1}{m} {\color{blue} dZ^{[l]}} A^{[l-1]\top}
 \end{aligned}
-%%</p>
+$$
 
 and network biases as
 
-<p>%%
+$$
 \begin{aligned}
-{\color{red} db^{[l]}_{j}} = \frac{\partial \color{red}\mathcal{C}}{\partial b^{[l]}_{j}} &= \sum^{m}_{i=1}\sum^{n^{[l]}}_{j'=1} \frac{\partial \mathcal{C}}{\partial z^{[l](i)}_{j'}} \frac{\partial z^{[l](i)}_{j'}}{\partial b^{[l]}_{j}} \\  
-&= \frac{1}{m} \sum^{m}_{i=1} {\color{blue} dz^{[l](i)}_{j}} \\
+{\color{red} db^{[l]}_{j}} = \frac{\partial \color{red}\mathcal{C}}{\partial b^{[l]}_{j}} &= \sum^{m}_{i=1}\sum^{n^{[l]}}_{j'=1} \frac{\partial \mathcal{C}}{\partial z^{[l](i)}_{j'}} \frac{\partial z^{[l](i)}_{j'}}{\partial b^{[l]}_{j}} \newline
+&= \frac{1}{m} \sum^{m}_{i=1} {\color{blue} dz^{[l](i)}_{j}} \newline
 {\color{red} dB^{[l]}} &= \frac{1}{m} \sum^{m}_{i=1} \left({\color{blue} dZ^{[l]}}\right)_{ji}
 \end{aligned}
-%%</p>
+$$
 
 by merely applying the chain rule. As result and complementary to forward-propagating equations to evaluate networks activation functions, you also have back-propagating equations to compute the gradient of the cost function as follow
 
-<p>%%
+$$
 \begin{aligned}
-{\color{blue} dA^{[l]}} &= W^{[l+1]\top} {\color{blue} dZ^{[l+1]}} \\
-{\color{blue} dZ^{[l]}} &= {\color{blue} dA^{[l]}} \odot g^{[l]'}\left(Z^{[l]}\right) \\
-{\color{red} dW^{[l]}} &= \frac{1}{m} {\color{blue} dZ^{[l]}} A^{[l-1]\top} \\
+{\color{blue} dA^{[l]}} &= W^{[l+1]\top} {\color{blue} dZ^{[l+1]}} \newline
+{\color{blue} dZ^{[l]}} &= {\color{blue} dA^{[l]}} \odot g^{[l]'}\left(Z^{[l]}\right) \newline
+{\color{red} dW^{[l]}} &= \frac{1}{m} {\color{blue} dZ^{[l]}} A^{[l-1]\top} \newline
 {\color{red} dB^{[l]}} &= \frac{1}{m} \sum^{m}_{i=1} \left({\color{blue} dZ^{[l]}}\right)_{ji}
 \end{aligned}
-%%</p>
+$$
 
-in where they are initialized using for value \\|{\color{blue} dZ^{[L]}}\\| of the last layer by the following equation.
+in where they are initialized using for value ${\color{blue} dZ^{[L]}}$ of the last layer by the following equation.
 
-<p>%%
+$$
 {\color{blue} dZ^{[L]}} = {\color{blue} dA^{[L]}} \odot g^{[L]'}\left(Z^{[L]}\right)
-%%</p>
+$$
 
-For example, in the case of logistic regression, there is one node in the last layer of the network \\|n^{[D]} = 1\\| and the loss function is defined by the cross-entropy formula
+For example, in the case of logistic regression, there is one node in the last layer of the network $n^{[D]} = 1$ and the loss function is defined by the cross-entropy formula
 
-<p>%%
+$$
 \mathcal{L}\left(\hat{y},y\right) =- (1-y)\ln(1-\hat{y})-y\ln(\hat{y})
-%%</p>
+$$
 
-between the predicted value \\|\hat{y} = a^{[D]}\\| and actual label in you training set \\|y\\|, and the activation function of the last layer is given by the sigmoid function \\|g^{[D]}(z) = 1/(1+e^{-z})\\| then \\|{\color{blue} dZ^{[L]}}\\| is simply the difference between the predicted value and label of the training sample:
+between the predicted value $\hat{y} = a^{[D]}$ and actual label in you training set $y$, and the activation function of the last layer is given by the sigmoid function $g^{[D]}(z) = 1/(1+e^{-z})$ then ${\color{blue} dZ^{[L]}}$ is simply the difference between the predicted value and label of the training sample:
 
-<p>%%
+$$
 {\color{blue} dZ^{[L]}} = \hat{Y} - Y
-%%</p>
+$$
 
 So here you have it. One of the main advantages of Andrew's notation is that it explicitly shows how to vectorize the backpropagation algorithm of a deep neural network when running training. This explicit notation helps to make the emphasis that the **backprop** can be efficiently implemented using GPU, making the grandpa of supervised-learning algorithms the currently the most popular approach in deep learning applications.
 

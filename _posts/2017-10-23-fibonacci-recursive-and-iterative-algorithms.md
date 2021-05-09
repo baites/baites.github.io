@@ -16,7 +16,9 @@ Roughly speaking, I will be calling a *recursive algorithm* to any algorithm tha
 
 Since my teens I had a conjecture, that I would call **Bazterra's conjecture #1**[^1] without following any particular order.
 
-> **Bazterra's conjecture #1:** for any recursive(iterative) algorithm there is an iterative(recursive) reciprocal algorithm that can solve the same problem.
+{% include statement/remark name="Bazterra's conjecture #1" %}
+for any recursive(iterative) algorithm there is an iterative(recursive) reciprocal algorithm that can solve the same problem.
+{% include statement/end %}
 
 The relationship between recursive and iterative algorithms is by no means anything new, and it's currently a well-understood concept. Moreover, there are heuristics rules of when is reasonable to use recursive or iterative algorithm based on the problem instance sizes, and language characteristics used in its implementation[^2].
 

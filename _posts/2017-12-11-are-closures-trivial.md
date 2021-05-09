@@ -10,7 +10,9 @@ categories: computer-science idioms closure-series
 
 In the initial post of the series, I said that I found closures *a bit trivial* for a high-level language. However, I ended up writing *four blogs* about them. This last post is to explain what I meant by this statement to avoid looking like as a *self-contradicting arrogant*.
 
-> **Proposition**: closures are unavailable (a necessary condition) when using **function objects**. By function objects I mean the ability of passing, creating, and returning functions from one function scope to another. For example, this is the case for languages in where function are first-class objects, or they support the use of lambda or anonymous functions.
+{% include statement/proposition %}
+closures are unavailable (a necessary condition) when using **function objects**. By function objects I mean the ability of passing, creating, and returning functions from one function scope to another. For example, this is the case for languages in where function are first-class objects, or they support the use of lambda or anonymous functions.
+{% include statement/end %}
 
 Imagine in javascript passing callback functions without a closure. Due to the asynchronous nature of most of the applications in where javascript performs well, this could mean that callback's environment is inconsistent or undefined at the time it is called. The same applies when passing and returning functions in general, where for most scenarios, their execution is delegated to other scopes entirely different to those in where functions were created. It seems as the only way to have a consistent behavior with object functions is by having closures.
 

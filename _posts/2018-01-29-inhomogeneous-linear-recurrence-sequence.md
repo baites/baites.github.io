@@ -19,52 +19,54 @@ This post is the last of a series of posts in where I discuss how to compute clo
 
 In the previous post, I found that the procedure does not work for a sequence with inhomogeneous linear recurrences. So let's start first defining what these kind of sequences are.
 
-> **Definition**: an M-inhomogeneous linear recurrence sequence is a sequence of numbers given by the following function
+{% include statement/definition %}
+an M-inhomogeneous linear recurrence sequence is a sequence of numbers given by the following function
 
-<p>%%
+$$
 f_n = \begin{cases}
 b_n & 0 \leq n < M \\
 \sum^{M}_{m=1} a_m f_{n-m} + g_{n-M} & n \geq M
 \end{cases}
-%%</p>
+$$
 
-> in where \\|b_n\\| are initial sequence values (initial conditions), and for \\|n \geq M\\| the value of \\|f_n\\| is given by a linear combination of the previous values of the with coefficients \\|a_m\\| and inhomogeneous terms given by the sequence \\|g_n\\|.
+in where $b_n$ are initial sequence values (initial conditions), and for $n \geq M$ the value of $f_n$ is given by a linear combination of the previous values of the with coefficients $a_m$ and inhomogeneous terms given by the sequence $g_n$.
+{% include statement/end %}
 
-The challenge now is that embedded in the recurrence, there is a whole new sequence \\|g_n\\| that somewhat break any regularity brought by the linear recurrence. So, we need some assumption about \\|g_n\\| to make possible to derive a close-form expression. Let's \\|G(z)\\| the generating function of the sequence \\|g_n\\| and, lets assume it can be expressed as a rational function \\|G(z)=P_I(z)/G_I(z)\\| where \\|P_I(z)\\| and \\|G_I(z)\\| are any two polynomials (suffix *I* is because they related to inhomogeneous series).
+The challenge now is that embedded in the recurrence, there is a whole new sequence $g_n$ that somewhat break any regularity brought by the linear recurrence. So, we need some assumption about $g_n$ to make possible to derive a close-form expression. Let's $G(z)$ the generating function of the sequence $g_n$ and, lets assume it can be expressed as a rational function $G(z)=P_I(z)/G_I(z)$ where $P_I(z)$ and $G_I(z)$ are any two polynomials (suffix *I* is because they related to inhomogeneous series).
 
-It is not hard to prove following similar steps as one shown in a previous post[^1] that the generating function \\|F(z)\\| for sequence \\|f_n\\| can be written then as
+It is not hard to prove following similar steps as one shown in a previous post[^1] that the generating function $F(z)$ for sequence $f_n$ can be written then as
 
-<p>%%
+$$
 \begin{aligned}
-Q_O(z)F(z) &= P_O(z) + z^M G(z) \\
-Q_O(z)F(z) &= P_O(z) + z^M \frac{P_I(z)}{Q_I(x)} \\
-      F(z) &= \frac{P_O(z)Q_I(z) + z^M P_I(z)}{Q_O(z)Q_I(z)} \\
+Q_O(z)F(z) &= P_O(z) + z^M G(z) \newline
+Q_O(z)F(z) &= P_O(z) + z^M \frac{P_I(z)}{Q_I(x)} \newline
+      F(z) &= \frac{P_O(z)Q_I(z) + z^M P_I(z)}{Q_O(z)Q_I(z)} \newline
            &= \frac{P(z)}{Q(z)}
 \end{aligned}
-%%</p>
+$$
 
-in where \\|P_O(z)\\| and \\|Q_O(z)\\| are polynomials that form a rational generating function for homogeneous \\|f_n\\| sequence, e.i. the sequence resulting of linear recurrence for case \\|g_n = 0\\| as defined also previous sections.
+in where $P_O(z)$ and $Q_O(z)$ are polynomials that form a rational generating function for homogeneous $f_n$ sequence, e.i. the sequence resulting of linear recurrence for case $g_n = 0$ as defined also previous sections.
 
 In summary, we define *sufficient condition* so the *inhomogeneous sequence* has a *rational function* as its generator. Therefore, we can now use what was developed in the previous blog to derive a closed form[^2].
 
-There is however one caveat. The polynomial order or degree for \\|\text{deg}(P)\\| and \\|\text{deg}(Q)\\| depend on \\|G(z)\\|, and  it could be not true that \\|\text{deg}(P) < \text{deg}(Q)\\| as it was always the case homogeneous recurrence sequences. As result the *partial fraction decomposition*
-of the generating function for the whole sequence could contain a residual polynomial with coefficients \\|h_i\\| resulting in
+There is however one caveat. The polynomial order or degree for $\text{deg}(P)$ and $\text{deg}(Q)$ depend on $G(z)$, and  it could be not true that $\text{deg}(P) < \text{deg}(Q)$ as it was always the case homogeneous recurrence sequences. As result the *partial fraction decomposition*
+of the generating function for the whole sequence could contain a residual polynomial with coefficients $h_i$ resulting in
 
-<p>%%
+$$
 F(z) = \sum^{D}_{i=1} \sum^{m_i}_{k=1} \frac{r_{ik}}{(z-\eta_i)^k} + \mathbf{1} _{\{\Delta_{\deg} \geq 0\}} \sum^{\Delta_{\deg}}_{i=0} h_i z^i
-%%</p>
+$$
 
-where \\|\Delta_{\text{deg}} = \text{deg}(P) - \text{deg}(Q)\\|, and \\| \mathbf{1}\\| is the indicator function[^2]. The resulting expression becomes like the one the previous post for homogeneous sequences because in that case \\|\text{deg}(P) = M-1\\| and \\|\text{deg}(Q) = M\\|[^3]. Using this updated partial decomposition, it is not hard to follow the same steps as previous post resulting in a general close form as
+where $\Delta_{\text{deg}} = \text{deg}(P) - \text{deg}(Q)$, and $ \mathbf{1}$ is the indicator function[^2]. The resulting expression becomes like the one the previous post for homogeneous sequences because in that case $\text{deg}(P) = M-1$ and $\text{deg}(Q) = M$[^3]. Using this updated partial decomposition, it is not hard to follow the same steps as previous post resulting in a general close form as
 
-<p>%%
+$$
 f_n = \sum^{D}_{i=1} c_i(n) \eta^{-n}_i + \mathbf{1} _{\{\Delta_{\deg} \geq 0\}} \sum^{\Delta_{\deg}}_{i=0} h_i \delta_{in}.
-%%</p>
+$$
 
 in where
 
-<p>%%
+$$
 c_i(n) = \sum^{m_i}_{k=1} \binom{k+n-1}{n} (-\eta_i)^{-k} r_{ik}
-%%</p>
+$$
 
 I show the pseudocode to compute the closed form below.
 
@@ -77,7 +79,7 @@ I show the pseudocode to compute the closed form below.
     \STATE $p_O$ = \CALL{CreateP}{$a,b$}
     \STATE $M = \text{len}(a)$
     \STATE $P = P_O Q_I + z^M P_I$
-    \STATE $Q = Q_O Q_I$    
+    \STATE $Q = Q_O Q_I$
     \RETURN $P,Q$
 \ENDFUNCTION
 \FUNCTION{CloseFormV2}{$a,b,p_I,q_I$}
@@ -97,7 +99,7 @@ I show the pseudocode to compute the closed form below.
             \STATE $k = k + 1$
         \ENDIF
         \STATE $f = f + (-1)^k \binom{k+n-1}{n} r_i \eta_i^{-(n+k)}$
-        \IF{$i$ == $n$ and $n$ < $\text{len}(h)$}        
+        \IF{$i$ == $n$ and $n$ < $\text{len}(h)$}
             \STATE $f = f + h_i$
         \ENDIF
         \STATE $\eta_{\text{old}} = \eta_i$
@@ -112,28 +114,28 @@ You can implement this pseudocode in any high-level language, here are two examp
 
 Let me give you now a numerical example using the sequence example of previous blog ([A006904](https://oeis.org/A006904))[^4]:
 
-<p>%%
+$$
 f_n = \begin{cases}
 1 & n = 0 \text{ and } n = 1 \\
 f_{n-1} + f_{n-2} + (-1)^n & n > 1
 \end{cases}
-%%</p>
+$$
 
-This sequence has as recursive coefficients \\|a = (1,2)\\| and initial conditions \\|b = (1,1)\\|. Moreover, it has a inhomogeneous sequence given by \\|g_n = (-1)^n\\| for \\|n > 1\\| with a generating function \\|G(z) = \sum_{n\geq0} (-1)^{n} z^n = (1+z)^{-1}\\|. Therefore, \\|G(z)\\| is rational function with polynomials \\|P_I(z) = 1\\| and \\|Q_I(z) = 1 + x\\|. As result, the generating function for \\|f_n\\| given by the procedure I am describing is:
+This sequence has as recursive coefficients $a = (1,2)$ and initial conditions $b = (1,1)$. Moreover, it has a inhomogeneous sequence given by $g_n = (-1)^n$ for $n > 1$ with a generating function $G(z) = \sum_{n\geq0} (-1)^{n} z^n = (1+z)^{-1}$. Therefore, $G(z)$ is rational function with polynomials $P_I(z) = 1$ and $Q_I(z) = 1 + x$. As result, the generating function for $f_n$ given by the procedure I am describing is:
 
-<p>%%
+$$
 F(z) = \frac{1 + z + z^2}{1 - 3 z^2 - 2 z^3}.
-%%</p>
+$$
 
-The \\|F(z)\\| has poles two poles \\|\eta_1 = -1, \eta_2 = 1/2\\| in where \\|-1\\| has multiplicity of \\|2\\| or \\|m_1 = 2, m_2 = 1\\|. The residuals are \\|r_{1,1} = -1/9, r_{1,2} = 1/3, r_{2,1} = -7/18\\|. The residual polynomial is zero or \\|h_i = 0\\|. I extracted all these numbers after running the algorithm and converting them to their closest fraction representation. Moreover, using the fact that \\|\binom{n}{n} = 1\\| and \\|\binom{n+1}{n} = n+1\\|, then the close form for this sequence is
+The $F(z)$ has poles two poles $\eta_1 = -1, \eta_2 = 1/2$ in where $-1$ has multiplicity of $2$ or $m_1 = 2, m_2 = 1$. The residuals are $r_{1,1} = -1/9, r_{1,2} = 1/3, r_{2,1} = -7/18$. The residual polynomial is zero or $h_i = 0$. I extracted all these numbers after running the algorithm and converting them to their closest fraction representation. Moreover, using the fact that $\binom{n}{n} = 1$ and $\binom{n+1}{n} = n+1$, then the close form for this sequence is
 
-<p>%%
+$$
 \begin{aligned}
-f_n =& [(-\eta_1)^{-1} r_{1,1} + (n+1)(-\eta_1)^{-2} r_{1,2}] \eta_1^{-n} + (-\eta_2)^{-1} r_{2,1} \eta_2^{-n} \\
-    =& (-1/9 + n/3 + 1/3)(-1)^n + (7/9) 2^n \\
+f_n =& [(-\eta_1)^{-1} r_{1,1} + (n+1)(-\eta_1)^{-2} r_{1,2}] \eta_1^{-n} + (-\eta_2)^{-1} r_{2,1} \eta_2^{-n} \newline
+    =& (-1/9 + n/3 + 1/3)(-1)^n + (7/9) 2^n \newline
     =& 1/9[(2 + 3n)(-1)^n + (7)2^n].
 \end{aligned}
-%%</p>
+$$
 
 With this, I just reproduced similar result derived for this sequence in Concrete Mathematics[^4]. The main advantage is that we are testing a numerical approach that allows us to explore any other inhomogeneous linear recurrence sequence consistent with the blog assumptions.
 

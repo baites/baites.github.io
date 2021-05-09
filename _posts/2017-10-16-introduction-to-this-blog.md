@@ -16,7 +16,7 @@ The blog style will be technical. However, it should be easy to follow by anybod
 
 So, I hope you will enjoy these notes. I will try to post once or twice a week based on my schedule. Be patient with me as I am new on this and error will be made. Now, without further ado.
 
-`Welcome to Notes Of An Interdisciplinarian!`
+Welcome to Notes Of An Interdisciplinarian!
 
 #### References
 

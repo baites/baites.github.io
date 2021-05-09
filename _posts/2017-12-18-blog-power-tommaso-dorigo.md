@@ -23,7 +23,7 @@ Throughout Tommaso's blogs, I did not only learn experimental high energy physic
 
 So, I cannot tell how complemented I felt, when I found a blog from Tommaso about my first significant physics paper in high energy physics just a few days after we release its preprint:
 
-* Measurements of single top quark production cross sections and \\|\|V_{tb}\|\\| in \\|p\bar{p}\\| collisions at \\|\sqrt{s} = 1.96\\| TeV  ([preprint](https://arxiv.org/abs/1108.3091), [PhysRevD](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.84.112001)).
+* Measurements of single top quark production cross sections and $\|V_{tb}\|$ in $p\bar{p}$ collisions at $\sqrt{s} = 1.96$ TeV  ([preprint](https://arxiv.org/abs/1108.3091), [PhysRevD](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.84.112001)).
 
 To be fair, working in high energy physics is a highly collaborative enterprise[^1]. However, I did a **SIGNIFICANT** contribution to the paper analysis, writing, and graphical content.
 

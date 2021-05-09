@@ -6,7 +6,7 @@ author: Victor E. Bazterra
 categories: queuing-theory system-modeling queuing-theory-series
 javascript:
   katex: true
-  pseudocode: true  
+  pseudocode: true
 ---
 
 | This blog is part of a series dedicated to queuing theory. [In the Series page you can find all the posts of the series]({{ 'series#queuing-theory-series' | relative_url}} ). |
@@ -22,39 +22,43 @@ As an alternative, heuristics based on the number of used servers tend are safer
 
 # Fix idle server heuristic
 
-> **Fix idle server heuristic:** increase the number of servers such as preserving a constant number of available servers, meaning that if the initial number of used servers in the system is \\|n_I\\| then the final of servers should be:
+{% include statement/definition name='Fix idle server heuristic' %}
+increase the number of servers such as preserving a constant number of available servers, meaning that if the initial number of used servers in the system is $n_I$ then the final of servers should be:
 
-<p>%%
+$$
 N_F = \lceil n_I + \epsilon \rceil
-%%</p>
+$$
 
-> where \\|\epsilon\\| is a constant representing the fix targeted number of available hosts.
+where $\epsilon$ is a constant representing the fix targeted number of available hosts.
+{% include statement/end %}
 
-The value of \\|\epsilon\\| directly controls the number of available servers. The aggregated server utilization for this heuristic is given by \\|U \approx (1+\epsilon/n_I)^{-1}\\|. At low values of \\|n_i\\| the server utilization is controlled by \\|\epsilon\\| parameter. Therefore this heuristic is great to set a good quality of service when the number of the used servers is low, by fixing the number of idle servers regardless of the actual number of busy servers. Although this is wasteful at low values of \\|n_I\\|, the absolute cost of supporting only a few servers is still relatively small.
+The value of $\epsilon$ directly controls the number of available servers. The aggregated server utilization for this heuristic is given by $U \approx (1+\epsilon/n_I)^{-1}$. At low values of $n_i$ the server utilization is controlled by $\epsilon$ parameter. Therefore this heuristic is great to set a good quality of service when the number of the used servers is low, by fixing the number of idle servers regardless of the actual number of busy servers. Although this is wasteful at low values of $n_I$, the absolute cost of supporting only a few servers is still relatively small.
 
-Eventually server utilization improves as the number of busy servers increases or \\|\lim_{n_I \rightarrow \infty} U = 1\\|. However, at a large scale, the utilization approach so quickly to 1 that the customer quality of service gradually might become quite poor. The next figure the queue size vs. server utilization for a system with initially 1000 servers and an average number delayed customers of 500 (red diagram) in the *M/M/N* queue model[^1]. Because the systems it is very close to saturation the utilization is practically 100% or \\|U \approx 1\\|
+Eventually server utilization improves as the number of busy servers increases or $\lim_{n_I \rightarrow \infty} U = 1$. However, at a large scale, the utilization approach so quickly to 1 that the customer quality of service gradually might become quite poor. The next figure the queue size vs. server utilization for a system with initially 1000 servers and an average number delayed customers of 500 (red diagram) in the *M/M/N* queue model[^1]. Because the systems it is very close to saturation the utilization is practically 100% or $U \approx 1$
 
 {% include image file="mmn-fix-heuristic.svg" scale="70%" %}
 
-In the same figure, I show in blue the final state of the same system after adding 10 more servers. Assuming no change in user demand, those extra 10 servers are available resulting in a total server utilization of \\|U \approx 0.99\\|. From the figure, we can expect a significant reduction of delay customer. However, customer services might still be far from ideal because on average 51 users are waiting in the queue at any given time. Therefore at scale, this heuristic produces recommendations that are purely efficient driven at the expense of customer quality of service.
+In the same figure, I show in blue the final state of the same system after adding 10 more servers. Assuming no change in user demand, those extra 10 servers are available resulting in a total server utilization of $U \approx 0.99$. From the figure, we can expect a significant reduction of delay customer. However, customer services might still be far from ideal because on average 51 users are waiting in the queue at any given time. Therefore at scale, this heuristic produces recommendations that are purely efficient driven at the expense of customer quality of service.
 
 # Constant server utilization heuristic
 
 With the goal of avoiding previous heuristic drawback, I could instead set the number of available servers proportional to the number of busy servers.
 
-> **Constant server utilization heuristic:** increase the number of servers such as preserving many available servers proportional to the number of the initial number of busy servers, meaning that if the initial number of used servers in the system is \\|n_I\\| then the final number of servers should be:
+{% include statement/definition name='Constant server utilization heuristic' %}
+increase the number of servers such as preserving many available servers proportional to the number of the initial number of busy servers, meaning that if the initial number of used servers in the system is $n_I$ then the final number of servers should be:
 
-<p>%%
+$$
 N_F = \lceil n_I + \alpha n_I \rceil
-%%</p>
+$$
 
-> where \\|\alpha\\| is a parameter that controls the aggregated server utilization given by \\|U \approx (1+\alpha)^{-1}\\|.
+where $\alpha$ is a parameter that controls the aggregated server utilization given by $U \approx (1+\alpha)^{-1}$.
+{% include statement/end %}
 
 This heuristic preserves the aggregated server utilization constant for any number of servers. Because of this, customer quality of service is guaranteed regardless of the scale of the system. This recommendation is similar to quality-driven regimen defined using queue model with abandonment like *M/M/N + G*[^2].
 
 This heuristic is effectively used in practice when using a load balancer to distribute system utilization equally between multiple servers. If the aggregated utilization is too high, administrator or automated agents add more servers to the load balancer resource pool.
 
-One issue with the previous recommendation at scale is that it is possible to increase service utilization and still preserve the overall quality of service. I made this point on a previous post where I showed systems at scale become more robust against stochastic fluctuation of customer demand, see [Single open queue at scale]({% post_url 2018-04-23-single-open-queue-at-scale %}). For example, the figure below presents the result of applying this heuristic over the same initial system in saturation as the previous section using \\|\alpha = 0.25\\|. As expected, the final aggregated utilization is \\|U = 0.8\\| and the mean queue length is practically zero. However, from the plot, it is also easy to see that running at a significant high server utilization can keep the mean number of waiting customers still close to zero.
+One issue with the previous recommendation at scale is that it is possible to increase service utilization and still preserve the overall quality of service. I made this point on a previous post where I showed systems at scale become more robust against stochastic fluctuation of customer demand, see [Single open queue at scale]({% post_url 2018-04-23-single-open-queue-at-scale %}). For example, the figure below presents the result of applying this heuristic over the same initial system in saturation as the previous section using $\alpha = 0.25$. As expected, the final aggregated utilization is $U = 0.8$ and the mean queue length is practically zero. However, from the plot, it is also easy to see that running at a significant high server utilization can keep the mean number of waiting customers still close to zero.
 
 {% include image file="mmn-fixutil-heuristic.svg" scale="70%" %}
 
@@ -62,35 +66,37 @@ One issue with the previous recommendation at scale is that it is possible to in
 
 Therefore the question is, for large systems with large demand, how should we scale the number of available servers? The answer for this is IMHO an essential asymptotic result in queue theory know the Square Root Rule[^3]. From it, I can come up with the following recommendation.
 
-> **Square-root heuristic:** increase the number of servers such as preserving many available servers proportional to the **square root** of the number of initial busy servers, meaning that if the initial number of used servers in the system is \\|n_I\\| then the final number of servers should be:
+{% include statement/definition name='Square-root heuristic' %}
+increase the number of servers such as preserving many available servers proportional to the **square root** of the number of initial busy servers, meaning that if the initial number of used servers in the system is $n_I$ then the final number of servers should be:
 
-<p>%%
+$$
 N_F = \lceil n_I + \beta \sqrt{n_I} \rceil
-%%</p>
+$$
 
-> where \\|\beta\\| is a parameter that controls service grade.
+where $\beta$ is a parameter that controls service grade.
+{% include statement/end %}
 
-Applying this rule the saturated test system with a \\|\beta = 2.3\\| results in an addition of an extra 73 servers resulting in a server utilization of \\|U = 0.93\\|. The mean number waiting in the queue is \\|w = 0.2\\| meaning more than half of the time the queue is empty, see plot below!
+Applying this rule the saturated test system with a $\beta = 2.3$ results in an addition of an extra 73 servers resulting in a server utilization of $U = 0.93$. The mean number waiting in the queue is $w = 0.2$ meaning more than half of the time the queue is empty, see plot below!
 
 {% include image file="mmn-srr-heuristic.svg" scale="70%" %}
 
-As added value this recommendation is robust at scale. For example, let's consider the case in where number of servers is now ten times more or \\|N = 10000\\| and there are \\|5000\\| customers in queue. The square-rule recommendation with the same \\|\beta = 2.3\\| suggest adding an extra 230 servers. As result the new server utilization is now \\|U = 0.98\\| and the mean number of waiting customers is \\|w = 0.5\\| or half of the time the queue is empty. It is important to notice that the server utilization improves for large \\|n_I\\| as \\|U \approx (1+\beta/\sqrt{n_I})^{-1}\\|.
+As added value this recommendation is robust at scale. For example, let's consider the case in where number of servers is now ten times more or $N = 10000$ and there are $5000$ customers in queue. The square-rule recommendation with the same $\beta = 2.3$ suggest adding an extra 230 servers. As result the new server utilization is now $U = 0.98$ and the mean number of waiting customers is $w = 0.5$ or half of the time the queue is empty. It is important to notice that the server utilization improves for large $n_I$ as $U \approx (1+\beta/\sqrt{n_I})^{-1}$.
 
 # Combined heuristic
 
 Can we combined all the into one having the all the benefits without the drawbacks? I think the answer is yes and general for I can write this *combined heuristic* as follow:
 
-<p>%%
+$$
 N_F = \lceil n_I + \max \left\{\epsilon, \alpha n_I \theta(n_I) + \beta \sqrt{n_I} \left[1-\theta(n_I)\right]\right\} \rceil
-%%</p>
+$$
 
-where the \\|\theta(\cdot)\\| is weighting function such as \\|\theta(0) = 1\\| and \\|\lim_{n \rightarrow \infty}\theta(n) = 0\\| that produces a smoothly between constant utilization heuristic and square-root rule. The simplest choice for \\|\theta(n)\\| that comes to mind is the exponential function or \\|\theta(n) = \exp(-n/\eta)\\| in where \eta parameter set how fast the transition is done.
+where the $\theta(\cdot)$ is weighting function such as $\theta(0) = 1$ and $\lim_{n \rightarrow \infty}\theta(n) = 0$ that produces a smoothly between constant utilization heuristic and square-root rule. The simplest choice for $\theta(n)$ that comes to mind is the exponential function or $\theta(n) = \exp(-n/\eta)$ in where \eta parameter set how fast the transition is done.
 
-Next figure presents the result of applying the heuristics assuming different values for the initial number of busy servers \\|0 \leq n_I \leq 10000\\| and using the *M/M/N* queue model to derive the number of customers waiting in the queue. I choose as parameter values \\|\epsilon = 10\\|, \\|\alpha = 0.25\\|, \\|\beta = 2.3 \\|, and \\|\eta = 200\\|.
+Next figure presents the result of applying the heuristics assuming different values for the initial number of busy servers $0 \leq n_I \leq 10000$ and using the *M/M/N* queue model to derive the number of customers waiting in the queue. I choose as parameter values $\epsilon = 10$, $\alpha = 0.25$, $\beta = 2.3 $, and $\eta = 200$.
 
 {% include image file="mmn-combined-heuristic.svg" scale="90%" %}
 
-For low values of \\|n_I\\|, the recommendations are more wasteful by suggesting to run the system at relatively low utilization. However, it is in this regime in where keeping customers happy is worth the cost of maintaining an underutilized but small system. As the system scales, the square-rule rule becomes the dominant component of the recommendation increasing overall system utilization by taking advantage of the system economy at scales.
+For low values of $n_I$, the recommendations are more wasteful by suggesting to run the system at relatively low utilization. However, it is in this regime in where keeping customers happy is worth the cost of maintaining an underutilized but small system. As the system scales, the square-rule rule becomes the dominant component of the recommendation increasing overall system utilization by taking advantage of the system economy at scales.
 
 # Caveats and final remarks
 
