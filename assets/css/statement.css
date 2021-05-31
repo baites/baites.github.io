@@ -1,6 +1,7 @@
 .collorary,
 .definition,
 .disclaimer,
+.example,
 .lemma,
 .problem,
 .proposition,
@@ -29,6 +30,10 @@
 .disclaimer {
     background-color: lightgray;
     border-color: gray;
+}
+
+.example {
+    border-color: lightgray;
 }
 
 .lemma {

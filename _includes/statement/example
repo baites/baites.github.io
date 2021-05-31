@@ -1,5 +1,5 @@
-{% assign class = "definition" %}
-{% assign logo = "fa fa-info-circle" %}
+{% assign class = "example" %}
+{% assign logo = "fab fa-buromobelexperte" %}
 <div markdown="{{ include.markdown | default: 'span' }}" class="{{ class }}" role="statement">
 {% if include.name %}
 <i class="{{ logo }}"/> <b>{{ class | capitalize }} <i>({{ include.name }})</i>:</b>
