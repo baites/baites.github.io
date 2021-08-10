@@ -39,11 +39,38 @@ The interpretation is of map straightforward. The homomorphism related both acti
 Given two transformation groups $(X, G, \lambda)$ and $(Y, G, \mu)$ with a common group $G$, a group action homomorphism $f: X \rightarrow Y$ which is also bijective is called a group action isomorphism between the set $X$ and $Y$. In this case we say that both sets are group action isomorphic and denote $X \simeq Y$.
 {% include statement/end %}
 
-## Action on a coset
+## Subgroups and cosets
 
+Within a group you can find a subset that is also a group. The finition is straight forward.
 
+{% include statement/definition name="subgroup"%}
+A subset $H \subset G$ is a subgroup of $(G, \cdot, e)$ if $H$ forms a group $(H, \cdot, e)$, that is a $x \in H$ implies that its inverse $x^{-1}$ is also in $H$.
+{% include statement/end %}
+
+A subgroup $H$ can be useful to partition an original $G$ group in to subsets known as cosets. Given a element $x$ of $G$ I can define
+
+$$
+Hx = \big\lbrace n \cdot x | n \in H \big\rbrace \text{ and } xH = \big\lbrace x \cdot n | n \in H \big\rbrace
+$$
+
+where the sets $Hx$ and $xH$ are known as the *right* and *left cosets* of the subgroup $H$ with element $x$. For my discussion I just need to concentrate in the collection of all left cosets for each element $x \in G$ defined as
+
+$$
+G/H = \big\lbrace xH | x \in G \big\rbrace \text{.}
+$$
+
+It is important to understand that $G/H$ is a set of sets. For a collection of elements $x_1,x_2,...,x_k \in G$ there is associated a collection of sets $x_1H, x_2H,...,x_kH \in G/H$. The set (of sets) $G/H$ is called homogeneous space.[^4] Each of the sets of $G/H$ can be connected by an action group.
+
+{% include statement/proposition name="action on cosets"%}
+Given a homogenous space $G/H$ of a group $G$ with a subgroup $H$, then there is a *transitive* action $(G/H, G, \lambda)$ define by the function $\lambda_g: G/H \rightarrow G/H; xH \mapsto gxH$ for each $g$ in $G$.[^5]
+{% include statement/end %}
+
+This proposition means that if we start from $x, y, g \in G$ such $y = gx$, then the coset $xH$ can be transformed to the coset $yH$ simply by the action $\lambda_g(xH) = gxH = yH$. In words, all the cosets of a homogeneous space can be reached by transitive actions from any other coset.
 
 ## Refernces
 
 [^1]: TODO
 [^2]: Katsuo Kawakubo, The Theory of Transformation Groups. Oxford University Press, 1991. Chap 1, page 5. In the book this function is known as *G-map* or *equivariant map*. However, I think a better terminology would be group actio (or action) homomorphism. This is more consistent with the Cathegory Theory approach of calling morphism to relationship between objects.
+[^3]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
+[^4]: Definition 10.20 of [^3].
+[^5]: Proposition 10.19 of [^3].
