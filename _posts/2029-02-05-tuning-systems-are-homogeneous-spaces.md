@@ -18,7 +18,6 @@ javascript:
 In this blog I discuss the necesary tools to understand the structure of the a tuning system from its action group. The beatiful this is that these tools are basically the most important theorems of abstract algebra:
 
 * the theorem that proves transitive actions are homogenoeous spaces and later,
-* the first isomorphism theorem for groups!
 
 This is likely a long blog. However, I will try provide the main argument as simple as possible. I will delegate the details to the references.
 
@@ -59,18 +58,72 @@ $$
 G/H = \big\lbrace xH | x \in G \big\rbrace \text{.}
 $$
 
-It is important to understand that $G/H$ is a set of sets. For a collection of elements $x_1,x_2,...,x_k \in G$ there is associated a collection of sets $x_1H, x_2H,...,x_kH \in G/H$. The set (of sets) $G/H$ is called homogeneous space.[^4] Each of the sets of $G/H$ can be connected by an action group.
+It is important to understand that $G/H$ is a set of left cosets. For a collection of elements $x_1,x_2,...,x_k \in G$ there is associated a collection of cosets $x_1H, x_2H,...,x_kH \in G/H$. The set (of cosets) $G/H$ is called homogeneous space.[^3] The next propositon shows that each of the cosets of $G/H$ can be connected by an action group.
 
 {% include statement/proposition name="action on cosets"%}
-Given a homogenous space $G/H$ of a group $G$ with a subgroup $H$, then there is a *transitive* action $(G/H, G, \lambda)$ define by the function $\lambda_g: G/H \rightarrow G/H; xH \mapsto gxH$ for each $g$ in $G$.[^5]
+Given a homogenous space $G/H$ of a group $G$ with a subgroup $H$, then there is a *transitive* action $(G/H, G, \mu)$ define by the function $\mu_g: G/H \rightarrow G/H; xH \mapsto gxH$ for each $g$ in $G$.[^4]
 {% include statement/end %}
 
-This proposition means that if we start from $x, y, g \in G$ such $y = gx$, then the coset $xH$ can be transformed to the coset $yH$ simply by the action $\lambda_g(xH) = gxH = yH$. In words, all the cosets of a homogeneous space can be reached by transitive actions from any other coset.
+This proposition means that if we start from $x, y, g \in G$ such $y = gx$, then the coset $xH$ can be transformed to the coset $yH$ simply by the action $\mu_g(xH) = gxH = yH$. In words, all the cosets of a homogeneous space can be reached by transitive actions from any other coset.
 
-## Refernces
+Two extreme examples of homogenous spaces are noted specially. The homogeneous space $G/G$ (where the subgroup is $G$ itself) is *trivial*[^5] with *trivial action*[^6] $\mu_g(x) = x$. Alternative, the homogeneous space $G/\lbrace e \rbrace$ (where $e$ is $G$ identity element) is *a simple representation* of $G$ because it is just to write every $x \in G$ as singleton set $\lbrace x \rbrace$[^7].
 
-[^1]: TODO
-[^2]: Katsuo Kawakubo, The Theory of Transformation Groups. Oxford University Press, 1991. Chap 1, page 5. In the book this function is known as *G-map* or *equivariant map*. However, I think a better terminology would be group actio (or action) homomorphism. This is more consistent with the Cathegory Theory approach of calling morphism to relationship between objects.
-[^3]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
-[^4]: Definition 10.20 of [^3].
-[^5]: Proposition 10.19 of [^3].
+## Transitive actions are homogenous spaces
+
+Let me summary what was described so far. First I showed the way on how to relate to different actions using *group action homomorphism*. Second, I find that for a given subgroup $H$ of a group $G$ we can define a transitive action. This action is written exclusively as acting on cosets of $G/H$ **without referencing any other set!**
+
+As result, one can wonder if it might be possible to relate any transitive action on an arbitrary set to an action over homogeneous space. The answer is yes and it is a *central* (perhaps fundamental) theorem of action groups and I will state it as follow.
+
+{% include statement/theorem name="Transitive actions are homogeneous spaces" markdown="block"%}
+Let $(X, G, \lambda)$ be a transitive action of a group $G$ on an nonempty set $X$. For each element $a$ of $X$, considere the stabilizer of $G_a$ under this action. Let $(G/G_a, G, \mu)$ be the homogeneous space action of $G$ on $G/G_a$. Then $X$ and $G/G_a$ are group action isomorphic[^8]
+
+$$
+X \simeq G/G_a
+$$
+
+where the bijective function mapping both sets is $f: G/G_a \rightarrow X; gG_a \mapsto \lambda_g(a)$
+{% include statement/end %}
+
+Now for action group $(X, G, \lambda)$ and for each element $a$ of $X$ I can define the orbit $\lambda_G(a)$. I showed in a [early blog of this series]({% post_url 2029-02-03-tuning-systems %}) that by definition the action of $G$ on elements of the orbit $\lambda_G(a)$ is a transitive action! As result we have the following collorary.
+
+{% include statement/collorary name="Orbits are isomorphic homogeneous spaces" markdown="block"%}
+Let $(X, G, \lambda)$ be a transitive action of a group $G$ on an nonempty set $X$. For each element $a$ of $X$, considere  the orbit $\lambda_G(a)$ and the stabilizer of $G_a$ under this action. Then the orbit $\lambda_G(a)$ is group-action isomorphic to the homogeneous group $G/G_a$[^9]
+
+$$
+\lambda_G(a) \simeq G/G_a
+$$
+{% include statement/end %}
+
+**TODO:** add schematic graph and basic *natural* interpretation of the concepts.
+
+## Tuning systems are homogenous spaces
+
+The application of these ideas to music is straightforward from my definition of tuning systems. This definition basically says tuning systems are basically action group orbits in the single pitch space.[^1] It follows then next collorary.
+
+{% include statement/collorary name="tuning systems are homogenous spaces" %}
+Let $(\mathcal{S}, G, \lambda)$ be an action of a group $G$ on the single pitch space $\mathcal{S}$. Let $\mathcal{T}$ be the tuning system given by the orbit $\lambda_G(a)$ where $a \in \mathcal{S}$ is the standard pitch. It follows that the tuning system $\mathcal{T}$ is group action isomorphic to the homogeneous space $G/G_a$.
+$$
+\mathcal{T} \simeq G/G_a
+$$
+{% include statement/end %}
+
+Arm with collorary we can visit again some of the simple tuning systems defined in the [previous blog of this series]({% post_url 2029-02-04-simple-tuning-systems %}). I can now put the description about structure of those tuning systems in stroger foundations.
+
+{% include statement/example name="positive-real tuning system is isomophic with positive real numbers" markdown="block"%}
+With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It easy to see that the stabilizer around identity is the same with the identity itself $G_1 = \lbrace 1 \rbrace$. This means that $\mathcal{T} \simeq \mathbb{R}\_{>0}/\lbrace 1 \rbrace$ that is a simple representation of $\mathbb{R}\_{>0}$ in cosets $x\lbrace 1 \rbrace$ for $x \in \mathbb{R}\_{>0}$, meaning $\mathcal{T} \simeq \mathbb{R}\_{>0}$.
+{% include statement/end %}
+
+
+## References
+
+[^1]: TODO.
+[^2]: Chap 1, page 5 of [^100]. In the book this function is known as *G-map* or *equivariant map*. However, I think a better terminology would be group actio (or action) homomorphism. This is more consistent with the Cathegory Theory approach of calling morphism to relationship between objects.
+[^3]: Definition 10.20 of [^101].
+[^4]: Proposition 10.19 of [^101].
+[^5]: Example 10.8 of [^101].
+[^6]: Chap 1, page 6 of [^101].
+[^7]: Example 10.21 of [^101].
+[^8]: Example 10.22 of [^101].
+[^9]: Theorem 1.5 of [^100].
+[^100]: Katsuo Kawakubo, The Theory of Transformation Groups. Oxford University Press, 1991.
+[^101]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
