@@ -87,36 +87,47 @@ where the bijective function mapping both sets is $f: G/G_a \rightarrow X; gG_a 
 Now for action group $(X, G, \lambda)$ and for each element $a$ of $X$ I can define the orbit $\lambda_G(a)$. I showed in a [early blog of this series]({% post_url 2029-02-03-tuning-systems %}) that by definition the action of $G$ on elements of the orbit $\lambda_G(a)$ is a transitive action! As result we have the following collorary.
 
 {% include statement/collorary name="Orbits are isomorphic homogeneous spaces" markdown="block"%}
-Let $(X, G, \lambda)$ be a transitive action of a group $G$ on an nonempty set $X$. For each element $a$ of $X$, considere  the orbit $\lambda_G(a)$ and the stabilizer of $G_a$ under this action. Then the orbit $\lambda_G(a)$ is group-action isomorphic to the homogeneous group $G/G_a$[^9]
+Let $(X, G, \lambda)$ be a transitive action of a group $G$ on an nonempty set $X$. For each element $a$ of $X$, considere  the orbit $\lambda_G(a)$ and the stabilizer of $G_a$ under this action. Then the orbit $\lambda_G(a)$ is group-action isomorphic to the homogeneous space $G/G_a$[^9]
 
 $$
 \lambda_G(a) \simeq G/G_a
 $$
 {% include statement/end %}
 
-**TODO:** add schematic graph and basic *natural* interpretation of the concepts.
+The next figure is a graphical representation of the theorem statement.
+
+{% include image file="mt-action-group-fundamental-theom.png" scale="90%" %}
+
+As you can see all elements $g \in G_a$ leave the element $a \in X$ the same. So, I interprate this as all the elements of $G_a$ are somawhat equivalent in the sense that when acting on $a$ there result is always $a$. Now each coset $xG_a$ also produces another set of equivalent actions that when takes $a$ into $\lambda_x(a)$. The process allows to create group-action isomorphic between homogeneous space and all point of action group orbit. We can then describe the set from by the trajectory by studing its related homogeneous space.
 
 ## Tuning systems are homogenous spaces
 
 The application of these ideas to music is straightforward from my definition of tuning systems. This definition basically says tuning systems are basically action group orbits in the single pitch space.[^1] It follows then next collorary.
 
 {% include statement/collorary name="tuning systems are homogenous spaces" %}
-Let $(\mathcal{S}, G, \lambda)$ be an action of a group $G$ on the single pitch space $\mathcal{S}$. Let $\mathcal{T}$ be the tuning system given by the orbit $\lambda_G(a)$ where $a \in \mathcal{S}$ is the standard pitch. It follows that the tuning system $\mathcal{T}$ is group action isomorphic to the homogeneous space $G/G_a$.
+Let $(\mathcal{S}, G, \lambda)$ be an action of a group $G$ on the single pitch space $\mathcal{S}$. Let $\mathcal{T}$ be the tuning system given by the orbit $\lambda_G(a)$ where $a \in \mathcal{S}$ is the standard pitch. It follows that the tuning system $\mathcal{T}$ is group action isomorphic to the homogeneous space $G/G_a$
 $$
 \mathcal{T} \simeq G/G_a
 $$
+where we say in this case that $G/G_a$ its pitch class.
 {% include statement/end %}
 
-Arm with collorary we can visit again some of the simple tuning systems defined in the [previous blog of this series]({% post_url 2029-02-04-simple-tuning-systems %}). I can now put the description about structure of those tuning systems in stroger foundations.
+Arm with collorary we can show now some of the arguments done for the simple tuning systems defined in the [previous blog of this series]({% post_url 2029-02-04-simple-tuning-systems %}). I can now put the description about structure of those tuning systems in stroger foundations.
 
 {% include statement/example name="positive-real tuning system is isomophic with positive real numbers" markdown="block"%}
-With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It easy to see that the stabilizer around identity is the same with the identity itself $G_1 = \lbrace 1 \rbrace$. This means that $\mathcal{T} \simeq \mathbb{R}\_{>0}/\lbrace 1 \rbrace$ that is a simple representation of $\mathbb{R}\_{>0}$ in cosets $x\lbrace 1 \rbrace$ for $x \in \mathbb{R}\_{>0}$, meaning $\mathcal{T} \simeq \mathbb{R}\_{>0}$.
+With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It easy to see that the stabilizer around identity is the same with the identity itself $G_1 = \lbrace 1 \rbrace$. This means that $\mathcal{T} \simeq \mathbb{R}\_{>0}/\lbrace 1 \rbrace$ that is a simple representation of $\mathbb{R}\_{>0}$ in cosets $x\lbrace 1 \rbrace$ for $x \in \mathbb{R}\_{>0}$, or $\mathcal{T} \simeq \mathbb{R}\_{>0}$, and thefore its pitch class is $\mathbb{R}\_{>0}$.
 {% include statement/end %}
 
+The same argument applies for all the other simple tuning systems in previous blog because their stabilizers contains only the identity element of their respectively groups. As result the following statements are true:
+
+* positive-real tuning system pitch class is $\mathbb{R}\_{>0}$,
+* real tuning system pitch class is $\mathbb{R}$,
+* equal temperament tuning system pitch class is $\mathbb{Z}$,
+* $p_n$-limit tuning system pitch class is $\mathbb{Z}^n$.
 
 ## References
 
-[^1]: TODO.
+[^1]: [Blog about tuning systems]({% post_url 2029-02-03-tuning-systems %})
 [^2]: Chap 1, page 5 of [^100]. In the book this function is known as *G-map* or *equivariant map*. However, I think a better terminology would be group actio (or action) homomorphism. This is more consistent with the Cathegory Theory approach of calling morphism to relationship between objects.
 [^3]: Definition 10.20 of [^101].
 [^4]: Proposition 10.19 of [^101].
