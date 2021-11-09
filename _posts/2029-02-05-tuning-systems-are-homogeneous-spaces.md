@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tuning systems are homogeous systems
+title: Tuning systems are homogeous spaces
 date: 2029-02-05 08:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
@@ -96,7 +96,7 @@ $$
 
 The next figure is a graphical representation of the theorem statement.
 
-{% include image file="mt-action-group-fundamental-theom.png" scale="90%" %}
+{% include image file="mt-action-group-fundamental-theom.svg" scale="90%" %}
 
 As you can see all elements $g \in G_a$ leave the element $a \in X$ the same. So, I interprate this as all the elements of $G_a$ are somawhat equivalent in the sense that when acting on $a$ there result is always $a$. Now each coset $xG_a$ also produces another set of equivalent actions that when takes $a$ into $\lambda_x(a)$. The process allows to create group-action isomorphic between homogeneous space and all point of action group orbit. We can then describe the set from by the trajectory by studing its related homogeneous space.
 

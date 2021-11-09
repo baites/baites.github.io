@@ -36,10 +36,10 @@ for all $g, h \in G$ and $x \in X$. It is important to notice that $gh$ is short
 Therefore, using this definition I say $\lambda_g(x)$ is *simple action* if its given by a left action group
 
 $$
-\lambda_g(x): X \rightarrow X; x \mapsto \phi(g)\cdot x
+\lambda_g(x): G \rightarrow X; x \mapsto \phi(g) \cdot x
 $$
 
-where $\phi: G \rightarrow G$ is a function from group $G$ into itself that needs to comply with some rules. Group action composition rule says that $\lambda_{gh}(x) = \lambda_g(\lambda_h(x))$ for all $g, h \in G$ and $x \in X$. It follows then
+where $\phi: G \rightarrow G$ is a function from group $G$ into itself that needs to comply with some rules. Group action composition says that $\lambda_{gh}(x) = \lambda_g(\lambda_h(x))$ for all $g, h \in G$ and $x \in X$. It follows then
 
 $$
 \begin{align*}
@@ -67,21 +67,62 @@ $$
 \phi(h^{-1}) = \phi(h)^{-1}.
 $$
 
-A function comply with all these properties is know as a group homomorphism[^4].
+A function comply with all these properties is know as a **group homomorphism**[^4]. Moreover, a group homomorphic function that is also bijective is known as **group isomorphism**.
 
 ## Tuning systems of simple acctions
 
-As describe in previous blogs, tuning systems are action group orbits $\lambda_G(a)$ where $a$ is standard pitch. As such
+I define a tuning system $\cal{T}$ by action group orbits $\lambda_G(a)$ for a given standard pitch $a$. I showed that a fundamental property of action group orbit is they are homogeneous spaces $\lambda_G(a) \simeq G/G_a$ where $G_a$ is the group action stabilizer.[^5] Just as reminder, the group action stibilizer $G_a$ are all the group action that transform $a$ element in to itself:
 
-## Theorem
+$$G_a = \lbrace g \in G: \lambda_g(a) = a\rbrace.$$
+
+In case of a simple group actions, all elements on $g \in G$ such as $\lambda_g(a) = \phi(g) \cdot a = a$ are those elements $g$ in $G$ so $\phi(g) = e$ where $e$ is the identity of $G$. In other words, $G_a = \text{Ker}_{\phi}$ where $\text{Ker}\_{\phi}$ is known as the kernel of the homorphism $\phi$ and it is usually defined as
+
+$$\text{Ker}_{\phi} = \lbrace g \in G: \phi(g) = e\rbrace$$
+
+Therefore, the orbit $\lambda_G(a)$ is group-action isomorphic to $G/\text{Ker}\_{\phi}$ by bijective function $f:G/\text{Ker}\_{\phi} \rightarrow \lambda\_G(a); g\text{Ker}\_{\phi} \mapsto \phi(g) \cdot a$.[^6] This function can be writen as the composition $f = f'' \circ f'$ where $f': G/\text{Ker}\_{\phi} \rightarrow \phi(G); g\text{Ker}_{\phi} \mapsto \phi(g)$ and $f'': \phi(G) \rightarrow \lambda\_G(a); g \mapsto g \cdot a$. Therefore the composition implies that the homormorphism $f'$ (because $\phi$ is homomorphic) is also bijective resulting in the fact that $G/\text{Ker}\_{\phi}$ is group isomorphic with $\phi(G)$ also notated as $G/\text{Ker}\_{\phi} \simeq \phi(G)$ (see diagram below).[^7]
+
+{% include image file="mt-group-fundamental-theom.svg" scale="90%" %}
+
+In summary, the fact that tuning systems are homogenous spaces when apply to simple group actions reduces to what is know as the **First Isomorphism Theorem for Groups**.[^8]
+
+{% include statement/theorem name="First Isomorphism Theorem for Groups" markdown="block"%}
+Let $\phi: X \rightarrow Y$ be a group homormorphism between two groups $X$ and $Y$ with identity elements $e_x$ and $e_y$, respectively.
+
+(c) The function $\phi$ can be factorized as
+
+$$\phi = j \circ b \circ s$$
+
+where the surjection $s$ may be taken as the surjective homomorphism
+
+$$s: X \rightarrow X/\text{Ker}_{\phi}; x \mapsto x\text{Ker}_{\phi}$$
+
+the bijection $b$ is the well-defined group isomorphism
+
+$$b: X/\text{Ker}_{\phi} \rightarrow \phi(X); x\text{Ker}_{\phi} \mapsto \phi(x)$$
+
+from the quotient $X/\text{Ker}_{\phi}$ to the image $\phi(x)$, and the injection $j$ is the injective group homormophism
+
+$$j: \phi(X) \rightarrow Y; \phi(x) \mapsto \phi(x)$$
+
+This is usually represented by the following graph:
 
 $$
 \begin{CD}
-   G @>\phi>> G \\
+   X @>\phi>> Y \\
 @VsVV @AAiA \\
-   G/Ker_{\phi} @>>\simeq> \phi(G)
+   X/Ker_{\phi} @>>b> \phi(G)
    \end{CD}
 $$
+
+{% include statement/end %}
+
+## Simple tuning systems are simple actions
+
+{% include statement/example name="positive-real tuning system is isomorphic with positive real numbers" markdown="block"%}
+With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that ${R}\_{>0}/{1} \simeq {R}\_{>0}$.
+{% include statement/end %}
+
+The same arguments applies for all the simple tuning systems resulting in the same conclusions as in previous blog.[^9]
 
 ## References
 
@@ -89,4 +130,10 @@ $$
 [^2]: [Twelve-tone equal temperament](https://en.wikipedia.org/wiki/12_equal_temperament)
 [^3]: [Left group action](https://en.wikipedia.org/wiki/Group_action#Left_group_action)
 [^4]: Definition 5.1 of [^100].
+[^5]: Collorary: Orbits are isomorphic homogeneous spaces.[^101]
+[^6]: Theorem: Transitive actions are homogeneous spaces, see by the end of the theorem statement.
+[^7]: I am reusing the notation $\simeq$ for group or group-action isomophisms.
+[^8]: This is based the Theorem 5.21 of [^100]. Be aware that I took some *artistic lisences* relative to the full version in the book.
+[^9]: Example section.[^101]
 [^100]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
+[^101]: [Tuning systems are homogeneous spaces]({% post_url 2029-02-05-tuning-systems-are-homogeneous-spaces %})
