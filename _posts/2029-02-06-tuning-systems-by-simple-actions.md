@@ -77,18 +77,26 @@ $$G_a = \lbrace g \in G: \lambda_g(a) = a\rbrace.$$
 
 In case of a simple group actions, all elements on $g \in G$ such as $\lambda_g(a) = \phi(g) \cdot a = a$ are those elements $g$ in $G$ so $\phi(g) = e$ where $e$ is the identity of $G$. In other words, $G_a = \text{Ker}_{\phi}$ where $\text{Ker}\_{\phi}$ is known as the kernel of the homorphism $\phi$ and it is usually defined as
 
-$$\text{Ker}_{\phi} = \lbrace g \in G: \phi(g) = e\rbrace$$
+$$\text{Ker}_{\phi} = \lbrace g \in G: \phi(g) = e\rbrace = \phi^{-1}(e)$$
 
-Therefore, the orbit $\lambda_G(a)$ is group-action isomorphic to $G/\text{Ker}\_{\phi}$ by bijective function $f:G/\text{Ker}\_{\phi} \rightarrow \lambda\_G(a); g\text{Ker}\_{\phi} \mapsto \phi(g) \cdot a$.[^6] This function can be writen as the composition $f = f'' \circ f'$ where $f': G/\text{Ker}\_{\phi} \rightarrow \phi(G); g\text{Ker}_{\phi} \mapsto \phi(g)$ and $f'': \phi(G) \rightarrow \lambda\_G(a); g \mapsto g \cdot a$. Therefore the composition implies that the homormorphism $f'$ (because $\phi$ is homomorphic) is also bijective resulting in the fact that $G/\text{Ker}\_{\phi}$ is group isomorphic with $\phi(G)$ also notated as $G/\text{Ker}\_{\phi} \simeq \phi(G)$ (see diagram below).[^7]
+resulting in the following lemma.
+
+{% include statement/lemma name="pitch class for simple-action tuning system" %}
+Let $(\mathcal{S}, G, \lambda)$ be an action of a group $G$ on the single pitch space $\mathcal{S}$, with a simple action $\lambda_g(x): G \rightarrow X; x \mapsto \phi(g) \cdot x$ for a group homomorphism $\phi: G \rightarrow G$. Let $\mathcal{T}$ be the tuning system given by the orbit $\lambda_G(a)$ where $a \in \mathcal{S}$ is the standard pitch. It follows that the tuning system $\mathcal{T}$ is group action isomorphic to the homogeneous space $G/\text{Ker}\_{\phi}$
+$$
+\mathcal{T} \simeq G/\text{Ker}_{\phi}
+$$
+and therefore $G/\text{Ker}\_{\phi}$ its pitch class, and it is independent of the standard pitch of choice.
+{% include statement/end %}
+
+There is even more. The orbit $\lambda_G(a)$ is group-action isomorphic to $G/\text{Ker}\_{\phi}$ by bijective function $f:G/\text{Ker}\_{\phi} \rightarrow \lambda\_G(a); g\text{Ker}\_{\phi} \mapsto \phi(g) \cdot a$.[^6] This function can be writen as the composition $f = f'' \circ f'$ where $f': G/\text{Ker}\_{\phi} \rightarrow \phi(G); g\text{Ker}_{\phi} \mapsto \phi(g)$ and $f'': \phi(G) \rightarrow \lambda\_G(a); g \mapsto g \cdot a$. Therefore the composition implies that the homormorphism $f'$ (because $\phi$ is homomorphic) is also bijective resulting in the fact that $G/\text{Ker}\_{\phi}$ is group isomorphic with $\phi(G)$ also notated as $G/\text{Ker}\_{\phi} \simeq \phi(G)$ (see diagram below).[^7]
 
 {% include image file="mt-group-fundamental-theom.svg" scale="90%" %}
 
 In summary, the fact that tuning systems are homogenous spaces when apply to simple group actions reduces to what is know as the **First Isomorphism Theorem for Groups**.[^8]
 
 {% include statement/theorem name="First Isomorphism Theorem for Groups" markdown="block"%}
-Let $\phi: X \rightarrow Y$ be a group homormorphism between two groups $X$ and $Y$ with identity elements $e_x$ and $e_y$, respectively.
-
-(c) The function $\phi$ can be factorized as
+Let $\phi: X \rightarrow Y$ be a group homormorphism between two groups $X$ and $Y$ with identity elements $e_x$ and $e_y$, respectively. The function $\phi$ can be factorized as
 
 $$\phi = j \circ b \circ s$$
 
@@ -100,7 +108,7 @@ the bijection $b$ is the well-defined group isomorphism
 
 $$b: X/\text{Ker}_{\phi} \rightarrow \phi(X); x\text{Ker}_{\phi} \mapsto \phi(x)$$
 
-from the quotient $X/\text{Ker}_{\phi}$ to the image $\phi(x)$, and the injection $j$ is the injective group homormophism
+from the quotient $X/\text{Ker}\_{\phi}$ (defined here as the left cosets of $\text{Ker}\_{\phi}$) to the image $\phi(x)$, and the injection $j$ is the injective group homormophism
 
 $$j: \phi(X) \rightarrow Y; \phi(x) \mapsto \phi(x)$$
 
@@ -116,13 +124,23 @@ $$
 
 {% include statement/end %}
 
+I more detailed explanation of the theorem and other important concept such normal subgroup, quotient group, etc is outside of the scope of this blog. For an intuitively explenation of the theorem and associated concepts can be found [^9]. All the details can be read at Smith's wonderful book[^100].
+
+In the context of tuning systems, simple group actions over the standard pitch is given by the $G$ and homormorphism $\phi$ on the group $G$ in to itself. In this case, the theorem says that $\phi$ divides the group $G$ in set of equivalent elements. Those *equivalent* elements are mapped by $\phi$ to individual elements of $G$. Then each of those inidividual elements of $G$ generate the tuning system $\mathcal{T}$ by left acting on the standard pitch in pitch space $\mathcal{S}$
+
 ## Simple tuning systems are simple actions
 
+For all all the simple tuning systems it is not hard to show that are simple left actions with $\text{Ker}_{\phi} = \lbrace e \rbrace$ for all of them, where $e$ is the identity element of the group in the actions.[^10]
+
 {% include statement/example name="positive-real tuning system is isomorphic with positive real numbers" markdown="block"%}
-With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that ${R}\_{>0}/{1} \simeq {R}\_{>0}$.
+With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that the pitch class is isomorphic to all positive reals ${R}\_{>0}/{1} \simeq {R}\_{>0}$.
 {% include statement/end %}
 
-The same arguments applies for all the simple tuning systems resulting in the same conclusions as in previous blog.[^9]
+You can do the same argument to conclude that for
+
+* real tuning system $\phi: \mathbb{R} \rightarrow \mathbb{R}; g \mapsto g$, resulting in pitch class is $\mathbb{R}$,
+* equal temperament tuning system $\phi: \mathbb{Z} \rightarrow \mathbb{Z}; g \mapsto g$, and then pitch class is $\mathbb{Z}$,
+* $p_n$-limit tuning system $\phi: \mathbb{Z}^n \rightarrow \mathbb{Q}; g \mapsto \prod^n\_{i=1} p^{g\_i}\_i$ so the pitch class is $\mathbb{Z}^n$.
 
 ## References
 
@@ -133,7 +151,9 @@ The same arguments applies for all the simple tuning systems resulting in the sa
 [^5]: Collorary: Orbits are isomorphic homogeneous spaces.[^101]
 [^6]: Theorem: Transitive actions are homogeneous spaces, see by the end of the theorem statement.
 [^7]: I am reusing the notation $\simeq$ for group or group-action isomophisms.
-[^8]: This is based the Theorem 5.21 of [^100]. Be aware that I took some *artistic lisences* relative to the full version in the book.
-[^9]: Example section.[^101]
+[^8]: This is based the Theorem 5.21 of [^100]. Be aware that I took some *artistic lisences* relative to the full version in the book. Alternative references about the theorem are the [WolframMathWorld entry](https://mathworld.wolfram.com/FirstGroupIsomorphismTheorem.html) or [Wiki entry](https://en.wikipedia.org/wiki/Fundamental_theorem_on_homomorphisms).
+[^9]: [The First Isomorphism Theorem, Intuitively](https://www.math3ma.com/blog/the-first-isomorphism-theorem-intuitively)
+[^10]: Example section.[^101] All these tuning system are introduced in [Simple runing systems]({% post_url 2029-02-04-simple-tuning-systems %})
+
 [^100]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
 [^101]: [Tuning systems are homogeneous spaces]({% post_url 2029-02-05-tuning-systems-are-homogeneous-spaces %})
