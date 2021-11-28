@@ -95,7 +95,7 @@ There is even more. The orbit $\lambda_G(a)$ is group-action isomorphic to $G/\t
 
 In summary, the fact that tuning systems are homogenous spaces when apply to simple group actions reduces to what is know as the **First Isomorphism Theorem for Groups**.[^8]
 
-{% include statement/theorem name="First Isomorphism Theorem for Groups" markdown="block"%}
+{% include statement/theorem name="First Isomorphism Theorem for Groups" markdown="block" %}
 Let $\phi: X \rightarrow Y$ be a group homormorphism between two groups $X$ and $Y$ with identity elements $e_x$ and $e_y$, respectively. The function $\phi$ can be factorized as
 
 $$\phi = j \circ b \circ s$$
@@ -118,7 +118,7 @@ $$
 \begin{CD}
    X @>\phi>> Y \\
 @VsVV @AAiA \\
-   X/Ker_{\phi} @>>b> \phi(G)
+   X/Ker_{\phi} @>>b> \phi(X)
    \end{CD}
 $$
 
@@ -126,14 +126,24 @@ $$
 
 I more detailed explanation of the theorem and other important concept such normal subgroup, quotient group, etc is outside of the scope of this blog. For an intuitively explenation of the theorem and associated concepts can be found [^9]. All the details can be read at Smith's wonderful book[^100].
 
-In the context of tuning systems, simple group actions over the standard pitch is given by the $G$ and homormorphism $\phi$ on the group $G$ in to itself. In this case, the theorem says that $\phi$ divides the group $G$ in set of equivalent elements. Those *equivalent* elements are mapped by $\phi$ to individual elements of $G$. Then each of those inidividual elements of $G$ generate the tuning system $\mathcal{T}$ by left acting on the standard pitch in pitch space $\mathcal{S}$
+The First Isomorphism Theorem for Groups provides as corollary that allows compute the size of the image $\phi(X)$ in case $X$ is finite.
+
+{% include statement/collorary markdown="block" %}
+Let $\phi: X \rightarrow Y$ be a group homomorphism with kernel $\text{Ker}_\phi$ and finite domain $X$. The the size $\vert \phi(X) \vert$ of the image of $\phi$ is the index
+
+$$|X/\text{Ker}_\phi| = \vert X \vert / \vert \text{Ker}_\phi \vert$$
+
+of the subgroup $\text{Ker}\_\phi$ of $X$.
+{% include statement/end %}
+
+In the context of tuning systems, simple group actions over the standard pitch is given by the $G$ and homormorphism $\phi$ on the group $G$ in to itself. In this case, the theorem says that $\phi$ divides the group $G$ in set of equivalent elements. Those *equivalent* elements are mapped by $\phi$ to individual elements of $G$. Then each of those inidividual elements of $G$ generate the tuning system $\mathcal{T}$ by left acting on the standard pitch in pitch space $\mathcal{S}$. For finite group $G$, the previous corollary implies that the size of a tuning system $\vert \mathcal{T} \vert = \vert G \vert / \vert \text{Ker}_\phi \vert$.
 
 ## Simple tuning systems are simple actions
 
 For all all the simple tuning systems it is not hard to show that are simple left actions with $\text{Ker}_{\phi} = \lbrace e \rbrace$ for all of them, where $e$ is the identity element of the group in the actions.[^10]
 
 {% include statement/example name="positive-real tuning system is isomorphic with positive real numbers" markdown="block"%}
-With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that the pitch class is isomorphic to all positive reals ${R}\_{>0}/{1} \simeq {R}\_{>0}$.
+With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that the pitch class is isomorphic to all positive reals ${R}\_{>0}/\lbrace 1 \rbrace \simeq {R}\_{>0}$.
 {% include statement/end %}
 
 You can do the same argument to conclude that for

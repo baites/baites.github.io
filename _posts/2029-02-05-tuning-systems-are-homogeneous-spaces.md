@@ -98,6 +98,12 @@ The next figure is a graphical representation of the theorem statement.
 
 {% include image file="mt-action-group-fundamental-theom.svg" scale="90%" %}
 
+This theorem also has as corollary that allows us to compute the size of $X$ in case of finite group $G$.
+
+{% include statement/collorary %}
+Let $(X, G, \lambda)$ action of a finite group $G$ on an nonempty set $X$. Then for each element $a$ of $X$, the orbit $\lambda\_G(a)$ is finite, with size $\vert \lambda\_G(a) \vert = \vert G \vert / \vert G\_a \vert$.
+{% include statement/end %}
+
 As you can see all elements $g \in G_a$ leave the element $a \in X$ the same. So, I interprate this as all the elements of $G_a$ are somawhat equivalent in the sense that when acting on $a$ there result is always $a$. Now each coset $xG_a$ also produces another set of equivalent actions that when takes $a$ into $\lambda_x(a)$. The process allows to create group-action isomorphic between homogeneous space and all point of action group orbit. We can then describe the set from by the trajectory by studing its related homogeneous space.
 
 ## Tuning systems are homogenous spaces
