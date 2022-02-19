@@ -60,6 +60,10 @@ The pitch class $\mathbb{Z}/n{\mathbb{Z}}$ can be represented in many ways as it
 
 {% include image file="mt-twelve-tet.svg" scale="70%" %}
 
+## Octave equivalence in $p_n$-limit tuning system
+
+Let $\mathcal{S}$ be the set of positive reals $\mathbb{R}\_{>0}$ and with function $p: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; f \mapsto f/f_0$ such as the pitch $x = 1$ is the standard pitch of frequency $f_0$. Let me define a group action with group $(\mathbb{Z}^n, +, 0)$ and map $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto \phi(g)x$ with the homomorphism $\phi: \mathbb{Z}^n \rightarrow \mathbb{R}\_{>0}; g \mapsto \prod^n\_{i=2} p^{g\_i}\_i$ for $p_1,p_2,..., p_n$ the first n-th prime numbers larger than 1. It is important to realize that I define the homomorphism ignoring the contribution $p_1 = 2$, and therefore, ignoring the value of $g_1$. I call **$p_n$-limit tuning system octave-quivalent tuning system** with a pitch class of $\mathbb{Z}^{n-1}$ as any value of $(x, g_2, ..., g_n)$ is equivalent to $(y, g_2, ..., g_n)$ for any $x,y \in \mathbb{Z}$.
+
 ## References
 
 [^1]: [Wiki entry: Octave](https://en.wikipedia.org/wiki/Octave)
