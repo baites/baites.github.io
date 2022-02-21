@@ -15,31 +15,30 @@ javascript:
 
 ## Music representations
 
-There are a large number of ways music representations. Most of them fall into two categories:[^1]
+There are a large number of music representations. Most of them fall into two categories:[^1]
 
-* Literal notation: a perfect representation of the music sound usually given and a time series.
+* Literal notation: a perfect representation of the music sound usually given as a time series.
 * Symbolic notation: high-level representation of the structure of the music sound.
 
-Literal notation is used for the most part for recording or signal processing. For example, digital recording uses files of sample sounds. A mono sample file is simply a large array containing the sound amplitude at each sampled point in time.
+Literal notation is used for the most part for recording or signal processing. For example, digital recording uses files of sampled sounds. A mono sound file is simply a large array containing the sound amplitude for each sampled point in time.
 
-Alternatively, most musicians and music researchers use some
-symbolic notation. These notations hide the details of the sound, concentrating on a more salient feature of the music. These notations are oriented to assist musicians when performing, as with music sheets.
+Alternatively, most musicians and music researchers use different type of symbolic notations. These notations hide the details of the sound, concentrating instead more in the salient feature of the music. These approach to music notation are designed to assist musicians when performing, as is the case for example of music sheets.
 
 ## Musical note
 
-The most straightforward symbolic representation is a musical note. In music, a note is a symbol denoting sound.[^2] At a minimum, notes express the duration and pitch of a sound. The duration is just how long a sound persists. The pitch of a sound **represents** *a perceptual property of the sound that makes it possible to judge sounds as "higher" and "lower" in a sense associated with musical melodies.*[^3]
+The most straightforward symbolic representation is the musical note. In music, a note is a symbol denoting sound.[^2] At a minimum, notes express the duration and pitch of a sound. The duration is just how long a sound persists. The pitch of a sound **represents** *a perceptual property of the sound that makes it possible to judge sounds as "higher" and "lower" in a sense associated with musical melodies.*[^3]
 
-I want to emphasize a note's pitch as an abstract musical object. It cannot be extracted directly from a sound because a pitch represents a property of a sound and the way a listener perceives it. However, it is possible to account for the listener's perception of simple sounds like a simple-tone sound generator produced. Using this approach, the Acoustical Society of America (ASA) defines *the pitch of a sound may be described by the frequency of that simple tone having a specified sound pressure level that listeners judge to produce the same pitch.*[^4]
+I want to emphasize that a note's pitch is an abstract musical object. It cannot be extracted directly from a sound because a pitch represents a property of a sound and the way a listener perceives it. However, it is possible to account for the listener's perception using reference sounds like a simple-tone sound produce by a generator. Using this approach, the Acoustical Society of America (ASA) says that *the pitch of a sound may be described by the frequency of that simple tone having a specified sound pressure level that listeners judge to produce the same pitch.*[^4]
 
 ## Simple pitch space
 
 Based on the above discussion, I will advance the following definition.
 
 {% include statement/definition name="simple pitch space" %}
-Pitch is an abtract musical object related to a musical note. A collection of single pitches form a *simple pitch space* that is denoted by $\mathcal{S}$. Associated to the pitch space there is a function $p: \mathbb{R}\_{>0} \rightarrow \mathcal{S}$ such as for each frequency $f$ we can assign the pitch $p(f)$.
+Pitch is an abtract musical object related to a musical note. A collection of single pitches forms a *simple pitch space* that is denoted by $\mathcal{S}$. Associated to the pitch space there is a function $p: \mathbb{R}\_{>0} \rightarrow \mathcal{S}$ such as for each frequency $f$ we can assign the pitch $p(f)$.
 {% include statement/end %}
 
-I like to emphasize that each element of the simple pitch space is a single or simple pitch. I will discuss musical objects based on two or more pitches later in the series. Also, it is always possible to associate a pitch for a given frequency value for single-pitch space. The other way around is often not true, as one pitch might be related to a collection of frequencies.[^5]
+I like to emphasize that each element of the simple pitch space is a single or simple pitch. I will discuss musical objects based on two or more pitches later in the series. Also, it is always possible to assign a pitch for a given frequency value. The other way around is often not true, as one pitch might designate a collection of frequencies.[^5]
 
 I will say that any set that satisfies the definition of simple-pitch space is a particular *instance* or *representation* of a simple-pitch space. Below, I show two examples of simple-pitch space instances.
 
