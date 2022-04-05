@@ -84,7 +84,7 @@ $$
 where the bijective function mapping both sets is $f: G/G_a \rightarrow X; gG_a \mapsto \lambda_g(a)$
 {% include statement/end %}
 
-Now for action group $(X, G, \lambda)$ and for each element $a$ of $X$ I can define the orbit $\lambda_G(a)$. I showed in a [early blog of this series]({% post_url 2029-02-03-tuning-systems %}) that by definition the action of $G$ on elements of the orbit $\lambda_G(a)$ is a transitive action! As result we have the following collorary.
+Now for action group $(X, G, \lambda)$ and for each element $a$ of $X$ I can define the orbit $\lambda_G(a)$. I showed in a [early blog of this series]({% post_url 2022-04-04-tuning-systems %}) that by definition the action of $G$ on elements of the orbit $\lambda_G(a)$ is a transitive action! As result we have the following collorary.
 
 {% include statement/collorary name="Orbits are isomorphic homogeneous spaces" markdown="block"%}
 Let $(X, G, \lambda)$ be a transitive action of a group $G$ on an nonempty set $X$. For each element $a$ of $X$, considere  the orbit $\lambda_G(a)$ and the stabilizer of $G_a$ under this action. Then the orbit $\lambda_G(a)$ is group-action isomorphic to the homogeneous space $G/G_a$[^9]
@@ -133,7 +133,7 @@ The same argument applies for all the other simple tuning systems in previous bl
 
 ## References
 
-[^1]: [Blog about tuning systems]({% post_url 2029-02-03-tuning-systems %})
+[^1]: [Blog about tuning systems]({% post_url 2022-04-04-tuning-systems %})
 [^2]: Chap 1, page 5 of [^100]. In the book this function is known as *G-map* or *equivariant map*. However, I think a better terminology would be group actio (or action) homomorphism. This is more consistent with the Cathegory Theory approach of calling morphism to relationship between objects.
 [^3]: Definition 10.20 of [^101].
 [^4]: Proposition 10.19 of [^101].

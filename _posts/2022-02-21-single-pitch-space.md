@@ -52,6 +52,14 @@ The set $\mathbb{R}$ and with the function $p: \mathbb{R} \rightarrow \mathbb{R}
 
 The simple pitch space as a concept is not very practical due to its lack of structure or regularity. The definition, in essence, says that we can map it to an abstract object called a pitch for a frequency value. In the next blog, I will improve the above description by identifying a more exciting collection of pitches within a simple pitch space.
 
+## Disclaimer
+
+{% include statement/disclaimer %}
+THE \"KNOWLEDGE\" IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \"KNOWLEDGE\" OR THE USE OR OTHER DEALINGS OF THE \"KNOWLEDGE\".
+{% include statement/end %}
+
+Expect conceptual errors and constant updates to the whole blog series. Be skeptical and critical of this series content. **Ultimately, you are responsible for the information you consume.**
+
 ## References
 
 [^1]: This clasification was inspired by [Rhythm and transforms by William Sethares, chap2, page 23](https://www.springer.com/gp/book/9781846286391)

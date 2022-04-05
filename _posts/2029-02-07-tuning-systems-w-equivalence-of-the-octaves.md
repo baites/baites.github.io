@@ -67,7 +67,7 @@ Let $\mathcal{S}$ be the set of positive reals $\mathbb{R}\_{>0}$ and with funct
 ## References
 
 [^1]: [Wiki entry: Octave](https://en.wikipedia.org/wiki/Octave)
-[^2]: [Blog about tuning systems.]({% post_url 2029-02-03-tuning-systems %})
+[^2]: [Blog about tuning systems.]({% post_url 2022-04-04-tuning-systems %})
 [^3]: Sethares, William A. Tuning, timbre, spectrum, scale. Springer Science & Business Media, 2005.
 [^4]: [Sound Examples for Tuning Timbre Spectrum Scale](https://sethares.engr.wisc.edu/html/soundexamples.html)
 [^5]: Most of the referances comes from *Consonance and Dissonance of Harmonic Sounds*, chap5 in Sathares' book[^3].

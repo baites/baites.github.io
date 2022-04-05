@@ -154,7 +154,7 @@ You can do the same argument to conclude that for
 
 ## References
 
-[^1]: [Blog about tuning systems]({% post_url 2029-02-03-tuning-systems %})
+[^1]: [Blog about tuning systems]({% post_url 2022-04-04-tuning-systems %})
 [^2]: [Twelve-tone equal temperament](https://en.wikipedia.org/wiki/12_equal_temperament)
 [^3]: [Left group action](https://en.wikipedia.org/wiki/Group_action#Left_group_action)
 [^4]: Definition 5.1 of [^100].

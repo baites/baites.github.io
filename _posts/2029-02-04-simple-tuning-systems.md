@@ -15,7 +15,7 @@ javascript:
 
 ## Introduction
 
-In a previos blog I introduced pitch sets called [tuning systems]({% post_url 2029-02-03-tuning-systems %}). My goal in this blog is to present several examples of simple tunings. Please be aware some of the names below are made up by me.
+In a previos blog I introduced pitch sets called [tuning systems]({% post_url 2022-04-04-tuning-systems %}). My goal in this blog is to present several examples of simple tunings. Please be aware some of the names below are made up by me.
 
 ## Simple tuning systems
 
