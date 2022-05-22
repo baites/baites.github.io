@@ -163,7 +163,7 @@ You can do the same argument to conclude that for
 [^7]: I am reusing the notation $\simeq$ for group or group-action isomophisms.
 [^8]: This is based the Theorem 5.21 of [^100]. Be aware that I took some *artistic lisences* relative to the full version in the book. Alternative references about the theorem are the [WolframMathWorld entry](https://mathworld.wolfram.com/FirstGroupIsomorphismTheorem.html) or [Wiki entry](https://en.wikipedia.org/wiki/Fundamental_theorem_on_homomorphisms).
 [^9]: [The First Isomorphism Theorem, Intuitively](https://www.math3ma.com/blog/the-first-isomorphism-theorem-intuitively)
-[^10]: Example section.[^101] All these tuning system are introduced in [Simple runing systems]({% post_url 2029-02-04-simple-tuning-systems %})
+[^10]: Example section.[^101] All these tuning system are introduced in [Simple runing systems]({% post_url 2022-05-16-simple-tuning-systems %})
 
 [^100]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
 [^101]: [Tuning systems are homogeneous spaces]({% post_url 2029-02-05-tuning-systems-are-homogeneous-spaces %})
