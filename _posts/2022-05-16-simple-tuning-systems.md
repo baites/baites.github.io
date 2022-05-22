@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Simple tuning systems
-date: 2029-02-04 08:00:00 -0400
+date: 2022-05-16 08:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
 javascript:
