@@ -128,7 +128,7 @@ I more detailed explanation of the theorem and other important concept such norm
 
 The First Isomorphism Theorem for Groups provides as corollary that allows compute the size of the image $\phi(X)$ in case $X$ is finite.
 
-{% include statement/collorary markdown="block" %}
+{% include statement/corollary markdown="block" %}
 Let $\phi: X \rightarrow Y$ be a group homomorphism with kernel $\text{Ker}_\phi$ and finite domain $X$. The the size $\vert \phi(X) \vert$ of the image of $\phi$ is the index
 
 $$|X/\text{Ker}_\phi| = \vert X \vert / \vert \text{Ker}_\phi \vert$$
@@ -158,7 +158,7 @@ You can do the same argument to conclude that for
 [^2]: [Twelve-tone equal temperament](https://en.wikipedia.org/wiki/12_equal_temperament)
 [^3]: [Left group action](https://en.wikipedia.org/wiki/Group_action#Left_group_action)
 [^4]: Definition 5.1 of [^100].
-[^5]: Collorary: Orbits are isomorphic homogeneous spaces.[^101]
+[^5]: corollary: Orbits are isomorphic homogeneous spaces.[^101]
 [^6]: Theorem: Transitive actions are homogeneous spaces, see by the end of the theorem statement.
 [^7]: I am reusing the notation $\simeq$ for group or group-action isomophisms.
 [^8]: This is based the Theorem 5.21 of [^100]. Be aware that I took some *artistic lisences* relative to the full version in the book. Alternative references about the theorem are the [WolframMathWorld entry](https://mathworld.wolfram.com/FirstGroupIsomorphismTheorem.html) or [Wiki entry](https://en.wikipedia.org/wiki/Fundamental_theorem_on_homomorphisms).

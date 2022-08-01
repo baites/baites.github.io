@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tuning systems are homogeous spaces (prerelease)
+title: Tuning systems are homogeous spaces
 date: 2022-07-25 08:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
@@ -15,7 +15,7 @@ javascript:
 
 ## Introduction
 
-In this blog, I discuss the necessary tools to understand the structure of a tuning system from its action group. The beauty is that the mathematical device I am using is of the fundamental theorems of abstract algebra: the theorem that proves transitive actions are homogeneous spaces.
+In this blog, I discuss the necessary tools to understand the structure of a tuning system from its action group. The beauty is that the mathematical device I am using is a very important theorems of abstract algebra: the theorem that proves transitive actions are homogeneous spaces.
 
 As usual, I provide the main argument as simply as I can make them. I delegate most of the details to the references.
 
@@ -23,17 +23,17 @@ As usual, I provide the main argument as simply as I can make them. I delegate m
 
 I defined tuning systems as an orbit of an action group.[^1] It is then convenient to find a way to relate two different actions. Throughout this relationship, we hope to learn more about the nature of the tuning systems.
 
-{% include statement/definition name="group action homomorphism" markdown="block" %}
-Given two action groups $(X, G, \lambda)$ and $(Y, G, \mu)$ with a common group $G$, a function $f: X \rightarrow Y$ is called a group action homomorphism if the following equation holds for any $g \in G$ and $x \in X$[^2]:
+{% include statement/definition name="group-action homomorphism" markdown="block" %}
+Given two action groups $(X, G, \lambda)$ and $(Y, G, \mu)$ with a common group $G$, a function $f: X \rightarrow Y$ is called a group-action homomorphism if the following equation holds for any $g \in G$ and $x \in X$[^2]:
 $$
 f(\lambda_g(x)) = \mu_g(f(x))
 $$
 {% include statement/end %}
 
-The interpretation of the map is straightforward. The homomorphism relates both actions as follows. You can choose an element $x \in X$ and map it to an another element $y \in Y$ by $y = f(x)$. Assume now that a group acts on $x \in X$ resulting in $x' = \lambda_g(x)$ and also, and group act on $y \in Y$ resulting in $y' = \mu_g(y)$ for any $g \in G$. If $f$ is a group action homomorphism then it also true that $y' = f(x')$. In a way, the homomorphism $f$ relates the results of both actions under the same group.
+The interpretation of the map is straightforward. The homomorphism relates both actions as follows. You can choose an element $x \in X$ and map it to an another element $y \in Y$ by $y = f(x)$. Assume now that a group acts on $x \in X$ resulting in $x' = \lambda_g(x)$ and also, and group act on $y \in Y$ resulting in $y' = \mu_g(y)$ for any $g \in G$. If $f$ is a group-action homomorphism then it also true that $y' = f(x')$. In a way, the homomorphism $f$ relates the results of both actions under the same group.
 
-{% include statement/definition name="group action isomorphism"%}
-Given two action groups $(X, G, \lambda)$ and $(Y, G, \mu)$ with a common group $G$, a group action homomorphism $f: X \rightarrow Y$, that is also bijective, is called a group action isomorphism between the set $X$ and $Y$. In this case, we say that $X$ and $Y$ are isomorphic using the notation $X \simeq Y$.
+{% include statement/definition name="group-action isomorphism"%}
+Given two action groups $(X, G, \lambda)$ and $(Y, G, \mu)$ with a common group $G$, a group-action homomorphism $f: X \rightarrow Y$, that is also bijective, is called a group-action isomorphism between the set $X$ and $Y$. In this case, we say that $X$ and $Y$ are isomorphic using the notation $X \simeq Y$.
 {% include statement/end %}
 
 ## Subgroups and cosets
@@ -68,12 +68,12 @@ Two extreme examples of homogenous spaces are significant. The homogeneous space
 
 ## Transitive actions are homogenous spaces
 
-Let me summarize what I just described so far. First, I showed how to relate to different actions using *group action homomorphism*. Second, I find that for a given subgroup $H$ of a group $G$, I can define a transitive action written exclusively as acting on cosets of $G/H$ **without referencing any other set!**
+Let me summarize what I just described so far. First, I showed how to relate to different actions using *group-action homomorphism*. Second, I find that for a given subgroup $H$ of a group $G$, I can define a transitive action written exclusively as acting on cosets of $G/H$ **without referencing any other set!**
 
-As a result, one can wonder if it might be possible to relate any transitive action on an arbitrary set to an action over a homogeneous space. The answer is yes, and it is a *central* (perhaps fundamental) theorem of action groups, and I will state it as follow.
+As a result, one can wonder if it might be possible to relate any transitive action on an arbitrary set to an action over a homogeneous space. The answer is yes, and it is a *central* theorem of action groups, and I will state it as follow.
 
 {% include statement/theorem name="Transitive actions are homogeneous spaces" markdown="block"%}
-Let $(X, G, \lambda)$ be a transitive action of a group $G$ on an nonempty set $X$. For each element $a$ of $X$, consider the stabilizer of $G_a$ under this action. Let $(G/G_a, G, \mu)$ be the homogeneous space action of $G$ on $G/G_a$. Then $X$ and $G/G_a$ are group action isomorphic[^8]
+Let $(X, G, \lambda)$ be a transitive action of a group $G$ on an nonempty set $X$. For each element $a$ of $X$, consider the stabilizer of $G_a$ under this action. Let $(G/G_a, G, \mu)$ be the homogeneous space action of $G$ on $G/G_a$. Then $X$ and $G/G_a$ are group-action isomorphic[^8]
 
 $$
 X \simeq G/G_a
@@ -84,7 +84,7 @@ where the bijective function mapping both sets is $f: G/G_a \rightarrow X; gG_a 
 
 Now for action group $(X, G, \lambda)$ and for each element $a$ of $X$ I can define the orbit $\lambda_G(a)$. I showed in a [early blog of this series]({% post_url 2022-04-04-tuning-systems %}) that by definition, the action of $G$ on elements of the orbit $\lambda_G(a)$ is transitive! Therefore, we have the following result.
 
-{% include statement/collorary name="Orbits are isomorphic homogeneous spaces" markdown="block"%}
+{% include statement/corollary name="Orbits are isomorphic homogeneous spaces" markdown="block"%}
 Let $(X, G, \lambda)$ be a transitive action of a group $G$ on an nonempty set $X$. For each element $a$ of $X$, consider  the orbit $\lambda_G(a)$ and the stabilizer of $G_a$ under this action. Then the orbit $\lambda_G(a)$ is group-action isomorphic to the homogeneous space $G/G_a$[^9]
 
 $$
@@ -98,18 +98,18 @@ The following figure is a graphical representation of the theorem statement.
 
 This theorem also has a corollary to compute the size of $X$ in the case of a finite group $G$.
 
-{% include statement/collorary %}
+{% include statement/corollary %}
 Let $(X, G, \lambda)$ action of a finite group $G$ on an nonempty set $X$. Then for each element $a$ of $X$, the orbit $\lambda\_G(a)$ is finite, with size $\vert \lambda\_G(a) \vert = \vert G \vert / \vert G\_a \vert$.
 {% include statement/end %}
 
-As you can see any action $\lambda_{G}$ with $g \in G_a$ leave the element $a \in X$ invariant or $\lambda_g(a) = a$. I interpret this by saying all the elements of of the subgroup $G_a$ are somewhat equivalent in the sense that the action group $(X, G, \lambda)$ transform $a$ into itself $a$. Now each coset $xG_a$ also produces another set of equivalent actions that takes $a$ into $\lambda_x(a)$. The process allows for creating group-action isomorphic between homogeneous space and all points of action group orbit. Therefore, we can describe the set a group action orbit by studying its related homogeneous space.
+As you can see any action $\lambda_{G}$ with $g \in G_a$ leave the element $a \in X$ invariant or $\lambda_g(a) = a$. I interpret this by saying all the elements of of the subgroup $G_a$ are somewhat equivalent in the sense that the action group $(X, G, \lambda)$ transform $a$ into itself $a$. Now each coset $xG_a$ also produces another set of equivalent actions that takes $a$ into $\lambda_x(a)$. The process allows for creating group-action isomorphism between a homogeneous space and all points of action group orbit. Therefore, we can describe the set a group-action orbit by studying its related homogeneous space.
 
 ## Tuning systems are homogenous spaces
 
 The application of these ideas to music is comes directly from my definition of tuning systems. This definition says tuning systems are action group orbits in the single pitch space.[^1] It follows then tuning systems are homogenous spaces.
 
-{% include statement/collorary name="tuning systems are homogenous spaces" %}
-Let $(\mathcal{S}, G, \lambda)$ be an action of a group $G$ on the single pitch space $\mathcal{S}$. Let $\mathcal{T}$ be the tuning system given by the orbit $\lambda_G(a)$ where $a \in \mathcal{S}$ is the standard pitch. It follows that the tuning system $\mathcal{T}$ is group action isomorphic to the homogeneous space $G/G_a$
+{% include statement/corollary name="tuning systems are homogenous spaces" %}
+Let $(\mathcal{S}, G, \lambda)$ be an action of a group $G$ on the single pitch space $\mathcal{S}$. Let $\mathcal{T}$ be the tuning system given by the orbit $\lambda_G(a)$ where $a \in \mathcal{S}$ is the standard pitch. It follows that the tuning system $\mathcal{T}$ is group-action isomorphic to the homogeneous space $G/G_a$
 $$
 \mathcal{T} \simeq G/G_a
 $$
@@ -122,7 +122,7 @@ Arm with the corollary, we can now show some of the arguments done for the simpl
 With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the stabilizer around identity is the same as the identity itself $G_1 = \lbrace 1 \rbrace$. This means that $\mathcal{T} \simeq \mathbb{R}\_{>0}/\lbrace 1 \rbrace$ that is a simple representation of $\mathbb{R}\_{>0}$ in cosets $x\lbrace 1 \rbrace$ for $x \in \mathbb{R}\_{>0}$, or $\mathcal{T} \simeq \mathbb{R}\_{>0}$, and therefore its pitch class is $\mathbb{R}\_{>0}$.
 {% include statement/end %}
 
-The same argument applies to all the other simple tuning systems in the previous blog because their stabilizers contain only the identity element of their respective groups.
+The same argument applies to all the other simple tuning systems in the previous blog because their stabilizers contain only the identity element of their respectively groups.
 
 ## References
 

@@ -57,7 +57,7 @@ $$
 
 Hashing and palindrome can be related as follow.
 
-{% include statement/collorary %}
+{% include statement/corollary %}
 For a non-palindromic string $S$ of length $L$ and its reverse string $R$, plus a polyhash as define in the previous lemma, then the probability of both string having the same hash is bound by
 
 $$

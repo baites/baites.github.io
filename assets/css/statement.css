@@ -1,4 +1,4 @@
-.collorary,
+.corollary,
 .definition,
 .disclaimer,
 .example,
@@ -17,7 +17,7 @@
     margin-bottom: 15px
 }
 
-.collorary {
+.corollary {
     background-color: lightyellow;
     border-color: yellow;
 }

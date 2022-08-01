@@ -1,4 +1,4 @@
-{% assign class = "collorary" %}
+{% assign class = "corollary" %}
 {% assign logo = "fas fa-bullseye" %}
 <div markdown="span" class="{{ class }}" role="statement">
 {% if include.name %}

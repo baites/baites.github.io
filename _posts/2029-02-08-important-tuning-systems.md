@@ -47,6 +47,6 @@ In this blog I summarize all the tuning systems discussed so far, see table belo
 
 [^1]:[Simgle pitch space]({% post_url 2022-02-21-single-pitch-space %}) 
 [^2]:[Group actions and tuning systems]({% post_url 2022-04-04-tuning-systems %}) 
-[^3]:[Simple tuning systems]({% post_url 2022-05-16-simple-tuning-systems %}) and [Tuning systems are homogeneous spaces]({% post_url 2029-02-05-tuning-systems-are-homogeneous-spaces %})
+[^3]:[Simple tuning systems]({% post_url 2022-05-16-simple-tuning-systems %}) and [Tuning systems are homogeneous spaces]({% post_url 2022-07-25-tuning-systems-are-homogeneous-spaces %})
 [^4]: By exponental mapping.
 [^5]:[Tuning systems with equivalence of the octaves]({% post_url 2029-02-07-tuning-systems-w-equivalence-of-the-octaves %}).
