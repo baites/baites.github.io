@@ -166,4 +166,4 @@ You can do the same argument to conclude that for
 [^10]: Example section.[^101] All these tuning system are introduced in [Simple runing systems]({% post_url 2022-05-16-simple-tuning-systems %})
 
 [^100]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
-[^101]: [Tuning systems are homogeneous spaces]({% post_url 2029-02-05-tuning-systems-are-homogeneous-spaces %})
+[^101]: [Tuning systems are homogeneous spaces]({% post_url 2022-07-25-tuning-systems-are-homogeneous-spaces %})
