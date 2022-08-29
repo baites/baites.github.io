@@ -119,10 +119,18 @@ where we say in this case that $G/G_a$ is pitch class.
 Arm with the corollary, we can now show some of the arguments done for the simple tuning systems defined in the [previous blog of this series]({% post_url 2022-05-16-simple-tuning-systems %}).
 
 {% include statement/example name="positive-real tuning system is isomophic with positive real numbers" markdown="block"%}
-With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the stabilizer around identity is the same as the identity itself $G_1 = \lbrace 1 \rbrace$. This means that $\mathcal{T} \simeq \mathbb{R}\_{>0}/\lbrace 1 \rbrace$ that is a simple representation of $\mathbb{R}\_{>0}$ in cosets $x\lbrace 1 \rbrace$ for $x \in \mathbb{R}\_{>0}$, or $\mathcal{T} \simeq \mathbb{R}\_{>0}$, and therefore its pitch class is $\mathbb{R}\_{>0}$.
+Using the group action $(\mathcal{S}, G, \lambda)$ for $\mathcal{S} = \mathbb{R}$ and $G = (\mathbb{R}\_{>0}, \cdot, 1)$, I said that positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the stabilizer around identity is the same as the identity itself $G_1 = \lbrace 1 \rbrace$. This means that $\mathcal{T} \simeq \mathbb{R}\_{>0}/\lbrace 1 \rbrace$ that is a simple representation of $\mathbb{R}\_{>0}$ in cosets $x\lbrace 1 \rbrace$ for $x \in \mathbb{R}\_{>0}$, or $\mathcal{T} \simeq \mathbb{R}\_{>0}$, and therefore its pitch class is $\mathbb{R}\_{>0}$.
 {% include statement/end %}
 
 The same argument applies to all the other simple tuning systems in the previous blog because their stabilizers contain only the identity element of their respectively groups.
+
+## Disclaimer
+
+{% include statement/disclaimer %}
+THE \"KNOWLEDGE\" IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \"KNOWLEDGE\" OR THE USE OR OTHER DEALINGS OF THE \"KNOWLEDGE\".
+{% include statement/end %}
+
+Expect conceptual errors and constant updates to the whole blog series. Be skeptical and critical of this series content. **Ultimately, you are responsible for the information you consume.**
 
 ## References
 
