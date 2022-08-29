@@ -15,9 +15,9 @@ javascript:
 
 ## Introduction
 
-In the previous blog of this series[^1], I showed that building tuning systems as orbit of a action group given by $G$ in single pitch space $\mathcal{S}$ from standard pitch $a$ has an equivalent counter part as an action in homogenous spaces $G/G_a$. Both set of actions are related by group-action isomorphism. The advangate of actions over homogenous spaces is that they can be defined exclusively using elements of the group $G$.
+In the previous blog of this series[^1], I showed that building tuning systems as orbit of a group action given by $G$ in single pitch space $\mathcal{S}$ from standard pitch $a$ has an equivalent counter part as an action in homogenous spaces $G/G_a$. Both set of actions are related by group-action isomorphism. The advangate of actions over homogenous spaces is that they can be defined exclusively using elements of the group $G$.
 
-Action group on a single pitch space add then some extra structure that can describe music from it. For example, I will show in following blogs how using action groups on single pitch space, I can build arbitrary scales such as twelfe-tone equal temperament scale know also as the chromatic[^2].
+Group action on a single pitch space add then some extra structure that can be used to describe music. For example, I in coming blogs I will show how using group actions on single pitch space, I can build arbitrary scales such as twelfe-tone equal temperament scale know also as the chromatic[^2].
 
 In this blog I will show that for less generic actions, I can reformulate the definition of tuning system almost exclusively on properties of group $G$. This formulation uses another famous abstract algebra theorem: the First Isomorphism Theorem for Groups.
 
@@ -25,7 +25,7 @@ In this blog I will show that for less generic actions, I can reformulate the de
 
 When I say simpler action I mean that that action is given by left group action.
 
-{% include statement/definition name="left action group"  markdown="block"%} If $G$ is a group with identity $e$ and $X$ is a set, then the left action $\cdot$ of $G$ on $X$ is a function $\cdot: G \times X \rightarrow X$ that satifies the following properties:
+{% include statement/definition name="left group action"  markdown="block"%} If $G$ is a group with identity $e$ and $X$ is a set, then the left action $\cdot$ of $G$ on $X$ is a function $\cdot: G \times X \rightarrow X$ that satifies the following properties:
 
 * identity: $e \cdot x = x$
 * compatibility: $g \cdot (h \cdot x) = (gh) \cdot x$
@@ -33,7 +33,7 @@ When I say simpler action I mean that that action is given by left group action.
 for all $g, h \in G$ and $x \in X$. It is important to notice that $gh$ is short notation for group mutiplication between $g$ and $h$.[^3]
 {% include statement/end %}
 
-Therefore, using this definition I say $\lambda_g(x)$ is *simple action* if its given by a left action group
+Therefore, using this definition I say $\lambda_g(x)$ is *simple action* if its given by a left group action
 
 $$
 \lambda_g(x): G \rightarrow X; x \mapsto \phi(g) \cdot x
@@ -71,7 +71,7 @@ A function comply with all these properties is know as a **group homomorphism**[
 
 ## Tuning systems of simple acctions
 
-I define a tuning system $\cal{T}$ by action group orbits $\lambda_G(a)$ for a given standard pitch $a$. I showed that a fundamental property of action group orbit is they are homogeneous spaces $\lambda_G(a) \simeq G/G_a$ where $G_a$ is the group action stabilizer.[^5] Just as reminder, the group action stibilizer $G_a$ are all the group action that transform $a$ element in to itself:
+I define a tuning system $\cal{T}$ by group action orbits $\lambda_G(a)$ for a given standard pitch $a$. I showed that a fundamental property of group action orbit is they are homogeneous spaces $\lambda_G(a) \simeq G/G_a$ where $G_a$ is the group action stabilizer.[^5] Just as reminder, the group action stibilizer $G_a$ are all the group action that transform $a$ element in to itself:
 
 $$G_a = \lbrace g \in G: \lambda_g(a) = a\rbrace.$$
 
@@ -143,7 +143,7 @@ In the context of tuning systems, simple group actions over the standard pitch i
 For all all the simple tuning systems it is not hard to show that are simple left actions with $\text{Ker}_{\phi} = \lbrace e \rbrace$ for all of them, where $e$ is the identity element of the group in the actions.[^10]
 
 {% include statement/example name="positive-real tuning system is isomorphic with positive real numbers" markdown="block"%}
-With action group $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that the pitch class is isomorphic to all positive reals ${R}\_{>0}/\lbrace 1 \rbrace \simeq {R}\_{>0}$.
+With group action $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that the pitch class is isomorphic to all positive reals ${R}\_{>0}/\lbrace 1 \rbrace \simeq {R}\_{>0}$.
 {% include statement/end %}
 
 You can do the same argument to conclude that for
@@ -151,6 +151,14 @@ You can do the same argument to conclude that for
 * real tuning system $\phi: \mathbb{R} \rightarrow \mathbb{R}; g \mapsto g$, resulting in pitch class is $\mathbb{R}$,
 * equal temperament tuning system $\phi: \mathbb{Z} \rightarrow \mathbb{Z}; g \mapsto g$, and then pitch class is $\mathbb{Z}$,
 * $p_n$-limit tuning system $\phi: \mathbb{Z}^n \rightarrow \mathbb{Q}; g \mapsto \prod^n\_{i=1} p^{g\_i}\_i$ so the pitch class is $\mathbb{Z}^n$.
+
+## Disclaimer
+
+{% include statement/disclaimer %}
+THE \"KNOWLEDGE\" IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \"KNOWLEDGE\" OR THE USE OR OTHER DEALINGS OF THE \"KNOWLEDGE\".
+{% include statement/end %}
+
+Expect conceptual errors and constant updates to the whole blog series. Be skeptical and critical of this series content. **Ultimately, you are responsible for the information you consume.**
 
 ## References
 
