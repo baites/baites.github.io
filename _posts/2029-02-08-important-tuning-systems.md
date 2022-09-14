@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Important tuning systems
+title: Tuning system summary
 date: 2029-02-08 08:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
@@ -13,9 +13,10 @@ javascript:
 * TOC
 {:toc}
 
+
 ## Introduction
 
-In this blog I summarize all the tuning systems discussed so far, see table below. I think cover all of practical importance and beyond. The symbols in the table are defined next.
+In this blog I summarize all the tuning systems discussed so far. I think cover all of practical importance and beyond. The notation I am using is provided next table.
 
 | Symbol         | Description                      |
 |----------------|----------------------------------|
@@ -50,3 +51,4 @@ In this blog I summarize all the tuning systems discussed so far, see table belo
 [^3]:[Simple tuning systems]({% post_url 2022-05-16-simple-tuning-systems %}) and [Tuning systems are homogeneous spaces]({% post_url 2022-07-25-tuning-systems-are-homogeneous-spaces %})
 [^4]: By exponental mapping.
 [^5]:[Tuning systems with equivalence of the octaves]({% post_url 2029-02-07-tuning-systems-w-equivalence-of-the-octaves %}).
+[^6]: Sternberg J. Conceptualizing music through mathematics and the generalized interval system. REU project, Department of Mathematics, University of Chicago. 2006.
