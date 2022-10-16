@@ -15,31 +15,19 @@ javascript:
 
 ## Introduction
 
-In the previous blog of this series[^1], I showed that building tuning systems as orbit of a group action given by $G$ in single pitch space $\mathcal{S}$ from standard pitch $a$ has an equivalent counter part as an action in homogenous spaces $G/G_a$. Both set of actions are related by group-action isomorphism. The advangate of actions over homogenous spaces is that they can be defined exclusively using elements of the group $G$.
+In the previous blog of this series[^1], I showed that building tuning systems as orbit of a group action given by $G$ in single pitch space $\mathcal{S}$ from standard pitch $a$ has an equivalent counter part as an action in homogenous spaces $G/G_a$. Both set of actions are related by group-action isomorphism. The advangate of actions over homogenous spaces is that they can be defined almost exclusively using elements of the group $G$. However, this generic approach depends in principle on the value $a$ of standard pitch.
 
-Group action on a single pitch space add then some extra structure that can be used to describe music. For example, I in coming blogs I will show how using group actions on single pitch space, I can build arbitrary scales such as twelfe-tone equal temperament scale know also as the chromatic[^2].
+For most application in music like defining scales, it will be important to tuning systems such as they are invariant to the choice of standard pitch. In this blog I will show how o make tuning systems with this property. This approach relies on using another famous abstract algebra theorem: the First Isomorphism Theorem for Groups.
 
-In this blog I will show that for less generic actions, I can reformulate the definition of tuning system almost exclusively on properties of group $G$. This formulation uses another famous abstract algebra theorem: the First Isomorphism Theorem for Groups.
+## Pitch space that is also a group
 
-## Left group action
-
-When I say simpler action I mean that that action is given by left group action.
-
-{% include statement/definition name="left group action"  markdown="block"%} If $G$ is a group with identity $e$ and $X$ is a set, then the left action $\cdot$ of $G$ on $X$ is a function $\cdot: G \times X \rightarrow X$ that satifies the following properties:
-
-* identity: $e \cdot x = x$
-* compatibility: $g \cdot (h \cdot x) = (gh) \cdot x$
-
-for all $g, h \in G$ and $x \in X$. It is important to notice that $gh$ is short notation for group mutiplication between $g$ and $h$.[^3]
-{% include statement/end %}
-
-Therefore, using this definition I say $\lambda_g(x)$ is *simple action* if its given by a left group action
+I start by enhancing the defition of simple pitch space[^2] by assuming it is also a group $(\mathcal{S}, \cdot, e)$ [^3]. Using the added structure I write $\lambda_g(x)$ as the action given by
 
 $$
-\lambda_g(x): G \rightarrow X; x \mapsto \phi(g) \cdot x
+\lambda_g(x): \mathcal{S} \rightarrow \mathcal{S}; x \mapsto \phi(g) \cdot x
 $$
 
-where $\phi: G \rightarrow G$ is a function from group $G$ into itself that needs to comply with some rules. Group action composition says that $\lambda_{gh}(x) = \lambda_g(\lambda_h(x))$ for all $g, h \in G$ and $x \in X$. It follows then
+where $\phi: G \rightarrow \mathcal{S}$ is a function relating elements of the group $G$ and $\mathcal{S}$. Group-action composition says that $\lambda_{gh}(x) = \lambda_g(\lambda_h(x))$ for all $g, h \in G$ and $x \in X$. It follows then
 
 $$
 \begin{align*}
@@ -49,25 +37,19 @@ $$
 \end{align*}
 $$
 
-where in the last equation I use the compatibility property of the left group action. Last equalities are possible if and only if
+The last equality is possible if and only if 
 
-$$
-\phi(gh) = \phi(g)\phi(h)
-$$
+$$\phi(gh) = \phi(g)\phi(h).$$
 
-Group definition also requires that $\lambda_e(x) = x$ or
+Group-action also requires that $\lambda_e(x) = x$ or $\phi(e)x = x$ that implies using right multiplication of $x^{-1}$
 
-$$
-\phi(e) = e
-$$
+$$\phi(e) = e.$$
 
-Lastly, if $g = h^{-1}$ that is the inverse of $h \in G$, then $e = \phi(e) = \phi(h^{-1}h) = \phi(h^{-1}) \phi(h)$ implying that
+Lastly, if $g = h^{-1}$ that is the inverse of $h \in G$, then $e = \phi(e) = \phi(h^{-1}h) = \phi(h^{-1}) \phi(h)$ implying that 
 
-$$
-\phi(h^{-1}) = \phi(h)^{-1}.
-$$
+$$\phi(h^{-1}) = \phi(h)^{-1}.$$
 
-A function comply with all these properties is know as a **group homomorphism**[^4]. Moreover, a group homomorphic function that is also bijective is known as **group isomorphism**.
+The function $\phi: G \rightarrow \mathcal{S}$ that complies with all these properties is know as a **group homomorphism**[^4]. Furthermore, if a group homomorphic function that is also bijective is known as **group isomorphism**.
 
 ## Tuning systems of simple acctions
 
@@ -163,7 +145,9 @@ Expect conceptual errors and constant updates to the whole blog series. Be skept
 ## References
 
 [^1]: [Blog about tuning systems]({% post_url 2022-04-04-tuning-systems %})
-[^2]: [Twelve-tone equal temperament](https://en.wikipedia.org/wiki/12_equal_temperament)
+[^2]: [Simple pitch space]({% post_url 2022-02-21-single-pitch-space %})
+[^3]: Definition 4.14 of [^100]. I also discuss the concept in the blog [Group actions and tuning systems]({% post_url 2022-04-04-tuning-systems %}#groups)
+
 [^3]: [Left group action](https://en.wikipedia.org/wiki/Group_action#Left_group_action)
 [^4]: Definition 5.1 of [^100].
 [^5]: corollary: Orbits are isomorphic homogeneous spaces.[^101]
@@ -174,4 +158,7 @@ Expect conceptual errors and constant updates to the whole blog series. Be skept
 [^10]: Example section.[^101] All these tuning system are introduced in [Simple runing systems]({% post_url 2022-05-16-simple-tuning-systems %})
 
 [^100]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
+
+
 [^101]: [Tuning systems are homogeneous spaces]({% post_url 2022-07-25-tuning-systems-are-homogeneous-spaces %})
+
