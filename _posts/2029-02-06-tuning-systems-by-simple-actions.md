@@ -15,19 +15,21 @@ javascript:
 
 ## Introduction
 
-In the previous blog of this series[^1], I showed that building tuning systems as orbit of a group action given by $G$ in single pitch space $\mathcal{S}$ from standard pitch $a$ has an equivalent counter part as an action in homogenous spaces $G/G_a$. Both set of actions are related by group-action isomorphism. The advangate of actions over homogenous spaces is that they can be defined almost exclusively using elements of the group $G$. However, this generic approach depends in principle on the value $a$ of standard pitch.
+In the previous blog of this series[^1], I showed that building tuning systems as orbit of a group action given by $G$ in single pitch space $\mathcal{S}$ from standard pitch $a$ has an equivalent counterpart as an action in homogenous spaces $G/G_a$. Both sets of actions are related by group-action isomorphism. The advangate of actions over homogenous spaces is that they can be defined almost exclusively using elements of the group $G$. However, this generic approach depends in principle on the value $a$ of standard pitch.
 
-For most application in music like defining scales, it will be important to tuning systems such as they are invariant to the choice of standard pitch. In this blog I will show how o make tuning systems with this property. This approach relies on using another famous abstract algebra theorem: the First Isomorphism Theorem for Groups.
+For most application in music like defining scales, it will be important for tuning systems to be invariant to the choice of standard pitch. In this blog I will show how to create tuning systems with this property. This approach relies on using another famous abstract algebra theorem: the First Isomorphism Theorem for Groups.
 
-## Pitch space that is also a group
+## Pitch space as a group and simple actions
 
-I start by enhancing the defition of simple pitch space[^2] by assuming it is also a group $(\mathcal{S}, \cdot, e)$ [^3]. Using the added structure I write $\lambda_g(x)$ as the action given by
+I start by enhancing the defition of simple pitch space[^2] by assuming it is also a group $(\mathcal{S}, \cdot, e')$.[^3] Using the added structure I write $\lambda_g(x)$ as the action given by
 
 $$
 \lambda_g(x): \mathcal{S} \rightarrow \mathcal{S}; x \mapsto \phi(g) \cdot x
 $$
 
-where $\phi: G \rightarrow \mathcal{S}$ is a function relating elements of the group $G$ and $\mathcal{S}$. Group-action composition says that $\lambda_{gh}(x) = \lambda_g(\lambda_h(x))$ for all $g, h \in G$ and $x \in X$. It follows then
+where $\phi: G \rightarrow \mathcal{S}$ is a function relating elements of the groups $G$ and $\mathcal{S}$. I refer to the actions as defined above as **simple actions**.
+
+Group-action composition says that $\lambda_{gh}(x) = \lambda_g(\lambda_h(x))$ for all $g, h \in G$ and $x \in X$. It follows then
 
 $$
 \begin{align*}
@@ -41,19 +43,19 @@ The last equality is possible if and only if
 
 $$\phi(gh) = \phi(g)\phi(h).$$
 
-Group-action also requires that $\lambda_e(x) = x$ or $\phi(e)x = x$ that implies using right multiplication of $x^{-1}$
+Group actions also require that $\lambda_e(x) = x$ or $\phi(e)x = x$ that implies by right multiplication by $x^{-1}$ that
 
-$$\phi(e) = e.$$
+$$\phi(e) = e'$$
 
 Lastly, if $g = h^{-1}$ that is the inverse of $h \in G$, then $e = \phi(e) = \phi(h^{-1}h) = \phi(h^{-1}) \phi(h)$ implying that 
 
 $$\phi(h^{-1}) = \phi(h)^{-1}.$$
 
-The function $\phi: G \rightarrow \mathcal{S}$ that complies with all these properties is know as a **group homomorphism**[^4]. Furthermore, if a group homomorphic function that is also bijective is known as **group isomorphism**.
+The function $\phi: G \rightarrow \mathcal{S}$ that complies with all these properties is know as a **group homomorphism**[^4]. Furthermore, you get a **group isomorphism** if a group homomorphic function is also bijective.
 
 ## Tuning systems of simple acctions
 
-I define a tuning system $\cal{T}$ by group action orbits $\lambda_G(a)$ for a given standard pitch $a$. I showed that a fundamental property of group action orbit is they are homogeneous spaces $\lambda_G(a) \simeq G/G_a$ where $G_a$ is the group action stabilizer.[^5] Just as reminder, the group action stibilizer $G_a$ are all the group action that transform $a$ element in to itself:
+I define a tuning system $\cal{T}$ by group action orbits $\lambda_G(a)$ for a given standard pitch $a$. I pointed out that a fundamental property of group-action orbit is that they are homogeneous spaces $\lambda_G(a) \simeq G/G_a$ where $G_a$ is the group action stabilizer.[^5] Just as reminder, the group action estibilizer $G_a$ are all the group action that transform $a$ element in to itself:
 
 $$G_a = \lbrace g \in G: \lambda_g(a) = a\rbrace.$$
 
@@ -64,7 +66,7 @@ $$\text{Ker}_{\phi} = \lbrace g \in G: \phi(g) = e\rbrace = \phi^{-1}(e)$$
 resulting in the following lemma.
 
 {% include statement/lemma name="pitch class for simple-action tuning system" %}
-Let $(\mathcal{S}, G, \lambda)$ be an action of a group $G$ on the single pitch space $\mathcal{S}$, with a simple action $\lambda_g(x): G \rightarrow X; x \mapsto \phi(g) \cdot x$ for a group homomorphism $\phi: G \rightarrow G$. Let $\mathcal{T}$ be the tuning system given by the orbit $\lambda_G(a)$ where $a \in \mathcal{S}$ is the standard pitch. It follows that the tuning system $\mathcal{T}$ is group action isomorphic to the homogeneous space $G/\text{Ker}\_{\phi}$
+Let $(\mathcal{S}, G, \lambda)$ be an action of a group $G$ on the single pitch space group $\mathcal{S}$, with a simple action $\lambda_g(x): G \rightarrow X; x \mapsto \phi(g) \cdot x$ for a group homomorphism $\phi: G \rightarrow \mathcal{S}$. Let $\mathcal{T}$ be the tuning system given by the orbit $\lambda_G(a)$ where $a \in \mathcal{S}$ is the standard pitch. It follows that the tuning system $\mathcal{T}$ is group action isomorphic to the homogeneous space $G/\text{Ker}\_{\phi}$
 $$
 \mathcal{T} \simeq G/\text{Ker}_{\phi}
 $$
@@ -147,8 +149,6 @@ Expect conceptual errors and constant updates to the whole blog series. Be skept
 [^1]: [Blog about tuning systems]({% post_url 2022-04-04-tuning-systems %})
 [^2]: [Simple pitch space]({% post_url 2022-02-21-single-pitch-space %})
 [^3]: Definition 4.14 of [^100]. I also discuss the concept in the blog [Group actions and tuning systems]({% post_url 2022-04-04-tuning-systems %}#groups)
-
-[^3]: [Left group action](https://en.wikipedia.org/wiki/Group_action#Left_group_action)
 [^4]: Definition 5.1 of [^100].
 [^5]: corollary: Orbits are isomorphic homogeneous spaces.[^101]
 [^6]: Theorem: Transitive actions are homogeneous spaces, see by the end of the theorem statement.
