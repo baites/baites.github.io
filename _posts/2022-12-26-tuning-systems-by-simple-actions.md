@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Tuning systems by simple actions
-date: 2029-02-06 08:00:00 -0400
+title: "Xmas blog: Tuning systems by simple actions"
+date: 2022-12-26 08:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
 javascript:
@@ -15,9 +15,9 @@ javascript:
 
 ## Introduction
 
-In the previous blog of this series[^1], I showed that building tuning systems as orbit of a group action given by $G$ in single pitch space $\mathcal{S}$ from standard pitch $a$ has an equivalent counterpart as an action in homogenous spaces $G/G_a$. Both sets of actions are related by group-action isomorphism. The advangate of actions over homogenous spaces is that they can be defined almost exclusively using elements of the group $G$. However, this generic approach depends in principle on the value $a$ of standard pitch.
+In the previous blog of this series[^1], I showed that building tuning systems as orbit of a group action given by $G$ over a single pitch space $\mathcal{S}$ from standard pitch $a$ has an equivalent counterpart as an action in homogenous spaces $G/G_a$. Both sets of actions are related by group-action isomorphism. The advangate of actions over homogenous spaces is that they can be defined almost exclusively using elements of the group $G$. However, this approach still depends in principle on the value of standard pitch $a$.
 
-For most application in music like defining scales, it will be important for tuning systems to be invariant to the choice of standard pitch. In this blog I will show how to create tuning systems with this property. This approach relies on using another famous abstract algebra theorem: the First Isomorphism Theorem for Groups.
+For most application in music like defining scales, it will be important for tuning systems to be invariant to the choice of standard pitch. In this blog I will show how to create tuning systems with this property. In the process of defining this tuning systems I will rely on another famous abstract algebra theorem: the First Isomorphism Theorem for Groups.
 
 ## Pitch space as a group and simple actions
 
@@ -59,7 +59,7 @@ I define a tuning system $\cal{T}$ by group action orbits $\lambda_G(a)$ for a g
 
 $$G_a = \lbrace g \in G: \lambda_g(a) = a\rbrace.$$
 
-In case of a simple group actions, all elements on $g \in G$ such as $\lambda_g(a) = \phi(g) \cdot a = a$ are those elements $g$ in $G$ so $\phi(g) = e$ where $e$ is the identity of $G$. In other words, $G_a = \text{Ker}_{\phi}$ where $\text{Ker}\_{\phi}$ is known as the kernel of the homorphism $\phi$ and it is usually defined as
+In case of a simple group actions, all elements on $g \in G$ such as $\lambda_g(a) = \phi(g) \cdot a = a$ are those elements $g$ in $G$ so $\phi(g) = e$ where $e$ is the identity of $G$. In other words, $G_a = \text{Ker}_{\phi}$ where $\text{Ker}\_{\phi}$ is known as the kernel of the homorphism $\phi$ and it is given by
 
 $$\text{Ker}_{\phi} = \lbrace g \in G: \phi(g) = e\rbrace = \phi^{-1}(e)$$
 
@@ -120,14 +120,14 @@ $$|X/\text{Ker}_\phi| = \vert X \vert / \vert \text{Ker}_\phi \vert$$
 of the subgroup $\text{Ker}\_\phi$ of $X$.
 {% include statement/end %}
 
-In the context of tuning systems, simple group actions over the standard pitch is given by the $G$ and homormorphism $\phi$ on the group $G$ in to itself. In this case, the theorem says that $\phi$ divides the group $G$ in set of equivalent elements. Those *equivalent* elements are mapped by $\phi$ to individual elements of $G$. Then each of those inidividual elements of $G$ generate the tuning system $\mathcal{T}$ by left acting on the standard pitch in pitch space $\mathcal{S}$. For finite group $G$, the previous corollary implies that the size of a tuning system $\vert \mathcal{T} \vert = \vert G \vert / \vert \text{Ker}_\phi \vert$.
+In the context of tuning systems the theorem says that $\phi$ divides the group $G$ in set of equivalent elements. Those *equivalent* elements are mapped by $\phi$ to individual elements of $\mathcal{S}$. For finite group $G$, the previous corollary implies that the size of a tuning system $\vert \mathcal{T} \vert = \vert G \vert / \vert \text{Ker}_\phi \vert$.
 
 ## Simple tuning systems are simple actions
 
-For all all the simple tuning systems it is not hard to show that are simple left actions with $\text{Ker}_{\phi} = \lbrace e \rbrace$ for all of them, where $e$ is the identity element of the group in the actions.[^10]
+For all all the simple tuning systems it is not hard to show that are simple actions with $\text{Ker}_{\phi} = \lbrace e \rbrace$ for all of them.[^10]
 
 {% include statement/example name="positive-real tuning system is isomorphic with positive real numbers" markdown="block"%}
-With group action $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; x \mapsto gx$ for any $g \in G$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}\_{>0}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that the pitch class is isomorphic to all positive reals ${R}\_{>0}/\lbrace 1 \rbrace \simeq {R}\_{>0}$.
+With group action $(\mathbb{R}\_{>0}, \cdot, 1)$ I defined positive-real tuning system as the orbit $\mathcal{T} = \lambda_{\mathbb{R}\_{>0}}(1)$ where $\lambda_g: \mathbb{R}\_{>0} \rightarrow \mathbb{R}; x \mapsto gx$ for any $g \in \mathbb{R}\_{>0}$. It is easy to see that the action is a simple action with $\phi: \mathbb{R}\_{>0} \rightarrow \mathbb{R}; g \mapsto g$. It easy to see that the group kernel is $\text{Ker}_{\phi} = \lbrace 1 \rbrace$. Therefore, we get the trivial statement that the pitch class is isomorphic to all positive reals ${R}\_{>0}/\lbrace 1 \rbrace \simeq {R}\_{>0}$.
 {% include statement/end %}
 
 You can do the same argument to conclude that for
