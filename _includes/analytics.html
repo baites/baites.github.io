@@ -6,7 +6,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', '{{ site.google_analytics }}', {
-    cookie_domain: '{{ google_analytics_cookie_domain }}',
-    cookie_flags: '{{ google_analytics_cookie_flags }}s'
+    cookie_domain: '{{ site.google_analytics_cookie_domain }}',
+    cookie_flags: '{{ site.google_analytics_cookie_flags }}'
   });
 </script>
