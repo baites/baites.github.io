@@ -5,5 +5,5 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', '{{ site.google_analytics_3 }}');
+  gtag('config', '{{ site.google_analytics_3 }}', {cookie_flags: 'SameSite=None;Secure'});
 </script>
