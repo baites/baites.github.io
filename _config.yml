@@ -49,6 +49,9 @@ plugins:
 
 google_analytics: G-S1ECTKPWKY
 google_analytics_3: UA-108168462-1
+google_analytics_cookie_domain: 'baites.github.io'
+google_analytics_cookie_flags: 'SameSite=None;Secure'
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
