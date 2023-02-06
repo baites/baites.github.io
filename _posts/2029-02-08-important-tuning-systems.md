@@ -50,5 +50,5 @@ In this blog I summarize all the tuning systems discussed so far. I think cover 
 [^2]:[Group actions and tuning systems]({% post_url 2022-04-04-tuning-systems %}) 
 [^3]:[Simple tuning systems]({% post_url 2022-05-16-simple-tuning-systems %}) and [Tuning systems are homogeneous spaces]({% post_url 2022-07-25-tuning-systems-are-homogeneous-spaces %})
 [^4]: By exponental mapping.
-[^5]:[Tuning systems with equivalence of the octaves]({% post_url 2029-02-07-tuning-systems-w-equivalence-of-the-octaves %}).
+[^5]:[Tuning systems with equivalence of the octaves]({% post_url 2023-02-06-tuning-systems-w-equivalence-of-the-octaves %}).
 [^6]: Sternberg J. Conceptualizing music through mathematics and the generalized interval system. REU project, Department of Mathematics, University of Chicago. 2006.
