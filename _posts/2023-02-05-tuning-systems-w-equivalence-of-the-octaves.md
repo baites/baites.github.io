@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Tuning systems with equivalence of the octaves
-date: 2023-02-06 08:00:00 -0400
+date: 2023-02-05 08:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
 javascript:
