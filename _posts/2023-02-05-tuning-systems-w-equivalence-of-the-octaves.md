@@ -24,13 +24,13 @@ There is a deep connection between the notion of consonance and the timbre or to
 
 In this blog, I will ignore the psychoacoustic details[^5]. Instead, I will concentrate on the algebra of having a tuning system in which octaves are equivalents.
 
-## Octave equivalence in real tuning-systems
+## Octave equivalence in real tuning systems
 
 ### Positive-real octave-equivalent tuning system
 
 Let $\mathcal{S}$ be single pitch space from by the set of complex numbers $\mathbb{C}$ and the function $p: \mathbb{R}\_{>0} \rightarrow \mathbb{C}; f \mapsto e^{i2\pi\log_2(f/f_0)}$ such as the pitch $z = 1$ is the standard pitch of frequency $f_0$. Let me define a group action with group $(\mathbb{R}\_{>0}, \cdot, 1)$ and map $\lambda_x: \mathbb{C} \rightarrow \mathbb{C}; z \mapsto \phi(\log_2(x))z$ with the homorphism $\phi: \mathbb{R} \rightarrow \mathbb{C}; x \mapsto e^{i2\pi x}$. I call this tuning system **octave-equivalent positive-real tuning system**.
 
-This tuning systems is octave equivalence because the kernel $\text{Ker}\_{\phi}$ is all $x \in \mathbb{R}\_{>0}$ such $e^{i2\pi\log_2(x)} = 1$, or equivalent, $\text{Ker}\_{\phi} = \lbrace 2^n \| n \in \mathbb{Z} \rbrace = 2^{\mathbb{Z}}$. Therefore, by the *pitch class for simple-action tuning system* lemma[^6], the tuning system pitch class is $\mathbb{R}\_{>0}/2^{\mathbb{Z}}$. The figure below shows a graphical representation of a pitch with coordinate $x = 1.2$[^200]. The pitch $x$ has *images* of equivalent pitches $x'$ forming what I call overtone the overtone for $x' > x$ and undertone octaves $x' < x$[^7]. In algebra, it is common to notate all the class of equivalent pitches as $1.2 \cdot 2^{\mathbb{Z}}$.
+This tuning systems is octave equivalence because the kernel $\text{Ker}\_{\phi}$ is all $x \in \mathbb{R}\_{>0}$ such $e^{i2\pi\log_2(x)} = 1$, or equivalent, $\text{Ker}\_{\phi} = \lbrace 2^n \| n \in \mathbb{Z} \rbrace = 2^{\mathbb{Z}}$. Therefore, by the *pitch class for simple-action tuning system* lemma[^6], the tuning system pitch class is $\mathbb{R}\_{>0}/2^{\mathbb{Z}}$. The figure below shows a graphical representation of a pitch with coordinate $x = 1.2$[^200]. The pitch $x$ has *images* of equivalent pitches $x'$ forming what it is usually called overtones for $x' > x$ and undertones for $x' < x$[^7]. In algebra, it is common to notate all the class of equivalent pitches as $1.2 \cdot 2^{\mathbb{Z}}$.
 
 {% include image file="mt-positive-real-octave-equivalent-system.svg" scale="100%" %}
 
@@ -44,7 +44,7 @@ The relationship between this system and the previous one is given by the isomor
 
 ### Real octave-equivalent tuning systems are group circle
 
-Both of the previous tuning systems are constructed using homomorphism $\phi: \mathbb{R} \rightarrow \mathbb{C}; x \mapsto e^{i2\pi x}$. The function image $\phi(\mathbb{R})$ is the set of complex element $z$ such $\vert z \vert - 1 = 0$ that is notated as $\mathbb{T}$[^8]. The $(\mathbb{T}, \cdot, 1)$ from a group known as *circle group* based on the multiplication of complex multiplication.
+Both of the previous tuning systems are constructed using homomorphism $\phi: \mathbb{R} \rightarrow \mathbb{C}; x \mapsto e^{i2\pi x}$. The function image $\phi(\mathbb{R})$ is the set of complex element $z$ such $\vert z \vert - 1 = 0$ that is notated as $\mathbb{T}$[^8]. The $(\mathbb{T}, \cdot, 1)$ from a group known as *circle group* based on the multiplication of complex numbers.
 
 Using the *First Isomorphism Theorem for Groups* the homomorphism $\phi$ implies there are the following group isomorphisms between $\mathbb{R}/2^{\mathbb{Z}} \simeq \mathbb{T}$ and $\mathbb{R}/\mathbb{Z} \simeq \mathbb{T}$.[^6] Therefore, the pitch classes for both positive-real and real tuning systems are isomorphic to the circle group. In the graph below an example of $\mathbb{T}$ and the pitch $x$ given by $e^{2\pi\cdot[\log_2(1.2)+\mathbb{Z}]}$.
 
