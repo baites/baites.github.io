@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Tuning system summary
-date: 2029-02-08 08:00:00 -0400
+date: 2023-04-24 08:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
 javascript:
@@ -16,7 +16,7 @@ javascript:
 
 ## Introduction
 
-In this blog I summarize all the tuning systems discussed so far. I think cover all of practical importance and beyond. The notation I am using is provided next table.
+In this blog I summarize all the tuning systems discussed so far. I think all of them should cover all of practical application for music and beyond. The notation I am using is provided next table.
 
 | Symbol         | Description                      |
 |----------------|----------------------------------|
@@ -39,10 +39,17 @@ In this blog I summarize all the tuning systems discussed so far. I think cover 
 | $p_n$-limit[^3]         | $\mathbb{R}$         | $f/f_0$           | $(\mathbb{Z}^n, +, 0)$             | $\prod^n\_{i=1} p^{g\_i}\_i x$ | $\prod^n\_{i=1} p^{g\_i}\_i f_0$ $g \in \mathbb{Z}^n$ | $\mathbb{Z}^n$        |
 | Octave-equivalent positive-real[^5]     | $\mathbb{C}$       | $e^{i2\pi\log_2(f/f_0)}$ | $(\mathbb{R}\_{>0}, \cdot, 1)$ | $e^{i2\pi\log_2(g)} x$         | $\mathbb{R}\_{>0}$                                    | $\mathbb{T}$ |
 | Octave-equivalent real[^5]              | $\mathbb{C}$       | $e^{i2\pi\log_2(f/f_0)}$ | $(\mathbb{R}, +, 0)$           | $e^{i2\pi g} x$                | $\mathbb{R}\_{>0}$                                    | $\mathbb{T}$ |
-| n-equal tone ration[^5]      | $\mathbb{C}$  | $e^{i2\pi f/f_0}$  | $(2^{\mathbb{Z}/n}, \cdot, 1)$ | $e^{i2\pi n\log_2(g)} x$ | $2^{\mathbb{Z}/n} f_0$ | $U_n$ $\mathbb{Z}/n{\mathbb{Z}}$ $\mathbb{Z}_{\bold{mod}\it n}$ $C_n$ |
+| n-equal tone ratio[^5]      | $\mathbb{C}$  | $e^{i2\pi f/f_0}$  | $(2^{\mathbb{Z}/n}, \cdot, 1)$ | $e^{i2\pi n\log_2(g)} x$ | $2^{\mathbb{Z}/n} f_0$ | $U_n$ $\mathbb{Z}/n{\mathbb{Z}}$ $\mathbb{Z}_{\bold{mod}\it n}$ $C_n$ |
 | n-equal tone temperament[^5] | $\mathbb{C}$  | $e^{i2\pi\log_2(f/f_0)}$ | $(\mathbb{Z}, +, 0)$     | $e^{i2\pi g/n} x$        | $2^{\mathbb{Z}/n} f_0$ | $U_n$ $\mathbb{Z}/n{\mathbb{Z}}$ $\mathbb{Z}_{\bold{mod}\it n}$ $C_n$ |
-| Octave-equivalent $p_n$-limit[^5]       | $\mathbb{R}$       | $f/f_0$                  | $(\mathbb{Z}^n, +, 0)$         | $\prod^n\_{i=1} p^{g\_i}\_i x$ | $\prod^n\_{i=1} p^{g\_i}\_i f_0$ $g \in \mathbb{Z}^n$ | $\mathbb{Z}^{n-1}$ |
+| Octave-equivalent $p_n$-limit[^5]       | $\mathbb{R}$       | $f/f_0$                  | $(\mathbb{Z}^n, +, 0)$         | $\prod^n\_{i=2} p^{g\_i}\_i x$ | $\prod^n\_{i=2} p^{g\_i}\_i f_0$ $g \in \mathbb{Z}^n$ | $\mathbb{Z}^{n-1}$ |
 
+## Disclaimer
+
+{% include statement/disclaimer %}
+THE \"KNOWLEDGE\" IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE \"KNOWLEDGE\" OR THE USE OR OTHER DEALINGS OF THE \"KNOWLEDGE\".
+{% include statement/end %}
+
+Expect conceptual errors and constant updates to the whole blog series. Be skeptical and critical of this series content. **Ultimately, you are responsible for the information you consume.**
 
 ## References
 
@@ -50,5 +57,5 @@ In this blog I summarize all the tuning systems discussed so far. I think cover 
 [^2]:[Group actions and tuning systems]({% post_url 2022-04-04-tuning-systems %}) 
 [^3]:[Simple tuning systems]({% post_url 2022-05-16-simple-tuning-systems %}) and [Tuning systems are homogeneous spaces]({% post_url 2022-07-25-tuning-systems-are-homogeneous-spaces %})
 [^4]: By exponental mapping.
-[^5]:[Tuning systems with equivalence of the octaves]({% post_url 2023-02-06-tuning-systems-w-equivalence-of-the-octaves %}).
+[^5]:[Tuning systems with equivalence of the octaves]({% post_url 2023-02-05-tuning-systems-w-equivalence-of-the-octaves %}).
 [^6]: Sternberg J. Conceptualizing music through mathematics and the generalized interval system. REU project, Department of Mathematics, University of Chicago. 2006.
