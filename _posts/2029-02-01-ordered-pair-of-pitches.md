@@ -15,7 +15,7 @@ javascript:
 
 ## Ordered
 
-In this blog, I will explore ordered pair of pitches (or simply pitch pairs) using the same techniques we apply to learn about single-pitch spaces. This is my first step toward recovering the main result summarized by the great book by Dmitri Tymoczko's "A geometry of music".[^1]
+In this blog, I will explore ordered pair of pitches (or simply pitch pairs) using the same techniques we apply to learn about single-pitch spaces. This is my first step toward the main result summarized by the great book by Dmitri Tymoczko's "A geometry of music".[^1]
 
 ## Direct product of two groups
 
@@ -31,9 +31,21 @@ Using this proposition we can combined any tuning system in this [summary]({% po
 
 As example it is straight foward to combined two real tuning systems using their direct product and the appropiated componentwise operations and definitions. All the concepts and theorems we define for single-pitch space trivially follows. As a result the pitch class is simply $\cal{T} \simeq \mathbb{R}^2$.
 
-For completness, I will define in detail this group as template touse in any other two of the common tuning systems.[^3] Let $\mathcal{S}$ be the set of point in a two dimensional plane $\mathbb{R}^2$ and with function $p: \mathbb{R}^2\_{>0} \rightarrow \mathbb{R}^2; p(f_1,f_2) = b_1\log_{a_1}(f_1/f_0) \mathbf{e}\_1 + b_2\log_{a_2}(f_2/f_0)\mathbf{e}\_2$ for some points $\mathbf{a},\mathbf{b} \in \mathbb{R}^2\_{>0}$ such as the pitch $\mathbf{x} = (0,0)$ is the standard pitch of frequency $f_0$.[^4] Let me define the group action with group $(\mathbb{R}^2, \mathbf{+}, \mathbf{0})$ and a map $\lambda_{\mathbf{g}}: \mathbb{R}^2 \rightarrow \mathbb{R}^2; \lambda_{\mathbf{g}}(\mathbf{x}) = \mathbf{g + x}$ for any $\mathbf{g} \in \mathbb{R}^2$ with $\mathbf{+}$ componentwise operator and $\mathbf{0}$ representing the componentwise identity element $(0,0)$. The tuning systems is then given by the the orbit $\mathcal{T} = \lambda_{\mathbb{R}^2}(\mathbf{0})$ that forms a real pitch pair.
+For completness, I will define in detail this group as template touse in any other two of the common tuning systems.[^3] Let $\mathcal{S}$ be the set of point in a two dimensional plane $\mathbb{R}^2$ and with function $p: \mathbb{R}^2\_{>0} \rightarrow \mathbb{R}^2; p(f_1,f_2) = b_1\log_{a_1}(f_1/f_0) \mathbf{e}\_1 + b_2\log_{a_2}(f_2/f_0)\mathbf{e}\_2$ for some points $\mathbf{a},\mathbf{b} \in \mathbb{R}^2\_{>0}$ such as the pitch $\mathbf{x} = (0,0)$ is the standard pitch of frequency $f_0$.[^4] Let me define the group action with group $(\mathbb{R}^2, \mathbf{+}, \mathbf{0})$ and a map $\lambda_{\mathbf{g}}: \mathbb{R}^2 \rightarrow \mathbb{R}^2; \lambda_{\mathbf{g}}(\mathbf{x}) = \mathbf{g + x}$ for any $\mathbf{g} \in \mathbb{R}^2$ with $\mathbf{+}$ componentwise operator and $\mathbf{0}$ representing the componentwise identity element $(0,0)$. The tuning systems pitch-class is the orbit $\mathcal{T} = \lambda_{\mathbb{R}^2}(\mathbf{0})$ that forms a real pitch pair.
 
-Observe that the stabilizer around identity is the same as the identity itself $G_\mathbf{0} = \lbrace \mathbf{0} \rbrace$. It follows then $\lambda_{\mathbb{R}^2}(\mathbf{0})$ is group-action isomorphic to homogenous space $\mathbb{R}^2/ \lbrace \mathbf{0} \rbrace$ that is a simple representation of $\mathbb{R}^2$ or $\mathcal{T} = \lambda_{\mathbb{R}^2}(\mathbf{0}) \simeq \mathbb{R}^2$.[^5]
+Observe that the stabilizer around identity is the same as the identity itself $G_\mathbf{0} = \lbrace \mathbf{0} \rbrace$. It follows then $\lambda_{\mathbb{R}^2}(\mathbf{0})$ is group-action isomorphic to homogenous space $\mathbb{R}^2/ \lbrace \mathbf{0} \rbrace$ that is a simple representation of $\mathbb{R}^2$. This means that the pitch-class $\mathcal{T} = \lambda_{\mathbb{R}^2}(\mathbf{0}) \simeq \mathbb{R}^2$.[^5]
+
+We can represent therefore this tuning system as two dimensional plane where each point represent the action from the standard pitch pair to an arbitrary pitch pair. Alternatively, we could simply used the pitch space $\cal{S}$ itself. For this tuning system there is not any difference. However, understanding of the pitch class algebra or geometry will become more relevant as you use less trival actiosns over the standard pair. 
+
+In the following plot we show as example a representation of the real pitch pair with action given by coordintes $(0.25, 0.75)$. As a result of the action, we transform the standard pitch from $(0,0)$ to $(0.25,0.75)$ within $\cal{S}$. Moreover, if I choose the pitch-space function to be $p(f_1,f_2) = \log_{2}(f_1/f_0) \mathbf{e}\_1 + \log_{2}(f_2/f_0)\mathbf{e}\_2$, then following frequency values $f_1 = 2^{0.25}f_0$ and $f_2 = 2^{0.75}f_0$ are associated to that pitch pair or $p(f_1,f_2) = (0.25, 0.75)$.
+
+{% include image file="real-pitch-pair.svg" scale="80%" %}
+
+
+
+## Ploting real pitch pair
+
+
 
 ## Disclaimer
 
