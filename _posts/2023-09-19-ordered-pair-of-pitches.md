@@ -43,7 +43,7 @@ Therefore, we can represent this tuning system as a two-dimensional plane where 
 
 ### Ploting real-pitch pair tuning system
 
-In the following plot, we show as an example a representation of the real pitch pair with action given by coordinates $(0.25, 0.75)$. As a result of the action, we transform the standard pitch from $(0,0)$ to $(0.25,0.75)$ within $\cal{S}$. Moreover, if I choose the pitch-space function to be $p(f_1,f_2) = \log_{2}(f_1/f_0) \mathbf{e}\_1 + \log_{2}(f_2/f_0)\mathbf{e}\_2$, then following frequency values $f_1 = 2^{0.25}f_0$ and $f_2 = 2^{0.75}f_0$ are associated to that pitch pair or $p(f_1,f_2) = (0.25, 0.75)$.
+In the following plot, we show as an example a representation of the real pitch pair with action given by coordinates $A = (0.25, 0.75)$. As a result of the action, we transform the standard pitch from $(0,0)$ to $(0.25,0.75)$ within $\cal{S}$. Moreover, if I choose the pitch-space function to be $p(f_1,f_2) = \log_{2}(f_1/f_0) \mathbf{e}\_1 + \log_{2}(f_2/f_0)\mathbf{e}\_2$, then following frequency values $f_1 = 2^{0.25}f_0$ and $f_2 = 2^{0.75}f_0$ are associated to that pitch pair or $p(f_1,f_2) = (0.25, 0.75)$.
 
 {% include image file="real-pitch-pair.svg" scale="80%" %}
 
@@ -59,9 +59,11 @@ The tuning system is just the direct product of two octave-equivalent real tunin
 
 ### Octave-equivalent real-pitch pair is a Torus
 
-One way to visualize this tuning system is by grouping to a pair of to unit circles. Technically, those circules are unit circule in complex plan $\mathbb{C}$. An action given by coordinates $(0.25, 0.75)$ transforms the standard pitch $(1,1)$ into to $(e^{i\pi/2},e^{i3\pi/2})$, see figure TODO. Assuming a pitch-space function given by $p(f\_1,f\_2) = e^{i2\pi \log\_2(f_1/f_0)} \mathbf{e}\_1 + e^{i2\pi \log\_2(f\_2/f\_0)}\mathbf{e}\_2$, then the collection of frequency $f_1 = 2^{0.25+n}f_0$ and $f_2 = 2^{0.75+n}f_0$ for $n \in \mathbb{Z}$ are related to pitch pair because $p(f_1,f_2) = (e^{i\pi/2},e^{i3\pi/2})$.
+One way to visualize this tuning system is by representing the pitch space as a pair of to unit circles. Technically, those circules are the unit circule in complex plan $\mathbb{C}$. An arrow from their center represent any point of those circles circunferences. An action given by coordinates $A = (0.25, 0.75)$ transforms the standard pitch $(1,1)$ into to $(e^{i\pi/2},e^{i3\pi/2})$, see figure below. Assuming a pitch-space function given by $p(f\_1,f\_2) = e^{i2\pi \log\_2(f_1/f_0)} \mathbf{e}\_1 + e^{i2\pi \log\_2(f\_2/f\_0)}\mathbf{e}\_2$, then the collection of frequency $f_1 = 2^{0.25+n}f_0$ and $f_2 = 2^{0.75+n}f_0$ for $n \in \mathbb{Z}$ are related to pitch pair because $p(f_1,f_2) = (e^{i\pi/2},e^{i3\pi/2})$.
 
-Alternative, because tuning system are also homogeneous spaces, we can avoid thinking on the action over the pitch space and represent each pitch pairs as elements on pitch-class $\mathbb{T}^2$ (the homogeneous spaces that group-action isomorphic tuning system). The direct product of the group circle $\mathbb{T}^2$ is isomorphic to the shape a of a Torus embedded in a 3D space under the transformation
+{% include image file="octave-equivalent-real-pitch-pair-transform.svg" %}
+
+Alternative we can avoid thinking on the action over the pitch space and represent each pitch pairs as elements on pitch-class $\mathbb{T}^2$, meaning the homogeneous spaces that group-action isomorphic tuning system[^5]. The direct product of the group circle $\mathbb{T}^2$ is isomorphic to the shape a of a Torus embedded in a 3D space under the transformation
 
 $$
 \begin{cases}
@@ -74,6 +76,8 @@ $$
 where the major radius $R$ is the distance from the center of the tube to the center of the torus and the minor radius $r$ is the radius of the tube under the condition $0 < r < R$[^7]. This means action given by coordinates $(0.25, 0.75)$ can be represented as points in the surface of a torus as shown the figure below.
 
 {% include image file="embedded-torus.svg" scale="80%" %}
+
+{% include image file="octave-equivalent-real-pitch-pair.svg" scale="80%" %}
 
 ## Disclaimer
 
