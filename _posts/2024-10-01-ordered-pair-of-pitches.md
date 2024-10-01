@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ordered pairs of pitches
-date: 2023-09-19 08:00:00 -0400
+date: 2024-10-01 08:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
 javascript:
