@@ -27,5 +27,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Update needed to run on ruby 3
+gem "csv"
 gem "erb"
+gem "faraday-retry"
 gem "webrick"
