@@ -1,6 +1,6 @@
 ---
 layout: post
-title: An algebra for orbichords
+title: An algebra for orbichords I (Fundamental actions)
 date: 2029-01-01 18:00:00 -0400
 author: Victor E. Bazterra
 categories: music math music-notes-series
@@ -120,7 +120,13 @@ The next proposal stablish that the equivalent set of two distinc elements of fu
 Equivalent actions for two distinct elements $g,h \in D_a$ for $h \neq g$ do not overlap or $E[h,a] \cap E[g,a] = \emptyset$.  
 {% include statement/end %}
 
-The proposal can also be interpreated as elements from foundamental domain are not images of each other. The counter part when looking at the more narrow group actions is given by the follwind proposition.
+The proposal can also be interpreated as elements from foundamental domain are not images of each other. The counter part when looking at the more narrow group actions is given by the followind proposition.
+
+{% include statement/example name="fundamental domain of real pitch dyad" markdown="block" %}
+Using the dyad define in the previous post[^3] and setting as tandard pitch $0 \in \mathcal{S}$, the fundamental domain 
+
+$$ D_0 = \left\{(\mu, \delta) \in \mathbb{R} | \delta \geq 0 \right\}. $$
+{% include statement/end %}
 
 ## Equivalence space
 
@@ -163,7 +169,7 @@ where we use the property set with one element $\\{ \lambda_h(a) \\}$ is trivial
 
 ## Fundamental actions
 
-The next logical step is to add more structure to the monion action to recover some of the venefits of groups action composition. For that I need to define the map that takes any element $g \in G$ into a element of $D_a$ that has equivalent action.
+The next logical step is to add more structure to the monion action to recover some of the benefits of groups action composition. For that I need to define the map that takes any element $g \in G$ into a element of $D_a$ that has equivalent action.
 
 {% include statement/definition name="fundamental domain map" markdown="block" %}
 The function $\pi_a: G \rightarrow D_a; g \mapsto h$ such $g \in E[h,a]$ maps any point in $G$ into the fundamental domain $D_a$.
@@ -176,9 +182,46 @@ This map has the following properties:
 * $\pi_a\left(E[h,a]\right) = h$ for any $h \in D_a$.
 * $\pi_a\left(E[g,a]\right) = h$ for any $g \in G$ and $h = \pi_a(g)$.
 
+Using this map we can create a new composition rule and thereofore a new type of action.
+
+{% include statement/definition name="fundamental action" markdown="block" %}
+Given a moniod action $(X, G, \lambda)$ and its fundamental domain $D_a$ relative to $a \in X$. I assume this case that $G$ is a group $(G, \cdot, e)$. I say the action is a *fundamental* or a *fundamental action* if also comply with the following composition rule
+
+$$ \lambda_g \circ \lambda_h(a) = \lambda_{g\cdot\pi_a(h)}(a) $$
+{% include statement/end %}
+
+{% include statement/example name="fundamental action in real pitch dyad" markdown="block" %}
+The figure below ....
+
+{% include image file="action-on-2d-real-dyad-v2.png" scale="80%" %}
+{% include statement/end %}
+
+Let see how fundamental action include group actions.
+
+{% include statement/proposition name="group action are fundamental" markdown="block" %}
+Group actions are fundamental actions!
+{% include statement/end %}
+
+**Proof:** By definition $\pi_a(h) = k$ means that $h \in E[k,a]$ for $k \in D_a$, and I showed that $E[k,a] = kG_a$. Applying the composition rule of group actions you get then
+
+$$ 
+\begin{aligned}
+\lambda_g \circ \lambda_h(a) &= \lambda_{g\cdot h}(a) = \lambda_{g\cdot E[k,a]}(a) \\
+                             &= \lambda_{g\cdot kG_a}(a) = \lambda_{g\cdot k} \circ \lambda_{G_a}(a) \\
+                             &= \lambda_{g\cdot k}(a) = \lambda_{g\cdot \pi_a(h)}(a)
+\end{aligned}
+$$
+
+## Summary
+
+I developed the necessesary tools to define a new class of actions based on groups and the identification of some member of the group as equivalent. I call this action fundamental as their definition required the notion of fundamental domains. Those domains contains all the member of a group that result in distict actions over a given element on set where actions are applied. I illustrated how all these definitions can be apply to *real pitch dyad*. I also showed group actions are also fundamental.
+
+In the next post I will complete the equivalent to *Transitive actions are homogeneous spaces* theorem[^4] for fundamental action. As such en generalizing the most important concept of group action to fundamental ones that allow for identification of group members as equivalent!
+
 ## References
 
 [^1]: For definition of monoid and references see ["Group actions and tuning systems"]({% post_url 2022-04-04-tuning-systems %})
 [^2]: Definition 3.2 of [^100].
 [^3]: [A pair of pitches with a twist]({% post_url 2025-12-10-a-pair-of-pitches-with-a-twist %})
+[^4]: [Tuning systems are homogeous spaces]({% post_url 2022-07-25-tuning-systems-are-homogeneous-spaces %})
 [^100]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
