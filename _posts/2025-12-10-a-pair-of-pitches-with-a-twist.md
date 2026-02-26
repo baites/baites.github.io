@@ -23,7 +23,7 @@ $$ \lambda_{(\mu, \delta)}(x_1, x_2) = \frac{1}{2}\left[(\mu-\delta+x_1) \mathbf
 
 This map parametrizes actions as *parallel motions* (controlled by $\mu$)git and *contrary motions* (controlled by $\delta$). In terms of the previous *real pitch pair* definition, $\mu = g_1 + g_2$ and $\delta = g_2 - g_1$. The figure below shows the group actions and thier effect on pitch space. The figure also illustrates how group operations results in the composition of transformation in the pitch space. In particular, the example illustrates the composition rule resulting of group actions, namely that any trajectory that starts and ends at the same group element (here the identity) must also start and end at the same pitch pair (in this case the standard pitch pair). 
 
-{% include image file="action-on-2d-real-pair.png" scale="80%" %}
+{% include image file="mt-action-on-2d-real-pair.svg" scale="80%" %}
 
 ## The twist
 
@@ -40,7 +40,7 @@ $$
 
 Below the figure illustrates the result of this transformation over the same action trajectory as above.
 
-{% include image file="action-on-2d-real-dyad.png" scale="80%" %}
+{% include image file="mt-action-on-2d-real-dyad.svg" scale="80%" %}
 
 From the plot we must notice that
 
@@ -51,9 +51,9 @@ From the plot we must notice that
 
 However, we can make $\lambda_{1+2+3}(0) = \lambda_0(0)$ by an appropiate choice of action as shown in the next graph.
 
-{% include image file="action-on-2d-real-dyad-v2.png" scale="80%" %}
+{% include image file="mt-action-on-2d-real-dyad-v2.svg" scale="80%" %}
 
-However, composition rule derived from group actions is not valid in general. This means real pitch dyads cannot be represented by group actions. This means that identifying dyads by interval behaves very different from identifying, for example, octaves that was possible by defining group stebilizer action over homogeneous spaces. We will need a new type of object to decribe the algebra of dyads and its derived structures!
+This shows that the composition rule derived from group actions is not valid in general for dyads, or alternatively, dyads cannot be represented by **group actions**! This means that identifying dyads intervals as equivalent is different from identifying the equivalence of octaves. In the later, that was possible by defining group stebilizer action over homogeneous spaces. We will need a new type of object to decribe the algebra of dyads and its derived structures!
 
 ## Disclaimer
 

@@ -1,7 +1,7 @@
 
 {% assign class = "remark" %}
 {% assign logo = "fas fa-exclamation-circle" %}
-<div markdown="span" class="{{ class }}" role="statement">
+<div markdown="{{ include.markdown | default: 'span' }}" class="{{ class }}" role="statement"> 
 {% if include.name %}
 <i class="{{ logo }}"/> <b>{{ class | capitalize }} <i>({{ include.name }})</i>:</b>
 {% else %}
