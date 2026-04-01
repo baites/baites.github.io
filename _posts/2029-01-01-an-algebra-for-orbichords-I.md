@@ -204,7 +204,7 @@ $$ \lambda_g \circ \lambda_h(a) = \lambda_{g\cdot\pi_a(h)}(a) $$
 {% include statement/end %}
 
 {% include statement/example name="fundamental action in real pitch dyad" markdown="block" %}
-The figure below shows how the propose action composition resolve any ambiguity because of the equivalence of dyad. The composition action $3$ occurs after the previous composition $1+2$ is mapped to funamental domain $\pi_0(1+2) \in D_0$.  
+The figure below shows how the propose action composition resolve any ambiguity because of the equivalence of dyad. The composition action $g_3$ occurs after the previous composition $g_1+g_2$ is mapped to funamental domain $\pi_0(g_1+g_2 = A') \in D_0$.  
 
 {% include image file="mt-fundamental-action-composition.svg" scale="80%" %}
 {% include statement/end %}

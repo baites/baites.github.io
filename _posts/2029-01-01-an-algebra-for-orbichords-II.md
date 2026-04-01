@@ -143,6 +143,8 @@ Fundamental actions allow us to think group actions in two fundamental ways. We 
 
 Alternative, we can think these actions as transformations between set of equivalent actions on $a$. The fact fundamental actions are equivalent spaces means these two approaches are equivalent or fundamental-action ismorphic.
 
+{% include image file="mt-fundamental-action-isomorphism.svg" scale="90%" %}
+
 ## References
 
 [^1]: Eventually $X$ action over space of tuple of pithes when aply to music.

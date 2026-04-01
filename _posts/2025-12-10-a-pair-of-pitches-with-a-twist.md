@@ -47,9 +47,9 @@ From the plot we must notice that
 * Only points in the half-plane above the diagonal line are reachable from standard pitch.
 * This is by convention; it would be easy to define a transformation to reaches the lower half-plane as well.
 * The action from $A \in G$ to its equivalent $A^{\prime} \in G$ results in a bounce on the diagonal.
-* The previous composition rule does not hold $\lambda_{1+2+3}(0) {=}\mathllap{/\,} \lambda_{0}(0)$ !
+* The previous composition rule does not hold $\lambda_{g_1+g_2+g_3}(0) {=}\mathllap{/\,} \lambda_{0}(0)$ !
 
-However, we can make $\lambda_{1+2+3}(0) = \lambda_0(0)$ by an appropiate choice of action as shown in the next graph.
+However, we can make $\lambda_{g_1+g_2+g_3}(0) = \lambda_0(0)$ by an appropiate choice of action as shown in the next graph.
 
 {% include image file="mt-action-on-2d-real-dyad-v2.svg" scale="80%" %}
 
