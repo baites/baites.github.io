@@ -137,6 +137,11 @@ This means that any interested Orbichord in $\mathcal{S}$ can be studies by a ex
 
 {% include image file="mt-fundamental-action-theom.svg" scale="90%" %}
 
+## Interpretation
+
+Fundamental actions allow us to think group actions in two fundamental ways. We can think as group actions restricted to a fundamental domain $D_a$ relative to $a \in \mathcal{S}$. Each element of that domain result in a unique action over $a$. We can use the group product for composing these actions as long we reduce map first any element $g \in G$ to the fundamental domain $\pi_a(g)$. This is the prefer choice argued by Tymoczko.[^200] 
+
+Alternative, we can think these actions as transformations between set of equivalent actions on $a$. The fact fundamental actions are equivalent spaces means these two approaches are equivalent or fundamental-action ismorphic.
 
 ## References
 
@@ -145,3 +150,4 @@ This means that any interested Orbichord in $\mathcal{S}$ can be studies by a ex
 [^3]: [A pair of pitches with a twist]({% post_url 2025-12-10-a-pair-of-pitches-with-a-twist %})
 [^4]: [Tuning systems are homogeous spaces]({% post_url 2022-07-25-tuning-systems-are-homogeneous-spaces %})
 [^100]: Smith, Jonathan DH. Introduction to abstract algebra. Vol. 31. CRC Press, 2015.
+[^200]: Tymoczko, Dmitri. A geometry of music: Harmony and counterpoint in the extended common practice. Oxford University Press, 2010.
