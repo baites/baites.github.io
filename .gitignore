@@ -3,3 +3,6 @@ _site/
 
 # draw.io autosave backups
 .$*.drawio.bkp
+
+# Claude Code personal settings
+.claude/settings.local.json
