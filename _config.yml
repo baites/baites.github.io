@@ -65,6 +65,7 @@ google_analytics_cookie_flags: SameSite=None;Secure
 #   - vendor/gems/
 #   - vendor/ruby/
 exclude:
+    - CLAUDE.md
     - _archive/
     - assests/js/contrib
     - assets/js/extensions
