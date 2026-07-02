@@ -4,6 +4,7 @@
 .example,
 .lemma,
 .problem,
+.project,
 .proposition,
 .remark,
 .statement,
@@ -44,6 +45,11 @@
 .problem {
     background-color: lightsteelblue;
     border-color: steelblue;
+}
+
+.project {
+    background-color: #f4e8fd;
+    border-color: #8533f0;
 }
 
 .proposition {
