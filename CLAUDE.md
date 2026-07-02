@@ -58,7 +58,7 @@ Because kramdown processes Markdown before KaTeX runs, LaTeX subscripts and pipe
 ### Custom includes
 
 - `{% include image file="foo.svg" scale="80%" align="center" %}` — renders `/assets/images/foo.svg`. `scale`/`align` optional.
-- `{% include statement/theorem name="..." %}` … content … `{% include statement/end %}` — boxed math statements. Types live in `_includes/statement/`: `theorem`, `lemma`, `corollary`, `proposition`, `definition`, `example`, `remark`, `problem`. Each opens a `<div>`; `statement/end` closes it. `statement/disclaimer` is self-closing (no `end` needed). Styled by `assets/css/statement.css`.
+- `{% include statement/theorem name="..." %}` … content … `{% include statement/end %}` — boxed math statements. Types live in `_includes/statement/`: `theorem`, `lemma`, `corollary`, `proposition`, `definition`, `example`, `remark`, `problem`, `project` (a repo/project callout using a git icon). Each opens a `<div>`; `statement/end` closes it. `statement/disclaimer` is self-closing (no `end` needed). Styled by `assets/css/statement.css`. To add a new type, copy an existing include (each just sets `class` + a FontAwesome `logo` and opens the `<div>`), then add a matching `.<type>` rule to `assets/css/statement.css` (append it to the shared selector list and give it a `background-color`/`border-color` pair).
 - `{% include katex id="..." code="..." displayMode=true %}` and `{% include pseudocode id="..." code="..." %}` — explicit render into a target element (used when auto-render isn't enough).
 
 ### Figures
